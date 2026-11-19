@@ -26,5 +26,5 @@ const out = {
   capturedAt: new Date().toISOString(),
   historical,
 };
-await writeFile(new URL("../public/data/border-historical.json", import.meta.url), JSON.stringify(out));
-console.log("Saved public/data/border-historical.json");
+await writeFile(new URL("../src/days/day-001-border/snapshot.json", import.meta.url), JSON.stringify(out));
+console.log("Saved src/days/day-001-border/snapshot.json");

@@ -1,5 +1,7 @@
 // Data access for CBP Border Wait Times (https://bwt.cbp.gov).
 // All endpoints below allow cross-origin requests from the browser.
+import SNAPSHOT from "./snapshot.json";
+
 const API = "https://bwt.cbp.gov/api";
 
 export const CROSSINGS = [
@@ -65,9 +67,9 @@ export async function fetchHistorical(crossingId, month) {
   ]);
 }
 
-/** Snapshot bundled with the site, used when the live API is unreachable. */
+/** Snapshot bundled into the app, used when the live API is unreachable. */
 export async function fetchSnapshot() {
-  return getJSON(`${import.meta.env.BASE_URL}data/border-historical.json`);
+  return SNAPSHOT;
 }
 
 /** 7 × 24 grid of minutes (null = closed / no data). */

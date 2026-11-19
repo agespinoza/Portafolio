@@ -15,7 +15,7 @@ The page shows northbound wait times at the Calexico West and Calexico East port
 - **Today vs. a typical day:** the hourly waits so far today, compared with the typical average and range for the same weekday.
 - **Busiest months:** the average daytime wait (6 am–10 pm) for each month of the year.
 
-You can switch between crossings, lanes (standard, SENTRI, Ready Lane, and pedestrian), and months. All times are Pacific Time. If the live API is unreachable, the page uses a saved snapshot in [`public/data/border-historical.json`](public/data/border-historical.json).
+You can switch between crossings, lanes (standard, SENTRI, Ready Lane, and pedestrian), and months. All times are Pacific Time. If the live API is unreachable, the page uses a saved snapshot in [`src/days/day-001-border/snapshot.json`](src/days/day-001-border/snapshot.json).
 
 ## Run locally
 
