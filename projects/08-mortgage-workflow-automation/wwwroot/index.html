@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mortgage Workflow</title>
+<style>
+body{font:1rem system-ui;background:#f5f7fc;color:#17213a;max-width:42rem;margin:3rem auto;padding:0 1rem}
+main{background:white;padding:2rem;border-radius:1rem}button{font:inherit;padding:.65rem;border-radius:.4rem}
+li{margin:.6rem 0}
+</style>
+<main>
+<h1>Mortgage application</h1>
+<p id="status" role="status">Loading…</p>
+<button disabled>Advance stage</button>
+<p id="error" role="alert"></p>
+<h2>Activity log</h2>
+<ol></ol>
+</main>
+<script type="module" src="workflow.js"></script>
+</html>

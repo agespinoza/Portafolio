@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interactive Trajectory Chart</title>
+<style>
+body{font:1rem system-ui;color:#17243b;background:#f2f6fb;max-width:52rem;margin:3rem auto;padding:0 1rem}
+svg{display:block;width:100%;background:white;border-radius:1rem;margin:1rem 0}
+circle{cursor:pointer;fill:#155e75}circle:focus,circle.active{fill:#b45309;stroke:#17243b;stroke-width:2}
+select{font:inherit;padding:.35rem}text{font:13px system-ui}
+</style>
+<h1>Simulated trajectory</h1>
+<label for="point">Point in time</label> <select id="point" disabled></select>
+<svg id="chart" viewBox="0 0 640 330" role="group" aria-label="Trajectory positions in kilometers"></svg>
+<p id="details" aria-live="polite">Loading trajectory…</p>
+<script type="module" src="chart.js"></script>
+</html>

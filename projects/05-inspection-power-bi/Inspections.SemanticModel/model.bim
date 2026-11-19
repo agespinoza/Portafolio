@@ -1,0 +1,78 @@
+{
+  "name": "Inspections",
+  "compatibilityLevel": 1550,
+  "model": {
+    "culture": "en-US",
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "annotations": [
+      {
+        "name": "PBI_QueryOrder",
+        "value": "[\"Inspections\"]"
+      }
+    ],
+    "tables": [
+      {
+        "name": "Inspections",
+        "columns": [
+          {
+            "name": "Week",
+            "sourceColumn": "Week",
+            "dataType": "string",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Station",
+            "sourceColumn": "Station",
+            "dataType": "string",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Minutes",
+            "sourceColumn": "Minutes",
+            "dataType": "int64",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "Outcome",
+            "sourceColumn": "Outcome",
+            "dataType": "string",
+            "summarizeBy": "none"
+          }
+        ],
+        "measures": [
+          {
+            "name": "Average Minutes",
+            "expression": "AVERAGE(Inspections[Minutes])",
+            "formatString": "0.0"
+          },
+          {
+            "name": "Exception Count",
+            "expression": "COALESCE(COUNTROWS(FILTER(Inspections, Inspections[Outcome] = \"Failed\" || Inspections[Minutes] > 35)), 0)",
+            "formatString": "0"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Inspections",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "#table(type table [Week = text, Station = text, Minutes = Int64.Type, Outcome = text], {",
+                "        {\"2026-01-05\", \"North\", 24, \"Passed\"},",
+                "        {\"2026-01-05\", \"South\", 31, \"Failed\"},",
+                "        {\"2026-01-12\", \"North\", 28, \"Passed\"},",
+                "        {\"2026-01-12\", \"South\", 37, \"Failed\"},",
+                "        {\"2026-01-19\", \"North\", 40, \"Passed\"},",
+                "        {\"2026-01-19\", \"South\", 34, \"Passed\"},",
+                "        {\"2026-01-26\", \"North\", 29, \"Passed\"},",
+                "        {\"2026-01-26\", \"South\", 33, \"Passed\"}",
+                "})"
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

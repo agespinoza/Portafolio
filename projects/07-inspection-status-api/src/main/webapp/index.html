@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inspection Status</title>
+<style>
+body{font:1rem system-ui;background:#edf4fa;color:#14263a;max-width:38rem;margin:4rem auto;padding:0 1rem}
+main{background:white;padding:2rem;border-radius:1rem}input,button{font:inherit;padding:.55rem;margin:.25rem 0}
+button{background:#195373;color:white;border:0;border-radius:.35rem}
+</style>
+<main>
+<h1>Inspection status</h1>
+<form>
+<label for="inspection-id">Inspection ID</label><br>
+<input id="inspection-id" value="INS-101" pattern="INS-[0-9]+" required>
+<button>Look up</button>
+</form>
+<p role="status"></p>
+</main>
+<script>
+const form = document.querySelector('form');
+const result = document.querySelector('[role=status]');
+form.addEventListener('submit', async event => {
+    event.preventDefault();
+    const button = form.querySelector('button');
+    const id = document.querySelector('#inspection-id').value;
+    button.disabled = true;
+    result.textContent = 'Checking status…';
+    try {
+        const response = await fetch(`api/inspections/${encodeURIComponent(id)}`);
+        const data = await response.json();
+        result.textContent = response.ok ? `${data.id} · ${data.status}` : data.error ?? 'Lookup failed.';
+    } catch {
+        result.textContent = 'The inspection service is unavailable.';
+    } finally {
+        button.disabled = false;
+    }
+});
+</script>
+</html>

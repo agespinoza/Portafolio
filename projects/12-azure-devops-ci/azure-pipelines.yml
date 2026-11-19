@@ -1,0 +1,21 @@
+trigger:
+  branches:
+    include:
+      - '*'
+  paths:
+    include:
+      - projects/12-azure-devops-ci/**
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: '3.12'
+  - script: |
+      set -e
+      python -m compileall -q duration.py test_duration.py
+      python -m unittest -v
+    workingDirectory: $(Build.SourcesDirectory)/projects/12-azure-devops-ci
+    displayName: Compile and test
