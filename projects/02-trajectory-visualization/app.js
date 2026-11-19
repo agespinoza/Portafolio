@@ -3,9 +3,10 @@ import {
     makeSatellite, stateAt, sunAt, inEclipse, footprintRadiusDeg, observe, predictPasses, sampleTrack, compareWithOem,
 } from './orbit.js';
 import {
-    REGIMES, REGIME_LABEL, regimeColor, symbolPath, utcFull, utcShort, utcTime,
-    timeSeries, createMap, skyPlot, regimeChart,
+    REGIMES, REGIME_LABEL, regimeColor, symbolPath, utcFull, utcShort, utcTime, utcHm,
+    timeSeries, contactPlan, createMap, skyPlot, regimeChart,
 } from './charts.js';
+import { landMask, landDots, globeTexture } from './earth.js';
 
 const LAND_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/land-110m.json';
 const CELESTRAK = norad => `https://celestrak.org/NORAD/elements/gp.php?CATNR=${norad}&FORMAT=tle`;
@@ -43,26 +44,28 @@ const duration = ms => {
     const d = Math.floor(minutes / 1440), h = Math.floor((minutes % 1440) / 60), m = minutes % 60;
     return d ? `${d} d ${h} h` : h ? `${h} h ${String(m).padStart(2, '0')} m` : `${m} min`;
 };
-const icon = regime => {
+const svgIcon = (d, fill) => {
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.setAttribute('viewBox', '-6 -6 12 12');
     svg.setAttribute('aria-hidden', 'true');
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', symbolPath(regime, 56));
-    path.setAttribute('fill', regimeColor(regime));
+    path.setAttribute('d', d);
+    path.setAttribute('fill', fill);
     svg.append(path);
     return svg;
 };
+const icon = regime => svgIcon(symbolPath(regime, 56), regimeColor(regime));
 const badge = (level, text) => el('span', { class: `badge badge--${level}` }, text);
 const ageLevel = days => days < 3 ? 'good' : days < 7 ? 'warning' : 'critical';
 
 const state = {
     sats: [], selectedId: 25544, stationId: 'tucson', mask: 10, horizonH: 24,
     mode: 'live', speed: 60, simMs: Date.now(), lastTick: performance.now(),
-    source: null, contextMs: null, fleetMs: null, passes: [], fleetPasses: new Map(), selectedPass: 0,
+    source: null, contextMs: null, fleetMs: null, fleetPasses: new Map(), selectedPass: 0, validation: null,
 };
 const station = () => STATIONS.find(s => s.id === state.stationId);
 const selected = () => state.sats.find(s => s.norad === state.selectedId) || state.sats[0];
+const passesOf = norad => state.fleetPasses.get(norad) || [];
 
 // ---------- Data ----------
 
@@ -132,7 +135,6 @@ async function loadElements({ force = false } = {}) {
     }
     const cacheFresh = cached && Date.now() - cached.fetchedMs < CACHE_MS;
     if ((force && !cacheFresh) || Date.now() - source.fetchedMs > STALE_MS) {
-        setStatus('neutral', 'Downloading current element sets from CelesTrak…');
         try {
             const live = await downloadLive(catalog);
             if (live.length) {
@@ -152,29 +154,28 @@ function setStatus(level, text) {
     $('#data-status').replaceChildren(badge(level, text));
 }
 
+function oldestAgeDays() {
+    return Math.max(...state.sats.map(s => (Date.now() - s.elements.epoch.getTime()) / 86_400_000));
+}
+
 function renderDataStatus(throttled = false) {
-    const ages = state.sats.map(s => (Date.now() - s.elements.epoch.getTime()) / 86_400_000);
-    const oldest = Math.max(...ages);
-    const level = ageLevel(oldest);
-    const origin = { snapshot: 'bundled snapshot', cache: 'CelesTrak (cached)', live: 'CelesTrak (live)' }[state.source.kind];
+    const oldest = oldestAgeDays();
+    const origin = { snapshot: 'Daily snapshot', cache: 'CelesTrak (cached)', live: 'CelesTrak (live)' }[state.source.kind];
     const partial = state.source.kind === 'live' && state.source.count < state.source.total ? ` · ${state.source.count}/${state.source.total} refreshed` : '';
-    setStatus(level, `${origin}, retrieved ${utcShort(new Date(state.source.fetchedMs))} UTC · oldest epoch ${num(oldest, 1)} d${partial}${throttled ? ' · refresh limited to once per 2 h' : ''}`);
+    setStatus(ageLevel(oldest), `${origin}, retrieved ${utcShort(new Date(state.source.fetchedMs))} UTC · oldest epoch ${num(oldest, 1)} d${partial}${throttled ? ' · refresh limited to once per 2 h' : ''}`);
 }
 
 // ---------- Rendering ----------
 
-let map, regimes, altitudeChart, elevationChart, validationChart;
+let map, globe, regimes, altitudeChart, planChart, passChart;
 
 function buildLegends() {
     const present = REGIMES.filter(regime => state.sats.some(s => s.regime === regime));
-    for (const id of ['#map-legend', '#regime-legend']) {
-        $(id).replaceChildren(...present.map(regime => el('li', {}, icon(regime), REGIME_LABEL[regime])));
-    }
-    const mapLegend = $('#map-legend');
-    const stationKey = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    stationKey.setAttribute('viewBox', '-6 -6 12 12');
-    stationKey.innerHTML = '<path d="M0,-5L5,4H-5Z" fill="currentColor"/>';
-    mapLegend.append(el('li', {}, stationKey, 'Ground station'));
+    const items = () => present.map(regime => el('li', {}, icon(regime), REGIME_LABEL[regime]));
+    $('#regime-legend').replaceChildren(...items());
+    $('#globe-legend').replaceChildren(...items(), el('li', {}, svgIcon('M-5,0a5,5 0 1,0 10,0a5,5 0 1,0 -10,0', 'var(--ink)'), 'Ground station'));
+    $('#map-legend').replaceChildren(...items(), el('li', {}, svgIcon('M0,-5L5,4H-5Z', 'var(--ink)'), 'Ground station'),
+        el('li', {}, svgIcon('M-4,0a4,4 0 1,0 8,0a4,4 0 1,0 -8,0', '#f7d58a'), 'Subsolar point'));
 }
 
 function buildSelectors() {
@@ -193,7 +194,7 @@ function currentStates(date) {
     return states;
 }
 
-/** Heavier computations, refreshed when the selection changes or simulated time drifts. */
+/** Selected-satellite views, refreshed when the selection changes or simulated time drifts. */
 function recomputeContext(force = false) {
     const sat = selected();
     const drift = state.contextMs === null ? Infinity : state.simMs - state.contextMs;
@@ -201,6 +202,7 @@ function recomputeContext(force = false) {
     state.contextMs = state.simMs;
     const start = state.simMs;
     const period = sat.elements.periodMin * MINUTE;
+    const color = regimeColor(sat.regime);
 
     state.track = sampleTrack(sat, start - Math.min(period / 2, 12 * HOUR), start + Math.min(1.5 * period, 24 * HOUR), 540);
 
@@ -211,85 +213,137 @@ function recomputeContext(force = false) {
         if (p.eclipse && (!bands.length || bands.at(-1).closed)) bands.push({ from: p.ms, to: p.ms });
         if (p.eclipse) bands.at(-1).to = p.ms; else if (bands.length) bands.at(-1).closed = true;
     }
+    for (const band of bands) band.label = `Eclipse · ${duration(band.to - band.from)}`;
     const eclipseShare = profile.filter(p => p.eclipse).length / profile.length;
-    $('#altitude-meta').textContent = `Next ${duration(profile.at(-1).ms - start)} · ${num(eclipseShare * 100, 0)}% in Earth shadow`;
+    const lo = profile.reduce((a, b) => (b.altKm < a.altKm ? b : a));
+    const hi = profile.reduce((a, b) => (b.altKm > a.altKm ? b : a));
+    $('#altitude-title').textContent = `${sat.name}, ${duration(profile.at(-1).ms - start)} ahead`;
+    $('#altitude-meta').textContent = `${num(eclipseShare * 100, 0)}% of the time in Earth's shadow · altitude swings ${num(hi.altKm - lo.altKm, 1)} km`;
     altitudeChart = timeSeries($('#altitude-chart'), {
-        series: [{ key: 'alt', label: 'Geodetic altitude', color: regimeColor(sat.regime), values: profile.map(p => ({ ms: p.ms, v: p.altKm })) }],
-        yLabel: 'Altitude (km)', unit: 'km', valueFormat: v => num(v, 1), bands, bandLabel: 'Earth shadow (eclipse)',
+        series: [{ key: 'alt', label: 'Geodetic altitude', color, values: profile.map(p => ({ ms: p.ms, v: p.altKm })) }],
+        yLabel: 'Altitude · km', unit: 'km', valueFormat: v => num(v, 1), bands, bandLabel: 'Earth shadow (umbra)', height: 260,
+        annotations: [
+            { ms: hi.ms, v: hi.altKm, label: `High ${num(hi.altKm, 0)} km` },
+            { ms: lo.ms, v: lo.altKm, label: `Low ${num(lo.altKm, 0)} km`, position: 'below' },
+        ],
         ariaLabel: `${sat.name} altitude over the next ${duration(profile.at(-1).ms - start)}`,
         extraRows: i => [{ value: profile[i].eclipse ? 'Eclipse' : 'Sunlit', label: 'illumination' },
             { value: `${num(profile[i].speedKms, 3)} km/s`, label: 'speed' }],
     });
-
-    // Ground station elevation over the pass window.
-    const st = station();
-    const end = start + state.horizonH * HOUR;
-    const steps = 720;
-    const looks = [];
-    for (let i = 0; i <= steps; i++) {
-        const ms = start + (end - start) * i / steps;
-        const look = observe(sat, st, new Date(ms));
-        looks.push({ ms, v: look && look.elDeg >= 0 ? look.elDeg : NaN, look });
-    }
-    state.passes = predictPasses(sat, st, new Date(start), state.horizonH, state.mask);
-    state.selectedPass = 0;
-    const contactMin = state.passes.reduce((sum, p) => sum + p.durationMin, 0);
-    $('#contact-meta').textContent = `${st.short} · ${state.passes.length} passes above ${state.mask}° · ${duration(contactMin * MINUTE)} total contact in ${state.horizonH} h`;
-    elevationChart = timeSeries($('#elevation-chart'), {
-        series: [{ key: 'el', label: 'Elevation', color: regimeColor(sat.regime), values: looks }],
-        yDomain: [0, 90], yLabel: 'Elevation (°)', unit: '°', valueFormat: v => num(v, 1),
-        bands: state.passes.map(p => ({ from: p.aos.getTime(), to: p.los.getTime() })), bandLabel: `Contact window above the ${state.mask}° mask`,
-        refLines: state.mask ? [{ v: state.mask, label: `${state.mask}° mask` }] : [],
-        ariaLabel: `${sat.name} elevation from ${st.short} over ${state.horizonH} hours`,
-        extraRows: i => looks[i].look ? [{ value: `${num(looks[i].look.azDeg, 1)}°`, label: 'azimuth' },
-            { value: `${num(looks[i].look.rangeKm, 0)} km`, label: 'slant range' }] : [],
-    });
-    renderPasses();
+    renderPassDetail();
 }
 
-function recomputeFleetPasses(force = false) {
+/** Fleet-wide passes and inertial orbits, refreshed on station or window changes and every 30 sim-minutes. */
+function recomputeFleet(force = false) {
     const drift = state.fleetMs === null ? Infinity : state.simMs - state.fleetMs;
     if (!force && drift >= 0 && drift < 30 * MINUTE) return;
     state.fleetMs = state.simMs;
-    state.fleetPasses = new Map(state.sats.map(sat => [sat.norad, predictPasses(sat, station(), new Date(state.simMs), state.horizonH, state.mask)]));
-    $('#fleet-meta').textContent = `Next contact from ${station().short} above ${state.mask}° within ${state.horizonH} h · select a row to focus a satellite`;
+    const st = station();
+    state.fleetPasses = new Map(state.sats.map(sat => [sat.norad, predictPasses(sat, st, new Date(state.simMs), state.horizonH, state.mask)]));
+    const orbits = new Map(state.sats.map(sat => {
+        const period = sat.elements.periodMin * MINUTE;
+        const ring = sampleTrack(sat, state.simMs, state.simMs + period, sat.regime === 'LEO' ? 240 : 480).map(p => p.position);
+        return [sat.norad, ring];
+    }));
+    if (globe) globe.setOrbits(orbits, state.sats);
+    state.selectedPass = nextPassIndex(state.selectedId);
+    renderPlan();
+    renderPassDetail();
+    $('#fleet-meta').textContent = `Next contact from ${st.short} above ${state.mask}° within ${state.horizonH} h · select a row to focus`;
 }
 
-function renderPasses() {
-    const table = $('#pass-table');
-    if (!state.passes.length) {
-        table.replaceChildren(el('tbody', {}, el('tr', {}, el('td', { class: 'empty' }, `No passes above ${state.mask}° in the next ${state.horizonH} h. Try a lower mask, a longer window or another station.`))));
+function renderPlan() {
+    const st = station();
+    const total = [...state.fleetPasses.values()].reduce((n, list) => n + list.length, 0);
+    $('#plan-station').textContent = st.short;
+    $('#plan-meta').textContent = `${total} passes above ${state.mask}° in the next ${state.horizonH} h`;
+    planChart = contactPlan($('#contact-plan'), {
+        rows: state.sats.map(sat => ({ sat, passes: passesOf(sat.norad) })),
+        startMs: state.fleetMs, endMs: state.fleetMs + state.horizonH * HOUR,
+        selectedId: state.selectedId, selectedPass: { norad: state.selectedId, index: state.selectedPass },
+        onSelect: (norad, index) => {
+            const changed = norad !== state.selectedId;
+            state.selectedId = norad;
+            $('#satellite').value = norad;
+            state.selectedPass = index ?? nextPassIndex(norad);
+            if (changed) recomputeContext(true);
+            renderPlan();
+            renderPassDetail();
+            tick();
+        },
+    });
+    planChart.setNow(state.simMs);
+}
+
+function nextPassIndex(norad) {
+    const i = passesOf(norad).findIndex(p => p.los.getTime() > state.simMs);
+    return Math.max(0, i);
+}
+
+function renderPassDetail() {
+    const sat = selected();
+    const st = station();
+    const passes = passesOf(sat.norad);
+    const pass = passes[state.selectedPass];
+    const color = regimeColor(sat.regime);
+    $('#pass-title').textContent = pass ? `${sat.name} over ${st.short}, pass ${state.selectedPass + 1} of ${passes.length}` : `${sat.name} over ${st.short}`;
+    renderPassTable(passes);
+    if (!pass) {
+        $('#pass-meta').textContent = '';
+        $('#pass-tiles').replaceChildren(el('p', { class: 'empty' }, `No passes above ${state.mask}° in the next ${state.horizonH} h. Try a lower mask, a longer window or another station.`));
+        $('#pass-chart').replaceChildren();
+        passChart = null;
         skyPlot($('#sky'), null);
-        $('#sky-caption').textContent = '';
         return;
     }
+    const minRange = Math.min(...pass.track.map(p => p.rangeKm));
+    const startsIn = pass.aos.getTime() - state.simMs;
+    $('#pass-meta').textContent = `AOS ${utcShort(pass.aos)} · TCA ${utcTime(pass.tca)} · LOS ${utcShort(pass.los)} UTC`;
+    const tiles = [
+        [startsIn > 0 ? duration(startsIn) : state.simMs < pass.los.getTime() ? 'Now' : 'Done', startsIn > 0 ? 'Until acquisition' : 'Status'],
+        [pass.durationMin >= 90 ? `${num(pass.durationMin / 60, 1)} h` : `${num(pass.durationMin, 1)} min`, 'Duration'],
+        [`${num(pass.maxElDeg, 1)}°`, 'Maximum elevation'],
+        [`${num(minRange, 0)} km`, 'Closest range'],
+        [`${num(pass.aosAzDeg, 0)}° → ${num(pass.losAzDeg, 0)}°`, 'Azimuth AOS → LOS'],
+    ];
+    $('#pass-tiles').replaceChildren(...tiles.map(([value, label]) => el('div', { class: 'tile' }, el('div', { class: 'tile__value' }, value), el('div', { class: 'tile__label' }, label))));
+    const track = pass.track;
+    const peak = track.reduce((a, b) => (b.elDeg > a.elDeg ? b : a));
+    passChart = timeSeries($('#pass-chart'), {
+        series: [{ key: 'el', label: 'Elevation', color, values: track.map(p => ({ ms: p.ms, v: p.elDeg })) }],
+        yDomain: [0, 90], yLabel: 'Elevation · °', unit: '°', valueFormat: v => num(v, 1), height: 220,
+        refLines: state.mask ? [{ v: state.mask, label: `${state.mask}° mask` }] : [],
+        annotations: [{ ms: peak.ms, v: peak.elDeg, label: `${num(peak.elDeg, 1)}° at ${utcHm(new Date(peak.ms))}` }],
+        ariaLabel: `Elevation of ${sat.name} during the selected pass`,
+        extraRows: i => [{ value: `${num(track[i].azDeg, 1)}°`, label: 'azimuth' }, { value: `${num(track[i].rangeKm, 0)} km`, label: 'slant range' }],
+    });
+    updateSky();
+}
+
+function renderPassTable(passes) {
+    const table = $('#pass-table');
+    if (!passes.length) { table.replaceChildren(); return; }
     const head = el('thead', {}, el('tr', {}, ...['#', 'AOS (UTC)', 'TCA (UTC)', 'LOS (UTC)', 'Duration', 'Max el.', 'Azimuth AOS → LOS'].map((text, i) => el('th', { class: i > 3 ? 'num' : '', scope: 'col' }, text))));
     const body = el('tbody');
-    state.passes.forEach((pass, index) => {
-        const choose = () => { state.selectedPass = index; renderPasses(); updateSky(); };
-        const row = el('tr', { class: index === state.selectedPass ? 'is-selected' : '', onclick: choose },
+    passes.forEach((pass, index) => {
+        const choose = () => { state.selectedPass = index; renderPlan(); renderPassDetail(); };
+        body.append(el('tr', { class: index === state.selectedPass ? 'is-selected' : '', onclick: choose },
             el('td', {}, el('button', { type: 'button', class: 'row-button', 'aria-pressed': String(index === state.selectedPass), onclick: event => { event.stopPropagation(); choose(); } }, String(index + 1))),
             el('td', {}, (pass.startsVisible ? '≤ ' : '') + utcShort(pass.aos)),
             el('td', {}, utcTime(pass.tca)),
             el('td', {}, (pass.endsVisible ? '≥ ' : '') + utcShort(pass.los)),
             el('td', { class: 'num' }, duration(pass.durationMin * MINUTE)),
             el('td', { class: 'num' }, `${num(pass.maxElDeg, 1)}°`),
-            el('td', { class: 'num' }, `${num(pass.aosAzDeg, 0)}° → ${num(pass.losAzDeg, 0)}°`));
-        body.append(row);
+            el('td', { class: 'num' }, `${num(pass.aosAzDeg, 0)}° → ${num(pass.losAzDeg, 0)}°`)));
     });
     table.replaceChildren(head, body);
-    updateSky();
 }
 
 function updateSky() {
-    const pass = state.passes[state.selectedPass];
-    const now = observe(selected(), station(), new Date(state.simMs));
+    const sat = selected();
+    const pass = passesOf(sat.norad)[state.selectedPass];
     const inPass = pass && state.simMs >= pass.aos.getTime() && state.simMs <= pass.los.getTime();
-    skyPlot($('#sky'), pass, inPass ? now : null);
-    if (pass) {
-        const until = pass.aos.getTime() - state.simMs;
-        $('#sky-caption').textContent = `Pass ${state.selectedPass + 1}: max ${num(pass.maxElDeg, 1)}° at ${utcTime(pass.tca)} UTC · ${inPass ? 'in progress' : until > 0 ? `AOS in ${duration(until)}` : 'completed'}`;
-    }
+    skyPlot($('#sky'), pass, inPass ? observe(sat, station(), new Date(state.simMs)) : null, regimeColor(sat.regime));
 }
 
 function buildFleetTable() {
@@ -301,6 +355,7 @@ function buildFleetTable() {
     for (const sat of state.sats) {
         const cells = columns.map((_, i) => el('td', { class: numeric.has(i) ? 'num' : '' }));
         cells[0].append(el('button', { type: 'button', class: 'row-button', onclick: event => { event.stopPropagation(); select(sat.norad); } }, icon(sat.regime), sat.name));
+        cells[1].className = 'muted';
         cells[1].textContent = sat.agency;
         cells[2].textContent = `${sat.regime}${sat.elements.sunSynchronous ? ' · SSO' : ''}`;
         cells[7].textContent = `${num(sat.elements.inclinationDeg, 2)}°`;
@@ -323,9 +378,8 @@ function updateFleetTable(states, sun) {
         cells[5].textContent = `${num(s.lat, 2)}°`;
         cells[6].textContent = `${num(s.lon, 2)}°`;
         const dark = inEclipse(s.position, sun);
-        cells[9].replaceChildren(dark ? badge('neutral', 'Eclipse') : document.createTextNode('Sunlit'));
-        const passes = state.fleetPasses.get(sat.norad) || [];
-        const next = passes.find(p => p.los.getTime() > state.simMs);
+        cells[9].replaceChildren(dark ? badge('eclipse', 'Eclipse') : badge('sun', 'Sunlit'));
+        const next = passesOf(sat.norad).find(p => p.los.getTime() > state.simMs);
         const live = next && next.aos.getTime() <= state.simMs;
         cells[10].replaceChildren(live ? badge('good', `In contact · ${num(observe(sat, station(), new Date(state.simMs)).elDeg, 0)}°`)
             : document.createTextNode(next ? `${utcShort(next.aos)} · ${num(next.maxElDeg, 0)}°` : 'None in window'));
@@ -334,44 +388,71 @@ function updateFleetTable(states, sun) {
     }
 }
 
+function renderKpis(states, sun) {
+    const lit = state.sats.filter(sat => { const s = states.get(sat.norad); return s && !inEclipse(s.position, sun); }).length;
+    let next = null;
+    let inContact = 0;
+    for (const sat of state.sats) {
+        const passes = passesOf(sat.norad);
+        if (passes.some(p => p.aos.getTime() <= state.simMs && p.los.getTime() > state.simMs)) inContact++;
+        const pass = passes.find(p => p.aos.getTime() > state.simMs);
+        if (pass && (!next || pass.aos < next.pass.aos)) next = { sat, pass };
+    }
+    const kpi = (label, value, unit, note) => el('div', { class: 'kpi' },
+        el('div', { class: 'kpi__label' }, label), el('div', { class: 'kpi__value' }, value, unit ? el('small', {}, unit) : null), el('div', { class: 'kpi__note' }, note));
+    $('#kpis').replaceChildren(
+        kpi('Spacecraft tracked', String(state.sats.length), null, `Elements ${num(oldestAgeDays(), 1)} days old at most`),
+        kpi(`Next acquisition · ${station().short}`, next ? duration(next.pass.aos.getTime() - state.simMs) : '—', null,
+            next ? `${next.sat.name} to ${num(next.pass.maxElDeg, 0)}° · ${inContact} in contact now` : `None in ${state.horizonH} h · ${inContact} in contact now`),
+        kpi('In sunlight', String(lit), `/ ${state.sats.length}`, `${state.sats.length - lit} in Earth's shadow right now`),
+        kpi('Model error vs NASA', state.validation ? num(state.validation.rms, 2) : '—', 'km', 'SGP4 RMS near epoch, ISS'),
+    );
+}
+
 function renderTelemetry(s, sun) {
     const sat = selected();
     const e = sat.elements;
     const st = station();
+    $('#telemetry-title').textContent = sat.name;
     $('#mission').textContent = `${sat.mission} · ${sat.agency} · NORAD ${sat.norad}`;
     const group = (title, rows) => el('section', { class: 'telemetry-group' }, el('h3', {}, title),
         el('dl', {}, ...rows.flatMap(([label, value]) => [el('dt', {}, label), el('dd', {}, value)])));
-    if (!s) { $('#telemetry').replaceChildren(el('p', { class: 'empty' }, 'SGP4 could not propagate this element set to the selected time.')); return; }
+    if (!s) {
+        $('#readouts').replaceChildren();
+        $('#telemetry').replaceChildren(el('p', { class: 'empty' }, 'SGP4 could not propagate this element set to the selected time.'));
+        return;
+    }
+    const readout = (label, value, unit) => el('div', { class: 'readout' }, el('div', { class: 'readout__label' }, label),
+        el('div', { class: 'readout__value' }, value, el('small', {}, unit)));
+    $('#readouts').replaceChildren(
+        readout('Altitude', num(s.altKm, 1), 'km'), readout('Velocity', num(s.speedKms, 3), 'km/s'),
+        readout('Latitude', num(s.lat, 3), '°'), readout('Longitude', num(s.lon, 3), '°'));
     const look = observe(sat, st, new Date(state.simMs));
-    const pass = state.passes.find(p => p.los.getTime() > state.simMs);
+    const pass = passesOf(sat.norad).find(p => p.los.getTime() > state.simMs);
     const inContact = look.elDeg >= state.mask;
     const ageDays = (state.simMs - e.epoch.getTime()) / 86_400_000;
     const v = s.velocity, r = s.position;
     $('#telemetry').replaceChildren(
-        group('Sub-satellite point', [
-            ['Latitude', `${num(s.lat, 3)}°`], ['Longitude', `${num(s.lon, 3)}°`],
-            ['Altitude', `${num(s.altKm, 1)} km`], ['Inertial speed', `${num(s.speedKms, 3)} km/s`],
-            ['Illumination', inEclipse(r, sun) ? badge('neutral', 'Earth shadow') : 'Sunlit'],
-        ]),
         group(`Link from ${st.short}`, [
             ['Status', inContact ? badge('good', 'In contact') : badge('neutral', pass ? `AOS in ${duration(pass.aos.getTime() - state.simMs)}` : 'No pass in window')],
-            ['Azimuth', `${num(look.azDeg, 1)}°`], ['Elevation', `${num(look.elDeg, 1)}°`],
+            ['Azimuth / elevation', `${num(look.azDeg, 1)}° / ${num(look.elDeg, 1)}°`],
             ['Slant range', `${num(look.rangeKm, 0)} km`], ['Range rate', `${signed(look.rangeRateKms, 3)} km/s`],
+            ['Illumination', inEclipse(r, sun) ? badge('eclipse', 'Earth shadow') : badge('sun', 'Sunlit')],
         ]),
-        group('Mean elements (at epoch)', [
+        group('Mean elements at epoch', [
             ['Semi-major axis', `${num(e.semiMajorKm, 1)} km`], ['Eccentricity', e.eccentricity.toFixed(7)],
             ['Inclination', `${num(e.inclinationDeg, 4)}°`], ['RAAN', `${num(e.raanDeg, 4)}°`],
             ['Arg. of perigee', `${num(e.argPerigeeDeg, 4)}°`], ['Period', `${num(e.periodMin, 2)} min`],
             ['Perigee / apogee', `${num(e.perigeeKm, 0)} / ${num(e.apogeeKm, 0)} km`],
-            ['Nodal drift (J2)', `${signed(e.nodalRateDegDay, 3)}°/day${e.sunSynchronous ? ' · SSO' : ''}`],
+            ['Nodal drift (J2)', `${signed(e.nodalRateDegDay, 3)}°/d${e.sunSynchronous ? ' · SSO' : ''}`],
             ['B* drag term', e.bstar.toExponential(3)],
         ]),
-        group('State vector (TEME)', [
+        group('State vector · TEME', [
             ['r (km)', `${num(r.x, 1)}, ${num(r.y, 1)}, ${num(r.z, 1)}`],
             ['v (km/s)', `${num(v.x, 4)}, ${num(v.y, 4)}, ${num(v.z, 4)}`],
         ]),
         group('Element set', [
-            ['Epoch', `${utcFull(e.epoch)} UTC`],
+            ['Epoch', `${utcFull(e.epoch)}`],
             ['Age at sim time', badge(ageLevel(Math.abs(ageDays)), `${num(ageDays, 2)} days`)],
         ]),
         el('pre', { class: 'tle', 'aria-label': 'Two-line element set' }, `${sat.catalogName}\n${sat.line1}\n${sat.line2}`),
@@ -387,22 +468,32 @@ function tick() {
     if (state.mode === 'play' && (offsetMin > 1440 || offsetMin < -720)) setMode('paused');
 
     const date = new Date(state.simMs);
+    recomputeFleet();
     recomputeContext();
-    recomputeFleetPasses();
     const states = currentStates(date);
     const sun = sunAt(date);
     const sat = selected();
     const s = states.get(sat.norad);
     const st = station();
     const altitude = s ? s.altKm : sat.elements.perigeeKm;
+    const look = s ? observe(sat, st, date) : null;
     map.update({
         sats: state.sats, states, selected: sat, track: state.track, now: state.simMs, sunPoint: sun, stationInfo: st,
         footprintDeg: footprintRadiusDeg(altitude, state.mask), contactDeg: footprintRadiusDeg(altitude, state.mask),
     });
+    globe?.update({ sats: state.sats, states, selected: sat, gmst: s ? s.gmst : 0, sunUnit: sun.unit, stationInfo: st, inContact: look && look.elDeg >= state.mask });
+    if (s) {
+        $('#globe-readout').replaceChildren(
+            el('span', {}, el('b', {}, sat.name), ` · ${REGIME_LABEL[sat.regime]}`),
+            el('span', {}, `ALT ${num(s.altKm, 0)} km · V ${num(s.speedKms, 2)} km/s`),
+            el('span', {}, `${inEclipse(s.position, sun) ? 'In Earth shadow' : 'Sunlit'} · period ${num(sat.elements.periodMin, 1)} min`));
+    }
     regimes.update(states, state.selectedId);
-    altitudeChart.setNow(state.simMs);
-    elevationChart.setNow(state.simMs);
+    altitudeChart?.setNow(state.simMs);
+    planChart?.setNow(state.simMs);
+    passChart?.setNow(state.simMs);
     renderTelemetry(s, sun);
+    renderKpis(states, sun);
     updateFleetTable(states, sun);
     if (state.mode !== 'paused') updateSky();
 
@@ -424,7 +515,9 @@ function setMode(mode) {
 function select(norad) {
     state.selectedId = Number(norad);
     $('#satellite').value = state.selectedId;
+    state.selectedPass = nextPassIndex(state.selectedId);
     recomputeContext(true);
+    renderPlan();
     tick();
 }
 
@@ -440,19 +533,22 @@ function renderValidation(oem) {
     const rms = Math.sqrt(near.reduce((sum, r) => sum + r.total ** 2, 0) / near.length);
     const last = residuals.at(-1);
     const maxRadial = Math.max(...residuals.map(r => Math.abs(r.radial)));
+    state.validation = { rms };
     $('#validation-tiles').replaceChildren(
-        ...[[`${num(rms, 2)} km`, 'RMS position error within ±6 h of TLE epoch'],
-            [`${num(last.total, 1)} km`, `Error ${duration(last.ms - epochMs)} after epoch`],
-            [`${num(maxRadial, 2)} km`, 'Largest radial error (altitude)']]
+        ...[[`${num(rms, 2)} km`, 'RMS within ±6 h of epoch'],
+            [`${num(last.total, 1)} km`, `After ${duration(last.ms - epochMs)}`],
+            [`${num(maxRadial, 2)} km`, 'Largest radial error']]
             .map(([value, label]) => el('div', { class: 'tile' }, el('div', { class: 'tile__value' }, value), el('div', { class: 'tile__label' }, label))));
-    $('#validation-note').textContent = `${residuals.length} NASA state vectors from ${oem.originator}, file created ${oem.creationDate.slice(0, 16).replace('T', ' ')} UTC. In-track error dominates and grows with time from epoch, the expected behaviour of SGP4's drag model.`;
-    validationChart = timeSeries($('#validation-chart'), {
+    $('#validation-note').textContent = `${residuals.length} NASA state vectors from ${oem.originator}, file created ${oem.creationDate.slice(0, 16).replace('T', ' ')} UTC. In-track error dominates and grows with time from epoch, the expected behaviour of SGP4's simplified drag model.`;
+    const peak = residuals.reduce((a, b) => (Math.abs(b.inTrack) > Math.abs(a.inTrack) ? b : a));
+    timeSeries($('#validation-chart'), {
         series: [
-            { key: 'inTrack', label: 'In-track', color: 'var(--series-1)', values: residuals.map(r => ({ ms: r.ms, v: r.inTrack })) },
-            { key: 'radial', label: 'Radial', color: 'var(--series-2)', values: residuals.map(r => ({ ms: r.ms, v: r.radial })) },
-            { key: 'crossTrack', label: 'Cross-track', color: 'var(--series-3)', values: residuals.map(r => ({ ms: r.ms, v: r.crossTrack })) },
+            { key: 'inTrack', label: 'In-track', color: 'var(--leo)', values: residuals.map(r => ({ ms: r.ms, v: r.inTrack })) },
+            { key: 'radial', label: 'Radial', color: 'var(--heo)', values: residuals.map(r => ({ ms: r.ms, v: r.radial })) },
+            { key: 'crossTrack', label: 'Cross-track', color: 'var(--geo)', values: residuals.map(r => ({ ms: r.ms, v: r.crossTrack })) },
         ],
-        yLabel: 'SGP4 − NASA (km)', unit: 'km', valueFormat: v => signed(v, 2), markers: [{ ms: epochMs, label: 'TLE epoch' }],
+        yLabel: 'SGP4 − NASA · km', unit: 'km', valueFormat: v => signed(v, 2), markers: [{ ms: epochMs, label: 'TLE epoch' }], height: 260,
+        annotations: [{ ms: peak.ms, v: peak.inTrack, label: `${signed(peak.inTrack, 1)} km`, color: 'var(--leo)' }],
         ariaLabel: 'Difference between SGP4 and the NASA ISS ephemeris in radial, in-track and cross-track components',
         extraRows: i => [{ value: `${num(residuals[i].total, 2)} km`, label: 'total' }],
     });
@@ -468,15 +564,20 @@ function wireControls() {
         tick();
     });
     $('#satellite').addEventListener('change', event => select(event.target.value));
-    $('#station').addEventListener('change', event => { state.stationId = event.target.value; recomputeContext(true); recomputeFleetPasses(true); tick(); });
-    $('#mask').addEventListener('change', event => { state.mask = Number(event.target.value); recomputeContext(true); recomputeFleetPasses(true); tick(); });
-    $('#horizon').addEventListener('change', event => { state.horizonH = Number(event.target.value); recomputeContext(true); recomputeFleetPasses(true); tick(); });
+    const refresh = () => { recomputeFleet(true); recomputeContext(true); tick(); };
+    $('#station').addEventListener('change', event => { state.stationId = event.target.value; refresh(); });
+    $('#mask').addEventListener('change', event => { state.mask = Number(event.target.value); refresh(); });
+    $('#horizon').addEventListener('change', event => { state.horizonH = Number(event.target.value); refresh(); });
     $('#refresh-button').addEventListener('click', async () => {
         $('#refresh-button').disabled = true;
         await loadElements({ force: true });
         rebuild();
         $('#refresh-button').disabled = false;
     });
+    document.querySelectorAll('[data-preset]').forEach(button => button.addEventListener('click', () => {
+        document.querySelectorAll('[data-preset]').forEach(b => b.classList.toggle('is-active', b === button));
+        globe?.setPreset(button.dataset.preset);
+    }));
     let resizeTimer;
     let lastWidth = $('.console').clientWidth;
     new ResizeObserver(() => {
@@ -484,7 +585,11 @@ function wireControls() {
         if (width === lastWidth) return;
         lastWidth = width;
         clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => { buildRegimes(); recomputeContext(true); if (state.oem) renderValidation(state.oem); tick(); }, 200);
+        resizeTimer = setTimeout(() => {
+            buildRegimes(); renderPlan(); recomputeContext(true);
+            if (state.oem) renderValidation(state.oem);
+            tick();
+        }, 200);
     }).observe($('.console'));
 }
 
@@ -493,9 +598,21 @@ function rebuild() {
     buildLegends();
     buildFleetTable();
     buildRegimes();
+    recomputeFleet(true);
     recomputeContext(true);
-    recomputeFleetPasses(true);
     tick();
+}
+
+async function startGlobe(isLand) {
+    try {
+        const { createGlobe } = await import('./globe.js');
+        globe = createGlobe($('#globe'), { texture: globeTexture(isLand), onSelect: select });
+        recomputeFleet(true);
+        tick();
+    } catch (error) {
+        console.warn('3D view unavailable', error);
+        $('#globe').replaceChildren(el('p', { class: 'empty' }, 'The 3D orbit view needs WebGL, which this browser does not provide. Every other view still works.'));
+    }
 }
 
 async function main() {
@@ -504,18 +621,20 @@ async function main() {
             fetch(LAND_URL).then(r => r.json()).then(topo => topojson.feature(topo, topo.objects.land)),
             loadElements(),
         ]);
-        map = createMap($('#map'), land, { onSelect: select });
+        const isLand = landMask(land);
+        map = createMap($('#map'), { dots: landDots(isLand, 1.8, false), onSelect: select });
         wireControls();
         setMode('live');
-        rebuild();
-        $('#refresh-button').disabled = false;
-        setInterval(tick, 250);
         try {
             state.oem = await (await fetch('data/iss_oem.json')).json();
             renderValidation(state.oem);
         } catch (error) {
             $('#validation-note').textContent = `Could not load the NASA ephemeris: ${error.message}`;
         }
+        rebuild();
+        $('#refresh-button').disabled = false;
+        setInterval(tick, 250);
+        startGlobe(isLand);
     } catch (error) {
         console.error(error);
         setStatus('critical', `Could not start the console: ${error.message}`);

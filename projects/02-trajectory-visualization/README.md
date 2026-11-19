@@ -10,16 +10,19 @@ At the University of Arizona Space Institute, I used Java and Python to automate
 
 | View | What it answers |
 | --- | --- |
-| Ground track | Positions of the whole fleet, the selected satellite's past and future track, its coverage footprint, the ground station's contact circle, and the day-night terminator. |
-| Telemetry | Sub-satellite point, altitude, speed, illumination, look angles and range rate from the station, mean orbital elements, J2 nodal drift, the TEME state vector, and the element-set age. |
-| Altitude and illumination | Altitude over the next two orbits, with periods in Earth's shadow shaded. These periods matter for power and thermal planning. |
-| Ground station contacts | Elevation from the chosen station over 24 or 72 hours, the elevation mask, and the contact windows. |
-| Pass schedule | AOS, TCA and LOS times, duration, maximum elevation and azimuths for each pass, plus a polar sky plot of the selected pass. |
-| Fleet status | Live state of every satellite, its orbit regime, its next contact, and how old its elements are. |
-| Orbit regimes | Perigee-to-apogee range against inclination, covering LEO, sun-synchronous, geostationary and highly elliptical orbits. |
-| SGP4 vs NASA | Radial, in-track and cross-track error of SGP4 against NASA's own ISS ephemeris. |
+| Orbit view (3D) | Every orbit in the inertial frame around an Earth lit from the real Sun direction, with camera presets for low, geostationary and deep orbits. A line marks an active link to the ground station. |
+| Ground track | Fleet positions, the selected satellite's past and future track, its coverage footprint, the station's reach, and night shaded through civil, nautical and astronomical twilight. |
+| Telemetry | Altitude, velocity and sub-satellite point, look angles and range rate from the station, mean orbital elements, J2 nodal drift, the TEME state vector, and the element-set age. |
+| Contact plan | A Gantt chart of every pass of all 16 satellites over the station, labelled with maximum elevation. |
+| Pass detail | Sky plot with minute ticks, elevation profile, time to acquisition, duration, maximum elevation, closest range and azimuths. |
+| Altitude and illumination | Altitude over the next two orbits with the high and low points marked and each eclipse shaded with its duration. |
+| Fleet status | Live state of every satellite, its orbit regime, its next contact and how old its elements are. |
+| Orbit regimes | Perigee-to-apogee range against inclination, with the Van Allen belts, the geostationary altitude and the sun-synchronous inclination marked. |
+| Model validation | Radial, in-track and cross-track error of SGP4 against NASA's own ISS ephemeris. |
 
 The time controls run the console live, accelerate it up to 900×, or move it from 12 hours back to 24 hours ahead. Seven ground stations are available, including Tucson, NASA Goddard, White Sands, Svalbard and McMurdo. The pass prediction uses a selectable elevation mask.
+
+The design uses the portfolio's typefaces (Instrument Serif, Inter and JetBrains Mono) on a night theme. The three orbit-regime colors were checked as a set for color-vision deficiency and contrast, and each regime also has its own marker shape: circle, diamond or square.
 
 ## Data
 
@@ -36,6 +39,7 @@ The page loads that snapshot first. If the snapshot is more than a day old, the 
 ## Models and accuracy
 
 - **Propagation:** SGP4/SDP4 through [satellite.js](https://github.com/shashwatak/satellite-js) 5.0.
+- **Rendering:** D3 7.9 for the map and charts, Three.js 0.160 for the 3D orbit view.
 - **Sun and eclipse:** low-precision solar ephemeris (about 0.01°) and a cylindrical umbra model.
 - **Passes:** coarse search every 10–30 seconds, then bisection to 1 second for AOS and LOS. Elevation is geometric, without refraction.
 - **Validation:** NASA's EME2000 vectors are rotated to the mean equator of date with IAU-1976 precession. Nutation is neglected, which adds less than 0.7 km of error.
