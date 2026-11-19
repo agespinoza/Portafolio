@@ -132,8 +132,8 @@ function renderContributionCalendar(language) {
   var PROJECTS = [
     { id: "01-trajectory-etl", title: "Trajectory Data Preparation", area: "data", tech: ["Python", "ETL", "CSV"],
       text: "Validates simulated trajectory points, normalizes timestamps to UTC, removes duplicates, and exports clean data for plotting." },
-    { id: "02-trajectory-visualization", title: "Interactive Trajectory Chart", area: "analytics", tech: ["JavaScript", "SVG", "HTML"], demo: true, applicationStatus: "Live demo on this site",
-      text: "Plots the cleaned trajectory points with an accessible, keyboard-friendly interactive chart." },
+    { id: "02-trajectory-visualization", title: "Satellite Operations Console", area: "analytics", tech: ["JavaScript", "D3.js", "SGP4", "Python"], demo: true, applicationStatus: "Live demo on this site",
+      text: "Tracks 16 NASA and partner satellites from public orbital data, predicts ground-station passes, and validates SGP4 against NASA's ISS ephemeris." },
     { id: "03-inspection-sql-performance", title: "Inspection SQL Performance", area: "data", tech: ["SQL", "SQLite", "Query plans"],
       text: "Reports inspection volume by station and compares query plans with and without an index." },
     { id: "04-inspection-warehouse-migration", title: "Inspection Warehouse Migration", area: "data", tech: ["Python", "SQL", "Star schema"],

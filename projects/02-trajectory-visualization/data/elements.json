@@ -1,0 +1,166 @@
+{
+ "generatedUtc": "2026-11-19T17:52:23Z",
+ "source": "CelesTrak GP catalog (celestrak.org)",
+ "satellites": [
+  {
+   "norad": 25544,
+   "name": "ISS",
+   "catalogName": "ISS (ZARYA)",
+   "agency": "NASA / international partners",
+   "mission": "Crewed research laboratory",
+   "line1": "1 25544U 98067A   26323.20494996  .00013991  00000+0  25715-3 0  9994",
+   "line2": "2 25544  51.6318 252.9634 0007402  42.1092 318.0465 15.49480324595789",
+   "epochUtc": "2026-11-19T04:55:07.676544Z"
+  },
+  {
+   "norad": 20580,
+   "name": "Hubble",
+   "catalogName": "HST",
+   "agency": "NASA / ESA",
+   "mission": "Space telescope",
+   "line1": "1 20580U 90037B   26322.77318348  .00007103  00000+0  21340-3 0  9993",
+   "line2": "2 20580  28.4714 102.7729 0002506  72.5025 287.5845 15.32351593812293",
+   "epochUtc": "2026-11-18T18:33:23.052672Z"
+  },
+  {
+   "norad": 25994,
+   "name": "Terra",
+   "catalogName": "TERRA",
+   "agency": "NASA",
+   "mission": "Earth observing system flagship",
+   "line1": "1 25994U 99068A   26323.33059437  .00000383  00000+0  86621-4 0  9991",
+   "line2": "2 25994  97.9260   6.5673 0003620  98.1818 324.3411 14.61201520432264",
+   "epochUtc": "2026-11-19T07:56:03.353568Z"
+  },
+  {
+   "norad": 27424,
+   "name": "Aqua",
+   "catalogName": "AQUA",
+   "agency": "NASA",
+   "mission": "Water-cycle Earth observation",
+   "line1": "1 27424U 02022A   26323.26353399  .00000846  00000+0  17748-3 0  9998",
+   "line2": "2 27424  98.4498 295.8260 0001282 106.6735   1.4212 14.62288602305935",
+   "epochUtc": "2026-11-19T06:19:29.336736Z"
+  },
+  {
+   "norad": 28376,
+   "name": "Aura",
+   "catalogName": "AURA",
+   "agency": "NASA",
+   "mission": "Atmospheric chemistry",
+   "line1": "1 28376U 04026A   26323.26879565  .00000869  00000+0  18488-3 0  9996",
+   "line2": "2 28376  98.3641 281.1888 0001289  96.9355 263.1993 14.61528332188861",
+   "epochUtc": "2026-11-19T06:27:03.944160Z"
+  },
+  {
+   "norad": 39084,
+   "name": "Landsat 8",
+   "catalogName": "LANDSAT 8",
+   "agency": "NASA / USGS",
+   "mission": "Land imaging",
+   "line1": "1 39084U 13008A   26323.28721704  .00000320  00000+0  80988-4 0  9994",
+   "line2": "2 39084  98.2144  31.4367 0001202  90.8623 269.2713 14.57115557720483",
+   "epochUtc": "2026-11-19T06:53:35.552256Z"
+  },
+  {
+   "norad": 49260,
+   "name": "Landsat 9",
+   "catalogName": "LANDSAT 9",
+   "agency": "NASA / USGS",
+   "mission": "Land imaging",
+   "line1": "1 49260U 21088A   26323.18418130  .00000311  00000+0  79181-4 0  9996",
+   "line2": "2 49260  98.2123  31.3430 0000994  91.3102 268.8210 14.57116526273579",
+   "epochUtc": "2026-11-19T04:25:13.264320Z"
+  },
+  {
+   "norad": 43613,
+   "name": "ICESat-2",
+   "catalogName": "ICESAT-2",
+   "agency": "NASA",
+   "mission": "Laser altimetry of ice sheets",
+   "line1": "1 43613U 18070A   26323.27460571  .00003125  00000+0  11333-3 0  9995",
+   "line2": "2 43613  91.9938 332.7776 0001572 165.1008 195.0288 15.28297113456141",
+   "epochUtc": "2026-11-19T06:35:25.933344Z"
+  },
+  {
+   "norad": 39574,
+   "name": "GPM Core",
+   "catalogName": "GPM-CORE",
+   "agency": "NASA / JAXA",
+   "mission": "Global precipitation radar",
+   "line1": "1 39574U 14009C   26323.18442854  .00006995  00000+0  15319-3 0  9994",
+   "line2": "2 39574  64.9688 148.7648 0011226 258.6732 101.3148 15.44873427721759",
+   "epochUtc": "2026-11-19T04:25:34.625856Z"
+  },
+  {
+   "norad": 54754,
+   "name": "SWOT",
+   "catalogName": "SWOT",
+   "agency": "NASA / CNES",
+   "mission": "Surface water and ocean topography",
+   "line1": "1 54754U 22173A   26323.25830291  .00000023  00000+0  16984-4 0  9992",
+   "line2": "2 54754  77.6097 185.9770 0000460  43.3675 316.7513 14.00169837200858",
+   "epochUtc": "2026-11-19T06:11:57.371424Z"
+  },
+  {
+   "norad": 58928,
+   "name": "PACE",
+   "catalogName": "PACE",
+   "agency": "NASA",
+   "mission": "Ocean color and aerosols",
+   "line1": "1 58928U 24025A   26323.24224565  .00000441  00000+0  89828-4 0  9998",
+   "line2": "2 58928  98.1053 252.3180 0003060 110.5071 249.6461 14.65654695148641",
+   "epochUtc": "2026-11-19T05:48:50.024160Z"
+  },
+  {
+   "norad": 43013,
+   "name": "NOAA-20",
+   "catalogName": "NOAA 20 (JPSS-1)",
+   "agency": "NOAA / NASA",
+   "mission": "Polar weather (JPSS-1)",
+   "line1": "1 43013U 17073A   26323.28143386  .00000082  00000+0  59585-4 0  9995",
+   "line2": "2 43013  98.7349 261.4778 0001302 126.3401 233.7895 14.19550333466479",
+   "epochUtc": "2026-11-19T06:45:15.885504Z"
+  },
+  {
+   "norad": 54234,
+   "name": "NOAA-21",
+   "catalogName": "NOAA 21 (JPSS-2)",
+   "agency": "NOAA / NASA",
+   "mission": "Polar weather (JPSS-2)",
+   "line1": "1 54234U 22150A   26323.24132387  .00000052  00000+0  45577-4 0  9992",
+   "line2": "2 54234  98.7213 259.5042 0002760 101.3606 258.7881 14.19559952208547",
+   "epochUtc": "2026-11-19T05:47:30.382368Z"
+  },
+  {
+   "norad": 51850,
+   "name": "GOES-18",
+   "catalogName": "GOES 18",
+   "agency": "NOAA / NASA",
+   "mission": "Geostationary weather (GOES West)",
+   "line1": "1 51850U 22021A   26323.26011815  .00000117  00000+0  00000+0 0  9993",
+   "line2": "2 51850   0.0018 210.8652 0000485  65.8872  98.1912  1.00271463  8144",
+   "epochUtc": "2026-11-19T06:14:34.208160Z"
+  },
+  {
+   "norad": 40482,
+   "name": "MMS 1",
+   "catalogName": "MMS 1",
+   "agency": "NASA",
+   "mission": "Magnetospheric multiscale, highly elliptical",
+   "line1": "1 40482U 15011A   26323.25002315  .00000072  00000+0  00000+0 0  9997",
+   "line2": "2 40482  73.4401 347.0237 8228861 170.8031 297.2550  0.28472019  1374",
+   "epochUtc": "2026-11-19T06:00:02.000160Z"
+  },
+  {
+   "norad": 25867,
+   "name": "Chandra",
+   "catalogName": "CXO",
+   "agency": "NASA",
+   "mission": "X-ray observatory, highly elliptical",
+   "line1": "1 25867U 99040B   26325.39961251  .00000772  00000+0  00000+0 0  9998",
+   "line2": "2 25867  58.3262 112.6108 7601084 308.6272   0.2432  0.37806329 17916",
+   "epochUtc": "2026-11-21T09:35:26.520864Z"
+  }
+ ]
+}

@@ -49,7 +49,7 @@ In freelance work, I gathered stakeholder requirements and coordinated design, t
 | --- | --- | --- |
 | Consulting and project coordination | Translate a feature request into requirements, acceptance criteria, and tasks. | [Scope document and sample Kanban board](projects/14-inspection-project-coordination/). |
 | ETL and data quality | Prepare simulated trajectory points for plotting. | [Runnable Python demo](projects/01-trajectory-etl/). |
-| Data visualization | Plot the cleaned points and display their timestamps. | [Interactive chart](projects/02-trajectory-visualization/). |
+| Data visualization | Track NASA satellites from public orbital data, predict ground-station passes, and validate the model against NASA's ISS ephemeris. | [Satellite operations console](projects/02-trajectory-visualization/). |
 | Web development and APIs | Display the status of an inspection in a web interface. | [Jakarta EE API and JavaScript interface](projects/07-inspection-status-api/). |
 
 ## Production analytics and AI platform development (2026–present)

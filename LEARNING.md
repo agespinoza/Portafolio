@@ -11,7 +11,7 @@ The professional course list is available as a [CSV file](learning/linkedin-lear
 | AI & Generative AI | 123 | [Inspection Duration Model Pipeline](projects/16-inspection-model-mlops/) |
 | Machine Learning & Data Science | 39 | [Inspection Duration Model Pipeline](projects/16-inspection-model-mlops/), [Inspection Duration Analysis in R](projects/06-inspection-statistics-r/) |
 | Data Engineering & Databases | 34 | [Trajectory Data Preparation](projects/01-trajectory-etl/), [Inspection SQL Performance](projects/03-inspection-sql-performance/), [Inspection Warehouse Migration](projects/04-inspection-warehouse-migration/) |
-| Analytics, BI & Visualization | 53 | [Inspection Trends in Power BI](projects/05-inspection-power-bi/), [Inspection Duration Analysis in R](projects/06-inspection-statistics-r/), [Interactive Trajectory Chart](projects/02-trajectory-visualization/), [Excel Data Cleaning Lesson](projects/15-excel-data-cleaning-lesson/) |
+| Analytics, BI & Visualization | 53 | [Inspection Trends in Power BI](projects/05-inspection-power-bi/), [Inspection Duration Analysis in R](projects/06-inspection-statistics-r/), [Satellite Operations Console](projects/02-trajectory-visualization/), [Excel Data Cleaning Lesson](projects/15-excel-data-cleaning-lesson/) |
 | Software Engineering | 51 | [Inspection Status API](projects/07-inspection-status-api/), [Mortgage Workflow Automation](projects/08-mortgage-workflow-automation/), [Internal Request Tracker](projects/10-internal-request-tracker/), [Inspection Workflow Quality Assurance](projects/11-inspection-workflow-qa/) |
 | Cloud, DevOps & Infrastructure | 37 | [Azure DevOps Continuous Integration](projects/12-azure-devops-ci/), [Office Backup and Recovery](projects/13-office-backup-recovery/) |
 | Cybersecurity | 29 | [Office Backup and Recovery](projects/13-office-backup-recovery/) |
@@ -73,7 +73,7 @@ Applied in: [Trajectory Data Preparation](projects/01-trajectory-etl/), [Inspect
 
 ### Analytics, BI & Visualization
 
-Applied in: [Inspection Trends in Power BI](projects/05-inspection-power-bi/), [Inspection Duration Analysis in R](projects/06-inspection-statistics-r/), [Interactive Trajectory Chart](projects/02-trajectory-visualization/), [Excel Data Cleaning Lesson](projects/15-excel-data-cleaning-lesson/).
+Applied in: [Inspection Trends in Power BI](projects/05-inspection-power-bi/), [Inspection Duration Analysis in R](projects/06-inspection-statistics-r/), [Satellite Operations Console](projects/02-trajectory-visualization/), [Excel Data Cleaning Lesson](projects/15-excel-data-cleaning-lesson/).
 
 - Become a Business Intelligence Specialist *(learning path)* — 2019
 - Become a Data Analyst *(learning path)* — 2024

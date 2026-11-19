@@ -1,0 +1,43 @@
+name: Refresh orbit data
+
+# Daily snapshot of public orbital data for the Satellite Operations Console.
+# CelesTrak asks clients to download each element set at most once every two hours;
+# one run a day stays well within that.
+on:
+  schedule:
+    - cron: "17 6 * * *"   # 06:17 UTC every day
+  workflow_dispatch:        # allows a manual run from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-orbit-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download and validate element sets and the NASA ISS ephemeris
+        working-directory: projects/02-trajectory-visualization
+        run: python3 fetch_data.py
+
+      - name: Commit the new snapshot
+        run: |
+          git add projects/02-trajectory-visualization/data
+          if git diff --cached --quiet; then
+            echo "No data changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Refresh orbit data snapshot"
+          git push

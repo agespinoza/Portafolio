@@ -1,36 +1,148 @@
 <!doctype html>
 <html lang="en">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Interactive Trajectory Chart</title>
-<style>
-:root{--color-bg:#f2f6fb;--color-text:#17243b;--color-border:#195373;--color-accent:#b45309}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font:1rem system-ui;color:var(--color-text);background:var(--color-bg);display:flex;flex-direction:column;min-height:100vh}
-header{background:white;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:100}
-.nav{padding:.75rem 1rem}
-.nav__inner{max-width:52rem;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem}
-.brand{text-decoration:none;color:var(--color-text);font-weight:600;display:flex;align-items:center;gap:.5rem}
-.brand:hover{color:var(--color-accent)}
-.nav__link{text-decoration:none;color:var(--color-text);padding:.5rem 1rem;border-radius:.35rem}
-.nav__link:hover{background:#f0f0f0;color:var(--color-accent)}
-main{flex:1;max-width:52rem;width:100%;margin:3rem auto;padding:0 1rem}
-svg{display:block;width:100%;background:white;border-radius:1rem;margin:1rem 0}
-circle{cursor:pointer;fill:#155e75}circle:focus,circle.active{fill:var(--color-accent);stroke:var(--color-text);stroke-width:2}
-select{font:inherit;padding:.35rem}text{font:13px system-ui}
-h1{margin-bottom:1.5rem}
-label{display:block;margin-bottom:.5rem;font-weight:500}
-</style>
-<header class="nav">
-  <div class="nav__inner">
-    <a class="brand" href="../../index.html#projects">← Portfolio</a>
+<title>Satellite Operations Console</title>
+<meta name="description" content="Tracks 16 NASA and partner satellites with SGP4 propagation of public element sets, ground-station pass prediction and validation against NASA's ISS ephemeris.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="back" href="../../index.html#projects">← Portfolio</a>
+    <div class="topbar__title">
+      <h1>Satellite Operations Console</h1>
+      <p>16 NASA and partner missions · SGP4 propagation of public element sets</p>
+    </div>
+    <div class="clock" aria-live="off">
+      <span class="clock__label" id="mode-label">LIVE</span>
+      <span class="clock__time" id="sim-clock">—</span>
+    </div>
   </div>
 </header>
-<main>
-  <h1>Simulated trajectory</h1>
-  <label for="point">Point in time</label> <select id="point" disabled></select>
-  <svg id="chart" viewBox="0 0 640 330" role="group" aria-label="Trajectory positions in kilometers"></svg>
-  <p id="details" aria-live="polite">Loading trajectory…</p>
+
+<section class="controls" aria-label="Simulation controls">
+  <div class="controls__inner">
+    <div class="control-group" role="group" aria-label="Time">
+      <button type="button" id="live-button" class="button button--primary">Live</button>
+      <button type="button" id="play-button" class="button" aria-pressed="false">Play</button>
+      <label class="field">Speed
+        <select id="speed">
+          <option value="1">1×</option><option value="10">10×</option><option value="60" selected>60×</option><option value="300">300×</option><option value="900">900×</option>
+        </select>
+      </label>
+      <label class="field field--range">Offset from now
+        <input type="range" id="scrub" min="-720" max="1440" step="1" value="0" aria-describedby="scrub-value">
+        <output id="scrub-value">+0 h 00 m</output>
+      </label>
+    </div>
+    <div class="control-group" role="group" aria-label="Ground station">
+      <label class="field">Ground station <select id="station"></select></label>
+      <label class="field">Elevation mask
+        <select id="mask"><option value="0">0°</option><option value="5">5°</option><option value="10" selected>10°</option><option value="20">20°</option></select>
+      </label>
+      <label class="field">Pass window
+        <select id="horizon"><option value="24" selected>24 h</option><option value="72">72 h</option></select>
+      </label>
+    </div>
+    <div class="control-group control-group--data">
+      <span class="status" id="data-status" role="status">Loading element sets…</span>
+      <button type="button" id="refresh-button" class="button" disabled>Refresh elements</button>
+    </div>
+  </div>
+</section>
+
+<main class="console">
+  <section class="panel panel--map" aria-labelledby="map-title">
+    <div class="panel__head">
+      <h2 id="map-title">Ground track</h2>
+      <ul class="legend" id="map-legend" aria-label="Legend"></ul>
+    </div>
+    <div class="map-wrap">
+      <svg id="map" role="img" aria-label="World map with satellite positions, the selected satellite's ground track and the day-night terminator"></svg>
+    </div>
+    <p class="panel__note" id="map-note">Track shows half an orbit behind and one and a half ahead. Shaded area is night. Filled circle is the selected satellite's footprint at the elevation mask; outlined circle is where the ground station can reach it.</p>
+  </section>
+
+  <aside class="panel panel--telemetry" aria-labelledby="telemetry-title">
+    <div class="panel__head">
+      <h2 id="telemetry-title">Telemetry</h2>
+      <label class="field field--compact"><span class="visually-hidden">Satellite</span><select id="satellite"></select></label>
+    </div>
+    <p class="mission" id="mission"></p>
+    <div id="telemetry"></div>
+  </aside>
+
+  <section class="panel" aria-labelledby="altitude-title">
+    <div class="panel__head"><h2 id="altitude-title">Altitude and illumination</h2><span class="panel__meta" id="altitude-meta"></span></div>
+    <div id="altitude-chart"></div>
+  </section>
+
+  <section class="panel" aria-labelledby="contact-title">
+    <div class="panel__head"><h2 id="contact-title">Ground station contacts</h2><span class="panel__meta" id="contact-meta"></span></div>
+    <div id="elevation-chart"></div>
+  </section>
+
+  <section class="panel panel--passes" aria-labelledby="passes-title">
+    <div class="panel__head"><h2 id="passes-title">Pass schedule</h2><span class="panel__meta">Select a pass to plot it on the sky view</span></div>
+    <div class="passes">
+      <div class="sky">
+        <svg id="sky" role="img" aria-label="Sky plot of the selected pass, azimuth around and elevation inward"></svg>
+        <p class="sky__caption" id="sky-caption"></p>
+      </div>
+      <div class="table-wrap"><table class="data-table" id="pass-table"></table></div>
+    </div>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="fleet-title">
+    <div class="panel__head"><h2 id="fleet-title">Fleet status</h2><span class="panel__meta" id="fleet-meta"></span></div>
+    <div class="table-wrap"><table class="data-table" id="fleet-table"></table></div>
+  </section>
+
+  <section class="panel" aria-labelledby="regime-title">
+    <div class="panel__head"><h2 id="regime-title">Orbit regimes</h2><ul class="legend" id="regime-legend" aria-label="Legend"></ul></div>
+    <div id="regime-chart"></div>
+    <p class="panel__note">Each line spans perigee to apogee; the marker is the current altitude. Sun-synchronous missions cluster near 98°.</p>
+  </section>
+
+  <section class="panel" aria-labelledby="validation-title">
+    <div class="panel__head"><h2 id="validation-title">SGP4 vs NASA ISS ephemeris</h2></div>
+    <div class="tiles" id="validation-tiles"></div>
+    <div id="validation-chart"></div>
+    <p class="panel__note" id="validation-note"></p>
+  </section>
+
+  <section class="panel panel--wide notes" aria-labelledby="notes-title">
+    <h2 id="notes-title">Models, data and assumptions</h2>
+    <div class="notes__grid">
+      <div>
+        <h3>Data sources</h3>
+        <ul>
+          <li><strong>Element sets:</strong> CelesTrak GP catalog, built from U.S. Space Force tracking data. A snapshot ships with the page; when it is older than a day the console downloads current sets and caches them for two hours.</li>
+          <li><strong>Reference ephemeris:</strong> NASA Johnson Space Center (FOD/TOPO) ISS trajectory, CCSDS OEM v2, EME2000 frame, 4-minute state vectors.</li>
+          <li><strong>Coastlines:</strong> Natural Earth 1:110m via world-atlas.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Models</h3>
+        <ul>
+          <li><strong>Propagation:</strong> SGP4/SDP4 (satellite.js 5.0, Vallado 2006 revision). Output in TEME, converted to geodetic with GMST.</li>
+          <li><strong>Sun and eclipse:</strong> Astronomical Almanac low-precision solar position (about 0.01°) and a cylindrical umbra model. Penumbra is ignored.</li>
+          <li><strong>Passes:</strong> geometric elevation above the selected mask, without refraction. Coarse search every 10–30 s, then bisection to 1 s for AOS and LOS.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Validation</h3>
+        <ul>
+          <li>NASA's EME2000 vectors are rotated to the mean equator of date with IAU-1976 precession and compared with SGP4 in the radial, in-track and cross-track frame.</li>
+          <li>Nutation is neglected (under 0.7 km at ISS radius). The comparison uses the element set captured with the ephemeris, so it does not change when the elements are refreshed.</li>
+          <li>For education and portfolio use, not for operational decisions.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </main>
-<script type="module" src="chart.js"></script>
+<script type="module" src="app.js"></script>
+</body>
 </html>
