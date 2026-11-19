@@ -144,6 +144,57 @@ h1 em { font-style: italic; color: var(--accent); }
 .method { padding: 8px 4px; color: var(--ink-2); font-size: 14px; max-width: 80ch; }
 .method h2 { font-size: 15px; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
 
+/* Day 002 · Glowworms */
+.gw-reset { font: 500 13px/1 var(--sans); padding: 10px 14px; border-radius: 999px; border: 1px solid var(--line-2); background: transparent; color: var(--ink-2); cursor: pointer; }
+.gw-reset:hover { color: var(--ink); border-color: var(--ink-3); }
+.gw-sky { background: radial-gradient(120% 80% at 50% 0%, #13233d 0%, var(--night) 70%); border-color: var(--night); color: #e9eef5; }
+.gw-sky h2 { color: #fff; }
+.gw-sub { color: rgba(233,238,245,.65); font-size: 14px; }
+.gw-map svg { width: 100%; max-height: 640px; height: auto; display: block; }
+.gw-coast { fill: rgba(127,211,227,.06); stroke: rgba(127,211,227,.35); stroke-width: 1; stroke-linejoin: round; }
+.gw-halo { fill: #5cc2d6; opacity: .45; }
+.gw-core { fill: #c9f3fb; }
+.gw-bin { cursor: pointer; transition: opacity .2s; }
+.gw-bin:focus { outline: none; }
+.gw-bin:hover .gw-core, .gw-bin:focus .gw-core { fill: #fff; stroke: #fff; stroke-width: 2; }
+.gw-bin.dim { opacity: .12; }
+.gw-waitomo { fill: none; stroke: #e3a35f; stroke-width: 2; }
+.gw-label { font: 500 11px var(--mono); fill: #e3a35f; letter-spacing: .04em; }
+.gw-readout { color: rgba(233,238,245,.8); }
+.gw-readout strong { color: #fff; }
+
+.gw-regions { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.gw-regions button { width: 100%; display: grid; grid-template-columns: minmax(0, 11rem) 1fr 2.5rem; align-items: center; gap: 12px; padding: 7px 10px; border: 0; border-radius: 10px; background: none; font: 400 14px/1.2 var(--sans); color: var(--ink-2); cursor: pointer; text-align: left; }
+.gw-regions button:hover:not(:disabled) { background: var(--paper-2); color: var(--ink); }
+.gw-regions button.on { background: var(--ink); color: var(--paper); }
+.gw-regions button:disabled { cursor: default; opacity: .7; }
+.gw-regions__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gw-regions__bar { height: 8px; border-radius: 4px; background: var(--paper-2); overflow: hidden; }
+.gw-regions__bar i { display: block; height: 100%; border-radius: 4px; background: var(--accent); }
+.gw-regions button.on .gw-regions__bar { background: rgba(255,255,255,.15); }
+.gw-regions button.on .gw-regions__bar i { background: var(--accent-2); }
+.gw-regions__n { font: 500 12px/1 var(--mono); text-align: right; }
+
+.gw-col { cursor: pointer; outline: none; }
+.gw-col__hit { fill: transparent; }
+.gw-col:hover .gw-col__hit, .gw-col:focus .gw-col__hit { fill: var(--paper-2); }
+.gw-col.on .gw-col__hit { fill: var(--accent-soft); }
+.gw-col:focus-visible .gw-col__hit { stroke: var(--accent); stroke-width: 2; }
+.gw-col.off .gw-temp, .gw-col.off .gw-rain, .gw-col.off .gw-rec { opacity: .35; }
+.gw-ext { stroke: var(--ink-3); stroke-width: 1.5; }
+.gw-temp { fill: var(--copper); }
+.gw-rain { fill: var(--h2); }
+.gw-rec { fill: var(--accent); }
+.gw-rec.off { opacity: .25; }
+.gw-val { font: 500 11px var(--mono); fill: var(--ink-2); }
+.gw-year { outline: none; }
+.gw-year:hover .gw-rec, .gw-year:focus .gw-rec { fill: var(--ink); opacity: 1; }
+.gw-keys i { width: 12px !important; height: 12px !important; border-radius: 3px !important; }
+.gw-k-temp { background: var(--copper); }
+.gw-k-ext { width: 2px !important; height: 14px !important; background: var(--ink-3); }
+.gw-k-rain { background: var(--h2); }
+.gw-k-rec { background: var(--accent); }
+
 @media (max-width: 960px) {
   .stats { grid-template-columns: 1fr 1fr; }
   .stat:nth-child(2) { border-right: 0; }

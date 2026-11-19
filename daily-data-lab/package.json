@@ -10,7 +10,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "snapshot": "node scripts/snapshot.mjs"
+    "snapshot": "node scripts/snapshot.mjs",
+    "snapshot:glowworms": "node scripts/snapshot-glowworms.mjs"
   },
   "dependencies": {
     "react": "18.3.1",
