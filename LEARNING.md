@@ -15,7 +15,7 @@ The professional course list is available as a [CSV file](learning/linkedin-lear
 | Software Engineering | 51 | [Inspection Status API](projects/07-inspection-status-api/), [Mortgage Workflow Automation](projects/08-mortgage-workflow-automation/), [Internal Request Tracker](projects/10-internal-request-tracker/), [Inspection Workflow Quality Assurance](projects/11-inspection-workflow-qa/) |
 | Cloud, DevOps & Infrastructure | 37 | [Azure DevOps Continuous Integration](projects/12-azure-devops-ci/), [Office Backup and Recovery](projects/13-office-backup-recovery/) |
 | Cybersecurity | 29 | [Office Backup and Recovery](projects/13-office-backup-recovery/) |
-| Business Analysis & Requirements | 37 | [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/), [Employee ERP Integration](projects/09-employee-erp-integration/) |
+| Business Analysis & Requirements | 37 | [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/), [HR–ERP Integration Console](projects/09-employee-erp-integration/) |
 | Project, Product & Agile Delivery | 39 | [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/) |
 | Leadership & Management | 88 | [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/) |
 | Communication & Collaboration | 83 | [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/) |
@@ -123,7 +123,7 @@ Applied in: [Office Backup and Recovery](projects/13-office-backup-recovery/).
 
 ### Business Analysis & Requirements
 
-Applied in: [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/), [Employee ERP Integration](projects/09-employee-erp-integration/).
+Applied in: [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/), [HR–ERP Integration Console](projects/09-employee-erp-integration/).
 
 - Certified Business Analysis Professional (CBAP)® Cert Prep — Jamie Champagne, 2025
 - Career Essentials in Business Analysis by Microsoft and LinkedIn *(learning path)* — 2024

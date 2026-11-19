@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HR–ERP Integration Console | Alicia Espinoza</title>
+<meta name="description" content="Validates weekly HR extracts, previews every change against the ERP master, applies approved runs with a full audit trail and reconciles both systems.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1424'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23f4efe6' text-anchor='middle'%3EAE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261119c">
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="site:site.skip">Skip to content</a>
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="../../index.html" data-portfolio-link aria-label="Alicia Espinoza, back to the portfolio" data-i18n-aria="nav.brand">
+      <span class="brand__mark" aria-hidden="true">AE</span>
+      <span class="brand__name">Alicia Espinoza</span>
+    </a>
+    <nav aria-label="Primary" data-i18n-aria="site:nav.primary">
+      <ul class="nav__links" id="primary-links">
+        <li><a href="../../index.html#experience" data-portfolio-link data-i18n="site:nav.experience">Experience</a></li>
+        <li><a href="../../index.html#projects" data-portfolio-link data-i18n="site:nav.projects">Projects</a></li>
+        <li><a href="../../index.html#applications" data-portfolio-link data-i18n="site:nav.applications">Applications</a></li>
+        <li><a href="../../index.html#learning" data-portfolio-link data-i18n="site:nav.learning">Learning</a></li>
+        <li><a href="../../lab/index.html" data-portfolio-link data-i18n="site:nav.lab">Data Lab</a></li>
+        <li><a href="../../index.html#contact" class="nav__cta" data-portfolio-link data-i18n="site:nav.contact">Get in touch</a></li>
+        <li class="nav__language">
+          <label class="visually-hidden" for="language-select" data-i18n="site:nav.language">Language</label>
+          <select id="language-select" class="language-select"></select>
+        </li>
+      </ul>
+    </nav>
+    <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links">
+      <span class="nav__toggle-label" data-i18n="site:nav.menu">Menu</span>
+      <span class="nav__toggle-icon" aria-hidden="true">☰</span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero wrap">
+  <p class="breadcrumb"><a href="../../index.html#applications" data-portfolio-link data-i18n="hero.back">← Applications</a></p>
+  <p class="kicker"><span data-i18n="hero.kicker">Data integration</span> <span data-i18n="hero.kickerRest">HR to ERP, validated and audited</span></p>
+  <h1><span data-i18n="hero.title">Two systems,</span> <em data-i18n="hero.titleEm">one truth.</em></h1>
+  <p class="lead" data-i18n="hero.lead">Every week Human Resources exports its employee list and the ERP must agree with it. This console validates each extract, previews every change before it touches the ERP, applies approved runs with a full audit trail and can undo them.</p>
+  <div class="kpis" id="kpis"></div>
+</section>
+
+<section class="controls" aria-label="Run controls" data-i18n-aria="controls.aria">
+  <div class="wrap controls__inner">
+    <label class="field field--grow"><span data-i18n="controls.extract">HR extract</span>
+      <select id="extract"></select>
+    </label>
+    <label class="button button--file"><span data-i18n="controls.upload">Upload CSV</span>
+      <input type="file" id="upload" accept=".csv,text/csv" class="visually-hidden">
+    </label>
+    <a class="button" id="template" href="data/hr-extract-2026-10-30.csv" download data-i18n="controls.template">Download template</a>
+    <button type="button" class="button" id="reset" data-i18n="controls.reset">Reset demo</button>
+    <span class="status" id="status" role="status"></span>
+  </div>
+</section>
+
+<div class="wrap console">
+  <section class="panel panel--wide" aria-labelledby="pipeline-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>01</span> <span data-i18n="pipeline.kicker">Pipeline</span></p>
+        <h2 id="pipeline-title">—</h2>
+      </div>
+      <span class="panel__meta" id="pipeline-meta"></span>
+    </div>
+    <ol class="pipeline" id="pipeline"></ol>
+  </section>
+
+  <section class="panel panel--half" aria-labelledby="validation-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>02</span> <span data-i18n="validation.kicker">Validation</span></p>
+        <h2 id="validation-title" data-i18n="validation.title">Rows held back</h2>
+      </div>
+      <span class="panel__meta" id="validation-meta"></span>
+    </div>
+    <div id="rules-chart"></div>
+    <div class="table-wrap table-wrap--short"><table class="data-table" id="rejected-table"></table></div>
+  </section>
+
+  <section class="panel panel--half" aria-labelledby="impact-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>03</span> <span data-i18n="impact.kicker">Impact</span></p>
+        <h2 id="impact-title" data-i18n="impact.title">Headcount by department</h2>
+      </div>
+      <ul class="legend" id="impact-legend"></ul>
+    </div>
+    <div id="impact-chart"></div>
+    <p class="panel__note" data-i18n="impact.note">Active employees in the ERP today and after this run is applied.</p>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="plan-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>04</span> <span data-i18n="plan.kicker">Change plan</span></p>
+        <h2 id="plan-title" data-i18n="plan.title">Review before anything changes</h2>
+      </div>
+      <button type="button" class="button button--primary" id="apply" disabled>—</button>
+    </div>
+    <div class="tabs" id="plan-tabs" role="tablist" aria-label="Filter by action" data-i18n-aria="plan.filter"></div>
+    <div class="table-wrap"><table class="data-table data-table--plan" id="plan-table"></table></div>
+    <p class="panel__note" data-i18n="plan.note">Select a row to see every field that changes and which system owns it. Records in review are never applied automatically.</p>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="history-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>05</span> <span data-i18n="history.kicker">Run history</span></p>
+        <h2 id="history-title" data-i18n="history.title">How the systems converge</h2>
+      </div>
+      <ul class="legend" id="history-legend"></ul>
+    </div>
+    <div class="charts-2">
+      <div><h3 class="chart-title" data-i18n="history.matchTitle">HR–ERP agreement before and after each run</h3><div id="match-chart"></div></div>
+      <div><h3 class="chart-title" data-i18n="history.exceptionsTitle">Exceptions per run</h3><div id="exceptions-chart"></div><ul class="legend legend--below" id="exceptions-legend"></ul></div>
+    </div>
+    <div class="table-wrap"><table class="data-table" id="history-table"></table></div>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="audit-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>06</span> <span data-i18n="audit.kicker">Audit trail</span></p>
+        <h2 id="audit-title" data-i18n="audit.title">Every field, every change</h2>
+      </div>
+      <label class="field field--search"><span data-i18n="audit.search">Search employee or field</span>
+        <input type="search" id="audit-search" placeholder="E00042" autocomplete="off">
+      </label>
+    </div>
+    <div class="table-wrap table-wrap--short"><table class="data-table" id="audit-table"></table></div>
+    <p class="panel__note" id="audit-meta"></p>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="rules-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>07</span> <span data-i18n="rules.kicker">Data contract</span></p>
+        <h2 id="rules-title" data-i18n="rules.title">Who owns each field</h2>
+      </div>
+    </div>
+    <div class="contract">
+      <div class="table-wrap"><table class="data-table" id="ownership-table"></table></div>
+      <div class="notes">
+        <h3 data-i18n="rules.validationTitle">Validation rules</h3>
+        <ul id="rule-list"></ul>
+        <h3 data-i18n="rules.reviewTitle">Sent to review, never applied automatically</h3>
+        <ul id="review-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--wide notes" aria-labelledby="method-title">
+    <p class="kicker kicker--small"><span>08</span> <span data-i18n="method.kicker">Method</span></p>
+    <h2 id="method-title" data-i18n="method.title">How it works</h2>
+    <div class="notes__grid">
+      <div>
+        <h3 data-i18n="method.engineTitle">One engine, tested</h3>
+        <p data-i18n="method.engine">The validation, planning, apply and undo logic is a single JavaScript module with no user interface. The browser console and the 15 automated tests run exactly the same code.</p>
+      </div>
+      <div>
+        <h3 data-i18n="method.dataTitle">Fictional data</h3>
+        <p data-i18n="method.data">A seeded generator creates a 200-person organization and eight weekly HR extracts with hires, transfers, terminations, rehires and realistic data-entry mistakes. The first five weeks were processed with the engine to build the ERP state and run history shown here.</p>
+      </div>
+      <div>
+        <h3 data-i18n="method.safetyTitle">Safe by design</h3>
+        <p data-i18n="method.safety">Nothing is written until a run is approved. Every applied field is logged with its old and new value, and each run keeps a snapshot so it can be undone. Changes stay in this browser tab; reloading resets the demo.</p>
+      </div>
+    </div>
+  </section>
+</div>
+</main>
+<footer class="foot"><div class="wrap foot__inner"><span>© 2026 Alicia Espinoza</span><span data-i18n="footer.data">All people, IDs and emails are fictional.</span></div></footer>
+<script type="module" src="app.js?v=20261119c"></script>
+</body>
+</html>

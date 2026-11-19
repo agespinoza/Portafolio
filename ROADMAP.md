@@ -9,7 +9,7 @@ I started in public-sector IT in Mexicali, maintaining helpdesk and internal app
 | Skill | Demonstration | Deliverable |
 | --- | --- | --- |
 | IT infrastructure and management | Design and document a backup and recovery exercise for a sample office. | [Architecture diagram, inventory, budget, and recovery exercise](projects/13-office-backup-recovery/). |
-| ERP and system integration | Synchronize sample employee records and flag discrepancies. | [Integration demo, data model, and reconciliation report](projects/09-employee-erp-integration/). |
+| ERP and system integration | Validate weekly HR extracts, preview and approve every change to the ERP, keep an audit trail with undo, and reconcile both systems. | [HR–ERP integration console](projects/09-employee-erp-integration/). |
 | Administrative web applications | Record internal requests and search their history. | [PHP application and sample database](projects/10-internal-request-tracker/). |
 
 ## Teaching, quality assurance, and consulting (2008–2016)

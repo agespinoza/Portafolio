@@ -1,0 +1,4153 @@
+{
+ "runs": [
+  {
+   "runId": "RUN-001",
+   "source": "hr-extract-2026-09-25.csv",
+   "extractDate": "2026-09-25",
+   "appliedAt": "2026-09-28T14:10:00Z",
+   "read": 199,
+   "valid": 196,
+   "rejected": 3,
+   "warnings": 0,
+   "review": 2,
+   "insert": 3,
+   "update": 6,
+   "transfer": 4,
+   "terminate": 1,
+   "rehire": 0,
+   "unchanged": 182,
+   "matchBefore": 0.9430051813471503,
+   "matchAfter": 1,
+   "rejectedByRule": {
+    "enum.status": 1,
+    "dept.unknown": 1,
+    "format.date": 1
+   }
+  },
+  {
+   "runId": "RUN-002",
+   "source": "hr-extract-2026-10-02.csv",
+   "extractDate": "2026-10-02",
+   "appliedAt": "2026-10-05T14:17:00Z",
+   "read": 205,
+   "valid": 201,
+   "rejected": 4,
+   "warnings": 0,
+   "review": 2,
+   "insert": 5,
+   "update": 1,
+   "transfer": 3,
+   "terminate": 1,
+   "rehire": 1,
+   "unchanged": 190,
+   "matchBefore": 0.9693877551020408,
+   "matchAfter": 1,
+   "rejectedByRule": {
+    "duplicate.id": 2,
+    "format.date": 2
+   }
+  },
+  {
+   "runId": "RUN-003",
+   "source": "hr-extract-2026-10-09.csv",
+   "extractDate": "2026-10-09",
+   "appliedAt": "2026-10-12T14:24:00Z",
+   "read": 208,
+   "valid": 205,
+   "rejected": 3,
+   "warnings": 0,
+   "review": 2,
+   "insert": 5,
+   "update": 3,
+   "transfer": 2,
+   "terminate": 3,
+   "rehire": 0,
+   "unchanged": 192,
+   "matchBefore": 0.96,
+   "matchAfter": 1,
+   "rejectedByRule": {
+    "term.missing": 1,
+    "dept.unknown": 1,
+    "format.email": 1
+   }
+  },
+  {
+   "runId": "RUN-004",
+   "source": "hr-extract-2026-10-16.csv",
+   "extractDate": "2026-10-16",
+   "appliedAt": "2026-10-19T14:31:00Z",
+   "read": 214,
+   "valid": 212,
+   "rejected": 2,
+   "warnings": 0,
+   "review": 3,
+   "insert": 5,
+   "update": 3,
+   "transfer": 4,
+   "terminate": 1,
+   "rehire": 1,
+   "unchanged": 197,
+   "matchBefore": 0.9563106796116505,
+   "matchAfter": 1,
+   "rejectedByRule": {
+    "enum.status": 1,
+    "format.email": 1
+   }
+  },
+  {
+   "runId": "RUN-005",
+   "source": "hr-extract-2026-10-23.csv",
+   "extractDate": "2026-10-23",
+   "appliedAt": "2026-10-26T14:38:00Z",
+   "read": 219,
+   "valid": 216,
+   "rejected": 3,
+   "warnings": 1,
+   "review": 2,
+   "insert": 5,
+   "update": 2,
+   "transfer": 3,
+   "terminate": 3,
+   "rehire": 0,
+   "unchanged": 203,
+   "matchBefore": 0.9620853080568721,
+   "matchAfter": 1,
+   "rejectedByRule": {
+    "duplicate.id": 2,
+    "format.date": 1
+   }
+  }
+ ],
+ "audit": [
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Luis"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Wilson"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "luis.wilson@example.org"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-310756"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Logistics Coordinator"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "OPS"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00011"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-09-23"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-3100"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00198",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Olivia"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Jackson"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "olivia.jackson2@example.org"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-310861"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Graphic Designer"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "COM"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00007"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-09-20"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-1600"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00200",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Ximena"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Sánchez"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "ximena.sanchez@example.org"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-310905"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Nurse"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "HLT"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00009"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Tijuana"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-09-19"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-2200"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00201",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00022",
+   "action": "update",
+   "field": "job_title",
+   "from": "Pending title update",
+   "to": "Program Coordinator"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00023",
+   "action": "update",
+   "field": "job_title",
+   "from": "Pending title update",
+   "to": "Nutritionist"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00024",
+   "action": "update",
+   "field": "job_title",
+   "from": "Pending title update",
+   "to": "Data Analyst"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00025",
+   "action": "update",
+   "field": "job_title",
+   "from": "Pending title update",
+   "to": "Administrative Assistant"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00038",
+   "action": "update",
+   "field": "status",
+   "from": "Active",
+   "to": "Leave"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00118",
+   "action": "update",
+   "field": "job_title",
+   "from": "Program Coordinator",
+   "to": "Social Worker"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00059",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Training Coordinator",
+   "to": "Benefits Coordinator"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00059",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "EDU",
+   "to": "HRS"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00059",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00010",
+   "to": "E00004"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00059",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-2300",
+   "to": "CC-1300"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00107",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Graphic Designer",
+   "to": "Legal Advisor"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00107",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "COM",
+   "to": "LEG"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00107",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00007",
+   "to": "E00006"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00107",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-1600",
+   "to": "CC-1500"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00149",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Nutritionist",
+   "to": "Maintenance Technician"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00149",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "HLT",
+   "to": "OPS"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00149",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00009",
+   "to": "E00011"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00149",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-2200",
+   "to": "CC-3100"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00187",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Instructor",
+   "to": "Maintenance Technician"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00187",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "EDU",
+   "to": "OPS"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00187",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00010",
+   "to": "E00011"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00187",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-2300",
+   "to": "CC-3100"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00066",
+   "action": "terminate",
+   "field": "status",
+   "from": "Active",
+   "to": "Terminated"
+  },
+  {
+   "runId": "RUN-001",
+   "timestamp": "2026-09-28T14:10:00Z",
+   "source": "hr-extract-2026-09-25.csv",
+   "id": "E00066",
+   "action": "terminate",
+   "field": "termination_date",
+   "from": "",
+   "to": "2026-09-22"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Ana"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Anderson"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "ana.anderson@example.org"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-310820"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Nutritionist"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "HLT"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00009"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Part-time"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-09-20"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-2200"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00199",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-PT"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Chloe"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Rodríguez"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "chloe.rodriguez@example.org"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-310992"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Software Developer"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "ITS"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00005"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-02"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-1400"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00202",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Renata"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Rodríguez"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "renata.rodriguez@example.org"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311056"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Systems Administrator"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "ITS"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00005"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Tijuana"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-09-27"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-1400"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00203",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Grace"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Hernández"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "grace.hernandez2@example.org"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311142"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Communications Officer"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "COM"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00007"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-09-29"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-1600"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00204",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Ana"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Lee"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "ana.lee@example.org"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311255"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Nutritionist"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "HLT"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00009"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "San Felipe"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Contract"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-09-30"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-2200"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00206",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-CT"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00095",
+   "action": "update",
+   "field": "job_title",
+   "from": "Health Promoter",
+   "to": "Nutritionist"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00144",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Program Coordinator",
+   "to": "Graphic Designer"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00144",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "SOC",
+   "to": "COM"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00144",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00008",
+   "to": "E00007"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00144",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-2100",
+   "to": "CC-1600"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00150",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Nurse",
+   "to": "Maintenance Technician"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00150",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "HLT",
+   "to": "OPS"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00150",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00009",
+   "to": "E00011"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00150",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-2200",
+   "to": "CC-3100"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00182",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Legal Advisor",
+   "to": "Instructor"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00182",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "LEG",
+   "to": "EDU"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00182",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00006",
+   "to": "E00010"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00182",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-1500",
+   "to": "CC-2300"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00086",
+   "action": "terminate",
+   "field": "status",
+   "from": "Active",
+   "to": "Terminated"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00086",
+   "action": "terminate",
+   "field": "termination_date",
+   "from": "",
+   "to": "2026-09-28"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00190",
+   "action": "rehire",
+   "field": "hire_date",
+   "from": "2019-11-04",
+   "to": "2026-09-30"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00190",
+   "action": "rehire",
+   "field": "status",
+   "from": "Terminated",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-002",
+   "timestamp": "2026-10-05T14:17:00Z",
+   "source": "hr-extract-2026-10-02.csv",
+   "id": "E00190",
+   "action": "rehire",
+   "field": "termination_date",
+   "from": "2024-10-25",
+   "to": ""
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Emma"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Johnson"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "emma.johnson@example.org"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311234"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Data Analyst"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "ITS"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00005"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-09-28"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-1400"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00205",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Carmen"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Brown"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "carmen.brown2@example.org"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311280"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Training Coordinator"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "EDU"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00010"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-08"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-2300"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00207",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Raúl"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "García"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "raul.garcia@example.org"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311336"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Training Coordinator"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "EDU"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00010"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Ensenada"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-03"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-2300"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00208",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Fernando"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Gómez"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "fernando.gomez@example.org"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311394"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Instructor"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "EDU"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00010"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-07"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-2300"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00209",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Raúl"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Reyes"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "raul.reyes@example.org"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311446"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Graphic Designer"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "COM"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00007"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Ensenada"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-06"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-1600"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00210",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00093",
+   "action": "update",
+   "field": "job_title",
+   "from": "Systems Administrator",
+   "to": "Help Desk Technician"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00136",
+   "action": "update",
+   "field": "last_name",
+   "from": "Taylor",
+   "to": "Reyes"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00136",
+   "action": "update",
+   "field": "email",
+   "from": "lucia.taylor@example.org",
+   "to": "lucia.reyes2@example.org"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00138",
+   "action": "update",
+   "field": "job_title",
+   "from": "Accountant",
+   "to": "Payroll Specialist"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00063",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Nutritionist",
+   "to": "Paralegal"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00063",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "HLT",
+   "to": "LEG"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00063",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00009",
+   "to": "E00006"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00063",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-2200",
+   "to": "CC-1500"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00115",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Logistics Coordinator",
+   "to": "Paralegal"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00115",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "OPS",
+   "to": "LEG"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00115",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00011",
+   "to": "E00006"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00115",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-3100",
+   "to": "CC-1500"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00013",
+   "action": "terminate",
+   "field": "status",
+   "from": "Active",
+   "to": "Terminated"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00013",
+   "action": "terminate",
+   "field": "termination_date",
+   "from": "",
+   "to": "2026-10-08"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00119",
+   "action": "terminate",
+   "field": "status",
+   "from": "Active",
+   "to": "Terminated"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00119",
+   "action": "terminate",
+   "field": "termination_date",
+   "from": "",
+   "to": "2026-10-07"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00135",
+   "action": "terminate",
+   "field": "status",
+   "from": "Active",
+   "to": "Terminated"
+  },
+  {
+   "runId": "RUN-003",
+   "timestamp": "2026-10-12T14:24:00Z",
+   "source": "hr-extract-2026-10-09.csv",
+   "id": "E00135",
+   "action": "terminate",
+   "field": "termination_date",
+   "from": "",
+   "to": "2026-10-03"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Chloe"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Torres"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "chloe.torres@example.org"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311453"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Social Worker"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "SOC"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00008"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "San Felipe"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-13"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-2100"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00211",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Carlos"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "González"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "carlos.gonzalez@example.org"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311477"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Administrative Assistant"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "ADM"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00002"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Contract"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-16"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-1100"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00212",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-CT"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Jorge"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Smith"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "jorge.smith@example.org"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311495"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Instructor"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "EDU"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00010"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-11"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-2300"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00213",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Ricardo"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Brown"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "ricardo.brown@example.org"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311589"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Social Worker"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "SOC"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00008"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Ensenada"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Part-time"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-13"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-2100"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00214",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-PT"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Lucas"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Nguyen"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "lucas.nguyen2@example.org"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311635"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Nutritionist"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "HLT"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00009"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-10"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-2200"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00215",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00055",
+   "action": "update",
+   "field": "job_title",
+   "from": "Health Promoter",
+   "to": "Nutritionist"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00099",
+   "action": "update",
+   "field": "job_title",
+   "from": "Social Worker",
+   "to": "Program Coordinator"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00186",
+   "action": "update",
+   "field": "status",
+   "from": "Active",
+   "to": "Leave"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00021",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Nutritionist",
+   "to": "Training Coordinator"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00021",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "HLT",
+   "to": "EDU"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00021",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00009",
+   "to": "E00010"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00021",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-2200",
+   "to": "CC-2300"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00129",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Administrative Assistant",
+   "to": "Training Coordinator"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00129",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "ADM",
+   "to": "EDU"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00129",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00002",
+   "to": "E00010"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00129",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-1100",
+   "to": "CC-2300"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00144",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Graphic Designer",
+   "to": "Instructor"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00144",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "COM",
+   "to": "EDU"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00144",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00007",
+   "to": "E00010"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00144",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-1600",
+   "to": "CC-2300"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00157",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Communications Officer",
+   "to": "HR Generalist"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00157",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "COM",
+   "to": "HRS"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00157",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00007",
+   "to": "E00004"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00157",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-1600",
+   "to": "CC-1300"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00184",
+   "action": "terminate",
+   "field": "status",
+   "from": "Active",
+   "to": "Terminated"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00184",
+   "action": "terminate",
+   "field": "termination_date",
+   "from": "",
+   "to": "2026-10-15"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00191",
+   "action": "rehire",
+   "field": "hire_date",
+   "from": "2020-04-22",
+   "to": "2026-10-14"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00191",
+   "action": "rehire",
+   "field": "status",
+   "from": "Terminated",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-004",
+   "timestamp": "2026-10-19T14:31:00Z",
+   "source": "hr-extract-2026-10-16.csv",
+   "id": "E00191",
+   "action": "rehire",
+   "field": "termination_date",
+   "from": "2024-12-22",
+   "to": ""
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Grace"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Castillo"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "grace.castillo@example.org"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311681"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Help Desk Technician"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "ITS"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00005"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Tijuana"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-20"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-1400"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00217",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Ricardo"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Lee"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "ricardo.lee@example.org"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311691"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Administrative Assistant"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "ADM"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00002"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-22"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-1100"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00218",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Mateo"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Chen"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "mateo.chen@example.org"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311741"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Health Promoter"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "HLT"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00009"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Mexicali"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-22"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-2200"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00219",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "María"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Ramírez"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "maria.ramirez@example.org"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311801"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Systems Administrator"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "ITS"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00005"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Tijuana"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Part-time"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-18"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-1400"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00220",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-PT"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "first_name",
+   "from": "",
+   "to": "Daniela"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "last_name",
+   "from": "",
+   "to": "Chen"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "email",
+   "from": "",
+   "to": "daniela.chen@example.org"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "national_id",
+   "from": "",
+   "to": "ID-311836"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "job_title",
+   "from": "",
+   "to": "Maintenance Technician"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "department_code",
+   "from": "",
+   "to": "OPS"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "manager_id",
+   "from": "",
+   "to": "E00011"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "location",
+   "from": "",
+   "to": "Ensenada"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "employment_type",
+   "from": "",
+   "to": "Full-time"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "hire_date",
+   "from": "",
+   "to": "2026-10-17"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "status",
+   "from": "",
+   "to": "Active"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "cost_center",
+   "from": "",
+   "to": "CC-3100"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00221",
+   "action": "insert",
+   "field": "payroll_group",
+   "from": "",
+   "to": "PG-FT"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00018",
+   "action": "update",
+   "field": "job_title",
+   "from": "Software Developer",
+   "to": "Systems Administrator"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00088",
+   "action": "update",
+   "field": "manager_id",
+   "from": "E00011",
+   "to": "E09999"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00100",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Data Analyst",
+   "to": "HR Generalist"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00100",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "ITS",
+   "to": "HRS"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00100",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00005",
+   "to": "E00004"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00100",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-1400",
+   "to": "CC-1300"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00133",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "Logistics Coordinator",
+   "to": "Instructor"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00133",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "OPS",
+   "to": "EDU"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00133",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00011",
+   "to": "E00010"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00133",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-3100",
+   "to": "CC-2300"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00155",
+   "action": "transfer",
+   "field": "job_title",
+   "from": "HR Generalist",
+   "to": "Maintenance Technician"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00155",
+   "action": "transfer",
+   "field": "department_code",
+   "from": "HRS",
+   "to": "OPS"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00155",
+   "action": "transfer",
+   "field": "manager_id",
+   "from": "E00004",
+   "to": "E00011"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00155",
+   "action": "transfer",
+   "field": "cost_center",
+   "from": "CC-1300",
+   "to": "CC-3100"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00090",
+   "action": "terminate",
+   "field": "status",
+   "from": "Active",
+   "to": "Terminated"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00090",
+   "action": "terminate",
+   "field": "termination_date",
+   "from": "",
+   "to": "2026-10-21"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00106",
+   "action": "terminate",
+   "field": "status",
+   "from": "Active",
+   "to": "Terminated"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00106",
+   "action": "terminate",
+   "field": "termination_date",
+   "from": "",
+   "to": "2026-10-19"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00146",
+   "action": "terminate",
+   "field": "status",
+   "from": "Active",
+   "to": "Terminated"
+  },
+  {
+   "runId": "RUN-005",
+   "timestamp": "2026-10-26T14:38:00Z",
+   "source": "hr-extract-2026-10-23.csv",
+   "id": "E00146",
+   "action": "terminate",
+   "field": "termination_date",
+   "from": "",
+   "to": "2026-10-21"
+  }
+ ]
+}

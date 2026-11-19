@@ -146,8 +146,8 @@ function renderContributionCalendar(language) {
       text: "Looks up a simulated inspection through a Jakarta REST endpoint and a browser interface." },
     { id: "08-mortgage-workflow-automation", title: "Mortgage Workflow Automation", area: "software", tech: ["C#", "ASP.NET Core", "JavaScript"], applicationStatus: "Requires .NET 8",
       text: "Advances a mortgage application through workflow stages and records every transition." },
-    { id: "09-employee-erp-integration", title: "Employee ERP Integration", area: "data", tech: ["Python", "ERP", "Reconciliation"],
-      text: "Synchronizes HR records into an ERP dataset and reports inserts, updates, and discrepancies." },
+    { id: "09-employee-erp-integration", title: "HR–ERP Integration Console", area: "data", tech: ["JavaScript", "D3.js", "Data validation", "Automated tests"], demo: true, applicationStatus: "Live demo on this site",
+      text: "Validates weekly HR extracts, previews every change before it reaches the ERP, applies approved runs with an audit trail and undo, and reconciles both systems." },
     { id: "10-internal-request-tracker", title: "Internal Request Tracker", area: "software", tech: ["PHP", "SQLite"], applicationStatus: "Requires PHP 8.1 and SQLite",
       text: "Records internal requests and searches their history through a lightweight web application." },
     { id: "11-inspection-workflow-qa", title: "Inspection Workflow QA", area: "software", tech: ["Python", "unittest", "Test plan"],
@@ -271,6 +271,7 @@ function renderContributionCalendar(language) {
     "05-inspection-power-bi": ["site.statusPowerBi", "Requires Power BI Desktop"],
     "07-inspection-status-api": ["site.statusJakarta", "Requires a Jakarta EE 10 server"],
     "08-mortgage-workflow-automation": ["site.statusDotnet", "Requires .NET 8"],
+    "09-employee-erp-integration": ["site.statusLiveDemo", "Live demo on this site"],
     "10-internal-request-tracker": ["site.statusPhp", "Requires PHP 8.1 and SQLite"],
     "daily-data-lab": ["site.statusLiveApp", "Live app on this site"]
   };

@@ -1,5 +1,0 @@
-employee_id,action,old_department,new_department
-E01,Matched,Operations,Operations
-E02,Updated,Support,Engineering
-E03,Inserted,,Finance
-E04,ERP only,Finance,Finance

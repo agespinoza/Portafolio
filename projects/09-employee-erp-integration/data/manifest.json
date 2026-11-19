@@ -1,0 +1,28 @@
+{
+ "pending": [
+  {
+   "file": "hr-extract-2026-10-30.csv",
+   "date": "2026-10-30",
+   "rows": 224,
+   "full": true
+  },
+  {
+   "file": "hr-extract-2026-11-06.csv",
+   "date": "2026-11-06",
+   "rows": 228,
+   "full": true
+  },
+  {
+   "file": "hr-extract-2026-11-13.csv",
+   "date": "2026-11-13",
+   "rows": 232,
+   "full": true
+  },
+  {
+   "file": "hr-extract-practice-errors.csv",
+   "date": "2026-11-13",
+   "rows": 21,
+   "full": false
+  }
+ ]
+}
