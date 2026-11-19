@@ -10,57 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <style>
-      :root {
-        --paper: #faf8f4; --paper-2: #f3efe7; --surface: #ffffff;
-        --ink: #0b1424; --ink-2: #3d4a5f; --ink-3: #6f7a8c;
-        --line: #e6e1d7; --line-2: #d9d2c4;
-        --accent: #0d6b7f; --accent-2: #12899f; --accent-soft: #e2eff1; --copper: #a8642a;
-      }
-      @media (prefers-color-scheme: dark) {
-        :root {
-          --paper: #0a1220; --paper-2: #0e1829; --surface: #111d31;
-          --ink: #eef2f7; --ink-2: #b7c2d3; --ink-3: #8390a5;
-          --line: #1f2c43; --line-2: #2a3a55;
-          --accent: #5cc2d6; --accent-2: #7fd3e3; --accent-soft: #123447; --copper: #e3a35f;
-        }
-      }
-      * , *::before, *::after { box-sizing: border-box; }
-      body { margin: 0; font: 16px/1.6 "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; }
-      a { color: var(--accent); text-decoration: none; }
-      a:hover { text-decoration: underline; text-underline-offset: 3px; }
-      .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
-      .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-      .topbar { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--paper) 85%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
-      .topbar__inner { display: flex; justify-content: space-between; align-items: center; height: 64px; }
-      .brand { display: flex; align-items: center; gap: 12px; color: var(--ink); font-weight: 600; }
-      .brand:hover { text-decoration: none; }
-      .brand__mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--ink); color: var(--paper); font: 400 17px/1 "Instrument Serif", "Times New Roman", serif; }
-      .topbar__link { font-weight: 500; font-size: 15px; color: var(--ink-2); }
-      .topbar__actions { display: flex; align-items: center; gap: 14px; }
-      .language-select { min-height: 38px; padding: 7px 28px 7px 11px; border: 1px solid var(--line-2); border-radius: 999px; background: var(--surface); color: var(--ink); font: 500 13px/1.2 "Inter", system-ui, sans-serif; cursor: pointer; }
-    </style>
   </head>
   <body>
-    <header class="topbar">
-      <div class="wrap topbar__inner">
-        <a class="brand" href="#/" aria-label="Daily Data Lab">
-          <span class="brand__mark" aria-hidden="true">AE</span>
-          <span>Daily Data Lab</span>
-        </a>
-        <nav class="topbar__actions" aria-label="Primary navigation">
-          <label class="sr" for="language-select">Language</label>
-          <select id="language-select" class="language-select">
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="ja">日本語</option>
-            <option value="it">Italiano</option>
-            <option value="fr">Français</option>
-          </select>
-          <a class="topbar__link" href="../index.html#lab">← Portfolio</a>
-        </nav>
-      </div>
-    </header>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
