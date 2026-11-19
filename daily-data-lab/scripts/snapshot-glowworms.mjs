@@ -1,7 +1,7 @@
 // Saves fallback data for Day 002 so the page still works if GBIF or Open-Meteo is unavailable,
 // and builds the New Zealand outline used by the map. Run with: npm run snapshot:glowworms
 import { writeFile } from "node:fs/promises";
-import { fetchSightings, fetchClimate, climateYears } from "../src/days/day-002-glowworms/data.js";
+import { fetchSightings, fetchClimate, fetchEffort, climateYears } from "../src/days/day-002-glowworms/data.js";
 
 const DIR = new URL("../src/days/day-002-glowworms/", import.meta.url);
 
@@ -11,13 +11,16 @@ console.log(`GBIF: ${sightings.length} records`);
 const [from, to] = climateYears();
 const climate = await fetchClimate(from, to);
 console.log(`Open-Meteo: monthly climate ${from}–${to}`);
+const effort = await fetchEffort();
+console.log(`GBIF: iNaturalist effort for ${Object.keys(effort.regions).length} regions`);
 
 await writeFile(new URL("snapshot.json", DIR), JSON.stringify({
   source: "GBIF.org occurrence search (taxonKey 1564326) and Open-Meteo historical weather API",
-  columns: ["lat", "lon", "year", "month", "region"],
+  columns: ["lat", "lon", "year", "month", "region", "source (0 iNaturalist, 1 specimen, 2 other)"],
   capturedAt: new Date().toISOString(),
   sightings,
   climate,
+  effort,
 }));
 console.log("Saved snapshot.json");
 

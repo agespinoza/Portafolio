@@ -51,8 +51,39 @@ export async function fetchSightings() {
     .filter((r) => Number.isFinite(r.decimalLatitude) && Number.isFinite(r.decimalLongitude))
     .map((r) => [
       round(r.decimalLatitude, 3), round(r.decimalLongitude, 3),
-      r.year ?? null, r.month ?? null, cleanRegion(r.stateProvince),
+      r.year ?? null, r.month ?? null, cleanRegion(r.stateProvince), sourceOf(r),
     ]);
+}
+
+export const INATURALIST = "50c9509d-22c7-4a22-a47d-8c48425ef4a7"; // GBIF dataset: iNaturalist research-grade observations
+
+/** 0 = iNaturalist observation, 1 = museum specimen or sample, 2 = other observation. */
+function sourceOf(r) {
+  if (r.datasetKey === INATURALIST) return 0;
+  return r.basisOfRecord === "PRESERVED_SPECIMEN" || r.basisOfRecord === "MATERIAL_SAMPLE" ? 1 : 2;
+}
+
+/**
+ * Observer effort: all iNaturalist research-grade observations in New Zealand (every species),
+ * counted per region, and per region by month and by year. Dividing glowworm records by these
+ * counts gives a reporting rate that corrects for where and when people use iNaturalist.
+ */
+export async function fetchEffort() {
+  const q = `country=NZ&hasCoordinate=true&hasGeospatialIssue=false&datasetKey=${INATURALIST}&limit=0&facetLimit=200`;
+  const counts = (json, field) => Object.fromEntries(
+    (json.facets || []).find((f) => f.field === field)?.counts.map((c) => [c.name, c.count]) || [],
+  );
+  const all = await withRetry(() => getJSON(`${GBIF}?${q}&facet=stateProvince`));
+  const regions = {};
+  for (const [raw, total] of Object.entries(counts(all, "STATE_PROVINCE"))) {
+    const name = cleanRegion(raw);
+    const json = await withRetry(() => getJSON(`${GBIF}?${q}&stateProvince=${encodeURIComponent(raw)}&facet=month&facet=year`));
+    const r = regions[name] || (regions[name] = { total: 0, month: {}, year: {} });
+    r.total += total;
+    for (const [k, v] of Object.entries(counts(json, "MONTH"))) r.month[k] = (r.month[k] || 0) + v;
+    for (const [k, v] of Object.entries(counts(json, "YEAR"))) r.year[k] = (r.year[k] || 0) + v;
+  }
+  return { dataset: "iNaturalist research-grade observations in New Zealand, all species", regions };
 }
 
 /** Current conditions outside the caves (Open-Meteo forecast API, local time). */

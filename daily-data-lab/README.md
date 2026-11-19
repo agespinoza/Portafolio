@@ -30,6 +30,10 @@ The page maps every georeferenced public record of the Waitomo glowworm (*Arachn
 
 You can filter by island, period, and month. Full GBIF records are large (about 2 MB per page), so the map uses the saved snapshot in [`src/days/day-002-glowworms/snapshot.json`](src/days/day-002-glowworms/snapshot.json), and the page checks GBIF's live record count. The climate averages load live from Open-Meteo and fall back to the snapshot. The coastline comes from Natural Earth and is saved in `nz-outline.json`.
 
+## Languages and publication calendar
+
+The portfolio and Daily Data Lab can be switched manually between English, Spanish, Japanese, Italian, and French. English is the default; the selected language is shared through the `lang` URL parameter. The contribution-style calendar shows published days from the last 12 months and links each marked date to its visualization. Publication metadata is maintained once in [`../assets/daily-data-lab-days.js`](../assets/daily-data-lab-days.js) and used by both the portfolio and this app.
+
 ## Run locally
 
 Use Node.js 18 or later.
@@ -44,6 +48,7 @@ npm run snapshot:glowworms   # refreshes GBIF records, climate, and the NZ outli
 
 ## Add a new day
 
-1. Create a folder in `src/days/`, for example `src/days/day-002-topic/`, with a React component.
-2. Register it in [`src/days/index.js`](src/days/index.js) with the day number, date, title, summary, topic, and tags.
-3. Run `npm run build` and commit both `daily-data-lab/` and `lab/`.
+1. Create a folder in `src/days/` with the visualization component.
+2. Add the date, title, summary, topic, tags, and source to [`../assets/daily-data-lab-days.js`](../assets/daily-data-lab-days.js), then map its slug to the component in [`src/days/index.js`](src/days/index.js).
+3. Add the day's public interface text to the five-language dictionaries in [`../assets/i18n.js`](../assets/i18n.js).
+4. Run `npm run build` and commit both `daily-data-lab/` and `lab/`.

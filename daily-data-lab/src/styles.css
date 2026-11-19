@@ -31,6 +31,7 @@ h1, h2 { margin: 0; font-weight: 400; line-height: 1.1; }
 p { margin: 0; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .mono { font: 500 11px/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
 .muted { color: var(--ink-3); font-size: 14px; }
 .pad { padding: 32px 0; }
@@ -42,6 +43,8 @@ p { margin: 0; }
 .brand:hover { text-decoration: none; }
 .brand__mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--ink); color: var(--paper); font: 400 17px/1 var(--serif); }
 .topbar__link { font-weight: 500; font-size: 15px; color: var(--ink-2); }
+.topbar__actions { display: flex; align-items: center; gap: 14px; }
+.language-select { min-height: 38px; padding: 7px 28px 7px 11px; border: 1px solid var(--line-2); border-radius: 999px; background: var(--surface); color: var(--ink); font: 500 13px/1.2 var(--sans); cursor: pointer; }
 .foot { margin-top: 96px; background: var(--night); color: rgba(244,239,230,.5); font: 400 12px/1 var(--mono); letter-spacing: .04em; }
 .foot__inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 28px 32px; }
 
@@ -59,6 +62,9 @@ h1 em { font-style: italic; color: var(--accent); }
 .counter div:last-child { border-right: 0; }
 .counter strong { font: 400 32px/1 var(--serif); }
 .counter span { font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.calendar-card { margin-bottom: 40px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.calendar-card__head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 14px; }
+.calendar-card__head h2 { font-size: 17px; font-weight: 600; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
 .tile { display: flex; flex-direction: column; gap: 12px; padding: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); color: var(--ink); transition: transform .3s, box-shadow .3s; }
 .tile:hover { text-decoration: none; transform: translateY(-4px); box-shadow: var(--shadow); }
@@ -203,6 +209,10 @@ h1 em { font-style: italic; color: var(--accent); }
 }
 @media (max-width: 640px) {
   .wrap { padding: 0 16px; }
+  .topbar__actions { gap: 8px; }
+  .topbar__link { font-size: 13px; }
+  .calendar-card { padding: 18px; }
+  .calendar-card__head { align-items: flex-start; flex-direction: column; }
   .controls { position: static; }
   .stat { padding: 18px; }
   .stat strong { font-size: 30px; }
@@ -210,3 +220,58 @@ h1 em { font-style: italic; color: var(--accent); }
   .foot__inner { padding: 24px 16px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* Shared filter pieces */
+.range { display: flex; flex-direction: column; gap: 8px; }
+.range__pair { display: flex; align-items: center; gap: 6px; }
+.range__dash { color: var(--ink-3); }
+.seg button:disabled { cursor: not-allowed; opacity: .4; }
+.seg--off .seg__opts { opacity: .55; }
+.seg__hint { font-size: 12px; color: var(--ink-3); max-width: 22ch; }
+.seg--small button { padding: 7px 11px; font-size: 12.5px; }
+.card__tools { display: flex; flex-direction: column; align-items: flex-end; gap: 12px; }
+.notice { padding: 14px 18px; border-radius: 12px; background: var(--accent-soft); color: var(--ink-2); font-size: 14px; border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); }
+.notice--inline { margin: -4px 0 12px; padding: 10px 14px; font-size: 13px; }
+
+/* Day 001 · planner and comparisons */
+:root { --dn2: #2a8c84; --dn1: #9fd6ce; --d0: #ebe7df; --dp1: #e9b98a; --dp2: #c4553a; }
+@media (prefers-color-scheme: dark) { :root { --dn2: #3fa89e; --dn1: #24585a; --d0: #1a2639; --dp1: #8a5a30; --dp2: #c4473a; } }
+.axis--on { fill: var(--ink); font-weight: 600; }
+.cell.out { opacity: .28; }
+.plan { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 28px; align-items: start; }
+.plan__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.plan__list li { display: grid; grid-template-columns: 1.6rem 7.5rem 1fr 4.2rem 6.5rem; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 12px; font-size: 14px; }
+.plan__list li:first-child { background: var(--accent-soft); }
+.plan__rank { font: 400 22px/1 var(--serif); color: var(--accent); }
+.plan__when { display: flex; flex-direction: column; gap: 2px; }
+.plan__when strong { font-weight: 600; }
+.plan__when span { font-size: 12px; color: var(--ink-3); }
+.plan__list li.is-sel .plan__when span { color: var(--ink-2); font-weight: 500; }
+.plan__bar { height: 8px; border-radius: 4px; background: var(--paper-2); overflow: hidden; }
+.plan__bar i { display: block; height: 100%; border-radius: 4px; }
+.plan__val { font: 500 13px/1 var(--mono); text-align: right; }
+.plan__risk { font: 400 11.5px/1.2 var(--mono); color: var(--ink-3); text-align: right; }
+.chart .win { fill: color-mix(in srgb, var(--accent) 8%, transparent); }
+.other { fill: none; stroke: var(--ink-3); stroke-width: 2; stroke-dasharray: 6 4; }
+.dot--best { fill: var(--accent); }
+.k-other { background: repeating-linear-gradient(90deg, var(--ink-3) 0 6px, transparent 6px 10px); }
+.k-win { height: 10px !important; background: color-mix(in srgb, var(--accent) 16%, transparent); }
+.k-best { width: 10px !important; height: 10px !important; border-radius: 50% !important; background: var(--accent); }
+
+/* Day 002 · rates and uncertainty */
+.gw-radius { fill: rgba(227,163,95,.06); stroke: #e3a35f; stroke-width: 1; stroke-dasharray: 4 4; }
+.gw-regions__bar { position: relative; overflow: visible; }
+.gw-ci { position: absolute; top: 50%; height: 2px; margin-top: -1px; background: var(--ink-2); border-radius: 1px; }
+.gw-regions button.on .gw-ci { background: var(--paper); }
+.gw-regions button.low { opacity: .5; }
+.gw-regions__n small { font-size: 10px; color: var(--ink-3); }
+.gw-whisker { stroke: var(--ink-2); stroke-width: 1.5; }
+
+@media (max-width: 960px) {
+  .plan { grid-template-columns: 1fr; }
+  .card__tools { align-items: flex-start; }
+}
+@media (max-width: 640px) {
+  .plan__list li { grid-template-columns: 1.4rem 6rem 1fr 3.8rem; }
+  .plan__risk { grid-column: 2 / -1; text-align: left; }
+}

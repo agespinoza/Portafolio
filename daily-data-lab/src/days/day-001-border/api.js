@@ -87,3 +87,10 @@ export function hourLabel(h) {
   if (h === 12) return "12 pm";
   return h < 12 ? `${h} am` : `${h - 12} pm`;
 }
+
+/** Adds whole days to a YYYY-MM-DD date. */
+export function shiftDate(iso, days) {
+  const d = new Date(`${iso}T12:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + days);
+  return d.toISOString().slice(0, 10);
+}

@@ -4,36 +4,51 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Alicia Espinoza | Software Engineer</title>
-  <meta name="description" content="Portfolio of Alicia Espinoza, software engineer focused on data platforms, production analytics, and AI. Projects, career history, and 870+ completed LinkedIn Learning courses.">
+  <meta id="meta-description" name="description" content="Portfolio of Alicia Espinoza, software engineer focused on data platforms, production analytics, and AI. Projects, career history, and 870+ completed LinkedIn Learning courses.">
   <meta name="theme-color" content="#0b1424">
-  <meta property="og:title" content="Alicia Espinoza | Software Engineer">
-  <meta property="og:description" content="Data platforms, production analytics, and AI. 16 portfolio projects and a continuous learning record.">
+  <meta property="og:title" content="Alicia Espinoza | Software Engineer" data-i18n-content="site.title">
+  <meta property="og:description" content="Data platforms, production analytics, and AI. 16 portfolio projects and a continuous learning record." data-i18n-content="site.description">
   <meta property="og:image" content="https://agespinoza.github.io/Portafolio/assets/img/alicia-espinoza.jpg">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1424'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23f4efe6' text-anchor='middle'%3EAE%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/contributions.css">
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
+  <a class="skip" href="#main" data-i18n="site.skip">Skip to content</a>
 
   <header class="nav" id="nav">
     <div class="wrap nav__inner">
-      <a class="brand" href="#top" aria-label="Alicia Espinoza, back to top">
+      <a class="brand" href="#top" aria-label="Alicia Espinoza, back to top" data-i18n-aria-label="site.brand">
         <span class="brand__mark" aria-hidden="true">AE</span>
         <span class="brand__name">Alicia Espinoza</span>
       </a>
-      <nav aria-label="Primary">
-        <ul class="nav__links">
-          <li><a href="#experience" data-nav>Experience</a></li>
-          <li><a href="#projects" data-nav>Projects</a></li>
-          <li><a href="#applications" data-nav>Applications</a></li>
-          <li><a href="#learning" data-nav>Learning</a></li>
-          <li><a href="#lab" data-nav>Data Lab</a></li>
-          <li><a href="#contact" class="btn btn--small">Get in touch</a></li>
+      <nav id="primary-nav" aria-label="Primary" data-i18n-aria-label="nav.primary">
+        <ul class="nav__links" id="primary-links">
+          <li><a href="#experience" data-nav data-i18n="nav.experience">Experience</a></li>
+          <li><a href="#projects" data-nav data-i18n="nav.projects">Projects</a></li>
+          <li><a href="#applications" data-nav data-i18n="nav.applications">Applications</a></li>
+          <li><a href="#learning" data-nav data-i18n="nav.learning">Learning</a></li>
+          <li><a href="#lab" data-nav data-i18n="nav.lab">Data Lab</a></li>
+          <li><a href="#contact" class="btn btn--small"><span data-i18n="nav.contact">Get in touch</span></a></li>
+          <li class="nav__language">
+            <label class="sr" id="language-label" for="language-select" data-i18n="nav.language">Language</label>
+            <select id="language-select" class="language-select" aria-labelledby="language-label">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="ja">日本語</option>
+              <option value="it">Italiano</option>
+              <option value="fr">Français</option>
+            </select>
+          </li>
         </ul>
       </nav>
+      <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links">
+        <span class="nav__toggle-label" data-i18n="nav.menu">Menu</span>
+        <span class="nav__toggle-icon" aria-hidden="true">☰</span>
+      </button>
     </div>
   </header>
 
@@ -43,47 +58,47 @@
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="wrap hero__grid">
         <div class="hero__copy">
-          <p class="pill"><span class="pill__dot" aria-hidden="true"></span>Software Engineer II · Arizona</p>
-          <h1>Turning data pipelines into <em>production-ready</em> software.</h1>
-          <p class="lead">
+          <p class="pill"><span class="pill__dot" aria-hidden="true"></span><span data-i18n="site.heroPill">Software Engineer II · Arizona</span></p>
+          <h1><span data-i18n="site.heroTitleStart">Turning data pipelines into</span> <em data-i18n="site.heroTitleEm">production-ready software</em><span data-i18n="site.heroTitleEnd">.</span></h1>
+          <p class="lead" data-i18n="site.heroLead">
             Two decades building enterprise applications, data platforms, and automation across Mexico and the
             United States — from public-sector IT and ERP integration to mission operations and cloud analytics.
             Today I partner with data scientists to take models and pipelines into production.
           </p>
           <div class="hero__cta">
-            <a class="btn" href="#projects">Explore projects <span aria-hidden="true">→</span></a>
-            <a class="btn btn--ghost" href="#learning">View learning record</a>
+            <a class="btn" href="#projects"><span data-i18n="site.exploreProjects">Explore projects</span> <span aria-hidden="true">→</span></a>
+            <a class="btn btn--ghost" href="#learning" data-i18n="site.viewLearning">View learning record</a>
           </div>
         </div>
 
-        <aside class="profile" aria-label="Profile summary">
+        <aside class="profile" aria-label="Profile summary" data-i18n-aria-label="site.profileSummary">
           <div class="profile__head">
             <span class="profile__photo">
               <span class="profile__img"><img src="assets/img/alicia-espinoza.jpg" alt="Portrait of Alicia Espinoza" width="600" height="600"></span>
             </span>
             <div>
               <p class="profile__name">Alicia Espinoza</p>
-              <p class="profile__role">Data &amp; AI Platforms · Technical Leadership</p>
+              <p class="profile__role" data-i18n="site.role">Data &amp; AI Platforms · Technical Leadership</p>
             </div>
           </div>
           <dl class="profile__stats">
-            <div><dt>Years in software &amp; IT</dt><dd>20+</dd></div>
-            <div><dt>Portfolio projects</dt><dd>16</dd></div>
-            <div><dt>Courses completed</dt><dd data-count="total">873</dd></div>
-            <div><dt>Countries</dt><dd>MX · US</dd></div>
+            <div><dt data-i18n="site.yearsInIT">Years in software &amp; IT</dt><dd>20+</dd></div>
+            <div><dt data-i18n="site.projectCount">Portfolio projects</dt><dd>16</dd></div>
+            <div><dt data-i18n="site.coursesCompleted">Courses completed</dt><dd data-count="total">873</dd></div>
+            <div><dt data-i18n="site.countries">Countries</dt><dd>MX · US</dd></div>
           </dl>
           <div class="profile__focus">
-            <p class="mono-label">Current focus</p>
+            <p class="mono-label" data-i18n="site.currentFocus">Current focus</p>
             <ul>
-              <li>Production ML &amp; MLOps</li>
-              <li>Cloud analytics platforms</li>
-              <li>Agentic AI systems</li>
+              <li data-i18n="site.focusMLOps">Production ML &amp; MLOps</li>
+              <li data-i18n="site.focusCloud">Cloud analytics platforms</li>
+              <li data-i18n="site.focusAgents">Agentic AI systems</li>
             </ul>
           </div>
         </aside>
       </div>
 
-      <div class="ticker" aria-label="Core technologies">
+      <div class="ticker" aria-label="Core technologies" data-i18n-aria-label="site.coreTechnologies">
         <div class="ticker__track">
           <ul>
             <li>Python</li><li>SQL</li><li>C# · .NET</li><li>Java · Jakarta EE</li><li>R</li><li>Power BI</li>
@@ -101,9 +116,9 @@
     <section class="section" id="experience" aria-labelledby="exp-title">
       <div class="wrap split">
         <div class="split__aside">
-          <p class="kicker"><span>01</span> Career path</p>
-          <h2 id="exp-title">Experience</h2>
-          <p class="section__intro">Six chapters, from public-sector IT in Mexicali to production AI in Arizona. Each one is paired with a runnable demonstration.</p>
+          <p class="kicker"><span>01</span> <span data-i18n="site.careerPath">Career path</span></p>
+          <h2 id="exp-title" data-i18n="site.experienceTitle">Experience</h2>
+          <p class="section__intro" data-i18n="site.experienceIntro">Six chapters, from public-sector IT in Mexicali to production AI in Arizona. Each one is paired with a runnable demonstration.</p>
         </div>
         <ol class="timeline" id="timeline"></ol>
       </div>
@@ -114,12 +129,12 @@
       <div class="wrap">
         <div class="section__head">
           <div>
-            <p class="kicker"><span>02</span> Hands-on work</p>
-            <h2 id="proj-title">Selected projects</h2>
+            <p class="kicker"><span>02</span> <span data-i18n="site.handsOn">Hands-on work</span></p>
+            <h2 id="proj-title" data-i18n="site.projectsTitle">Selected projects</h2>
           </div>
-          <p class="section__intro">Sixteen demonstrations built on simulated data. Each includes source code, sample data, and instructions to run it.</p>
+          <p class="section__intro" data-i18n="site.projectsIntro">Sixteen demonstrations built on simulated data. Each includes source code, sample data, and instructions to run it.</p>
         </div>
-        <div class="chips" role="group" aria-label="Filter projects by area" id="project-filters"></div>
+        <div class="chips" role="group" aria-label="Filter projects by area" data-i18n-aria-label="site.filterProjects" id="project-filters"></div>
         <div class="cards" id="project-grid"></div>
       </div>
     </section>
@@ -129,10 +144,10 @@
       <div class="wrap">
         <div class="section__head">
           <div>
-            <p class="kicker"><span>03</span> Software you can explore</p>
-            <h2 id="app-title">Applications</h2>
+            <p class="kicker"><span>03</span> <span data-i18n="site.applicationsKicker">Software you can explore</span></p>
+            <h2 id="app-title" data-i18n="site.applicationsTitle">Applications</h2>
           </div>
-          <p class="section__intro">The trajectory chart and Daily Data Lab run on this site. The Power BI and server-backed applications link to their source and setup requirements.</p>
+          <p class="section__intro" data-i18n="site.applicationsIntro">The trajectory chart and Daily Data Lab run on this site. The Power BI and server-backed applications link to their source and setup requirements.</p>
         </div>
         <div class="cards applications-grid" id="application-grid"></div>
       </div>
@@ -143,10 +158,10 @@
       <div class="wrap">
         <div class="section__head">
           <div>
-            <p class="kicker"><span>04</span> Continuous learning</p>
-            <h2 id="learn-title">Learning record</h2>
+            <p class="kicker"><span>04</span> <span data-i18n="site.learningKicker">Continuous learning</span></p>
+            <h2 id="learn-title" data-i18n="site.learningTitle">Learning record</h2>
           </div>
-          <p class="section__intro">Every course completed on LinkedIn Learning since 2019, organized by skill area and connected to the projects where I applied it.</p>
+          <p class="section__intro" data-i18n="site.learningIntro">Every course completed on LinkedIn Learning since 2019, organized by skill area and connected to the projects where I applied it.</p>
         </div>
 
         <div class="kpis reveal" id="learning-kpis"></div>
@@ -154,15 +169,15 @@
         <div class="learn-grid">
           <div class="panel reveal">
             <div class="panel__head">
-              <h3 class="panel__title">Completed per year</h3>
+              <h3 class="panel__title" data-i18n="site.completedPerYear">Completed per year</h3>
               <span class="mono-label">2019 – today</span>
             </div>
             <div class="years" id="years-chart" role="img"></div>
           </div>
           <div class="panel reveal">
             <div class="panel__head">
-              <h3 class="panel__title">Skill areas</h3>
-              <span class="mono-label">Select to explore</span>
+              <h3 class="panel__title" data-i18n="site.skillAreas">Skill areas</h3>
+              <span class="mono-label" data-i18n="site.selectToExplore">Select to explore</span>
             </div>
             <ul class="areas" id="areas"></ul>
           </div>
@@ -172,26 +187,26 @@
 
         <div class="panel reveal">
           <div class="panel__head panel__head--wrap">
-            <h3 class="panel__title">Complete history</h3>
+            <h3 class="panel__title" data-i18n="site.completeHistory">Complete history</h3>
             <div class="filters">
-              <label class="sr" for="q">Search courses</label>
-              <input id="q" type="search" placeholder="Search title or instructor" autocomplete="off">
-              <label class="sr" for="f-area">Skill area</label>
-              <select id="f-area"><option value="">All skill areas</option></select>
-              <label class="sr" for="f-year">Year</label>
-              <select id="f-year"><option value="">All years</option></select>
+              <label class="sr" for="q" data-i18n="site.searchCourses">Search courses</label>
+              <input id="q" type="search" placeholder="Search title or instructor" data-i18n-placeholder="site.searchPlaceholder" autocomplete="off">
+              <label class="sr" for="f-area" data-i18n="site.skillArea">Skill area</label>
+              <select id="f-area"><option value="" data-i18n="site.allSkillAreas">All skill areas</option></select>
+              <label class="sr" for="f-year" data-i18n="site.completed">Year</label>
+              <select id="f-year"><option value="" data-i18n="site.allYears">All years</option></select>
             </div>
           </div>
           <p class="result-count" id="result-count" aria-live="polite"></p>
           <div class="table-wrap">
             <table class="courses">
-              <thead><tr><th scope="col">Course</th><th scope="col">Skill area</th><th scope="col">Completed</th></tr></thead>
+              <thead><tr><th scope="col" data-i18n="site.course">Course</th><th scope="col" data-i18n="site.skillArea">Skill area</th><th scope="col" data-i18n="site.completed">Completed</th></tr></thead>
               <tbody id="course-rows"></tbody>
             </table>
           </div>
-          <div class="more"><button class="btn btn--ghost" id="show-more" type="button">Show more</button></div>
-          <p class="source">Source: LinkedIn Learning history ·
-            <a href="learning/linkedin-learning-completed.csv">Download full list (CSV)</a></p>
+          <div class="more"><button class="btn btn--ghost" id="show-more" type="button" data-i18n="site.showMore">Show more</button></div>
+          <p class="source"><span data-i18n="site.learningSource">Source: LinkedIn Learning history ·</span>
+            <a href="learning/linkedin-learning-completed.csv" data-i18n="site.downloadCsv">Download full list (CSV)</a></p>
         </div>
       </div>
     </section>
@@ -201,36 +216,46 @@
       <div class="wrap">
         <div class="section__head">
           <div>
-            <p class="kicker"><span>05</span> Learning in public</p>
-            <h2 id="lab-title">Daily Data Lab</h2>
+            <p class="kicker"><span>05</span> <span data-i18n="site.labKicker">Learning in public</span></p>
+            <h2 id="lab-title" data-i18n="site.labTitle">Daily Data Lab</h2>
           </div>
-          <p class="section__intro">One small interactive visualization a day, each on a different everyday topic, built with React and public data.</p>
+          <p class="section__intro" data-i18n="site.labIntro">One small interactive visualization a day, each on a different everyday topic, built with React and public data.</p>
         </div>
-        <a class="lab-feature reveal" href="lab/index.html#/day/2">
+        <div class="lab-calendar panel reveal" aria-labelledby="lab-calendar-title">
+          <div class="panel__head">
+            <h3 class="panel__title" id="lab-calendar-title" data-i18n="site.calendarTitle">Publishing activity</h3>
+            <span class="mono-label" id="lab-calendar-summary"></span>
+          </div>
+          <div class="contributions-scroll" id="lab-contribution-grid"></div>
+          <div class="contributions-legend" aria-hidden="true">
+            <span data-i18n="site.calendarLess">Less</span><i></i><i></i><span data-i18n="site.calendarMore">More</span>
+          </div>
+        </div>
+        <a class="lab-feature reveal" href="lab/index.html#/day/2" data-lab-link>
           <div class="lab-feature__copy">
-            <p class="mono-label">Day 002 · Nature · Live weather</p>
-            <h3>Where do New Zealand's glowworms shine?</h3>
-            <p>Every public record of the Waitomo glowworm on a night-sky map of New Zealand, set against the weather outside the caves: monthly temperatures, humidity, and rain next to when people record the larvae.</p>
+            <p class="mono-label"><span data-i18n="site.labDay">Day</span> 002 · <span data-i18n="site.labTopicNature">Nature</span> · <span data-i18n="site.labLiveWeather">Live weather</span></p>
+            <h3 data-i18n="site.labDayTitle">Where do New Zealand's glowworms shine?</h3>
+            <p data-i18n="site.labDaySummary">Every public record of the Waitomo glowworm on a night-sky map of New Zealand, set against the weather outside the caves: monthly temperatures, humidity, and rain next to when people record the larvae.</p>
             <div class="card__tech"><span>React</span><span>SVG map</span><span>GBIF</span><span>Open-Meteo</span></div>
-            <span class="lab-feature__cta">Open visualization <span aria-hidden="true">→</span></span>
+            <span class="lab-feature__cta"><span data-i18n="site.openVisualization">Open visualization</span> <span aria-hidden="true">→</span></span>
           </div>
           <div class="lab-feature__art">
-            <img src="assets/img/lab-day-002.svg" alt="Preview: glowing clusters of glowworm records on a dark map of New Zealand, next to Waitomo's monthly temperature ranges and records by month" width="792" height="346" loading="lazy">
+            <img src="assets/img/lab-day-002.svg" alt="Preview: glowing clusters of glowworm records on a dark map of New Zealand, next to Waitomo's monthly temperature ranges and records by month" data-i18n-alt="site.labImageAlt" width="792" height="346" loading="lazy">
           </div>
         </a>
-        <p class="lab-more"><a href="lab/index.html">See every day in the lab →</a></p>
+        <p class="lab-more"><a href="lab/index.html" data-lab-link><span data-i18n="site.seeAllDays">See every day in the lab</span> →</a></p>
       </div>
     </section>
 
     <!-- Contact -->
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="wrap contact__inner">
-        <p class="kicker kicker--light"><span>06</span> Contact</p>
-        <h2 id="contact-title">Let's build something <em>reliable</em> together.</h2>
-        <p>Open to conversations about data platforms, production analytics, and AI engineering.</p>
+        <p class="kicker kicker--light"><span>06</span> <span data-i18n="site.contact">Contact</span></p>
+        <h2 id="contact-title"><span data-i18n="site.contactTitleStart">Let's build something</span> <em data-i18n="site.contactTitleEm">reliable</em> <span data-i18n="site.contactTitleEnd">together.</span></h2>
+        <p data-i18n="site.contactIntro">Open to conversations about data platforms, production analytics, and AI engineering.</p>
         <div class="contact__links">
-          <a class="btn btn--light" href="https://www.linkedin.com/in/achocoza" rel="noopener">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
-          <a class="btn btn--outline-light" href="https://github.com/agespinoza/Portafolio" rel="noopener">GitHub repository <span aria-hidden="true">↗</span></a>
+          <a class="btn btn--light" href="https://www.linkedin.com/in/achocoza" rel="noopener"><span data-i18n="site.connectLinkedIn">Connect on LinkedIn</span> <span aria-hidden="true">↗</span></a>
+          <a class="btn btn--outline-light" href="https://github.com/agespinoza/Portafolio" rel="noopener"><span data-i18n="site.githubRepository">GitHub repository</span> <span aria-hidden="true">↗</span></a>
         </div>
       </div>
     </section>
@@ -239,11 +264,11 @@
   <footer class="footer">
     <div class="wrap footer__inner">
       <span>© <span id="year">2026</span> Alicia Espinoza</span>
-      <span>All projects use simulated data and scenarios.</span>
+      <span data-i18n="site.footerSimulated">All projects use simulated data and scenarios.</span>
     </div>
   </footer>
 
   <script src="assets/learning-data.js"></script>
-  <script src="assets/app.js"></script>
+  <script type="module" src="assets/app.js"></script>
 </body>
 </html>

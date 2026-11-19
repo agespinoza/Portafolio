@@ -14,6 +14,16 @@ This folder is Alicia's Daily Data Lab: one small, interactive React visualizati
 4. Run `npm run build`. The build writes to `../lab/`, and both `daily-data-lab/` and `lab/` must be committed.
 5. Update the day table in `README.md`. When the new day should be featured, also update the Daily Data Lab section in `../index.html`, along with its preview image in `../assets/img/`.
 
+## Analysis standards
+Treat each day as a small analysis, not only a chart:
+- Ask what the raw numbers are biased by, and correct for it. Day 002 divides glowworm records by all iNaturalist observations (observer effort), which changed the top region and the peak season.
+- Show uncertainty when counts are small: intervals or whiskers, and flag or fade low-n values instead of ranking them.
+- Add filters that match the decision a reader would make (Day 001: day, hour window, crossing comparison, lane savings), and make takeaways recompute from the data instead of hard-coding them.
+- Note caveats and assumptions in "Method & sources": what the source measures, what it does not, and any modeling assumption.
+
+## Translations
+The site has five languages (`../assets/i18n.js`). Each day keeps its own strings in `messages.js` next to the component and reads them through `src/days/tr.js`, with the English text written at each call. Add Spanish, French, Italian, and Japanese for every new string.
+
 ## Rules that prevent past bugs
 - Keep the `classic-script` plugin and the IIFE output in `vite.config.js`. Browsers block `type="module"` scripts on `file://`, which made the page blank.
 - Make links point to explicit `index.html` files, for example `lab/index.html#/day/2`, not to folders. When opened from disk, folder links show a directory listing.
