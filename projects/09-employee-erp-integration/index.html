@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261119c">
+<link rel="stylesheet" href="styles.css?v=20261119e">
 </head>
 <body>
 <a class="skip" href="#main" data-i18n="site:site.skip">Skip to content</a>
@@ -55,10 +55,7 @@
     <label class="field field--grow"><span data-i18n="controls.extract">HR extract</span>
       <select id="extract"></select>
     </label>
-    <label class="button button--file"><span data-i18n="controls.upload">Upload CSV</span>
-      <input type="file" id="upload" accept=".csv,text/csv" class="visually-hidden">
-    </label>
-    <a class="button" id="template" href="data/hr-extract-2026-10-30.csv" download data-i18n="controls.template">Download template</a>
+    <a class="button" id="download" href="data/hr-extract-2026-10-30.csv" download data-i18n="controls.download">Download this extract (CSV)</a>
     <button type="button" class="button" id="reset" data-i18n="controls.reset">Reset demo</button>
     <span class="status" id="status" role="status"></span>
   </div>
@@ -181,6 +178,6 @@
 </div>
 </main>
 <footer class="foot"><div class="wrap foot__inner"><span>© 2026 Alicia Espinoza</span><span data-i18n="footer.data">All people, IDs and emails are fictional.</span></div></footer>
-<script type="module" src="app.js?v=20261119c"></script>
+<script type="module" src="app.js?v=20261119e"></script>
 </body>
 </html>

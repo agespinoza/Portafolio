@@ -1,10 +1,9 @@
 import {
     COLUMNS, OWNERSHIP, ACTIONS, SYNCED_FIELDS, parseCsv, validate, plan, apply, undo, reconcile, headcountByDepartment,
-} from './engine.js?v=20261119c';
-import { barChart, groupedBars, runLines, runStacks } from './charts.js?v=20261119c';
-import { LANGUAGES, LANGUAGE_NAMES, language, tr, site, num, utcFull, translatePage } from './i18n.js?v=20261119c';
+} from './engine.js?v=20261119e';
+import { barChart, groupedBars, runLines, runStacks } from './charts.js?v=20261119e';
+import { LANGUAGES, LANGUAGE_NAMES, language, tr, site, num, utcFull, translatePage } from './i18n.js?v=20261119e';
 
-const MAX_UPLOAD = 5 * 1024 * 1024;
 const AUDIT_ROWS = 150;
 const GLYPH = { insert: '+', update: '✎', transfer: '⇄', terminate: '−', rehire: '↺', review: '!', unchanged: '=', rejected: '✕', undo: '⟲' };
 
@@ -89,6 +88,9 @@ async function selectExtract(index) {
         extract.text = await response.text();
     }
     state.currentIndex = index;
+    const download = $('#download');
+    download.href = `data/${extract.file}`;
+    download.setAttribute('download', extract.file);
     analyze();
 }
 
@@ -116,7 +118,6 @@ function renderAll() {
 }
 
 function extractLabel(extract) {
-    if (extract.kind === 'upload') return tr('extract.upload', 'Your file: {name}', { name: extract.file });
     if (extract.kind === 'practice') return tr('extract.practice', 'Practice file with every error type');
     const applied = state.applied.has(extract.file) ? ` · ${tr('extract.applied', 'applied')}` : '';
     return `${tr('extract.weekly', 'Weekly extract of {date}', { date: shortDate(extract.date) })}${applied}`;
@@ -135,7 +136,7 @@ function renderKpis() {
     $('#kpis').replaceChildren(
         kpi(tr('kpi.active', 'Active in the ERP'), num(active), tr('kpi.activeNote', '{n} records including former employees', { n: num(state.erp.employees.length) })),
         kpi(tr('kpi.agreement', 'Agreement after last run'), last ? pct(last.matchAfter) : '—', last ? tr('kpi.agreementNote', '{run}, up from {before}', { run: last.runId, before: pct(last.matchBefore) }) : ''),
-        kpi(tr('kpi.pending', 'Weekly extracts pending'), num(pending), tr('kpi.pendingNote', 'Plus a practice file and your own uploads')),
+        kpi(tr('kpi.pending', 'Weekly extracts pending'), num(pending), tr('kpi.pendingNote', 'Plus a practice file with every error type')),
         kpi(tr('kpi.audit', 'Audit entries'), num(state.audit.length), tr('kpi.auditNote', 'One per field changed, across {n} runs', { n: num(state.runs.length) })),
     );
 }
@@ -381,19 +382,6 @@ function undoRun(run) {
     toast(tr('toast.undone', '{run} undone. The ERP is back to its previous state.', { run: run.runId }));
 }
 
-function upload(file) {
-    if (!file) return;
-    if (file.size > MAX_UPLOAD) { toast(tr('toast.tooBig', 'The file is larger than 5 MB.')); return; }
-    const reader = new FileReader();
-    reader.onload = () => {
-        state.extracts.push({ file: file.name, date: new Date().toISOString().slice(0, 10), rows: 0, full: true, kind: 'upload', text: String(reader.result) });
-        state.currentIndex = state.extracts.length - 1;
-        analyze();
-        toast(tr('toast.uploaded', '{name} loaded. Nothing changes until you approve the run.', { name: file.name }));
-    };
-    reader.readAsText(file);
-}
-
 function setStatus(text) { $('#status').textContent = text; }
 
 async function main() {
@@ -406,7 +394,6 @@ async function main() {
         await selectExtract(0);
         setStatus('');
         $('#extract').addEventListener('change', event => selectExtract(Number(event.target.value)));
-        $('#upload').addEventListener('change', event => { upload(event.target.files[0]); event.target.value = ''; });
         $('#apply').addEventListener('click', applyCurrent);
         $('#reset').addEventListener('click', async () => { resetState(); await selectExtract(0); toast(tr('toast.reset', 'Demo reset to the original data.')); });
         $('#audit-search').addEventListener('input', event => { state.search = event.target.value; renderAudit(); });

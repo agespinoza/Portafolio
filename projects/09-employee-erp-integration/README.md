@@ -18,7 +18,7 @@ At DIF, I designed an Oracle and C# ERP system that integrated with human resour
 | Audit trail | Every field written, with its old and new value, searchable by employee or field. |
 | Data contract | The source of truth for each field, the validation rules and the cases sent to review. |
 
-You can switch between three pending weekly extracts and a practice file that triggers every validation rule. You can also upload your own CSV; the template link downloads a valid extract. Nothing changes until a run is approved, and reloading the page resets the demo.
+You can switch between three pending weekly extracts and a practice file that triggers every validation rule, and download the selected extract to see its CSV format. The console only processes these bundled, fictional files, so no real employee data can be loaded into it. Nothing changes until a run is approved, and reloading the page resets the demo.
 
 ## Integration rules
 
