@@ -4,17 +4,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mortgage Workflow</title>
 <style>
-body{font:1rem system-ui;background:#f5f7fc;color:#17213a;max-width:42rem;margin:3rem auto;padding:0 1rem}
-main{background:white;padding:2rem;border-radius:1rem}button{font:inherit;padding:.65rem;border-radius:.4rem}
+:root{--color-bg:#f5f7fc;--color-text:#17213a;--color-border:#195373;--color-accent:#b45309}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font:1rem system-ui;background:var(--color-bg);color:var(--color-text);display:flex;flex-direction:column;min-height:100vh}
+header{background:white;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:100}
+.nav{padding:.75rem 1rem}
+.nav__inner{max-width:42rem;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.brand{text-decoration:none;color:var(--color-text);font-weight:600;display:flex;align-items:center;gap:.5rem}
+.brand:hover{color:var(--color-accent)}
+main{flex:1;max-width:42rem;width:100%;margin:0 auto;padding:1rem;display:flex;align-items:center;justify-content:center}
+.container{background:white;padding:2rem;border-radius:1rem;width:100%}
+button{font:inherit;padding:.65rem;border-radius:.4rem;border:1px solid var(--color-border);background:white;cursor:pointer}
+button:hover:not(:disabled){background:var(--color-border);color:white}
+button:disabled{opacity:.5;cursor:not-allowed}
 li{margin:.6rem 0}
+h1{margin-bottom:1.5rem}
+#status{margin-bottom:1rem}
+#error{color:#dc2626;margin:1rem 0}
 </style>
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="../../../index.html#projects">← Portfolio</a>
+  </div>
+</header>
 <main>
-<h1>Mortgage application</h1>
-<p id="status" role="status">Loading…</p>
-<button disabled>Advance stage</button>
-<p id="error" role="alert"></p>
-<h2>Activity log</h2>
-<ol></ol>
+  <div class="container">
+    <h1>Mortgage application</h1>
+    <p id="status" role="status">Loading…</p>
+    <button disabled>Advance stage</button>
+    <p id="error" role="alert"></p>
+    <h2>Activity log</h2>
+    <ol></ol>
+  </div>
 </main>
 <script type="module" src="workflow.js"></script>
 </html>
