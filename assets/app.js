@@ -146,7 +146,9 @@
   var catById = {};
   D.categories.forEach(function (c) { catById[c.id] = c; });
   var byTitle = {};
-  courses.forEach(function (c) { byTitle[c.title] = c; });
+  courses.forEach(function (c) { if (c.title) byTitle[c.title] = c; });
+  // Personal-development areas count toward totals, but their titles are not published.
+  var listed = courses.filter(function (c) { return c.title; });
 
   var paths = courses.filter(function (c) { return c.path; }).length;
   var first = courses.reduce(function (m, c) { return c.date < m ? c.date : m; }, "9999");
@@ -204,6 +206,20 @@
     });
     var c = catById[id];
     featuredEl.textContent = "";
+    if (c.private) {
+      featuredEl.appendChild(el("div", null, [
+        el("p", { class: "mono-label", text: "Personal development" }),
+        el("h3", { text: c.label }),
+        el("p", { class: "featured__meta", text: Math.round(c.count / courses.length * 100) + "% of my learning record" }),
+        el("div", { class: "featured__count", text: String(c.count) }),
+        el("p", { class: "mono-label", text: "items completed" })
+      ]));
+      featuredEl.appendChild(el("div", null, [
+        el("p", { class: "featured__meta", text: "These courses support personal growth and are included in the totals. Their titles are kept private." })
+      ]));
+      if (scroll && window.innerWidth < 900) featuredEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
     var items = c.featured.length ? c.featured.map(function (t) { return byTitle[t]; })
       : courses.filter(function (x) { return x.cat === id; }).slice(0, 8);
     var all = el("button", { class: "btn btn--ghost btn--small", type: "button" }, ["Browse all " + c.count, el("span", { "aria-hidden": "true", text: "→" })]);
@@ -244,7 +260,7 @@
   var moreBtn = document.getElementById("show-more");
   var PAGE = 25, shown = PAGE;
 
-  D.categories.forEach(function (c) { fArea.appendChild(el("option", { value: c.id, text: c.label })); });
+  D.categories.forEach(function (c) { if (!c.private) fArea.appendChild(el("option", { value: c.id, text: c.label })); });
   yearKeys.slice().reverse().forEach(function (y) { fYear.appendChild(el("option", { value: y, text: y })); });
 
   function fmtDate(iso) {
@@ -253,7 +269,7 @@
   }
   function filtered() {
     var term = q.value.trim().toLowerCase();
-    return courses.filter(function (c) {
+    return listed.filter(function (c) {
       return (!fArea.value || c.cat === fArea.value) &&
         (!fYear.value || c.date.slice(0, 4) === fYear.value) &&
         (!term || c.title.toLowerCase().indexOf(term) > -1 || c.instructor.toLowerCase().indexOf(term) > -1);
@@ -270,8 +286,8 @@
         el("td", { text: fmtDate(c.date) })
       ]));
     });
-    countEl.textContent = list.length === courses.length
-      ? "Showing " + Math.min(shown, list.length) + " of " + list.length + " items, newest first."
+    countEl.textContent = list.length === listed.length
+      ? "Showing " + Math.min(shown, list.length) + " of " + list.length + " professional courses, newest first. Personal-development titles are not listed."
       : list.length + " matching item" + (list.length === 1 ? "" : "s") + ".";
     moreBtn.hidden = shown >= list.length;
   }

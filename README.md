@@ -19,7 +19,7 @@ The [project roadmap](ROADMAP.md) links all 16 demonstrations and explains how t
 
 ## Continuous learning
 
-Since 2019 I have completed 873 LinkedIn Learning courses and learning paths, with the strongest focus on AI, data, and leadership. The [learning record](LEARNING.md) groups them by skill area and links each area to the projects where I applied it. The full list is also available as a [CSV file](learning/linkedin-learning-completed.csv).
+Since 2019 I have completed 873 LinkedIn Learning courses and learning paths, with the strongest focus on AI, data, and leadership. The [learning record](LEARNING.md) groups them by skill area and links each area to the projects where I applied it. The professional course list is also available as a [CSV file](learning/linkedin-learning-completed.csv).
 
 | Skill area | Completed |
 | --- | ---: |
@@ -30,7 +30,7 @@ Since 2019 I have completed 873 LinkedIn Learning courses and learning paths, wi
 | Software Engineering | 51 |
 | Cloud, DevOps & Infrastructure | 37 |
 | Business Analysis, Project & Product Delivery | 76 |
-| Leadership, Communication & Teaching | 192 |
+| Leadership, Communication & Teaching | 188 |
 
 ## Daily Data Lab
 

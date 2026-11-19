@@ -2,7 +2,7 @@
 
 Since 2019 I have completed **873 LinkedIn Learning items** — 856 courses and 17 learning paths. This record complements my professional experience: most of the training maps directly to the skills demonstrated in my [portfolio projects](ROADMAP.md), with the strongest focus on AI, data, and leadership.
 
-The complete list is available as a [CSV file](learning/linkedin-learning-completed.csv) and on the [portfolio website](https://agespinoza.github.io/Portafolio/#learning).
+The professional course list is available as a [CSV file](learning/linkedin-learning-completed.csv) and on the [portfolio website](https://agespinoza.github.io/Portafolio/#learning).
 
 ## At a glance
 
@@ -17,14 +17,14 @@ The complete list is available as a [CSV file](learning/linkedin-learning-comple
 | Cybersecurity | 29 | [Office Backup and Recovery](projects/13-office-backup-recovery/) |
 | Business Analysis & Requirements | 37 | [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/), [Employee ERP Integration](projects/09-employee-erp-integration/) |
 | Project, Product & Agile Delivery | 39 | [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/) |
-| Leadership & Management | 90 | [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/) |
-| Communication & Collaboration | 85 | [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/) |
+| Leadership & Management | 88 | [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/) |
+| Communication & Collaboration | 83 | [Inspection Feature Delivery Plan](projects/14-inspection-project-coordination/) |
 | Teaching & Learning Design | 17 | [Excel Data Cleaning Lesson](projects/15-excel-data-cleaning-lesson/) |
 | Business, Operations & Customer Experience | 59 | — |
-| Career Development | 37 | — |
+| Career Development (titles not listed) | 37 | — |
 | Engineering & Emerging Technology | 18 | — |
-| Productivity & Well-being | 116 | — |
-| Personal Interests | 9 | — |
+| Productivity & Well-being (titles not listed) | 120 | — |
+| Personal Interests (titles not listed) | 9 | — |
 
 | Year | 2019 | 2020 | 2021 | 2022 | 2023 | 2024 | 2025 | 2026 |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -179,7 +179,7 @@ Applied in: [Excel Data Cleaning Lesson](projects/15-excel-data-cleaning-lesson/
 
 ## Complete history
 
-Expand a skill area to see every completed item, newest first.
+Expand a skill area to see every completed item, newest first. Personal-development areas are included in the totals above, but their titles are not listed.
 
 <details>
 <summary><strong>AI & Generative AI</strong> (123)</summary>
@@ -678,7 +678,7 @@ Expand a skill area to see every completed item, newest first.
 </details>
 
 <details>
-<summary><strong>Leadership & Management</strong> (90)</summary>
+<summary><strong>Leadership & Management</strong> (88)</summary>
 
 - Managing and Working with a Technical Team for Nontechnical Professionals — 2026-11-10
 - Mastering Communications as a Leader — 2026-11-08
@@ -709,7 +709,6 @@ Expand a skill area to see every completed item, newest first.
 - Human Resources: Understanding HR Systems Features and Benefits — 2025-05-12
 - Critical Thinking for New Managers — 2025-05-02
 - Practical Communication Tips for Managers — 2025-04-04
-- Leading Through Anxiety — 2025-04-03
 - Strategic Human Resources — 2025-03-13
 - Leading without Formal Authority (2021) — 2025-03-11
 - Nano Tips for Managing Up with Lorraine K. Lee — 2025-03-11
@@ -747,7 +746,6 @@ Expand a skill area to see every completed item, newest first.
 - The Future of Performance Management — 2024-05-16
 - Leading with Innovation — 2024-05-16
 - Strategic Agility — 2024-05-16
-- Leading with a Heavy Heart — 2024-05-09
 - Transitioning from Technical Professional to Manager — 2024-05-03
 - Managing Virtual Teams — 2024-04-29
 - Making Hybrid Teams Work — 2024-04-24
@@ -774,7 +772,7 @@ Expand a skill area to see every completed item, newest first.
 </details>
 
 <details>
-<summary><strong>Communication & Collaboration</strong> (85)</summary>
+<summary><strong>Communication & Collaboration</strong> (83)</summary>
 
 - How to Resolve Conflicts — 2026-11-05
 - Learning the Art of Direct Communication — 2026-10-08
@@ -812,7 +810,6 @@ Expand a skill area to see every completed item, newest first.
 - Writing in Plain Language — 2024-11-04
 - Effective Collaboration across Teams — 2024-10-07
 - Skills to Build Stronger Work Relationships — 2024-09-23
-- Nano Tips for Using Mindfulness to Handle Difficult Conversations at Work with Lillian Daniels — 2024-09-12
 - Business Etiquette: Phone, Email, and Text — 2024-08-19
 - Public Speaking for Non-Native English Speakers — 2024-07-27
 - How to Speak Smarter When Put on the Spot — 2024-07-24
@@ -823,7 +820,6 @@ Expand a skill area to see every completed item, newest first.
 - Presenting Technical Information with Stories — 2024-07-11
 - PowerPoint Quick Tips (2021) — 2024-07-11
 - Body Language Secrets for Powerful Presentations — 2024-07-11
-- Managing Your Anxiety While Presenting — 2024-07-11
 - How to Present and Stay on Point — 2024-07-11
 - Nano Tips for Creating Captivating Virtual Presentations with Lorraine K. Lee — 2024-07-11
 - Designing a Presentation — 2024-07-11
@@ -953,49 +949,6 @@ Expand a skill area to see every completed item, newest first.
 </details>
 
 <details>
-<summary><strong>Career Development</strong> (37)</summary>
-
-- Mastering Common Interview Questions — 2026-04-24
-- How to Rock an Interview — 2026-04-21
-- How to Succeed in an Internal Job Interview — 2026-04-21
-- Activating Your Courage to Increase Workplace Success — 2025-10-15
-- How to Change Your Career Without Starting Over with Carole Hopson — 2025-09-19
-- Creating Your Personal Brand — 2025-08-28
-- Having an Honest Career Conversation with Your Boss — 2025-04-09
-- Coping with Impostor Syndrome to Build Career Confidence — 2025-04-09
-- Be an Intrapreneur to Take Your Career to the Next Level — 2025-04-09
-- Navigating Internal Mobility as an Employee — 2025-04-08
-- Leveraging Your Transferable Skills to Drive Your Career — 2025-04-08
-- Planning Your Career and Your Life — 2025-03-03
-- The Secrets to Success at Work — 2025-01-03
-- Career Wellness Nano Tips with Shadé Zahrai — 2024-09-12
-- Cómo descubrir tus puntos fuertes — 2024-06-07
-- Cultivating Ambition to Reach Your Career Goals — 2024-05-23
-- Increase Visibility to Advance Your Career — 2024-05-23
-- How to Create a Career You Love — 2024-05-22
-- Digital Networking Strategies — 2024-05-22
-- Nano Tips for Professional Networking with AJ Eckstein — 2024-05-22
-- Professional Networking for Career Starters — 2024-05-22
-- How to Network When You Don't Like Networking — 2024-05-22
-- Building a Diverse Professional Network — 2024-05-22
-- Nano Tips for Digital Networking with Diana YK Chan — 2024-05-22
-- Proven Success Strategies for Women at Work — 2024-05-20
-- Expert Tips for Answering Common Interview Questions — 2024-05-18
-- Accelerating Your Career with Personal Branding — 2024-05-17
-- Nano Tips for Negotiating Your Salary with Sho Dewan — 2024-05-17
-- Job Interview Nano Tips with Madeline Mann — 2024-05-17
-- Build a Career You Love No Matter the Market — 2024-05-16
-- 21 Opportunities for Better Networking — 2024-05-13
-- Managing Your Professional Network — 2024-05-06
-- Negotiating Your Job Offer and Salary — 2024-05-06
-- Success Strategies for Women in the Workplace — 2024-04-11
-- How to Own Your Career and Build Your Dream Job — 2024-03-08
-- Taking Charge of Your Career — 2023-04-11
-- Rock Your LinkedIn Profile (2019) — 2020-05-26
-
-</details>
-
-<details>
 <summary><strong>Engineering & Emerging Technology</strong> (18)</summary>
 
 - Occupational Safety and Health: Fire and Emergency Preparedness — 2026-04-15
@@ -1016,142 +969,5 @@ Expand a skill area to see every completed item, newest first.
 - SOLIDWORKS 2022 Essential Training — 2024-05-06
 - Tech Trends — 2022-02-08
 - Introduction to NFTs: Non-fungible Tokens — 2022-02-07
-
-</details>
-
-<details>
-<summary><strong>Productivity & Well-being</strong> (116)</summary>
-
-- Using Curiosity for Deeper Insights and Wiser Decisions — 2026-08-27
-- How to Manage Feeling Overwhelmed — 2026-07-15
-- Stop Pretending You’re Fine: Build Resilience and EQ to Reclaim Joy — 2026-07-06
-- Tips to Boost Your Analytical Thinking — 2026-04-26
-- Fail Better: Using Mistakes to Improve Performance — 2026-04-23
-- Staying Positive and Persevering — 2026-04-22
-- Banish Your Inner Critic to Unleash Creativity — 2026-04-18
-- Developing Your Emotional Intelligence (2023) — 2026-04-18
-- Building Resilience (June 2026) — 2026-04-17
-- Banish Your Inner Critic to Unleash Creativity (with Audio Descriptions) — 2025-12-04
-- Managing Burnout — 2025-11-11
-- Nano Tips for Peak Performance with Shadé Zahrai — 2025-10-30
-- Calming Anxiety to Achieve Peak Performance — 2025-10-30
-- One-Minute Habits for Hybrid and Remote Working Success — 2025-10-08
-- NanoTips for Using Mindfulness Strategies to Build Resilience with Gemma Leigh Roberts — 2025-10-02
-- Realistic Strategies to Talk about Mental Health at Work — 2025-10-02
-- Dealing with Grief, Loss, and Change as an Employee — 2025-10-02
-- Cultivating a Growth Mindset — 2025-09-04
-- Nano Tips to Foster a Growth Mindset and Mental Agility with Shadé Zahrai — 2025-09-04
-- Cultivating Mental Agility — 2025-08-13
-- Embracing Times of Uncertainty — 2025-08-13
-- Unlock Your Question Mindset to Think Clearly and Navigate Uncertainty — 2025-08-13
-- One-Minute Habits for Resilience — 2025-08-13
-- Tools for Decreasing Ambiguity and Increasing Clarity — 2025-08-13
-- Navigating Ambiguity — 2025-08-11
-- Efficient Time Management — 2025-06-11
-- Work-Life Blend: The New Work-Life Balance — 2025-06-03
-- Take a More Creative Approach to Problem-Solving — 2025-05-02
-- Rapid Ideation — 2025-03-13
-- Tips to Enhance Emotional Intelligence with Calming Exercises — 2025-03-13
-- Unlock the Power of Rest for Creativity, Productivity, and Well-Being — 2025-03-11
-- Driving Your Own Engagement at Work — 2025-03-11
-- Work Smarter, Think Sharper, Live Better: 15 Tips for Igniting Your Potential — 2025-03-11
-- Nano Tips for Mindset Shifts to Overcome Challenges with Gemma Leigh Roberts — 2025-03-10
-- Greg McKeown on the Art of Getting Effortless Results (Without Burning Out) — 2025-03-06
-- Creating Flow — 2025-03-03
-- Essentials of Mindfulness and Compassion with Scott Shute — 2025-03-03
-- Boost Resilience with Mindfulness — 2025-03-03
-- Productivity Myths to Avoid and What to Do Instead — 2025-01-10
-- How to Start Everyday with Productivity — 2025-01-07
-- Productivity Tips: Finding Your Rhythm — 2025-01-03
-- Time Management Tips: Communication — 2025-01-03
-- How to Have a Great Day at Work With Caroline Webb — 2025-01-03
-- Goal Setting for Happiness and Success — 2024-12-13
-- Using Microsoft Teams and Outlook Together: Maximizing Productivity — 2024-08-20
-- Problem-Solving Techniques — 2024-08-16
-- Outlook Essential Training (Microsoft 365) (2023) — 2024-08-16
-- Managing Anxiety in the Workplace — 2024-07-24
-- Train Your Brain to Unwind Stress and Anxiety Habits — 2024-07-23
-- Outlook: Efficient Email Management (2022) — 2024-07-12
-- Outlook: Automating Your Email with Mail Rules — 2024-07-12
-- Thinking Creatively — 2024-07-12
-- Managing Your Post-pandemic, Anxiety-Triggered Brain — 2024-07-12
-- How to Get (and Stay) On Top of Your Inbox — 2024-07-11
-- Outlook Quick Tips (2022) — 2024-07-11
-- Five Ways to Control Your Time — 2024-06-12
-- Strategies to Get (and Stay) Unstuck — 2024-06-11
-- Productivity: Prioritizing at Work — 2024-06-07
-- Preparing Yourself for Change (2021) — 2024-06-06
-- How to Set Goals When Everything Feels Like a Priority (2021) — 2024-06-04
-- Personal Effectiveness Tips — 2024-05-29
-- The Master Key to Overcoming Procrastination — 2024-05-28
-- Connecting Your Work to Your Purpose — 2024-05-28
-- The Power of Lists to Get Stuff Done — 2024-05-24
-- Navigate Hybrid Working with Mindfulness — 2024-05-24
-- Reframing: The Power of Changing Your Perspective — 2024-05-24
-- Learning Brainstorming — 2024-05-23
-- Prioritizing Your Tasks — 2024-05-22
-- Increase Your Flexible Thinking Skills — 2024-05-22
-- Happiness Tips — 2024-05-22
-- Managing Data with Microsoft 365 — 2024-05-21
-- Critical Thinking and Problem Solving — 2024-05-21
-- Powerless to Powerful: Taking Control — 2024-05-20
-- Managing Stress (2019) — 2024-05-20
-- Staying Organized While Working Remotely or On-Site — 2024-05-20
-- Chair Work: Yoga Fitness and Stretching at Your Desk — 2024-05-20
-- Reduce Tension with Breathwork — 2024-05-20
-- Organizing Your Remote Office for Maximum Productivity — 2024-05-19
-- How to Train Your Brain for Maximum Growth — 2024-05-19
-- Managing Your Emotions at Work — 2024-05-18
-- Microsoft Teams Essential Training (2019) — 2024-05-18
-- Daniel Pink on Motivation — 2024-05-18
-- The Six Morning Habits of High Performers — 2024-05-17
-- Beating Procrastination — 2024-05-17
-- Computer and Text Neck Stretching Exercises — 2024-05-16
-- Positive Psychology for Less Stress and Happier Workdays — 2024-05-15
-- The Headspace Guide to Everyday Stress — 2024-05-13
-- Managing Your Emotional Response to Workplace Stress — 2024-05-13
-- Mindful Stress Management — 2024-05-08
-- Discover Your Stress Personality — 2024-05-06
-- Microsoft Mesh and New Meeting Features in Microsoft Teams — 2024-04-25
-- Embracing Unexpected Change — 2024-04-23
-- Reduce Stress and Anxiety by Managing Your Nervous System — 2024-04-18
-- Microsoft Teams Quick Tips (2023) — 2024-04-15
-- Zoom Essential Training — 2024-04-15
-- Learning Microsoft 365 (Office 365) — 2024-04-15
-- Tips for Working Remotely — 2024-04-05
-- Remote Work Foundations — 2024-04-05
-- Balancing Work and Life as a Work-from-Home Parent — 2024-04-05
-- Awakening Compassion at Work (Blinkist Summary) — 2024-04-03
-- The Upward Spiral of Compassion — 2024-04-03
-- Mastering Self-Motivation (2020) — 2024-04-02
-- Mindfulness Practices — 2024-04-01
-- The Courage of Self Compassion — 2024-04-01
-- Getting Things Done — 2024-03-25
-- Working from Home: Strategies for Success — 2024-03-21
-- The Hidden Habits of Genius: Unlocking Greatness (Book Bite) — 2023-01-16
-- How to Slash Anxiety and Keep Positivity Flowing — 2022-03-07
-- Overcome Overthinking — 2022-02-08
-- Atomic Habits (Blinkist Summary) — 2022-01-26
-- Improving Your Thinking (2020) — 2021-06-07
-- Holding Yourself Accountable (2017) — 2020-10-22
-- Using Questions to Foster Critical Thinking and Curiosity (2023) — 2020-05-27
-- Cómo evitar el burnout — 2020-05-26
-- Developing Resourcefulness — 2020-05-26
-- Building Resilience (2014) — 2020-05-11
-
-</details>
-
-<details>
-<summary><strong>Personal Interests</strong> (9)</summary>
-
-- Japanese for Absolute Beginners — 2026-06-04
-- German for Absolute Beginners — 2025-02-21
-- Learning Cavalry — 2024-05-31
-- Piano Lessons: 1 Fundamentals — 2024-05-20
-- Managing Your Personal Finances — 2024-05-03
-- Learning Portrait Photography — 2024-05-03
-- Your Money or Your Life: Transforming Your Relationship with Money and Achieving Financial Independence — 2020-10-23
-- The Dumb Things Smart People Do with Their Money — 2020-10-23
-- 5 Personal Finance Tips — 2020-10-22
 
 </details>
