@@ -111,7 +111,7 @@
     grid.textContent = "";
     PROJECTS.filter(function (p) { return area === "all" || p.area === area; }).forEach(function (p) {
       var links = [el("a", { href: REPO + p.id, rel: "noopener", text: "View project" })];
-      if (p.demo) links.push(el("a", { class: "demo", href: "projects/" + p.id + "/", text: "Live demo" }));
+      if (p.demo) links.push(el("a", { class: "demo", href: "projects/" + p.id + "/index.html", text: "Live demo" }));
       grid.appendChild(el("article", { class: "card" }, [
         el("div", { class: "card__top" }, [
           el("span", { class: "card__num", text: p.id.slice(0, 2) }),

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { DAYS } from "./days/index.js";
 
-const PORTFOLIO = "../";
+const PORTFOLIO = "../index.html#lab";
 
 function useHashRoute() {
   const [hash, setHash] = useState(window.location.hash);
