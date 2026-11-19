@@ -38,7 +38,7 @@ I publish one small interactive visualization a day, each on a different everyda
 
 ## Portfolio website
 
-[agespinoza.github.io/Portafolio](https://agespinoza.github.io/Portafolio/) presents my experience, projects, and learning record on a single page. To view it locally, open [index.html](index.html) in a browser.
+[agespinoza.github.io/Portafolio](https://agespinoza.github.io/Portafolio/) presents my experience, applications, projects, and learning record on a single page. Its Applications section links to the live static demo and provides setup instructions for applications that need a local runtime or backend. To view it locally, open [index.html](index.html) in a browser.
 
 ## License
 

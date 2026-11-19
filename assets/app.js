@@ -6,23 +6,23 @@
   var PROJECTS = [
     { id: "01-trajectory-etl", title: "Trajectory Data Preparation", area: "data", tech: ["Python", "ETL", "CSV"],
       text: "Validates simulated trajectory points, normalizes timestamps to UTC, removes duplicates, and exports clean data for plotting." },
-    { id: "02-trajectory-visualization", title: "Interactive Trajectory Chart", area: "analytics", tech: ["JavaScript", "SVG", "HTML"], demo: true,
+    { id: "02-trajectory-visualization", title: "Interactive Trajectory Chart", area: "analytics", tech: ["JavaScript", "SVG", "HTML"], demo: true, applicationStatus: "Live demo on this site",
       text: "Plots the cleaned trajectory points with an accessible, keyboard-friendly interactive chart." },
     { id: "03-inspection-sql-performance", title: "Inspection SQL Performance", area: "data", tech: ["SQL", "SQLite", "Query plans"],
       text: "Reports inspection volume by station and compares query plans with and without an index." },
     { id: "04-inspection-warehouse-migration", title: "Inspection Warehouse Migration", area: "data", tech: ["Python", "SQL", "Star schema"],
       text: "Migrates inspection history into a dimensional model and reconciles totals before committing." },
-    { id: "05-inspection-power-bi", title: "Inspection Trends in Power BI", area: "analytics", tech: ["Power BI", "DAX", "PBIP"],
+    { id: "05-inspection-power-bi", title: "Inspection Trends in Power BI", area: "analytics", tech: ["Power BI", "DAX", "PBIP"], applicationStatus: "Requires Power BI Desktop",
       text: "Weekly duration trends and exceptions by station in a version-controlled Power BI project." },
     { id: "06-inspection-statistics-r", title: "Inspection Duration Analysis in R", area: "analytics", tech: ["R", "Statistics"],
       text: "Compares mean inspection durations between stations with a reproducible Welch's t-test." },
-    { id: "07-inspection-status-api", title: "Inspection Status API", area: "software", tech: ["Java", "Jakarta EE", "REST", "JavaScript"],
+    { id: "07-inspection-status-api", title: "Inspection Status API", area: "software", tech: ["Java", "Jakarta EE", "REST", "JavaScript"], applicationStatus: "Requires a Jakarta EE 10 server",
       text: "Looks up a simulated inspection through a Jakarta REST endpoint and a browser interface." },
-    { id: "08-mortgage-workflow-automation", title: "Mortgage Workflow Automation", area: "software", tech: ["C#", "ASP.NET Core", "JavaScript"],
+    { id: "08-mortgage-workflow-automation", title: "Mortgage Workflow Automation", area: "software", tech: ["C#", "ASP.NET Core", "JavaScript"], applicationStatus: "Requires .NET 8",
       text: "Advances a mortgage application through workflow stages and records every transition." },
     { id: "09-employee-erp-integration", title: "Employee ERP Integration", area: "data", tech: ["Python", "ERP", "Reconciliation"],
       text: "Synchronizes HR records into an ERP dataset and reports inserts, updates, and discrepancies." },
-    { id: "10-internal-request-tracker", title: "Internal Request Tracker", area: "software", tech: ["PHP", "SQLite"],
+    { id: "10-internal-request-tracker", title: "Internal Request Tracker", area: "software", tech: ["PHP", "SQLite"], applicationStatus: "Requires PHP 8.1 and SQLite",
       text: "Records internal requests and searches their history through a lightweight web application." },
     { id: "11-inspection-workflow-qa", title: "Inspection Workflow QA", area: "software", tech: ["Python", "unittest", "Test plan"],
       text: "Test plan, automated test cases, and a reproducible defect report for an inspection workflow." },
@@ -124,6 +124,37 @@
       ]));
     });
   }
+  var applicationGrid = document.getElementById("application-grid");
+  var applications = PROJECTS.filter(function (p) { return p.applicationStatus; });
+  applications.push({
+    id: "daily-data-lab",
+    number: "DL",
+    title: "Daily Data Lab",
+    area: "analytics",
+    tech: ["React", "Public APIs", "Data visualization"],
+    text: "A growing collection of interactive visualizations built with public data.",
+    applicationStatus: "Live app on this site",
+    demoHref: "lab/index.html",
+    demoLabel: "Open live app",
+    sourceHref: "https://github.com/agespinoza/Portafolio/tree/main/daily-data-lab"
+  });
+  applications.forEach(function (p) {
+    var demoHref = p.demoHref || (p.demo ? "projects/" + p.id + "/index.html" : null);
+    var links = [];
+    if (demoHref) links.push(el("a", { class: "demo", href: demoHref, text: p.demoLabel || "Open live demo" }));
+    links.push(el("a", { href: p.sourceHref || REPO + p.id, rel: "noopener", text: "Code & instructions" }));
+    applicationGrid.appendChild(el("article", { class: "card" }, [
+      el("div", { class: "card__top" }, [
+        el("span", { class: "card__num", text: p.number || p.id.slice(0, 2) }),
+        el("span", { class: "card__area", text: areaLabel[p.area] })
+      ]),
+      el("h3", { text: p.title }),
+      el("p", { text: p.text }),
+      el("span", { class: "application__status" + (demoHref ? " application__status--live" : ""), text: p.applicationStatus }),
+      el("div", { class: "card__tech" }, p.tech.map(function (t) { return el("span", { text: t }); })),
+      el("div", { class: "card__links" }, links)
+    ]));
+  });
   AREAS.forEach(function (a, i) {
     var n = a.id === "all" ? PROJECTS.length : PROJECTS.filter(function (p) { return p.area === a.id; }).length;
     var b = el("button", { class: "chip", type: "button", "aria-pressed": i === 0 ? "true" : "false" },

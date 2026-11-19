@@ -256,6 +256,12 @@ a.tag:hover { text-decoration: none; border-color: var(--accent); color: var(--a
 .card__links .demo::after { content: "↗"; }
 .card__stretch::before { content: ""; position: absolute; inset: 0; border-radius: inherit; }
 .card__links .demo { position: relative; z-index: 1; }
+.application__status {
+  display: inline-flex; align-self: flex-start; margin-top: 16px; padding: 7px 10px;
+  border-radius: 999px; background: var(--paper-2); color: var(--ink-2);
+  font: 500 11px/1.2 var(--mono);
+}
+.application__status--live { background: var(--accent-soft); color: var(--accent); }
 
 /* ---------- Learning ---------- */
 .kpis { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); margin-bottom: 20px; overflow: hidden; }
