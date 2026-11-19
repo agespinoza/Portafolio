@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Satellite Operations Console</title>
+<title>Satellite Operations Console | Alicia Espinoza</title>
 <meta name="description" content="Tracks 16 NASA and partner satellites with SGP4 propagation of public element sets, ground-station pass prediction and validation against NASA's ISS ephemeris.">
 <meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1424'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23f4efe6' text-anchor='middle'%3EAE%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -18,88 +19,112 @@
 </script>
 </head>
 <body>
-<header class="topbar">
-  <div class="wrap topbar__inner">
-    <a class="brand" href="../../index.html#projects"><span class="brand__mark" aria-hidden="true">A</span><span>← Portfolio</span></a>
-    <div class="clock">
-      <span class="pill" id="mode-label">LIVE</span>
-      <span class="clock__time" id="sim-clock">—</span>
-    </div>
+<a class="skip" href="#main" data-i18n="site:site.skip">Skip to content</a>
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="../../index.html" data-portfolio-link aria-label="Alicia Espinoza, back to the portfolio" data-i18n-aria="nav.brand">
+      <span class="brand__mark" aria-hidden="true">AE</span>
+      <span class="brand__name">Alicia Espinoza</span>
+    </a>
+    <nav aria-label="Primary" data-i18n-aria="site:nav.primary">
+      <ul class="nav__links" id="primary-links">
+        <li><a href="../../index.html#experience" data-portfolio-link data-i18n="site:nav.experience">Experience</a></li>
+        <li><a href="../../index.html#projects" data-portfolio-link data-i18n="site:nav.projects">Projects</a></li>
+        <li><a href="../../index.html#applications" data-portfolio-link data-i18n="site:nav.applications">Applications</a></li>
+        <li><a href="../../index.html#learning" data-portfolio-link data-i18n="site:nav.learning">Learning</a></li>
+        <li><a href="../../lab/index.html" data-portfolio-link data-i18n="site:nav.lab">Data Lab</a></li>
+        <li><a href="../../index.html#contact" class="nav__cta" data-portfolio-link data-i18n="site:nav.contact">Get in touch</a></li>
+        <li class="nav__language">
+          <label class="visually-hidden" for="language-select" data-i18n="site:nav.language">Language</label>
+          <select id="language-select" class="language-select"></select>
+        </li>
+      </ul>
+    </nav>
+    <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links">
+      <span class="nav__toggle-label" data-i18n="site:nav.menu">Menu</span>
+      <span class="nav__toggle-icon" aria-hidden="true">☰</span>
+    </button>
   </div>
 </header>
 
+<main id="main">
 <section class="hero wrap">
-  <p class="kicker"><span>Mission operations</span> Public orbital data, propagated live</p>
-  <h1>Sixteen spacecraft, <em>one sky.</em></h1>
-  <p class="lead">Real element sets for NASA and partner missions, propagated with SGP4, scheduled against ground stations and checked against NASA's own ISS ephemeris.</p>
+  <p class="breadcrumb"><a href="../../index.html#applications" data-portfolio-link data-i18n="hero.back">← Applications</a></p>
+  <p class="kicker"><span data-i18n="hero.kicker">Mission operations</span> <span class="kicker__rest" data-i18n="hero.kickerRest">Public orbital data, propagated live</span></p>
+  <h1><span data-i18n="hero.title">Sixteen spacecraft,</span> <em data-i18n="hero.titleEm">one sky.</em></h1>
+  <p class="lead" data-i18n="hero.lead">Real element sets for NASA and partner missions, propagated with SGP4, scheduled against ground stations and checked against NASA's own ISS ephemeris.</p>
   <div class="kpis" id="kpis" aria-live="off"></div>
 </section>
 
-<section class="controls" aria-label="Simulation controls">
+<section class="controls" aria-label="Simulation controls" data-i18n-aria="controls.aria">
   <div class="wrap controls__inner">
-    <div class="control-group" role="group" aria-label="Time">
-      <button type="button" id="live-button" class="button button--live">● Live</button>
+    <div class="control-group" role="group" aria-label="Time" data-i18n-aria="controls.time">
+      <div class="clock">
+        <span class="pill" id="mode-label">LIVE</span>
+        <span class="clock__time" id="sim-clock">—</span>
+      </div>
+      <button type="button" id="live-button" class="button button--live">● <span data-i18n="controls.live">Live</span></button>
       <button type="button" id="play-button" class="button" aria-pressed="false">Play</button>
-      <label class="field">Speed
+      <label class="field"><span data-i18n="controls.speed">Speed</span>
         <select id="speed">
           <option value="1">1×</option><option value="10">10×</option><option value="60" selected>60×</option><option value="300">300×</option><option value="900">900×</option>
         </select>
       </label>
-      <label class="field field--range">Offset from now · <output id="scrub-value">+0 h 00 m</output>
+      <label class="field field--range"><span><span data-i18n="controls.offset">Offset from now</span> · <output id="scrub-value">+0 h 00 m</output></span>
         <input type="range" id="scrub" min="-720" max="1440" step="1" value="0">
       </label>
     </div>
-    <div class="control-group" role="group" aria-label="Ground station">
-      <label class="field">Satellite <select id="satellite"></select></label>
-      <label class="field">Ground station <select id="station"></select></label>
-      <label class="field">Mask
+    <div class="control-group" role="group" aria-label="Ground station" data-i18n-aria="controls.stationGroup">
+      <label class="field"><span data-i18n="controls.satellite">Satellite</span> <select id="satellite"></select></label>
+      <label class="field"><span data-i18n="controls.station">Ground station</span> <select id="station"></select></label>
+      <label class="field"><span data-i18n="controls.mask">Mask</span>
         <select id="mask"><option value="0">0°</option><option value="5">5°</option><option value="10" selected>10°</option><option value="20">20°</option></select>
       </label>
-      <label class="field">Window
+      <label class="field"><span data-i18n="controls.window">Window</span>
         <select id="horizon"><option value="24" selected>24 h</option><option value="72">72 h</option></select>
       </label>
     </div>
   </div>
 </section>
 
-<main class="wrap console">
+<div class="wrap console">
   <section class="panel panel--globe" aria-labelledby="globe-title">
     <div class="panel__head">
       <div>
-        <p class="kicker kicker--small"><span>01</span> Orbit view</p>
-        <h2 id="globe-title">The fleet in inertial space</h2>
+        <p class="kicker kicker--small"><span>01</span> <span data-i18n="globe.kicker">Orbit view</span></p>
+        <h2 id="globe-title" data-i18n="globe.title">The fleet in inertial space</h2>
       </div>
-      <div class="segmented" role="group" aria-label="Camera distance">
-        <button type="button" class="segmented__button is-active" data-preset="leo">Low orbit</button>
-        <button type="button" class="segmented__button" data-preset="geo">Geostationary</button>
-        <button type="button" class="segmented__button" data-preset="deep">Deep orbits</button>
+      <div class="segmented" role="group" aria-label="Camera distance" data-i18n-aria="globe.camera">
+        <button type="button" class="segmented__button is-active" data-preset="leo" data-i18n="globe.leo">Low orbit</button>
+        <button type="button" class="segmented__button" data-preset="geo" data-i18n="globe.geo">Geostationary</button>
+        <button type="button" class="segmented__button" data-preset="deep" data-i18n="globe.deep">Deep orbits</button>
       </div>
     </div>
-    <div class="globe" id="globe" role="img" aria-label="Three-dimensional view of Earth lit by the Sun with every satellite orbit drawn in the inertial frame. Drag to rotate, scroll to zoom.">
+    <div class="globe" id="globe" role="img" aria-label="Three-dimensional view of Earth lit by the Sun with every satellite orbit drawn in the inertial frame. Drag to rotate, scroll to zoom." data-i18n-aria="globe.aria">
       <div class="globe__readout" id="globe-readout"></div>
     </div>
     <div class="panel__foot">
-      <ul class="legend" id="globe-legend" aria-label="Legend"></ul>
-      <p class="panel__note">Drag to rotate, scroll to zoom, click a satellite to select it. Earth is lit from the real Sun direction; the white line is an active link to the ground station.</p>
+      <ul class="legend" id="globe-legend" aria-label="Legend" data-i18n-aria="legend"></ul>
+      <p class="panel__note" data-i18n="globe.note">Drag to rotate, scroll to zoom, click a satellite to select it. Earth is lit from the real Sun direction; the white line is an active link to the ground station.</p>
     </div>
   </section>
 
   <section class="panel panel--map" aria-labelledby="map-title">
     <div class="panel__head">
       <div>
-        <p class="kicker kicker--small"><span>02</span> Ground track</p>
-        <h2 id="map-title">Where it flies over</h2>
+        <p class="kicker kicker--small"><span>02</span> <span data-i18n="map.kicker">Ground track</span></p>
+        <h2 id="map-title" data-i18n="map.title">Where it flies over</h2>
       </div>
-      <ul class="legend" id="map-legend" aria-label="Legend"></ul>
+      <ul class="legend" id="map-legend" aria-label="Legend" data-i18n-aria="legend"></ul>
     </div>
     <div class="map-wrap">
-      <svg id="map" role="img" aria-label="World map with satellite positions, the selected satellite's ground track and the day-night terminator"></svg>
+      <svg id="map" role="img" aria-label="World map with satellite positions, the selected satellite's ground track and the day-night terminator" data-i18n-aria="map.aria"></svg>
     </div>
-    <p class="panel__note">Half an orbit behind and one and a half ahead. Night deepens through civil, nautical and astronomical twilight. The filled circle is the satellite's footprint at the elevation mask; the outlined circle is the station's reach.</p>
+    <p class="panel__note" data-i18n="map.note">Half an orbit behind and one and a half ahead. Night deepens through civil, nautical and astronomical twilight. The filled circle is the satellite's footprint at the elevation mask; the outlined circle is the station's reach.</p>
   </section>
 
   <aside class="panel panel--telemetry" aria-labelledby="telemetry-title">
-    <p class="kicker kicker--small"><span>03</span> Telemetry</p>
+    <p class="kicker kicker--small"><span>03</span> <span data-i18n="telemetry.kicker">Telemetry</span></p>
     <h2 id="telemetry-title" class="telemetry__name">—</h2>
     <p class="mission" id="mission"></p>
     <div class="readouts" id="readouts"></div>
@@ -109,26 +134,26 @@
   <section class="panel panel--wide" aria-labelledby="plan-title">
     <div class="panel__head">
       <div>
-        <p class="kicker kicker--small"><span>04</span> Contact plan</p>
-        <h2 id="plan-title">Every pass over <span id="plan-station">the station</span></h2>
+        <p class="kicker kicker--small"><span>04</span> <span data-i18n="plan.kicker">Contact plan</span></p>
+        <h2 id="plan-title">—</h2>
       </div>
       <span class="panel__meta" id="plan-meta"></span>
     </div>
     <div id="contact-plan"></div>
-    <p class="panel__note">Each bar is a pass above the elevation mask, labelled with its maximum elevation; brighter bars climb higher. Select a bar to inspect the pass.</p>
+    <p class="panel__note" data-i18n="plan.note">Each bar is a pass above the elevation mask, labelled with its maximum elevation; brighter bars climb higher. Select a bar to inspect the pass.</p>
   </section>
 
   <section class="panel panel--wide" aria-labelledby="pass-title">
     <div class="panel__head">
       <div>
-        <p class="kicker kicker--small"><span>05</span> Pass detail</p>
+        <p class="kicker kicker--small"><span>05</span> <span data-i18n="pass.kicker">Pass detail</span></p>
         <h2 id="pass-title">—</h2>
       </div>
       <span class="panel__meta" id="pass-meta"></span>
     </div>
     <div class="pass-detail">
       <div class="sky">
-        <svg id="sky" role="img" aria-label="Sky plot of the selected pass, azimuth around and elevation inward"></svg>
+        <svg id="sky" role="img" aria-label="Sky plot of the selected pass, azimuth around and elevation inward" data-i18n-aria="pass.skyAria"></svg>
       </div>
       <div class="pass-detail__main">
         <div class="tiles" id="pass-tiles"></div>
@@ -136,7 +161,7 @@
       </div>
     </div>
     <details class="pass-table">
-      <summary>All passes of the selected satellite</summary>
+      <summary data-i18n="pass.all">All passes of the selected satellite</summary>
       <div class="table-wrap"><table class="data-table" id="pass-table"></table></div>
     </details>
   </section>
@@ -144,8 +169,8 @@
   <section class="panel panel--wide" aria-labelledby="altitude-title">
     <div class="panel__head">
       <div>
-        <p class="kicker kicker--small"><span>06</span> Altitude and illumination</p>
-        <h2 id="altitude-title">Two orbits ahead</h2>
+        <p class="kicker kicker--small"><span>06</span> <span data-i18n="altitude.kicker">Altitude and illumination</span></p>
+        <h2 id="altitude-title">—</h2>
       </div>
       <span class="panel__meta" id="altitude-meta"></span>
     </div>
@@ -155,8 +180,8 @@
   <section class="panel panel--wide" aria-labelledby="fleet-title">
     <div class="panel__head">
       <div>
-        <p class="kicker kicker--small"><span>07</span> Fleet status</p>
-        <h2 id="fleet-title">All spacecraft at a glance</h2>
+        <p class="kicker kicker--small"><span>07</span> <span data-i18n="fleet.kicker">Fleet status</span></p>
+        <h2 id="fleet-title" data-i18n="fleet.title">All spacecraft at a glance</h2>
       </div>
       <span class="panel__meta" id="fleet-meta"></span>
     </div>
@@ -166,20 +191,20 @@
   <section class="panel panel--half" aria-labelledby="regime-title">
     <div class="panel__head">
       <div>
-        <p class="kicker kicker--small"><span>08</span> Orbit regimes</p>
-        <h2 id="regime-title">How high, how tilted</h2>
+        <p class="kicker kicker--small"><span>08</span> <span data-i18n="regime.kicker">Orbit regimes</span></p>
+        <h2 id="regime-title" data-i18n="regime.title">How high, how tilted</h2>
       </div>
-      <ul class="legend" id="regime-legend" aria-label="Legend"></ul>
+      <ul class="legend" id="regime-legend" aria-label="Legend" data-i18n-aria="legend"></ul>
     </div>
     <div id="regime-chart"></div>
-    <p class="panel__note">Each line spans perigee to apogee; the marker is the current altitude. Belt extents are approximate.</p>
+    <p class="panel__note" data-i18n="regime.note">Each line spans perigee to apogee; the marker is the current altitude. Belt extents are approximate.</p>
   </section>
 
   <section class="panel panel--half" aria-labelledby="validation-title">
     <div class="panel__head">
       <div>
-        <p class="kicker kicker--small"><span>09</span> Model validation</p>
-        <h2 id="validation-title">SGP4 against NASA's ISS ephemeris</h2>
+        <p class="kicker kicker--small"><span>09</span> <span data-i18n="validation.kicker">Model validation</span></p>
+        <h2 id="validation-title" data-i18n="validation.title">SGP4 against NASA's ISS ephemeris</h2>
       </div>
     </div>
     <div class="tiles" id="validation-tiles"></div>
@@ -188,41 +213,42 @@
   </section>
 
   <section class="panel panel--wide notes" aria-labelledby="notes-title">
-    <p class="kicker kicker--small"><span>10</span> Method</p>
-    <h2 id="notes-title">Models, data and assumptions</h2>
+    <p class="kicker kicker--small"><span>10</span> <span data-i18n="notes.kicker">Method</span></p>
+    <h2 id="notes-title" data-i18n="notes.title">Models, data and assumptions</h2>
     <div class="notes__grid">
       <div>
-        <h3>Data sources</h3>
+        <h3 data-i18n="notes.sources">Data sources</h3>
         <ul>
-          <li><strong>Element sets:</strong> CelesTrak GP catalog, built from U.S. Space Force tracking data. A daily snapshot ships with the page; when it is older than a day the console downloads current sets and caches them for two hours.</li>
-          <li><strong>Reference ephemeris:</strong> NASA Johnson Space Center (FOD/TOPO) ISS trajectory, CCSDS OEM v2, EME2000 frame, 4-minute state vectors.</li>
-          <li><strong>Coastlines:</strong> Natural Earth 1:110m via world-atlas.</li>
+          <li><strong data-i18n="notes.elementsLabel">Element sets:</strong> <span data-i18n="notes.elements">CelesTrak GP catalog, built from U.S. Space Force tracking data. A daily snapshot ships with the page; when it is older than a day the console downloads current sets and caches them for two hours.</span></li>
+          <li><strong data-i18n="notes.ephemerisLabel">Reference ephemeris:</strong> <span data-i18n="notes.ephemeris">NASA Johnson Space Center (FOD/TOPO) ISS trajectory, CCSDS OEM v2, EME2000 frame, 4-minute state vectors.</span></li>
+          <li><strong data-i18n="notes.coastLabel">Coastlines:</strong> <span data-i18n="notes.coast">Natural Earth 1:110m via world-atlas.</span></li>
         </ul>
       </div>
       <div>
-        <h3>Models</h3>
+        <h3 data-i18n="notes.models">Models</h3>
         <ul>
-          <li><strong>Propagation:</strong> SGP4/SDP4 (satellite.js 5.0, Vallado 2006 revision). Output in TEME, converted to geodetic with GMST.</li>
-          <li><strong>Sun and eclipse:</strong> Astronomical Almanac low-precision solar position (about 0.01°) and a cylindrical umbra model. Penumbra is ignored.</li>
-          <li><strong>Passes:</strong> geometric elevation above the selected mask, without refraction. Coarse search every 10–30 s, then bisection to 1 s for AOS and LOS.</li>
+          <li><strong data-i18n="notes.propLabel">Propagation:</strong> <span data-i18n="notes.prop">SGP4/SDP4 (satellite.js 5.0, Vallado 2006 revision). Output in TEME, converted to geodetic with GMST.</span></li>
+          <li><strong data-i18n="notes.sunLabel">Sun and eclipse:</strong> <span data-i18n="notes.sun">Astronomical Almanac low-precision solar position (about 0.01°) and a cylindrical umbra model. Penumbra is ignored.</span></li>
+          <li><strong data-i18n="notes.passLabel">Passes:</strong> <span data-i18n="notes.pass">geometric elevation above the selected mask, without refraction. Coarse search every 10–30 s, then bisection to 1 s for AOS and LOS.</span></li>
         </ul>
       </div>
       <div>
-        <h3>Validation</h3>
+        <h3 data-i18n="notes.validation">Validation</h3>
         <ul>
-          <li>NASA's EME2000 vectors are rotated to the mean equator of date with IAU-1976 precession and compared with SGP4 in the radial, in-track and cross-track frame.</li>
-          <li>Nutation is neglected (under 0.7 km at ISS radius). The comparison uses the element set captured with the ephemeris, so it does not change when the elements are refreshed.</li>
-          <li>For education and portfolio use, not for operational decisions.</li>
+          <li data-i18n="notes.val1">NASA's EME2000 vectors are rotated to the mean equator of date with IAU-1976 precession and compared with SGP4 in the radial, in-track and cross-track frame.</li>
+          <li data-i18n="notes.val2">Nutation is neglected (under 0.7 km at ISS radius). The comparison uses the element set captured with the ephemeris, so it does not change when the elements are refreshed.</li>
+          <li data-i18n="notes.val3">For education and portfolio use, not for operational decisions.</li>
         </ul>
       </div>
     </div>
     <div class="data-bar">
       <span class="status" id="data-status" role="status">Loading element sets…</span>
-      <button type="button" id="refresh-button" class="button" disabled>Refresh elements</button>
+      <button type="button" id="refresh-button" class="button" disabled data-i18n="notes.refresh">Refresh elements</button>
     </div>
   </section>
+</div>
 </main>
-<footer class="foot"><div class="wrap foot__inner"><span>Satellite Operations Console · Alicia Espinoza</span><span>Data: CelesTrak · NASA JSC · Natural Earth</span></div></footer>
+<footer class="foot"><div class="wrap foot__inner"><span>© 2026 Alicia Espinoza</span><span data-i18n="footer.data">Data: CelesTrak · NASA JSC · Natural Earth</span></div></footer>
 <script type="module" src="app.js"></script>
 </body>
 </html>

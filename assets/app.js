@@ -223,6 +223,7 @@ function renderContributionCalendar(language) {
   var areaLabel = {};
   AREAS.forEach(function (a) { areaLabel[a.id] = t(language, "areas." + a.id, a.label); });
 
+  var langQuery = language === "en" ? "" : "?lang=" + language;
   function projectTitle(project) {
     return project.id === "daily-data-lab"
       ? t(language, "site.labTitle", project.title)
@@ -238,7 +239,7 @@ function renderContributionCalendar(language) {
     grid.textContent = "";
     PROJECTS.filter(function (p) { return area === "all" || p.area === area; }).forEach(function (p) {
       var links = [el("a", { href: REPO + p.id, rel: "noopener", text: t(language, "site.viewProject", "View project") })];
-      if (p.demo) links.push(el("a", { class: "demo", href: "projects/" + p.id + "/index.html", text: t(language, "site.liveDemo", "Live demo") }));
+      if (p.demo) links.push(el("a", { class: "demo", href: "projects/" + p.id + "/index.html" + langQuery, text: t(language, "site.liveDemo", "Live demo") }));
       grid.appendChild(el("article", { class: "card" }, [
         el("div", { class: "card__top" }, [
           el("span", { class: "card__num", text: p.id.slice(0, 2) }),
@@ -275,7 +276,7 @@ function renderContributionCalendar(language) {
   };
   applications.forEach(function (p) {
     var demoHref = p.demoHref || (p.demo ? "projects/" + p.id + "/index.html" : null);
-    if (p.id === "daily-data-lab" && language !== "en") demoHref += "?lang=" + language;
+    if (demoHref) demoHref += langQuery;
     var links = [];
     if (demoHref) links.push(el("a", { class: "demo", href: demoHref, text: p.demoLabel ? t(language, "site.openLiveApp", p.demoLabel) : t(language, "site.openLiveDemo", "Open live demo") }));
     links.push(el("a", { href: p.sourceHref || REPO + p.id, rel: "noopener", text: t(language, "site.codeInstructions", "Code & instructions") }));

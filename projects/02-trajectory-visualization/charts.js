@@ -1,19 +1,19 @@
 // D3 renderers. Colors come from CSS custom properties (styles.css); identity is
 // always backed by a symbol or label so color never carries meaning alone.
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
+import { tr, num, duration, utcShort, utcTime, utcHm, utcFull, tickFormat } from './i18n.js';
 
 export const REGIMES = ['LEO', 'HEO', 'GEO'];
-export const REGIME_LABEL = { LEO: 'Low Earth orbit', HEO: 'Highly elliptical', GEO: 'Geostationary', MEO: 'Medium Earth orbit' };
+export const REGIME_LABEL = {
+    LEO: tr('regime.LEO', 'Low Earth orbit'), HEO: tr('regime.HEO', 'Highly elliptical'),
+    GEO: tr('regime.GEO', 'Geostationary'), MEO: tr('regime.MEO', 'Medium Earth orbit'),
+};
 export const regimeColor = regime => `var(--${(regime === 'MEO' ? 'LEO' : regime).toLowerCase()})`;
 const SYMBOL = { LEO: d3.symbolCircle, HEO: d3.symbolDiamond, GEO: d3.symbolSquare, MEO: d3.symbolCircle };
 export const symbolPath = (regime, size = 64) => d3.symbol(SYMBOL[regime] || d3.symbolCircle, size)();
 
-export const utcShort = d3.utcFormat('%b %d %H:%M');
-export const utcTime = d3.utcFormat('%H:%M:%S');
-export const utcHm = d3.utcFormat('%H:%M');
-export const utcFull = d3.utcFormat('%Y-%m-%d %H:%M:%S');
-const tickFormat = date => (date.getUTCHours() === 0 && date.getUTCMinutes() === 0 ? d3.utcFormat('%b %d') : utcHm)(date);
-const fmt = d3.format(',');
+export { utcShort, utcTime, utcHm, utcFull };
+const fmt = value => num(value, 0);
 
 let uid = 0;
 const nextId = prefix => `${prefix}-${++uid}`;
@@ -166,7 +166,7 @@ export function timeSeries(container, opts) {
 
     const now = svg.append('g').attr('class', 'now').style('display', 'none');
     now.append('line').attr('y1', margin.top - 4).attr('y2', height - margin.bottom);
-    now.append('text').attr('x', 4).attr('y', margin.top - 4).text('NOW');
+    now.append('text').attr('x', 4).attr('y', margin.top - 4).text(tr('chart.now', 'NOW'));
 
     const hair = svg.append('g').attr('class', 'crosshair').style('display', 'none');
     hair.append('line').attr('y1', margin.top).attr('y2', height - margin.bottom);
@@ -222,7 +222,7 @@ export function contactPlan(container, { rows, startMs, endMs, selectedId, selec
     const height = margin.top + rows.length * rowH + margin.bottom;
     const x = d3.scaleUtc().domain([startMs, endMs]).range([margin.left, width - margin.right]);
     const svg = d3.select(container).append('svg').attr('width', width).attr('height', height).attr('viewBox', `0 0 ${width} ${height}`)
-        .attr('role', 'img').attr('aria-label', 'Contact plan: passes of every satellite over the ground station');
+        .attr('role', 'img').attr('aria-label', tr('plan.aria', 'Contact plan: passes of every satellite over the ground station'));
     const defs = svg.append('defs');
     const glow = glowFilter(defs, 3);
 
@@ -253,8 +253,8 @@ export function contactPlan(container, { rows, startMs, endMs, selectedId, selec
                     const [mx, my] = d3.pointer(event, container);
                     tip.show(mx, my, row.sat.name, [
                         { value: `${utcHm(pass.aos)} – ${utcHm(pass.los)} UTC`, label: '' },
-                        { value: pass.durationMin >= 90 ? `${(pass.durationMin / 60).toFixed(1)} h` : `${pass.durationMin.toFixed(1)} min`, label: 'duration' },
-                        { value: `${pass.maxElDeg.toFixed(1)}°`, label: 'max elevation' },
+                        { value: duration(pass.durationMin * 60_000), label: tr('tip.duration', 'duration') },
+                        { value: `${num(pass.maxElDeg, 1)}°`, label: tr('tip.maxEl', 'max elevation') },
                     ]);
                 })
                 .on('pointerleave', () => tip.hide());
@@ -347,8 +347,8 @@ export function createMap(svgElement, { dots, onSelect }) {
                     const st = states.get(sat.norad);
                     const [px, py] = toScreen(st.lon, st.lat);
                     tip.show(px, py, sat.name, [
-                        { value: `${d3.format(',.0f')(st.altKm)} km`, label: 'altitude' },
-                        { value: `${st.lat.toFixed(2)}°, ${st.lon.toFixed(2)}°`, label: 'lat, lon' },
+                        { value: `${num(st.altKm)} km`, label: tr('tip.altitude', 'altitude') },
+                        { value: `${num(st.lat, 2)}°, ${num(st.lon, 2)}°`, label: tr('tip.latlon', 'lat, lon') },
                         { value: REGIME_LABEL[sat.regime], label: '' },
                     ]);
                 })
@@ -391,12 +391,12 @@ export function skyPlot(svgElement, pass, current, color = 'var(--leo)') {
         const [x1, y1] = point(az, 0), [x2, y2] = point(az, az % 90 ? 80 : 90);
         svg.append('line').attr('class', 'grid').attr('x1', x1).attr('y1', y1).attr('x2', x2).attr('y2', y2);
     }
-    [['N', 0], ['E', 90], ['S', 180], ['W', 270]].forEach(([text, az]) => {
+    [[tr('sky.N', 'N'), 0], [tr('sky.E', 'E'), 90], [tr('sky.S', 'S'), 180], [tr('sky.W', 'W'), 270]].forEach(([text, az]) => {
         const [x, y] = point(az, -13);
         svg.append('text').attr('class', 'sky-cardinal').attr('x', x).attr('y', y + 4).attr('text-anchor', 'middle').text(text);
     });
     if (!pass) {
-        svg.append('text').attr('class', 'tick').attr('x', c).attr('y', c + 4).attr('text-anchor', 'middle').text('No pass in window');
+        svg.append('text').attr('class', 'tick').attr('x', c).attr('y', c + 4).attr('text-anchor', 'middle').text(tr('sky.none', 'No pass in window'));
         return;
     }
     const visible = pass.track.filter(p => p.elDeg >= 0);
@@ -438,11 +438,11 @@ export function regimeChart(container, sats, { onSelect }) {
     const x = d3.scaleLinear().domain([0, 105]).range([margin.left, width - margin.right]);
     const y = d3.scaleLog().domain([300, 250_000]).range([height - margin.bottom, margin.top]);
     const svg = d3.select(container).append('svg').attr('width', width).attr('height', height).attr('viewBox', `0 0 ${width} ${height}`)
-        .attr('role', 'img').attr('aria-label', 'Perigee to apogee altitude of each satellite against orbital inclination');
+        .attr('role', 'img').attr('aria-label', tr('regime.aria', 'Perigee to apogee altitude of each satellite against orbital inclination'));
     const defs = svg.append('defs');
     const glow = glowFilter(defs, 2.5);
     // Approximate Van Allen radiation belts, the reason most missions avoid MEO.
-    for (const [lo, hi, text] of [[1000, 6000, 'Inner Van Allen belt'], [13000, 60000, 'Outer Van Allen belt']]) {
+    for (const [lo, hi, text] of [[1000, 6000, tr('regime.inner', 'Inner Van Allen belt')], [13000, 60000, tr('regime.outer', 'Outer Van Allen belt')]]) {
         svg.append('rect').attr('class', 'belt').attr('x', margin.left).attr('width', width - margin.left - margin.right)
             .attr('y', y(hi)).attr('height', y(lo) - y(hi));
         svg.append('text').attr('class', 'belt-label').attr('x', width - margin.right - 6).attr('y', y(hi) + 14).attr('text-anchor', 'end').text(text);
@@ -453,12 +453,12 @@ export function regimeChart(container, sats, { onSelect }) {
     svg.append('line').attr('class', 'baseline').attr('x1', margin.left).attr('x2', width - margin.right).attr('y1', height - margin.bottom).attr('y2', height - margin.bottom);
     const xTicks = [0, 15, 30, 45, 60, 75, 90, 105];
     svg.selectAll('.tx').data(xTicks).join('text').attr('class', 'tick').attr('x', x).attr('y', height - margin.bottom + 19).attr('text-anchor', 'middle').text(d => `${d}°`);
-    svg.append('text').attr('class', 'axis-label').attr('x', (margin.left + width - margin.right) / 2).attr('y', height - 4).attr('text-anchor', 'middle').text('Inclination');
-    svg.append('text').attr('class', 'axis-label').attr('x', 6).attr('y', 14).text('Altitude (km)');
+    svg.append('text').attr('class', 'axis-label').attr('x', (margin.left + width - margin.right) / 2).attr('y', height - 4).attr('text-anchor', 'middle').text(tr('regime.incl', 'Inclination'));
+    svg.append('text').attr('class', 'axis-label').attr('x', 6).attr('y', 14).text(tr('regime.alt', 'Altitude (km)'));
     svg.append('line').attr('class', 'ref').attr('x1', margin.left).attr('x2', width - margin.right).attr('y1', y(35786)).attr('y2', y(35786));
-    svg.append('text').attr('class', 'ref-label').attr('x', margin.left + 18).attr('y', y(35786) - 6).text('Geostationary · 35,786 km');
+    svg.append('text').attr('class', 'ref-label').attr('x', margin.left + 18).attr('y', y(35786) - 6).text(tr('regime.geoLine', 'Geostationary · {km} km', { km: num(35786) }));
     svg.append('line').attr('class', 'ref').attr('x1', x(98)).attr('x2', x(98)).attr('y1', margin.top).attr('y2', height - margin.bottom);
-    svg.append('text').attr('class', 'ref-label').attr('x', x(98) - 6).attr('y', margin.top + 12).attr('text-anchor', 'end').text('Sun-synchronous ≈ 98°');
+    svg.append('text').attr('class', 'ref-label').attr('x', x(98) - 6).attr('y', margin.top + 12).attr('text-anchor', 'end').text(tr('regime.sso', 'Sun-synchronous ≈ 98°'));
 
     const tip = tooltip(container);
     const groups = svg.append('g').selectAll('g').data(sats, s => s.norad).join('g').attr('class', 'regime-mark')
@@ -466,9 +466,9 @@ export function regimeChart(container, sats, { onSelect }) {
         .on('pointerenter', (event, sat) => {
             const e = sat.elements;
             tip.show(x(e.inclinationDeg), y(Math.max(300, e.perigeeKm)), sat.name, [
-                { value: `${d3.format(',.0f')(e.perigeeKm)} – ${d3.format(',.0f')(e.apogeeKm)} km`, label: 'perigee – apogee' },
-                { value: `${e.inclinationDeg.toFixed(2)}°`, label: 'inclination' },
-                { value: `${d3.format(',.1f')(e.periodMin)} min`, label: 'period' },
+                { value: `${num(e.perigeeKm)} – ${num(e.apogeeKm)} km`, label: tr('tip.periApo', 'perigee – apogee') },
+                { value: `${num(e.inclinationDeg, 2)}°`, label: tr('tip.incl', 'inclination') },
+                { value: `${num(e.periodMin, 1)} min`, label: tr('tip.period', 'period') },
             ]);
         })
         .on('pointerleave', () => tip.hide());

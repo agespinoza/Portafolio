@@ -22,6 +22,8 @@ At the University of Arizona Space Institute, I used Java and Python to automate
 
 The time controls run the console live, accelerate it up to 900×, or move it from 12 hours back to 24 hours ahead. Seven ground stations are available, including Tucson, NASA Goddard, White Sands, Svalbard and McMurdo. The pass prediction uses a selectable elevation mask.
 
+The console uses the portfolio's navigation and is available in English, Spanish, Japanese, Italian and French. It reads the same `?lang=` parameter as the rest of the site; page strings live in [`messages.js`](messages.js), and shared labels such as the menu come from the portfolio's `assets/i18n.js`. Dates and numbers follow each language's format.
+
 The design uses the portfolio's typefaces (Instrument Serif, Inter and JetBrains Mono) on a night theme. The three orbit-regime colors were checked as a set for color-vision deficiency and contrast, and each regime also has its own marker shape: circle, diamond or square.
 
 ## Data
