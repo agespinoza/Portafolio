@@ -40,4 +40,8 @@ I publish one small interactive visualization a day, each on a different everyda
 
 [agespinoza.github.io/Portafolio](https://agespinoza.github.io/Portafolio/) presents my experience, projects, and learning record on a single page. To view it locally, open [index.html](index.html) in a browser.
 
+## License
+
+The source code is available under the [MIT License](LICENSE). My photo, biographical text, and learning record are not covered by the license and may not be reused without permission.
+
 [LinkedIn](https://www.linkedin.com/in/achocoza)

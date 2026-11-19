@@ -4,6 +4,8 @@
   "version": "1.0.0",
   "type": "module",
   "description": "One small data visualization a day, built with React.",
+  "license": "MIT",
+  "author": "Alicia Espinoza",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
