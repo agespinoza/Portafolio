@@ -1,13 +1,13 @@
 import * as topojson from 'https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/+esm';
 import {
     makeSatellite, stateAt, sunAt, inEclipse, footprintRadiusDeg, observe, predictPasses, sampleTrack, compareWithOem,
-} from './orbit.js';
+} from './orbit.js?v=20261119b';
 import {
     REGIMES, REGIME_LABEL, regimeColor, symbolPath, utcFull, utcShort, utcTime, utcHm,
     timeSeries, contactPlan, createMap, skyPlot, regimeChart,
-} from './charts.js';
-import { landMask, landDots, globeTexture } from './earth.js';
-import { LANGUAGES, LANGUAGE_NAMES, language, tr, site, num, signed, duration, translatePage } from './i18n.js';
+} from './charts.js?v=20261119b';
+import { landMask, landDots, globeTexture } from './earth.js?v=20261119b';
+import { LANGUAGES, LANGUAGE_NAMES, language, tr, site, num, signed, duration, translatePage } from './i18n.js?v=20261119b';
 
 const LAND_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/land-110m.json';
 const CELESTRAK = norad => `https://celestrak.org/NORAD/elements/gp.php?CATNR=${norad}&FORMAT=tle`;
@@ -661,7 +661,7 @@ function rebuild() {
 
 async function startGlobe(isLand) {
     try {
-        const { createGlobe } = await import('./globe.js');
+        const { createGlobe } = await import('./globe.js?v=20261119b');
         globe = createGlobe($('#globe'), { texture: globeTexture(isLand), onSelect: select });
         recomputeFleet(true);
         tick();
