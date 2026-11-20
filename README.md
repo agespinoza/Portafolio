@@ -52,6 +52,6 @@ Then open `http://localhost:8000/`.
 
 ## License
 
-The source code is available under the [MIT License](LICENSE). My photo, biographical text, and learning record are not covered by the license and may not be reused without permission.
+The source code is available under the [MIT License](LICENSE). My photo, biographical text, résumé, and learning record are not covered by the license and may not be reused without permission.
 
-[LinkedIn](https://www.linkedin.com/in/achocoza)
+[Résumé](https://agespinoza.github.io/Portafolio/resume.html) · [LinkedIn](https://www.linkedin.com/in/achocoza)

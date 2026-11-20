@@ -7,9 +7,9 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261120c";
-import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261120c";
-import { getContributionCalendar } from "./contributions.js?v=20261120c";
+} from "./i18n.js?v=20261120d";
+import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261120d";
+import { getContributionCalendar } from "./contributions.js?v=20261120d";
 
 function el(tag, attrs, children) {
   var node = document.createElement(tag);

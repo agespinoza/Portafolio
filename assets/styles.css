@@ -177,6 +177,8 @@ p { margin: 0; }
 }
 .profile__name { font-weight: 600; font-size: 18px; letter-spacing: -.01em; }
 .profile__role { font-size: 14px; color: var(--ink-3); }
+.profile__links { margin: 6px 0 0; font-size: 13.5px; font-weight: 600; display: flex; gap: 8px; align-items: center; }
+.profile__links span { color: var(--ink-3); font-weight: 400; }
 .profile__stats { display: grid; grid-template-columns: 1fr 1fr; margin: 0; }
 .profile__stats div { padding: 20px 0; border-bottom: 1px solid var(--line); }
 .profile__stats div:nth-child(odd) { padding-right: 16px; border-right: 1px solid var(--line); }
