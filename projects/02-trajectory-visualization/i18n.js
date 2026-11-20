@@ -1,8 +1,8 @@
 // Language for the console. Follows the portfolio convention (?lang=xx, English by default):
 // shared site strings from assets/i18n.js win, then this page's messages.js, then the English
 // fallback written next to each call.
-import { LANGUAGES, getLanguage, languageFromSearch, localeFor, t } from '../../assets/i18n.js?v=20261119b';
-import { MESSAGES } from './messages.js?v=20261119b';
+import { LANGUAGES, getLanguage, languageFromSearch, localeFor, t } from '../../assets/i18n.js?v=20261120e';
+import { MESSAGES } from './messages.js?v=20261120e';
 
 export { LANGUAGES };
 export const language = getLanguage(languageFromSearch(window.location.search));

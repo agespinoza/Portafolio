@@ -1,8 +1,8 @@
 import {
     COLUMNS, OWNERSHIP, ACTIONS, SYNCED_FIELDS, parseCsv, validate, plan, apply, undo, reconcile, headcountByDepartment,
-} from './engine.js?v=20261119e';
-import { barChart, groupedBars, runLines, runStacks } from './charts.js?v=20261119e';
-import { LANGUAGES, LANGUAGE_NAMES, language, tr, site, num, utcFull, translatePage } from './i18n.js?v=20261119e';
+} from './engine.js?v=20261120e';
+import { barChart, groupedBars, runLines, runStacks } from './charts.js?v=20261120e';
+import { LANGUAGES, LANGUAGE_NAMES, language, tr, site, num, utcFull, translatePage } from './i18n.js?v=20261120e';
 
 const AUDIT_ROWS = 150;
 const GLYPH = { insert: '+', update: '✎', transfer: '⇄', terminate: '−', rehire: '↺', review: '!', unchanged: '=', rejected: '✕', undo: '⟲' };

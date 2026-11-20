@@ -1,7 +1,7 @@
 // D3 renderers. Colors come from CSS custom properties (styles.css); identity is
 // always backed by a symbol or label so color never carries meaning alone.
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
-import { tr, num, duration, utcShort, utcTime, utcHm, utcFull, tickFormat } from './i18n.js?v=20261119b';
+import { tr, num, duration, utcShort, utcTime, utcHm, utcFull, tickFormat } from './i18n.js?v=20261120e';
 
 export const REGIMES = ['LEO', 'HEO', 'GEO'];
 export const REGIME_LABEL = {

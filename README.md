@@ -15,7 +15,7 @@ In Arizona, I worked on mining operations software, mortgage workflow automation
 | Stakeholder requirements and mission operations | [Satellite Operations Console](projects/02-trajectory-visualization/) |
 | Production analytics and MLOps | [Inspection Duration Model Pipeline](projects/16-inspection-model-mlops/) |
 
-The [project roadmap](ROADMAP.md) links all 17 demonstrations and explains how they relate to my experience and training. Each project uses a sample scenario and includes instructions for running or reviewing the demo.
+The [project roadmap](ROADMAP.md) links all 17 demonstrations and explains how they relate to my experience and training. Each project uses a sample scenario and includes instructions for running or reviewing the demo. The [maintenance guide](docs/MAINTENANCE.md) explains how the site is built, translated and published.
 
 ## Continuous learning
 

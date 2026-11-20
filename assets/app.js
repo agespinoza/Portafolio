@@ -7,9 +7,9 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261120d";
-import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261120d";
-import { getContributionCalendar } from "./contributions.js?v=20261120d";
+} from "./i18n.js?v=20261120e";
+import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261120e";
+import { getContributionCalendar } from "./contributions.js?v=20261120e";
 
 function el(tag, attrs, children) {
   var node = document.createElement(tag);
@@ -165,6 +165,12 @@ function renderContributionCalendar(language) {
     { id: "17-copper-mine-operations", title: "Copper Mine Operations Console", area: "analytics", tech: ["Python", "Geostatistics", "Optimization", "Machine learning", "D3.js"], demo: true, applicationStatus: "Live demo on this site",
       text: "Follows a fictional open-pit copper mine from drillhole to copper: kriged resource model, pit optimization, haul fleet, plant recovery model, reconciliation, and assay QA/QC." }
   ];
+
+  /* Project count: computed from PROJECTS, so adding a project updates the hero stat and the intro in every language. */
+  document.querySelectorAll('[data-count="projects"]').forEach(function (n) { n.textContent = String(PROJECTS.length); });
+  var projectsIntro = document.getElementById("projects-intro");
+  if (projectsIntro) projectsIntro.textContent = t(language, "site.projectsIntro",
+    "{n} demonstrations built on simulated data. Each includes source code, sample data, and instructions to run it.", { n: PROJECTS.length });
 
   var AREAS = [
     { id: "all", label: "All" },
