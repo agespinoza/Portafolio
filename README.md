@@ -1,8 +1,23 @@
 # Alicia Espinoza | Software Engineering Portfolio
 
-I’m a software engineer with experience in enterprise applications, data platforms, and automation across Mexico and the United States. I began my career in public-sector IT in Mexicali, developing internal applications and moving into ERP integration and infrastructure management. While teaching at several universities, I designed courses and hands-on labs that helped students apply technical concepts.
+**Software Engineer | Data Platforms & Production AI**  
+She/her | Based in Arizona
 
-In Arizona, I worked on mining operations software, mortgage workflow automation, and vehicle inspection data platforms. I then developed mission operations software at the University of Arizona Space Institute. In March 2026 I returned to mining operations software, where I work with data scientists to turn pipelines into production applications and support cloud analytics platforms.
+---
+
+I'm a software engineer who builds production systems that turn data pipelines and ML models into reliable, operational software. For the past eight years in the United States, I've focused on data platforms that actually work: fleet telemetry systems tracking mining operations, cloud analytics that drive production decisions, inspection workflows that scale, and AI models that stay accurate in production.
+
+**What I do:** I bridge the gap between data science and production. I take research-quality code, version it properly, deploy it safely, and monitor it reliably. I believe the hardest part of AI isn't building a model — it's putting it into production and keeping it working. That's where most teams fail. I make sure they don't.
+
+**My foundation:** I began my career in public-sector IT in Mexicali, then designed technical courses at universities across Mexico and Arizona. That experience taught me how to explain complex systems clearly—something I bring to every production deployment.
+
+**In Arizona, I've built:**
+- **Fleet telemetry systems** that give operations teams real-time visibility into equipment health and location across copper mines
+- **Production analytics platforms** in Power BI and Azure SQL that drive decision-making at operational scale
+- **Inspection data warehouses** processing tens of thousands of records, optimized for query performance and data quality
+- **ML pipelines** that version data, train models, deploy predictions, and monitor drift automatically
+- **Cloud analytics infrastructure** on Azure (Synapse, Data Factory) that scales as data volumes grow
+- **Mission operations software** at University of Arizona Space Institute for trajectory analysis and satellite operations
 
 ## Projects by career stage
 
