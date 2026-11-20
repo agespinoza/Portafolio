@@ -23,7 +23,7 @@ Alongside software development and consulting, I designed engineering and techno
 
 ## Mining systems and mortgage automation (2017–2019)
 
-At MISOM Technologies, I worked on mining operations and business intelligence systems using T-SQL, MDX, and JavaScript. At NOVA Home Loans, I applied those application and data skills to mortgage workflows and ERP improvements.
+In 2017, I worked on mining operations and business intelligence systems using T-SQL, MDX, and JavaScript. I returned to mining operations software in March 2026 (see the current chapter below). At NOVA Home Loans, I applied those application and data skills to mortgage workflows and ERP improvements.
 
 | Skill | Demonstration | Deliverable |
 | --- | --- | --- |
@@ -55,7 +55,7 @@ In freelance work, I gathered stakeholder requirements and coordinated design, t
 
 ## Production analytics and AI platform development (2026–present)
 
-In my current role, I collaborate with data scientists to turn pipelines into production applications and support cloud analytics deployments. MLOps training has extended that work into model evaluation, reproducibility, and versioning.
+Since March 2026, back in mining operations software, I collaborate with data scientists to turn pipelines into production applications and support cloud analytics deployments. MLOps training has extended that work into model evaluation, reproducibility, and versioning.
 
 | Skill | Demonstration | Deliverable |
 | --- | --- | --- |

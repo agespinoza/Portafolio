@@ -2,7 +2,7 @@
 
 I’m a software engineer with experience in enterprise applications, data platforms, and automation across Mexico and the United States. I began my career in public-sector IT in Mexicali, developing internal applications and moving into ERP integration and infrastructure management. While teaching at several universities, I designed courses and hands-on labs that helped students apply technical concepts.
 
-In Arizona, I worked on mining operations software, mortgage workflow automation, and vehicle inspection data platforms. I then developed mission operations software at the University of Arizona Space Institute. In my current role, I work with data scientists to turn pipelines into production applications and support cloud analytics platforms.
+In Arizona, I worked on mining operations software, mortgage workflow automation, and vehicle inspection data platforms. I then developed mission operations software at the University of Arizona Space Institute. In March 2026 I returned to mining operations software, where I work with data scientists to turn pipelines into production applications and support cloud analytics platforms.
 
 ## Projects by career stage
 

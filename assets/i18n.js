@@ -50,10 +50,10 @@ const MESSAGES = {
       experienceIntro: "Seis etapas, desde TI del sector público en Mexicali hasta IA en producción en Arizona. Cada una se acompaña de una demostración ejecutable.",
       handsOn: "Trabajo práctico",
       projectsTitle: "Proyectos seleccionados",
-      projectsIntro: "Dieciséis demostraciones con datos y escenarios simulados. Cada una incluye código fuente, datos de ejemplo e instrucciones.",
+      projectsIntro: "Diecisiete demostraciones con datos y escenarios simulados. Cada una incluye código fuente, datos de ejemplo e instrucciones.",
       applicationsKicker: "Software para explorar",
       applicationsTitle: "Aplicaciones",
-      applicationsIntro: "La consola de operaciones satelitales, la consola de integración RH–ERP y Daily Data Lab funcionan en este sitio. Power BI y las aplicaciones con servidor incluyen código fuente e instrucciones de configuración.",
+      applicationsIntro: "La consola de operaciones satelitales, la consola de integración RH–ERP, la consola de operaciones de la mina de cobre y Daily Data Lab funcionan en este sitio. Power BI y las aplicaciones con servidor incluyen código fuente e instrucciones de configuración.",
       learningKicker: "Aprendizaje continuo",
       learningTitle: "Registro de aprendizaje",
       learningIntro: "Cursos completados en LinkedIn Learning desde 2019, organizados por área y relacionados con los proyectos donde apliqué lo aprendido.",
@@ -324,10 +324,10 @@ const MESSAGES = {
     timeline: [
       { title: "Software público, ERP y operaciones de TI", text: "Creé aplicaciones internas web y de escritorio en Mexicali, administré infraestructura y presupuestos de TI, y desarrollé sistemas ERP y administrativos." },
       { title: "Docencia, aseguramiento de calidad y consultoría", text: "Diseñé cursos de ingeniería y tecnología con prácticas, y apliqué criterios formales de prueba y documentación de defectos como ingeniera de calidad." },
-      { title: "Sistemas mineros y automatización hipotecaria", text: "Trabajé en sistemas de minería e inteligencia de negocios con T-SQL, MDX y JavaScript; después automaticé flujos hipotecarios y mejoras ERP." },
+      { title: "Sistemas mineros y automatización hipotecaria", text: "En 2017 trabajé en sistemas de operaciones mineras e inteligencia de negocios con T-SQL, MDX y JavaScript; después automaticé flujos hipotecarios y mejoras ERP." },
       { title: "Software de inspección vehicular y plataformas de datos", text: "Desarrollé software de inspección, optimicé ETL y SQL, apoyé migraciones de almacenes de datos e implementé integración continua en la nube." },
       { title: "Requisitos de stakeholders y operaciones de misión", text: "Recopilé requisitos y coordiné entregas como consultora; luego automaticé operaciones de misión en el Space Institute de la Universidad de Arizona." },
-      { title: "Analítica de producción y plataformas de IA", text: "Colaboro con científicos de datos para llevar pipelines a aplicaciones de producción y apoyar plataformas analíticas en la nube, con enfoque en MLOps." },
+      { title: "Analítica de producción y plataformas de IA", text: "De vuelta en software de operaciones mineras desde marzo de 2026: colaboro con científicos de datos para llevar pipelines a aplicaciones de producción y apoyar plataformas analíticas en la nube, con enfoque en MLOps." },
     ],
     labDays: {
       "border-wait-times": {
@@ -415,10 +415,10 @@ const MESSAGES = {
       experienceIntro: "メヒカリの公共部門ITからアリゾナの本番AIまで、6つのキャリア段階を実行可能なデモとともに紹介します。",
       handsOn: "実践",
       projectsTitle: "プロジェクト",
-      projectsIntro: "シミュレーションデータとシナリオを用いた16のデモです。それぞれにソースコード、サンプルデータ、実行手順があります。",
+      projectsIntro: "シミュレーションデータとシナリオを用いた17のデモです。それぞれにソースコード、サンプルデータ、実行手順があります。",
       applicationsKicker: "操作できるソフトウェア",
       applicationsTitle: "アプリケーション",
-      applicationsIntro: "衛星運用コンソール、人事–ERP連携コンソール、Daily Data Labはこのサイトで利用できます。Power BIやサーバーが必要なアプリには、ソースコードとセットアップ手順を掲載しています。",
+      applicationsIntro: "衛星運用コンソール、人事–ERP連携コンソール、銅鉱山オペレーションコンソール、Daily Data Labはこのサイトで利用できます。Power BIやサーバーが必要なアプリには、ソースコードとセットアップ手順を掲載しています。",
       learningKicker: "継続的な学習",
       learningTitle: "学習記録",
       learningIntro: "2019年以降にLinkedIn Learningで修了したコースを分野別に整理し、学びを活用したプロジェクトと関連付けています。",
@@ -689,10 +689,10 @@ const MESSAGES = {
     timeline: [
       { title: "公共向けソフトウェア、ERP、IT運用", text: "メヒカリで社内Web・デスクトップアプリを開発し、ITインフラと予算を管理し、ERPや管理システムを構築しました。" },
       { title: "教育、品質保証、コンサルティング", text: "実習を含む工学・技術講座を設計し、品質エンジニアとして正式なテスト基準と不具合記録を適用しました。" },
-      { title: "鉱業システムと住宅ローン自動化", text: "T-SQL、MDX、JavaScriptを使った鉱業システムとBIに携わり、その後、住宅ローン業務とERP改善を自動化しました。" },
+      { title: "鉱業システムと住宅ローン自動化", text: "2017年にT-SQL、MDX、JavaScriptを使った鉱業操業システムとBIに携わり、その後、住宅ローン業務とERP改善を自動化しました。" },
       { title: "車両検査ソフトウェアとデータ基盤", text: "検査ソフトウェアを開発し、ETLとSQLを最適化し、データウェアハウス移行とクラウドCIを支援しました。" },
       { title: "ステークホルダー要件とミッション運用", text: "コンサルタントとして要件収集とデリバリーを調整し、その後アリゾナ大学Space Instituteのミッション運用を自動化しました。" },
-      { title: "本番分析・AIプラットフォーム", text: "データサイエンティストと協力してパイプラインを本番アプリケーションへ展開し、MLOpsを中心にクラウド分析を支援しています。" },
+      { title: "本番分析・AIプラットフォーム", text: "2026年3月から再び鉱業操業ソフトウェアに携わり、データサイエンティストと協力してパイプラインを本番アプリケーションへ展開し、MLOpsを中心にクラウド分析を支援しています。" },
     ],
     labDays: {
       "border-wait-times": {
@@ -780,10 +780,10 @@ const MESSAGES = {
       experienceIntro: "Sei tappe, dall'IT del settore pubblico a Mexicali all'IA in produzione in Arizona, ognuna accompagnata da una dimostrazione eseguibile.",
       handsOn: "Esperienza pratica",
       projectsTitle: "Progetti selezionati",
-      projectsIntro: "Sedici dimostrazioni con dati e scenari simulati. Ognuna include codice sorgente, dati di esempio e istruzioni.",
+      projectsIntro: "Diciassette dimostrazioni con dati e scenari simulati. Ognuna include codice sorgente, dati di esempio e istruzioni.",
       applicationsKicker: "Software da esplorare",
       applicationsTitle: "Applicazioni",
-      applicationsIntro: "La console operativa satellitare, la console di integrazione HR–ERP e Daily Data Lab sono disponibili su questo sito. Power BI e le applicazioni server includono codice sorgente e istruzioni di configurazione.",
+      applicationsIntro: "La console operativa satellitare, la console di integrazione HR–ERP, la console operativa della miniera di rame e Daily Data Lab sono disponibili su questo sito. Power BI e le applicazioni server includono codice sorgente e istruzioni di configurazione.",
       learningKicker: "Apprendimento continuo",
       learningTitle: "Registro formativo",
       learningIntro: "Corsi completati su LinkedIn Learning dal 2019, organizzati per competenza e collegati ai progetti in cui ho applicato quanto appreso.",
@@ -1054,10 +1054,10 @@ const MESSAGES = {
     timeline: [
       { title: "Software pubblico, ERP e operazioni IT", text: "Ho sviluppato applicazioni web e desktop interne a Mexicali, gestito infrastrutture e budget IT e realizzato sistemi ERP e amministrativi." },
       { title: "Insegnamento, controllo qualità e consulenza", text: "Ho progettato corsi di ingegneria e tecnologia con laboratori pratici e applicato criteri formali di test e documentazione dei difetti come ingegnera QA." },
-      { title: "Sistemi minerari e automazione dei mutui", text: "Ho lavorato su sistemi minerari e BI con T-SQL, MDX e JavaScript, quindi ho automatizzato flussi di mutuo e miglioramenti ERP." },
+      { title: "Sistemi minerari e automazione dei mutui", text: "Nel 2017 ho lavorato su sistemi per operazioni minerarie e BI con T-SQL, MDX e JavaScript, quindi ho automatizzato flussi di mutuo e miglioramenti ERP." },
       { title: "Software per ispezioni veicolari e piattaforme dati", text: "Ho sviluppato software di ispezione, ottimizzato ETL e SQL, supportato migrazioni di warehouse e implementato CI cloud." },
       { title: "Requisiti degli stakeholder e operazioni di missione", text: "Ho raccolto requisiti e coordinato consegne come consulente, poi ho automatizzato le operazioni di missione allo Space Institute dell'Università dell'Arizona." },
-      { title: "Analisi di produzione e piattaforme IA", text: "Collaboro con data scientist per portare pipeline in applicazioni di produzione e supportare piattaforme analitiche cloud, con focus su MLOps." },
+      { title: "Analisi di produzione e piattaforme IA", text: "Di nuovo nel software per operazioni minerarie da marzo 2026: collaboro con data scientist per portare pipeline in applicazioni di produzione e supportare piattaforme analitiche cloud, con focus su MLOps." },
     ],
     labDays: {
       "border-wait-times": {
@@ -1145,10 +1145,10 @@ const MESSAGES = {
       experienceIntro: "Six étapes, de l'informatique publique à Mexicali à l'IA en production en Arizona, chacune accompagnée d'une démonstration exécutable.",
       handsOn: "Réalisations",
       projectsTitle: "Projets sélectionnés",
-      projectsIntro: "Seize démonstrations fondées sur des données et scénarios simulés. Chacune inclut le code source, des données d'exemple et des instructions.",
+      projectsIntro: "Dix-sept démonstrations fondées sur des données et scénarios simulés. Chacune inclut le code source, des données d'exemple et des instructions.",
       applicationsKicker: "Logiciels à découvrir",
       applicationsTitle: "Applications",
-      applicationsIntro: "La console d'opérations satellites, la console d'intégration RH–ERP et Daily Data Lab fonctionnent sur ce site. Power BI et les applications avec serveur incluent le code source et les instructions de configuration.",
+      applicationsIntro: "La console d'opérations satellites, la console d'intégration RH–ERP, la console d'exploitation de la mine de cuivre et Daily Data Lab fonctionnent sur ce site. Power BI et les applications avec serveur incluent le code source et les instructions de configuration.",
       learningKicker: "Apprentissage continu",
       learningTitle: "Parcours de formation",
       learningIntro: "Cours suivis sur LinkedIn Learning depuis 2019, organisés par compétence et reliés aux projets où j'ai appliqué ces acquis.",
@@ -1419,10 +1419,10 @@ const MESSAGES = {
     timeline: [
       { title: "Logiciels publics, ERP et opérations informatiques", text: "J'ai créé des applications web et de bureau internes à Mexicali, géré l'infrastructure et les budgets informatiques, et développé des systèmes ERP et administratifs." },
       { title: "Enseignement, assurance qualité et conseil", text: "J'ai conçu des cours d'ingénierie et de technologie avec travaux pratiques, puis appliqué des critères de test formels et la documentation des défauts en qualité logicielle." },
-      { title: "Systèmes miniers et automatisation hypothécaire", text: "J'ai travaillé sur des systèmes miniers et décisionnels avec T-SQL, MDX et JavaScript, puis automatisé des processus de prêt et des améliorations ERP." },
+      { title: "Systèmes miniers et automatisation hypothécaire", text: "En 2017, j'ai travaillé sur des systèmes d'exploitation minière et décisionnels avec T-SQL, MDX et JavaScript, puis automatisé des processus de prêt et des améliorations ERP." },
       { title: "Logiciels d'inspection automobile et plateformes de données", text: "J'ai développé des logiciels d'inspection, optimisé ETL et SQL, contribué aux migrations d'entrepôts et déployé l'intégration continue cloud." },
       { title: "Besoins des parties prenantes et opérations de mission", text: "J'ai recueilli les besoins et coordonné les livraisons comme consultante, puis automatisé des opérations de mission au Space Institute de l'Université de l'Arizona." },
-      { title: "Analytique de production et plateformes IA", text: "Je collabore avec des scientifiques des données pour déployer des pipelines en production et soutenir des plateformes analytiques cloud, avec un focus MLOps." },
+      { title: "Analytique de production et plateformes IA", text: "De retour dans les logiciels d'exploitation minière depuis mars 2026 : je collabore avec des scientifiques des données pour déployer des pipelines en production et soutenir des plateformes analytiques cloud, avec un focus MLOps." },
     ],
     labDays: {
       "border-wait-times": {

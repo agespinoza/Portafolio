@@ -263,7 +263,7 @@ export const MESSAGES = {
         "method.collars": "Collares de barrenos (CSV)",
         "method.assays": "Ensayes (CSV)",
         "method.plant": "Datos diarios de planta (CSV)",
-        "footer.data": "Mina ficticia, datos ficticios. No es un reporte público de recursos ni reservas.",
+        "footer.data": "Mina ficticia, datos ficticios. Proyecto personal, sin relación con ningún empleador. No es un reporte público de recursos ni reservas.",
         "error.load": "No se pudieron cargar los datos de la mina: {m}",
     },
     ja: {
@@ -528,7 +528,7 @@ export const MESSAGES = {
         "method.collars": "ボーリング孔口 (CSV)",
         "method.assays": "分析値 (CSV)",
         "method.plant": "選鉱場の日次データ (CSV)",
-        "footer.data": "架空の鉱山、架空のデータ。資源量・埋蔵量の公開報告ではありません。",
+        "footer.data": "架空の鉱山、架空のデータ。個人プロジェクトであり、いかなる雇用主とも関係ありません。資源量・埋蔵量の公開報告ではありません。",
         "error.load": "鉱山データを読み込めませんでした：{m}",
     },
     it: {
@@ -793,7 +793,7 @@ export const MESSAGES = {
         "method.collars": "Teste dei sondaggi (CSV)",
         "method.assays": "Analisi (CSV)",
         "method.plant": "Dati giornalieri dell'impianto (CSV)",
-        "footer.data": "Miniera immaginaria, dati immaginari. Non è un rapporto pubblico di risorse o riserve.",
+        "footer.data": "Miniera immaginaria, dati immaginari. Progetto personale, senza legami con alcun datore di lavoro. Non è un rapporto pubblico di risorse o riserve.",
         "error.load": "Impossibile caricare i dati della miniera: {m}",
     },
     fr: {
@@ -1058,7 +1058,7 @@ export const MESSAGES = {
         "method.collars": "Têtes de sondage (CSV)",
         "method.assays": "Analyses (CSV)",
         "method.plant": "Données quotidiennes de l'usine (CSV)",
-        "footer.data": "Mine fictive, données fictives. Ce n'est pas un rapport public de ressources ou de réserves.",
+        "footer.data": "Mine fictive, données fictives. Projet personnel, sans lien avec un employeur. Ce n'est pas un rapport public de ressources ou de réserves.",
         "error.load": "Impossible de charger les données de la mine : {m}",
     },
 };

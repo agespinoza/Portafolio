@@ -7,9 +7,9 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261120b";
-import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261120b";
-import { getContributionCalendar } from "./contributions.js?v=20261120b";
+} from "./i18n.js?v=20261120c";
+import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261120c";
+import { getContributionCalendar } from "./contributions.js?v=20261120c";
 
 function el(tag, attrs, children) {
   var node = document.createElement(tag);
@@ -184,7 +184,7 @@ function renderContributionCalendar(language) {
       text: "Designed engineering and technology courses with hands-on labs, and applied formal test criteria and defect documentation as a quality engineer.",
       projects: ["15-excel-data-cleaning-lesson", "11-inspection-workflow-qa"] },
     { years: "2017 – 2019", title: "Mining systems & mortgage automation",
-      text: "Worked on mining operations and business intelligence systems with T-SQL, MDX, and JavaScript, then automated mortgage workflows and ERP improvements.",
+      text: "In 2017, worked on mining operations and business intelligence systems with T-SQL, MDX, and JavaScript, then automated mortgage workflows and ERP improvements.",
       projects: ["17-copper-mine-operations", "08-mortgage-workflow-automation"] },
     { years: "2019 – 2023", title: "Vehicle inspection software & data platforms",
       text: "Developed inspection software, tuned ETL and SQL performance, supported warehouse migrations, and implemented cloud-based continuous integration.",
@@ -193,8 +193,8 @@ function renderContributionCalendar(language) {
       text: "Gathered requirements and coordinated delivery as a consultant, then automated mission operations at the University of Arizona Space Institute.",
       projects: ["14-inspection-project-coordination", "01-trajectory-etl", "02-trajectory-visualization", "07-inspection-status-api"] },
     { years: "2026 – Present", title: "Production analytics & AI platforms",
-      text: "Partnering with data scientists to turn pipelines into production applications and supporting cloud analytics platforms, with a focus on MLOps.",
-      projects: ["16-inspection-model-mlops"] }
+      text: "Back in mining operations software since March 2026, partnering with data scientists to turn pipelines into production applications and supporting cloud analytics platforms, with a focus on MLOps.",
+      projects: ["17-copper-mine-operations", "16-inspection-model-mlops"] }
   ];
 
   var byId = {};

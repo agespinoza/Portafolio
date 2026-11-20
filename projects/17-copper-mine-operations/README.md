@@ -4,7 +4,7 @@ Cerro Alto is a fictional open-pit porphyry copper mine, followed from the first
 
 ## Career context
 
-In 2017 I worked on mining operations and business intelligence systems in Arizona (and I went back this march 2026 until today), using T-SQL, MDX and JavaScript. This project rebuilds that domain from first principles: the geology, mine-planning and metallurgy decisions behind the dashboards, and the data-science methods that make them trustworthy.
+I first worked on mining operations and business intelligence systems in Arizona in 2017, using T-SQL, MDX and JavaScript, and I returned to mining operations software in March 2026. This project rebuilds that domain from first principles: the geology, mine-planning and metallurgy decisions behind the dashboards, and the data-science methods that make them trustworthy.
 
 ## What it shows
 
@@ -80,4 +80,4 @@ python3 -m unittest discover -s projects/17-copper-mine-operations/tests
 node --test projects/17-copper-mine-operations/mine.test.mjs       # Node 20 or later
 ```
 
-*Fictional mine, fictional data. This is not a public resource or reserve report under JORC, NI 43-101 or S-K 1300.*
+*Fictional mine, fictional data. This is a personal project: it is not affiliated with any employer and uses none of their data or code. It is not a public resource or reserve report under JORC, NI 43-101 or S-K 1300.*
