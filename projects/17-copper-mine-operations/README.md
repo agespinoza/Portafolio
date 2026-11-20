@@ -4,7 +4,7 @@ Cerro Alto is a fictional open-pit porphyry copper mine, followed from the first
 
 ## Career context
 
-From 2017 to 2019 I worked on mining operations and business intelligence systems in Arizona, using T-SQL, MDX and JavaScript. This project rebuilds that domain from first principles: the geology, mine-planning and metallurgy decisions behind the dashboards, and the data-science methods that make them trustworthy.
+In 2017 I worked on mining operations and business intelligence systems in Arizona (and I went back this march 2026 until today), using T-SQL, MDX and JavaScript. This project rebuilds that domain from first principles: the geology, mine-planning and metallurgy decisions behind the dashboards, and the data-science methods that make them trustworthy.
 
 ## What it shows
 
