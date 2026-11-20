@@ -6,6 +6,7 @@ One small, interactive data visualization a day, each on a different everyday to
 | --- | --- | --- | --- |
 | 001 | Mobility | [When is the best time to cross from Mexicali?](https://agespinoza.github.io/Portafolio/lab/#/day/1) | U.S. Customs and Border Protection, [Border Wait Times](https://bwt.cbp.gov/) |
 | 002 | Nature | [Where do New Zealand's glowworms shine?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/2) | [GBIF.org](https://www.gbif.org/species/1564326) occurrences and [Open-Meteo](https://open-meteo.com/) weather |
+| 003 | Atmosphere | [Where and when do light pillars appear?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/3) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/Category:Halo_phenomena) photos, [ERA5](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels) weather via [Open-Meteo](https://open-meteo.com/), and [Natural Earth](https://www.naturalearthdata.com/) |
 
 ## Day 001: When is the best time to cross from Mexicali?
 
@@ -30,6 +31,19 @@ The page maps every georeferenced public record of the Waitomo glowworm (*Arachn
 
 You can filter by island, period, and month. Full GBIF records are large (about 2 MB per page), so the map uses the saved snapshot in [`src/days/day-002-glowworms/snapshot.json`](src/days/day-002-glowworms/snapshot.json), and the page checks GBIF's live record count. The climate averages load live from Open-Meteo and fall back to the snapshot. The coastline comes from Natural Earth and is saved in `nz-outline.json`.
 
+## Day 003: Where and when do light pillars appear?
+
+This day is a small observatory of ice-crystal optics from 2000 to 2026. It is the first day written in TypeScript (`.tsx`).
+
+- **Catalog:** 931 dated photographs of light pillars, sun pillars, moon pillars, parhelia (sun dogs), 22° halos, and circumzenithal arcs from Wikimedia Commons categories. Each record keeps its author, license, and link, plus an evidence level (A: camera position and time; B: a place only; C: a date only). Missing values stay empty; they are never set to zero.
+- **World map:** an Equal Earth projection with the 197 located photos. Click a point to see the photo, its credit, and the ERA5 weather at that hour.
+- **Timeline:** photos by year and by month for each hemisphere, plus the share of photos that are pillars with 95% Wilson intervals. Comparing shares corrects for who photographs the sky, and when.
+- **Weather panel:** ERA5 temperature, humidity, wind, cloud, and the computed Sun elevation for each phenomenon, with physical limits drawn as reference lines and an ice-saturation curve on the scatter.
+- **3-D simulator:** a hand-drawn canvas scene of hexagonal plate crystals, with a rendered observer's view. You can change the light source, crystal tilt and its distribution, observer position, crystal layer, and visibility. The model is single specular reflection with Fresnel reflectance and Beer–Lambert extinction, and it is labeled as an illustration.
+- **Comparator, research questions, downloads:** compare 2–4 regions; read eight research questions, each tagged by where its answer comes from; and download the filtered catalog as CSV, GeoJSON, or JSON.
+
+The catalog is a saved snapshot in [`src/days/day-003-light-pillars/catalog.json`](src/days/day-003-light-pillars/catalog.json). Refreshing it takes a few minutes, because Commons rate-limits requests and Open-Meteo is queried once per located photo.
+
 ## Languages and publication calendar
 
 The portfolio and Daily Data Lab can be switched manually between English, Spanish, Japanese, Italian, and French. English is the default; the selected language is shared through the `lang` URL parameter. The contribution-style calendar shows published days from the last 12 months and links each marked date to its visualization. Publication metadata is maintained once in [`../assets/daily-data-lab-days.js`](../assets/daily-data-lab-days.js) and used by both the portfolio and this app.
@@ -44,7 +58,11 @@ npm run dev        # development server at http://localhost:5173
 npm run build      # builds into ../lab for GitHub Pages
 npm run snapshot   # refreshes the saved CBP data (Day 001)
 npm run snapshot:glowworms   # refreshes GBIF records, climate, and the NZ outline (Day 002)
+npm run snapshot:pillars     # rebuilds the Commons catalog, ERA5 weather, and world outline (Day 003)
+npm run typecheck            # checks the TypeScript days (the build runs it too)
 ```
+
+New days can be written in TypeScript (`.tsx`); `tsconfig.json` allows the older `.jsx` days to keep working.
 
 ## Add a new day
 

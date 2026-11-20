@@ -337,6 +337,11 @@ const MESSAGES = {
         summary: "Registros públicos de la luciérnaga de Waitomo en un mapa nocturno de Nueva Zelanda, junto con el clima exterior de las cuevas.",
         topic: "Naturaleza",
       },
+      "light-pillars": {
+        title: "¿Dónde y cuándo aparecen los pilares de luz?",
+        summary: "Un atlas de pilares de luz, parhelios y halos de hielo fotografiados entre 2000 y 2026, con el clima de cada momento y un simulador 3D de los cristales de hielo que convierten una luz en columna.",
+        topic: "Atmósfera",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -693,6 +698,11 @@ const MESSAGES = {
         title: "ニュージーランドのツチボタルはどこで光る？",
         summary: "Waitomoのツチボタルの公開記録をニュージーランドの夜空マップに表示し、洞窟の外の天候と比較します。",
         topic: "自然",
+      },
+      "light-pillars": {
+        title: "光柱はいつ、どこに現れる？",
+        summary: "2000〜2026年に撮影された光柱、幻日、氷晶ハロのアトラス。各瞬間の気象と、光を柱に変える氷晶の3Dシミュレーターつき。",
+        topic: "大気",
       },
     },
     lab: {
@@ -1051,6 +1061,11 @@ const MESSAGES = {
         summary: "Segnalazioni pubbliche della lucciola di Waitomo su una mappa notturna della Nuova Zelanda, insieme al meteo fuori dalle grotte.",
         topic: "Natura",
       },
+      "light-pillars": {
+        title: "Dove e quando compaiono le colonne di luce?",
+        summary: "Un atlante di colonne di luce, pareli e aloni di ghiaccio fotografati dal 2000 al 2026, con il meteo di ogni momento e un simulatore 3D dei cristalli di ghiaccio che trasformano una luce in una colonna.",
+        topic: "Atmosfera",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -1407,6 +1422,11 @@ const MESSAGES = {
         title: "Où brillent les vers luisants de Nouvelle-Zélande ?",
         summary: "Observations publiques du ver luisant de Waitomo sur une carte nocturne de Nouvelle-Zélande, avec la météo à l'extérieur des grottes.",
         topic: "Nature",
+      },
+      "light-pillars": {
+        title: "Où et quand apparaissent les piliers lumineux ?",
+        summary: "Un atlas des piliers lumineux, parhélies et halos de glace photographiés de 2000 à 2026, avec la météo de chaque instant et un simulateur 3D des cristaux de glace qui changent une lumière en colonne.",
+        topic: "Atmosphère",
       },
     },
     lab: {

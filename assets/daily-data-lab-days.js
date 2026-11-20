@@ -21,4 +21,15 @@ export const DAILY_DATA_LAB_DAYS = [
     tags: ["React", "SVG map", "GBIF", "Open-Meteo"],
     source: "GBIF.org and Open-Meteo",
   },
+  {
+    day: 3,
+    slug: "light-pillars",
+    date: "2026-11-20",
+    title: "Where and when do light pillars appear?",
+    summary:
+      "An atlas of photographed light pillars, sun dogs, and ice halos from 2000 to 2026, with the weather at each moment and a 3-D simulator of the ice crystals that turn a light into a column.",
+    topic: "Atmosphere",
+    tags: ["React", "TypeScript", "Canvas 3-D", "Wikimedia Commons", "ERA5"],
+    source: "Wikimedia Commons and Open-Meteo (ERA5)",
+  },
 ];

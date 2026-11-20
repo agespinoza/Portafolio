@@ -8,7 +8,7 @@ This folder is Alicia's Daily Data Lab: one small, interactive React visualizati
 - She is still learning the tools, so give clear step-by-step instructions for anything she has to do herself, such as pushing changes or using Safari or GitHub Desktop.
 
 ## Adding a day
-1. Create `src/days/day-NNN-<slug>/` with a component such as `Day.jsx`, plus `api.js` when the day fetches data.
+1. Create `src/days/day-NNN-<slug>/` with a component such as `Day.tsx`, plus `api.ts` when the day fetches data. Alicia prefers TypeScript (`.tsx`) from Day 003 on; Days 001–002 are still `.jsx`. `npm run build` runs `tsc --noEmit` first.
 2. Register the day in `src/days/index.js` with `day`, `slug`, `date` (YYYY-MM-DD), `title` (a question works well), `summary`, `topic`, `tags`, `source`, and `component`.
 3. If the source API can fail, bundle a small JSON snapshot in the day folder and import it, so the page still works offline. Add a refresh script in `scripts/` when it helps. Day 001 shows the pattern in `api.js` and `scripts/snapshot.mjs`.
 4. Run `npm run build`. The build writes to `../lab/`, and both `daily-data-lab/` and `lab/` must be committed.
