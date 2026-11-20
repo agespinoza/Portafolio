@@ -7,9 +7,9 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261120a";
-import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261120a";
-import { getContributionCalendar } from "./contributions.js?v=20261120a";
+} from "./i18n.js?v=20261120b";
+import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261120b";
+import { getContributionCalendar } from "./contributions.js?v=20261120b";
 
 function el(tag, attrs, children) {
   var node = document.createElement(tag);
@@ -161,7 +161,9 @@ function renderContributionCalendar(language) {
     { id: "15-excel-data-cleaning-lesson", title: "Excel Data Cleaning Lesson", area: "delivery", tech: ["Excel", "Instructional design"],
       text: "A guided lesson, practice workbook, and rubric for cleaning and summarizing inspection data." },
     { id: "16-inspection-model-mlops", title: "Inspection Duration Model Pipeline", area: "ai", tech: ["Python", "MLOps", "Model evaluation"],
-      text: "Trains, evaluates, and versions a small regression model against a baseline with a fixed holdout." }
+      text: "Trains, evaluates, and versions a small regression model against a baseline with a fixed holdout." },
+    { id: "17-copper-mine-operations", title: "Copper Mine Operations Console", area: "analytics", tech: ["Python", "Geostatistics", "Optimization", "Machine learning", "D3.js"], demo: true, applicationStatus: "Live demo on this site",
+      text: "Follows a fictional open-pit copper mine from drillhole to copper: kriged resource model, pit optimization, haul fleet, plant recovery model, reconciliation, and assay QA/QC." }
   ];
 
   var AREAS = [
@@ -183,7 +185,7 @@ function renderContributionCalendar(language) {
       projects: ["15-excel-data-cleaning-lesson", "11-inspection-workflow-qa"] },
     { years: "2017 – 2019", title: "Mining systems & mortgage automation",
       text: "Worked on mining operations and business intelligence systems with T-SQL, MDX, and JavaScript, then automated mortgage workflows and ERP improvements.",
-      projects: ["08-mortgage-workflow-automation"] },
+      projects: ["17-copper-mine-operations", "08-mortgage-workflow-automation"] },
     { years: "2019 – 2023", title: "Vehicle inspection software & data platforms",
       text: "Developed inspection software, tuned ETL and SQL performance, supported warehouse migrations, and implemented cloud-based continuous integration.",
       projects: ["03-inspection-sql-performance", "04-inspection-warehouse-migration", "05-inspection-power-bi", "06-inspection-statistics-r", "12-azure-devops-ci"] },
@@ -272,6 +274,7 @@ function renderContributionCalendar(language) {
     "07-inspection-status-api": ["site.statusJakarta", "Requires a Jakarta EE 10 server"],
     "08-mortgage-workflow-automation": ["site.statusDotnet", "Requires .NET 8"],
     "09-employee-erp-integration": ["site.statusLiveDemo", "Live demo on this site"],
+    "17-copper-mine-operations": ["site.statusLiveDemo", "Live demo on this site"],
     "10-internal-request-tracker": ["site.statusPhp", "Requires PHP 8.1 and SQLite"],
     "daily-data-lab": ["site.statusLiveApp", "Live app on this site"]
   };

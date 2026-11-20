@@ -10,12 +10,12 @@ In Arizona, I worked on mining operations software, mortgage workflow automation
 | --- | --- |
 | Public-sector software and IT operations | [HR–ERP Integration Console](projects/09-employee-erp-integration/) |
 | Teaching and quality assurance | [Excel Data Cleaning Lesson](projects/15-excel-data-cleaning-lesson/) |
-| Mining systems and mortgage automation | [Mortgage Workflow Automation](projects/08-mortgage-workflow-automation/) |
+| Mining systems and mortgage automation | [Copper Mine Operations Console](projects/17-copper-mine-operations/) |
 | Vehicle inspection software and data platforms | [Inspection Warehouse Migration](projects/04-inspection-warehouse-migration/) |
 | Stakeholder requirements and mission operations | [Satellite Operations Console](projects/02-trajectory-visualization/) |
 | Production analytics and MLOps | [Inspection Duration Model Pipeline](projects/16-inspection-model-mlops/) |
 
-The [project roadmap](ROADMAP.md) links all 16 demonstrations and explains how they relate to my experience and training. Each project uses a sample scenario and includes instructions for running or reviewing the demo.
+The [project roadmap](ROADMAP.md) links all 17 demonstrations and explains how they relate to my experience and training. Each project uses a sample scenario and includes instructions for running or reviewing the demo.
 
 ## Continuous learning
 

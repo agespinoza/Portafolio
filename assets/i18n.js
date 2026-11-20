@@ -319,6 +319,7 @@ const MESSAGES = {
       "14-inspection-project-coordination": { title: "Plan de entrega de funciones de inspección", text: "Convierte una solicitud en alcance, criterios de aceptación, tareas y un tablero Kanban de ejemplo." },
       "15-excel-data-cleaning-lesson": { title: "Lección de limpieza de datos en Excel", text: "Lección guiada, libro de práctica y rúbrica para limpiar y resumir datos de inspección." },
       "16-inspection-model-mlops": { title: "Pipeline de modelo de duración de inspección", text: "Entrena, evalúa y versiona un modelo de regresión pequeño frente a una línea base y una partición de prueba fija." },
+      "17-copper-mine-operations": { title: "Consola de operaciones de una mina de cobre", text: "Sigue una mina de cobre a cielo abierto ficticia del barreno al cobre: modelo de recursos por kriging, optimización del pit, flota de acarreo, modelo de recuperación de planta, reconciliación y QA/QC de ensayes." },
     },
     timeline: [
       { title: "Software público, ERP y operaciones de TI", text: "Creé aplicaciones internas web y de escritorio en Mexicali, administré infraestructura y presupuestos de TI, y desarrollé sistemas ERP y administrativos." },
@@ -683,6 +684,7 @@ const MESSAGES = {
       "14-inspection-project-coordination": { title: "検査機能のデリバリー計画", text: "機能要望をスコープ、受け入れ基準、タスク、サンプルKanbanボードへ整理します。" },
       "15-excel-data-cleaning-lesson": { title: "Excelデータクリーニング講座", text: "検査データの整理と集計を学ぶレッスン、練習用ブック、評価基準です。" },
       "16-inspection-model-mlops": { title: "検査時間モデルのパイプライン", text: "固定ホールドアウトでベースラインと比較し、小規模な回帰モデルを学習・評価・バージョン管理します。" },
+      "17-copper-mine-operations": { title: "銅鉱山オペレーションコンソール", text: "架空の露天掘り銅鉱山をボーリングから銅まで追跡：クリギングによる資源モデル、ピット最適化、運搬フリート、選鉱回収率モデル、リコンシリエーション、分析のQA/QC。" },
     },
     timeline: [
       { title: "公共向けソフトウェア、ERP、IT運用", text: "メヒカリで社内Web・デスクトップアプリを開発し、ITインフラと予算を管理し、ERPや管理システムを構築しました。" },
@@ -1047,6 +1049,7 @@ const MESSAGES = {
       "14-inspection-project-coordination": { title: "Piano di consegna delle funzionalità di ispezione", text: "Trasforma una richiesta in ambito, criteri di accettazione, attività e una bacheca Kanban di esempio." },
       "15-excel-data-cleaning-lesson": { title: "Lezione di pulizia dati in Excel", text: "Lezione guidata, workbook di esercitazione e rubrica per pulire e riepilogare dati di ispezione." },
       "16-inspection-model-mlops": { title: "Pipeline del modello di durata ispezioni", text: "Addestra, valuta e versiona un piccolo modello di regressione rispetto a una baseline con holdout fisso." },
+      "17-copper-mine-operations": { title: "Console operativa di una miniera di rame", text: "Segue una miniera di rame a cielo aperto immaginaria dal sondaggio al rame: modello delle risorse con kriging, ottimizzazione della cava, flotta di trasporto, modello di recupero dell'impianto, riconciliazione e QA/QC delle analisi." },
     },
     timeline: [
       { title: "Software pubblico, ERP e operazioni IT", text: "Ho sviluppato applicazioni web e desktop interne a Mexicali, gestito infrastrutture e budget IT e realizzato sistemi ERP e amministrativi." },
@@ -1411,6 +1414,7 @@ const MESSAGES = {
       "14-inspection-project-coordination": { title: "Plan de livraison de fonctionnalités d'inspection", text: "Transforme une demande en périmètre, critères d'acceptation, tâches et tableau Kanban d'exemple." },
       "15-excel-data-cleaning-lesson": { title: "Cours de nettoyage de données avec Excel", text: "Cours guidé, classeur d'exercices et grille d'évaluation pour nettoyer et résumer des données d'inspection." },
       "16-inspection-model-mlops": { title: "Pipeline de modèle de durée d'inspection", text: "Entraîne, évalue et versionne un petit modèle de régression face à une référence avec un jeu de test fixe." },
+      "17-copper-mine-operations": { title: "Console d'exploitation d'une mine de cuivre", text: "Suit une mine de cuivre à ciel ouvert fictive du sondage au cuivre : modèle de ressources krigé, optimisation de la fosse, flotte de roulage, modèle de récupération de l'usine, réconciliation et QA/QC des analyses." },
     },
     timeline: [
       { title: "Logiciels publics, ERP et opérations informatiques", text: "J'ai créé des applications web et de bureau internes à Mexicali, géré l'infrastructure et les budgets informatiques, et développé des systèmes ERP et administratifs." },

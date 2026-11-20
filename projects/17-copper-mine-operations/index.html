@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Copper Mine Operations Console | Alicia Espinoza</title>
+<meta name="description" content="A fictional open-pit copper mine from drillhole to copper: geostatistical resource model, pit optimisation, haul fleet, plant recovery model, reconciliation and assay QA/QC.">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1424'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23f4efe6' text-anchor='middle'%3EAE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261120b">
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="site:site.skip">Skip to content</a>
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="../../index.html" data-portfolio-link aria-label="Alicia Espinoza, back to the portfolio" data-i18n-aria="nav.brand">
+      <span class="brand__mark" aria-hidden="true">AE</span>
+      <span class="brand__name">Alicia Espinoza</span>
+    </a>
+    <nav aria-label="Primary" data-i18n-aria="site:nav.primary">
+      <ul class="nav__links" id="primary-links">
+        <li><a href="../../index.html#experience" data-portfolio-link data-i18n="site:nav.experience">Experience</a></li>
+        <li><a href="../../index.html#projects" data-portfolio-link data-i18n="site:nav.projects">Projects</a></li>
+        <li><a href="../../index.html#applications" data-portfolio-link data-i18n="site:nav.applications">Applications</a></li>
+        <li><a href="../../index.html#learning" data-portfolio-link data-i18n="site:nav.learning">Learning</a></li>
+        <li><a href="../../lab/index.html" data-portfolio-link data-i18n="site:nav.lab">Data Lab</a></li>
+        <li><a href="../../index.html#contact" class="nav__cta" data-portfolio-link data-i18n="site:nav.contact">Get in touch</a></li>
+        <li class="nav__language">
+          <label class="visually-hidden" for="language-select" data-i18n="site:nav.language">Language</label>
+          <select id="language-select" class="language-select"></select>
+        </li>
+      </ul>
+    </nav>
+    <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links">
+      <span class="nav__toggle-label" data-i18n="site:nav.menu">Menu</span>
+      <span class="nav__toggle-icon" aria-hidden="true">☰</span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero wrap">
+  <p class="breadcrumb"><a href="../../index.html#applications" data-portfolio-link data-i18n="hero.back">← Applications</a></p>
+  <p class="kicker"><span data-i18n="hero.kicker">Mining engineering × data science</span> <span data-i18n="hero.kickerRest">Cerro Alto, a fictional porphyry copper mine</span></p>
+  <h1><span data-i18n="hero.title">From drillhole</span> <em data-i18n="hero.titleEm">to copper.</em></h1>
+  <p class="lead" data-i18n="hero.lead">One fictional open-pit mine followed end to end: drilling and assay QA/QC, a geostatistical resource model, pit optimisation, a year of haul-fleet and plant data, a recovery model and the monthly reconciliation that tells the mine whether its model can be trusted.</p>
+  <div class="kpis" id="kpis"></div>
+</section>
+
+<section class="controls" aria-label="Scenario" data-i18n-aria="controls.aria">
+  <div class="wrap controls__inner">
+    <label class="field field--range"><span><span data-i18n="controls.price">Copper price</span> · <output id="price-out">—</output></span>
+      <input type="range" id="price" min="0" max="10" step="1" value="6">
+    </label>
+    <div class="control-readout" id="price-readout" role="status"></div>
+  </div>
+</section>
+
+<div class="wrap console">
+  <section class="panel panel--wide" aria-labelledby="geo-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>01</span> <span data-i18n="geo.kicker">Geology & block model</span></p>
+        <h2 id="geo-title" data-i18n="geo.title">Plan and section through the deposit</h2>
+      </div>
+      <div class="control-group">
+        <div class="tabs" id="geo-mode" role="tablist" aria-label="Colour blocks by" data-i18n-aria="geo.modeAria"></div>
+        <label class="field"><span data-i18n="geo.bench">Bench</span><select id="bench"></select></label>
+      </div>
+    </div>
+    <div class="geo">
+      <div><h3 class="chart-title" id="plan-title">—</h3><div id="plan-view"></div></div>
+      <div><h3 class="chart-title" id="section-title">—</h3><div id="section-view"></div></div>
+    </div>
+    <div class="panel__foot">
+      <ul class="legend" id="geo-legend"></ul>
+      <p class="panel__note" data-i18n="geo.note">Blocks are 20 × 20 m in plan and 15 m high (one bench). Select a row on the plan to move the east–west section. The outline is the pit shell for the copper price above.</p>
+    </div>
+  </section>
+
+  <section class="panel panel--half" aria-labelledby="vario-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>02</span> <span data-i18n="vario.kicker">Variography</span></p>
+        <h2 id="vario-title" data-i18n="vario.title">How far grade stays alike</h2>
+      </div>
+      <div class="tabs" id="vario-tabs" role="tablist" aria-label="Domain" data-i18n-aria="common.domain"></div>
+    </div>
+    <div id="vario-chart"></div>
+    <ul class="legend legend--below" id="vario-legend"></ul>
+    <div class="tiles tiles--compact" id="vario-tiles"></div>
+    <p class="panel__note" id="vario-note"></p>
+  </section>
+
+  <section class="panel panel--half" aria-labelledby="valid-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>03</span> <span data-i18n="valid.kicker">Model validation</span></p>
+        <h2 id="valid-title" data-i18n="valid.title">Does the model honour the data?</h2>
+      </div>
+      <div class="tabs" id="swath-tabs" role="tablist" aria-label="Swath direction" data-i18n-aria="valid.swathAria"></div>
+    </div>
+    <div id="swath-chart"></div>
+    <ul class="legend legend--below" id="swath-legend"></ul>
+    <div class="table-wrap"><table class="data-table" id="cv-table"></table></div>
+    <p class="panel__note" data-i18n="valid.note">Swath plots compare average grades in slices across the deposit. Cross-validation re-estimates every composite without its own drillhole; a slope near 1 means the estimate is conditionally unbiased.</p>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="res-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>04</span> <span data-i18n="res.kicker">Mineral resource</span></p>
+        <h2 id="res-title" data-i18n="res.title">Resource statement and grade–tonnage</h2>
+      </div>
+      <label class="field field--range field--small"><span><span data-i18n="res.cutoff">Reporting cut-off</span> · <output id="cutoff-out">—</output></span>
+        <input type="range" id="cutoff" min="0.10" max="0.60" step="0.02" value="0.18">
+      </label>
+    </div>
+    <div class="resource">
+      <div>
+        <div class="table-wrap"><table class="data-table" id="res-table"></table></div>
+        <div class="callout" id="res-callout"></div>
+      </div>
+      <div class="charts-2 charts-2--tight">
+        <div><h3 class="chart-title" data-i18n="res.gtTonnes">Tonnes above cut-off (Mt)</h3><div id="gt-tonnes"></div></div>
+        <div><h3 class="chart-title" data-i18n="res.gtGrade">Average grade above cut-off (% Cu)</h3><div id="gt-grade"></div></div>
+      </div>
+    </div>
+    <ul class="legend legend--below" id="gt-legend"></ul>
+    <p class="panel__note" id="res-note"></p>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="pit-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>05</span> <span data-i18n="pit.kicker">Pit optimisation</span></p>
+        <h2 id="pit-title" data-i18n="pit.title">Which pit is worth digging?</h2>
+      </div>
+    </div>
+    <div class="tiles" id="pit-tiles"></div>
+    <div class="charts-2">
+      <div><h3 class="chart-title" data-i18n="pit.tonnesTitle">Ore and waste in each nested shell (Mt)</h3><div id="pit-tonnes"></div><ul class="legend legend--below" id="pit-tonnes-legend"></ul></div>
+      <div><h3 class="chart-title" data-i18n="pit.npvTitle">Indicative NPV at the base price (US$ M, 8 %)</h3><div id="pit-npv"></div><ul class="legend legend--below" id="pit-npv-legend"></ul></div>
+    </div>
+    <p class="panel__note" data-i18n="pit.note">Each shell is the maximum-value pit at a copper price (a revenue factor of the base price), solved exactly as a maximum-closure problem. The best case mines shell by shell, the worst case bench by bench across the whole pit; the final pit sits where the best-case curve flattens.</p>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="prod-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>06</span> <span data-i18n="prod.kicker">Production</span></p>
+        <h2 id="prod-title" data-i18n="prod.title">Plan versus actual, November 2025 – October 2026</h2>
+      </div>
+      <div class="tabs" id="prod-tabs" role="tablist" aria-label="Measure" data-i18n-aria="prod.measureAria"></div>
+    </div>
+    <div class="tiles" id="prod-tiles"></div>
+    <div id="prod-chart"></div>
+    <ul class="legend legend--below" id="prod-legend"></ul>
+    <h3 class="chart-title chart-title--gap" data-i18n="prod.lomTitle">Life-of-mine plan: material moved per year (Mt)</h3>
+    <div id="lom-chart"></div>
+    <ul class="legend legend--below" id="lom-legend"></ul>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="fleet-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>07</span> <span data-i18n="fleet.kicker">Haul fleet</span></p>
+        <h2 id="fleet-title" data-i18n="fleet.title">Eight trucks, one time model</h2>
+      </div>
+      <label class="field"><span data-i18n="fleet.month">Month</span><select id="fleet-month"></select></label>
+    </div>
+    <div class="charts-2">
+      <div><h3 class="chart-title" data-i18n="fleet.availTitle">Mechanical availability: T07 against the rest of the fleet</h3><div id="avail-chart"></div><ul class="legend legend--below" id="avail-legend"></ul></div>
+      <div><h3 class="chart-title" data-i18n="fleet.cycleTitle">Truck cycle time (minutes) as the pit deepens</h3><div id="cycle-chart"></div><ul class="legend legend--below" id="cycle-legend"></ul></div>
+    </div>
+    <div class="table-wrap"><table class="data-table" id="fleet-table"></table></div>
+    <div class="payload">
+      <div>
+        <div class="panel__head panel__head--sub">
+          <h3 class="chart-title" id="payload-title">—</h3>
+          <div class="tabs" id="payload-tabs" role="tablist" aria-label="Shovel" data-i18n-aria="fleet.shovelAria"></div>
+        </div>
+        <div id="payload-chart"></div>
+      </div>
+      <div class="notes">
+        <h3 data-i18n="fleet.policyTitle">10 / 10 / 20 payload policy</h3>
+        <p data-i18n="fleet.policy">No more than 10 % of loads may exceed 110 % of the nominal payload, and no load may exceed 120 %. Overloads shorten tyre, frame and final-drive life.</p>
+        <ul id="payload-checks"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="plant-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>08</span> <span data-i18n="plant.kicker">Concentrator</span></p>
+        <h2 id="plant-title" data-i18n="plant.title">A recovery model metallurgists can read</h2>
+      </div>
+    </div>
+    <div class="tiles" id="model-tiles"></div>
+    <h3 class="chart-title" id="rec-title">—</h3>
+    <div id="rec-chart"></div>
+    <ul class="legend legend--below" id="rec-legend"></ul>
+    <div class="charts-2 charts-2--gap">
+      <div><h3 class="chart-title" data-i18n="plant.coefTitle">Effect of one standard deviation on recovery (percentage points)</h3><div id="coef-chart"></div></div>
+      <div class="whatif">
+        <h3 class="chart-title" data-i18n="plant.whatifTitle">What if? Predicted recovery for one day of feed</h3>
+        <div id="whatif-controls" class="whatif__controls"></div>
+        <div class="whatif__result"><span class="whatif__value" id="whatif-value">—</span><span class="whatif__label" id="whatif-label"></span></div>
+      </div>
+    </div>
+    <p class="panel__note" id="plant-note"></p>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="rec-f-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>09</span> <span data-i18n="recon.kicker">Reconciliation</span></p>
+        <h2 id="rec-f-title" data-i18n="recon.title">Can the model be trusted? F1, F2 and F3</h2>
+      </div>
+      <div class="tabs" id="recon-tabs" role="tablist" aria-label="Measure" data-i18n-aria="prod.measureAria"></div>
+    </div>
+    <div id="recon-chart"></div>
+    <ul class="legend legend--below" id="recon-legend"></ul>
+    <div class="table-wrap"><table class="data-table" id="recon-table"></table></div>
+    <p class="panel__note" data-i18n="recon.note">F1 compares the grade-control model (blasthole sampling) with the resource model for the same mined blocks. F2 compares what the mill measured with what grade control sent to it, including stockpile moves. F3 = F1 × F2. The shaded band is ±10 %.</p>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="qc-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>10</span> <span data-i18n="qc.kicker">Assay QA/QC</span></p>
+        <h2 id="qc-title" data-i18n="qc.title">Every batch earns its place in the model</h2>
+      </div>
+      <div class="tabs" id="crm-tabs" role="tablist" aria-label="Reference material" data-i18n-aria="qc.crmAria"></div>
+    </div>
+    <div class="tiles" id="qc-tiles"></div>
+    <div class="charts-2 charts-2--wide-left">
+      <div><h3 class="chart-title" id="crm-title">—</h3><div id="crm-chart"></div><ul class="legend legend--below" id="crm-legend"></ul></div>
+      <div><h3 class="chart-title" data-i18n="qc.dupTitle">Field duplicates (% Cu, log scale)</h3><div id="dup-chart"></div></div>
+    </div>
+    <div class="table-wrap"><table class="data-table" id="qc-table"></table></div>
+  </section>
+
+  <section class="panel panel--wide notes" aria-labelledby="method-title">
+    <p class="kicker kicker--small"><span>11</span> <span data-i18n="method.kicker">Method</span></p>
+    <h2 id="method-title" data-i18n="method.title">How it was built</h2>
+    <div class="notes__grid">
+      <div>
+        <h3 data-i18n="method.geoTitle">Geology and estimation</h3>
+        <p data-i18n="method.geo">A synthetic deposit with a leached cap, a supergene blanket and hypogene ore was drilled with 88 holes in four campaigns. Assays were composited to bench height, top-cut at the 99th percentile by domain and estimated by ordinary block kriging inside hard domain boundaries.</p>
+      </div>
+      <div>
+        <h3 data-i18n="method.mineTitle">Mine planning</h3>
+        <p data-i18n="method.mine">Eleven nested pit shells were solved exactly as a maximum-closure problem with a 1:5 slope pattern. A starter pit and two pushbacks are scheduled month by month so that every block's precedence is mined first; an automated test checks it.</p>
+      </div>
+      <div>
+        <h3 data-i18n="method.opsTitle">Operations and data science</h3>
+        <p data-i18n="method.ops">A year of truck time records, daily plant data and grade-control sampling was simulated from the same blocks. The recovery model is a ridge regression trained on the first nine months and tested on the last three, chosen by expanding-window cross-validation.</p>
+      </div>
+      <div>
+        <h3 data-i18n="method.honestTitle">Honest about the data</h3>
+        <p data-i18n="method.honest">Every number is fictional. Because the true grade is known everywhere, the console can show what a real mine never sees: how much the kriged model smooths the truth. This is not a public report under JORC, NI 43-101 or S-K 1300.</p>
+      </div>
+    </div>
+    <div class="data-bar">
+      <span class="status" data-i18n="method.downloads">Download the fictional data:</span>
+      <span class="downloads">
+        <a class="button" href="data/collars.csv" download data-i18n="method.collars">Drillhole collars (CSV)</a>
+        <a class="button" href="data/assays.csv" download data-i18n="method.assays">Assays (CSV)</a>
+        <a class="button" href="data/plant-daily.csv" download data-i18n="method.plant">Daily plant data (CSV)</a>
+      </span>
+    </div>
+  </section>
+</div>
+</main>
+<footer class="foot"><div class="wrap foot__inner"><span>© 2026 Alicia Espinoza</span><span data-i18n="footer.data">Fictional mine, fictional data. Not a public resource or reserve report.</span></div></footer>
+<script type="module" src="app.js?v=20261120b"></script>
+</body>
+</html>

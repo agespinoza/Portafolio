@@ -27,6 +27,7 @@ At MISOM Technologies, I worked on mining operations and business intelligence s
 
 | Skill | Demonstration | Deliverable |
 | --- | --- | --- |
+| Mining operations and data science | Follow a fictional open-pit copper mine from drillhole to copper: kriged resource model, pit optimisation, haul fleet, plant recovery model, reconciliation, and assay QA/QC. | [Copper mine operations console](projects/17-copper-mine-operations/). |
 | C# and workflow automation | Track a simulated mortgage application across workflow stages. | [ASP.NET application and activity log](projects/08-mortgage-workflow-automation/). |
 
 ## Vehicle inspection software and data platforms (2019–2023)
