@@ -19,3 +19,5 @@ export const pct = (v: number, language: string) => v.toLocaleString(locale(lang
 export const compact = (v: number, language: string) => v.toLocaleString(locale(language), { notation: "compact", maximumFractionDigits: 2 });
 export const fmtDate = (iso: string, language: string) =>
   new Date(`${iso}T12:00:00`).toLocaleDateString(locale(language), { dateStyle: "medium" });
+export const dayMonth = (d: Date, language: string) =>
+  d.toLocaleDateString(locale(language), { month: "short", day: "numeric", timeZone: "UTC" });

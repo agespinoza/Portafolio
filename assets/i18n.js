@@ -2,7 +2,7 @@ export const LANGUAGES = ["en", "es", "ja", "it", "fr"];
 
 export const LOCALES = {
   en: "en-US",
-  es: "es",
+  es: "es-MX",
   ja: "ja-JP",
   it: "it-IT",
   fr: "fr-FR",

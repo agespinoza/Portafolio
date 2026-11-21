@@ -7,6 +7,7 @@ import { useLanguage } from "../../language.jsx";
 import { formatDate, hourLabel as localHourLabel, monthNames, weekdayNames } from "../locales.js";
 import { makeTr } from "../tr.js";
 import { MESSAGES } from "./messages.js";
+import { BorderQuality, BorderQuestions, BorderSources } from "./Research.tsx";
 
 const tr = makeTr("border", MESSAGES);
 
@@ -345,6 +346,26 @@ export default function BorderDay() {
         </section>
       </div>
 
+      {insights && compareStats && (() => {
+        const ms = (monthly || []).filter((m) => m.value != null);
+        const wM = ms.length ? ms.reduce((a, b) => (b.value > a.value ? b : a)) : null;
+        const bM = ms.length ? ms.reduce((a, b) => (b.value < a.value ? b : a)) : null;
+        return (
+          <BorderQuestions language={language} v={{
+            lane: laneLabel(lane), crossing: cross.name, month: months[month - 1], from: formatHour(hourFrom), to: formatHour(hourTo),
+            best: { day: dayNames[insights.best.d], hour: formatHour(insights.best.h), v: mins(insights.best.v, language) },
+            worst: { day: dayNames[insights.worst.d], hour: formatHour(insights.worst.h), v: mins(insights.worst.v, language) },
+            cmp: compareStats.crossing ? { ...compareStats.crossing, a: mins(compareStats.crossing.a, language), b: mins(compareStats.crossing.b, language) } : null,
+            lanes: compareStats.lanes.map((l) => tr(language, "laneShort", "{lane} saves about {saved} ({pct})", {
+              lane: laneLabel(LANES.find((x) => x.id === l.id)), saved: mins(l.saved, language), pct: l.pct,
+            })).join("; "),
+            worstMonth: wM ? { name: months[wM.month - 1], v: mins(wM.value, language) } : undefined,
+            bestMonth: bM ? { name: months[bM.month - 1], v: mins(bM.value, language) } : undefined,
+            snapshotDate: "",
+          }} />
+        );
+      })()}
+
       {/* Takeaways */}
       {insights && compareStats && (
         <section className="card takeaways">
@@ -373,7 +394,9 @@ export default function BorderDay() {
         </section>
       )}
 
-      <section className="method">
+      <BorderQuality language={language} snapshotDate={snapshot ? formatDate(language, snapshot.capturedAt.slice(0, 10), { dateStyle: "medium" }) : "—"} />
+
+      <section className="method lp-method">
         <h2>{t(language, "border.methodTitle", "Method & sources")}</h2>
         <p>
           {t(language, "border.methodIntro", "Data comes from the U.S. Customs and Border Protection")}{" "}
@@ -387,6 +410,7 @@ export default function BorderDay() {
           })}
         </p>
         <p>{tr(language, "methodCaveats", "CBP waits are estimates posted by officers, not measured times, and CBP does not publish how many days each average covers, so small differences (under about 10 minutes) are within normal noise. Hours reported as zero are treated as closed or missing. Differences between crossings or lanes use only the hours where both report a wait. The planner ranks hours by the monthly average and shows CBP's typical maximum for that weekday as a bad-day check.")}</p>
+        <BorderSources checkedOn={formatDate(language, "2026-11-21", { dateStyle: "medium" })} language={language} />
       </section>
     </div>
   );

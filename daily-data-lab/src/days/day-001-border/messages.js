@@ -1,6 +1,7 @@
 // Day 001 strings added with the planner and comparison views. English lives next to each call.
 export const MESSAGES = {
   es: {
+    laneShort: "{lane} ahorra unos {saved} ({pct})",
     closed: "Cerrado",
     rightNowAt: "Ahora · {name}",
     hoursNote: "Horario: {hours}",
@@ -41,6 +42,7 @@ export const MESSAGES = {
     bestPick: "Mejor opción",
   },
   fr: {
+    laneShort: "{lane} fait gagner environ {saved} ({pct})",
     closed: "Fermé",
     rightNowAt: "En ce moment · {name}",
     hoursNote: "Horaires : {hours}",
@@ -81,6 +83,7 @@ export const MESSAGES = {
     bestPick: "Meilleur choix",
   },
   it: {
+    laneShort: "{lane} fa risparmiare circa {saved} ({pct})",
     closed: "Chiuso",
     rightNowAt: "Adesso · {name}",
     hoursNote: "Orario: {hours}",
@@ -121,6 +124,7 @@ export const MESSAGES = {
     bestPick: "Scelta migliore",
   },
   ja: {
+    laneShort: "{lane}で約{saved}短縮（{pct}）",
     closed: "閉鎖中",
     rightNowAt: "現在 · {name}",
     hoursNote: "営業時間：{hours}",

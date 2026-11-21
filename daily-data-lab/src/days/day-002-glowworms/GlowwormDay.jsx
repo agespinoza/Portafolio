@@ -8,6 +8,7 @@ import { useLanguage } from "../../language.jsx";
 import { formatDate, monthNames } from "../locales.js";
 import { makeTr } from "../tr.js";
 import { MESSAGES } from "./messages.js";
+import { GlowQuality, GlowQuestions, GlowSources } from "./Research.tsx";
 
 const tr = makeTr("glow", MESSAGES);
 
@@ -152,6 +153,17 @@ export default function GlowwormDay() {
     island === "all" ? "all of New Zealand" : island === "North" ? "the North Island" : "the South Island");
   const valueOf = (d) => (rate ? d.rate?.v ?? 0 : d.n);
   const fmtValue = (d) => (rate ? fmtRate(d.rate?.v, language) : num(d.n, language));
+
+  const research = {
+    raw: TAKE.rawTop.name, rawCount: num(TAKE.rawTop.n, language), top: TAKE.adjTop.name, topRate: fmtRate(TAKE.adjTop.v, language),
+    ratio: (TAKE.adjTop.v / TAKE.rawTopRate).toLocaleString(localeFor(language), { maximumFractionDigits: 1 }),
+    rawPeak: months[TAKE.rawPeak], first: months[TAKE.ratePeaks[0].m], second: months[TAKE.ratePeaks[1].m], peakRate: fmtRate(TAKE.ratePeaks[0].v, language),
+    a: num(TAKE.growth.a, language), b: num(TAKE.growth.b, language), fromYear: TAKE.growth.fromYear, toYear: TAKE.growth.toYear,
+    lo: fmtRate(TAKE.growth.lo, language), hi: fmtRate(TAKE.growth.hi, language), stableFrom: TAKE.growth.stableFrom,
+    n: num(ROWS.length, language), inat: num(ROWS.filter((r) => r.source === "inat").length, language),
+    museum: num(ROWS.filter((r) => r.source === "specimen").length, language), other: num(ROWS.filter((r) => r.source === "other").length, language),
+    noRegion: num(ROWS.filter((r) => !r.region).length, language),
+  };
 
   return (
     <div className="viz">
@@ -313,6 +325,8 @@ export default function GlowwormDay() {
         <YearChart buckets={yearly} rate={rate} test={yearTest} language={language} />
       </section>
 
+      <GlowQuestions v={research} language={language} />
+
       {/* Takeaways */}
       <section className="card takeaways">
         <h2>{tr(language, "takeawaysTitle", "What the data says")}</h2>
@@ -340,7 +354,9 @@ export default function GlowwormDay() {
         </ul>
       </section>
 
-      <section className="method">
+      <GlowQuality v={research} language={language} />
+
+      <section className="method lp-method">
         <h2>{tr(language, "methodTitle", "Method & sources")}</h2>
         <p>{tr(language, "methodText", "Glowworm records are every georeferenced occurrence of Arachnocampa luminosa in New Zealand on GBIF.org, excluding records with geospatial issues. Most are iNaturalist research-grade observations and a few are museum specimens.")}</p>
         <p>{tr(language, "methodRate", "The reporting rate divides iNaturalist glowworm records by all iNaturalist research-grade observations in New Zealand (every species) for the same region, month, and years, then scales to 100,000. GBIF gives effort per region by month and per region by year. When both a month and a year range are selected, they are combined assuming month and year are independent within each region. Intervals are approximate 95% Poisson intervals on the glowworm count. Records without a region are left out of rates. Snapshot taken {date}.", { date: fmtDate(SNAPSHOT_DATE, language) })}</p>
@@ -349,9 +365,9 @@ export default function GlowwormDay() {
           {" "}<a href="https://www.gbif.org/species/1564326" rel="noopener">GBIF.org</a>
           {" · "}<a href="https://www.inaturalist.org/" rel="noopener">iNaturalist</a>
           {" · "}<a href="https://open-meteo.com/" rel="noopener">Open-Meteo</a>
-          {" · "}<a href="https://ackma.org/Proceedings/proceed/18/18cross.html" rel="noopener">ACKMA</a>
           {" · Natural Earth"}
         </p>
+        <GlowSources checkedOn={fmtDate("2026-11-21", language)} language={language} />
       </section>
     </div>
   );

@@ -576,3 +576,40 @@ h1 em { font-style: italic; color: var(--accent); }
 .al-abr-label { font: 600 11px var(--mono); fill: var(--copper); }
 @media (max-width: 960px) { .al-family { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .al-sheet dl > div { grid-template-columns: 1fr; gap: 2px; } }
+
+/* Day 004 · LakeTEMP (Sprint 2) */
+:root { --i0: #1d3557; --i1: #2f6690; --i2: #3a7ca5; --i3: #81c3d7; --i4: #bfe3ee; --i5: #f4fbff; }
+.al-icebg { fill: color-mix(in srgb, #81c3d7 16%, transparent); }
+.al-wband { fill: color-mix(in srgb, var(--accent) 18%, transparent); }
+.al-water { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linejoin: round; }
+.al-wdot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.al-air { fill: none; stroke: var(--copper); stroke-width: 2; stroke-dasharray: 6 4; }
+.al-k-water { background: var(--accent); }
+.al-k-wband { height: 10px !important; background: color-mix(in srgb, var(--accent) 25%, transparent); }
+.al-k-air { background: repeating-linear-gradient(90deg, var(--copper) 0 6px, transparent 6px 10px); }
+.al-k-ice { height: 10px !important; background: color-mix(in srgb, #81c3d7 35%, transparent); }
+.al-latband { fill: color-mix(in srgb, var(--accent) 16%, transparent); }
+.al-latmed { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+.al-pt-abr { fill: var(--copper); stroke: var(--surface); stroke-width: 2.5; }
+.al-pt-sel { fill: var(--ink); stroke: var(--surface); stroke-width: 2.5; }
+.al-sel-label { font: 600 11px var(--mono); fill: var(--ink); }
+.al-k-latmed { background: var(--accent); }
+.al-k-latband { height: 10px !important; background: color-mix(in srgb, var(--accent) 22%, transparent); }
+.seg--dark .mono { color: rgba(233,238,245,.65); }
+.seg--dark .seg__opts { background: rgba(255,255,255,.08); }
+.seg--dark button { color: rgba(233,238,245,.8); }
+.seg--dark button.on { background: #f4efe6; color: var(--night); }
+
+/* Shared research blocks (from Day 003) on the light days */
+.rs-panel { padding: 28px; }
+.rs-eyebrow { color: var(--accent) !important; margin-bottom: 8px; }
+.rs-panel h3, .rs-sources h3 { font-size: 15px; font-weight: 600; margin: 0 0 10px; }
+.rs-sources h3 { margin-top: 22px; }
+.viz:not(.lp) .lp-tag--lit { color: #0d6b7f; background: var(--accent-soft); }
+.viz:not(.lp) .lp-tag--data { color: #7a5a00; background: #f6ecc8; }
+.viz:not(.lp) .lp-tag--hyp { color: #9a4f16; background: #f8e3d0; }
+@media (prefers-color-scheme: dark) {
+  .viz:not(.lp) .lp-tag--lit { color: #a6e4ef; background: rgba(127,211,227,.1); }
+  .viz:not(.lp) .lp-tag--data { color: #f4d35e; background: rgba(244,211,94,.1); }
+  .viz:not(.lp) .lp-tag--hyp { color: #f2a65a; background: rgba(242,166,90,.1); }
+}

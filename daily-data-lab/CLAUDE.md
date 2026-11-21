@@ -27,9 +27,10 @@ Treat each day as a small analysis, not only a chart:
 - Show uncertainty when counts are small: intervals or whiskers, and flag or fade low-n values instead of ranking them.
 - Add filters that match the decision a reader would make (Day 001: day, hour window, crossing comparison, lane savings), and make takeaways recompute from the data instead of hard-coding them.
 - Note caveats and assumptions in "Method & sources": what the source measures, what it does not, and any modeling assumption.
+- End every day with the shared research blocks in `src/days/Research.tsx` (first built for Day 003): about six research questions tagged *From this data*, *From the literature*, or *Hypothesis*; a quality panel (provenance in numbers, implemented, pending); a sources table (institution, title, published, coverage, license, limitations, use); and references. Check every DOI against Crossref and doi.org, read the abstract before citing a claim, and check every link before publishing. Never invent a source.
 
 ## Translations
-The site has five languages (`../assets/i18n.js`). Each day keeps its own strings in `messages.js` next to the component and reads them through `src/days/tr.js`, with the English text written at each call. Add Spanish, French, Italian, and Japanese for every new string.
+The site has five languages (`../assets/i18n.js`). Spanish is Mexican Spanish (`es-MX`): decimal point and comma thousands (10.5, 1,427,688); never write decimals with a comma in Spanish text. Each day keeps its own strings in `messages.js` next to the component and reads them through `src/days/tr.js`, with the English text written at each call. Add Spanish, French, Italian, and Japanese for every new string.
 
 ## Rules that prevent past bugs
 - Keep the `classic-script` plugin and the IIFE output in `vite.config.js`. Browsers block `type="module"` scripts on `file://`, which made the page blank.

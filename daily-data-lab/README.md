@@ -56,10 +56,17 @@ Abraham Lake, a reservoir in Alberta, is famous for methane bubbles frozen into 
 ### Sprint 1
 
 - [x] HydroLAKES points to `/raw`, `dim_lake.parquet` with DuckDB spatial, Abraham Lake verified (Hylak_id 7243, reservoir, 52.12 km², 34 m)
-- [ ] LakeTEMP ice days and water temperature, joined by Hylak_id. Blocked: the official download (figshare, DOI 10.6084/m9.figshare.23844660) returns HTTP 403 to scripts. Moved to Sprint 2; download it in a browser and place the zip in `raw/day-004-abraham-lake/`.
+- [x] LakeTEMP ice days and water temperature, joined by Hylak_id: moved to Sprint 2 (see below).
 - [x] Open-Meteo ERA5 winter means and `regr_slope` trends: Abraham since 1951 done; 300 largest lakes 1991–2025 in progress (30 of 300 on 2026-11-21; the `Abraham Lake winter backfill` GitHub Action runs `npm run fetch:abraham` every day at 07:41 UTC and commits the progress in `data/day-004-abraham-lake/`)
-- [x] Dashboard: 4 KPI cards (ice days and water temperature pending LakeTEMP), winter trend chart, monthly chart (air temperature until LakeTEMP), lake profile, family mode with 3 facts, Abraham by default
+- [x] Dashboard: 4 KPI cards, winter trend chart, monthly chart, lake profile, family mode with 3 facts, Abraham by default
 - [x] Footer attribution to HydroSHEDS and "Weather data by Open-Meteo.com"
+
+### Sprint 2 · LakeTEMP
+
+- [x] LakeTEMP v1.1 aggregated statistics (Korver et al. 2024, CC-BY 4.0) joined by Hylak_id with `scripts/day-004/laketemp.sql`. Figshare blocks scripted downloads (HTTP 403), so the zip is downloaded in a browser; only `LakeTEMP_aggregated_v1.csv` is read (the 6.3 GB primary file is not needed) and the download is deleted afterwards. To rebuild, link the CSV to `raw/day-004-abraham-lake/LakeTEMP_aggregated_v1.csv`, then run `node scripts/day-004/run-sql.mjs scripts/day-004/laketemp.sql && node scripts/day-004/snapshot.mjs`.
+- [x] Quality filter from the LakeTEMP tech doc: trendline statistics, no intermittency, at least 46 readings; anything else is marked as low quality.
+- [x] Ice days and water temperature KPI cards, ice season in the lake profile, monthly lake surface temperature with 95% intervals next to the air (`LswtMonthlyChart`), ice days by latitude across 1.2 M lakes, a map colored by ice days, and an ice fact in family mode.
+- Finding: Abraham freezes 142 days a year, against a median of 188 for lakes at its latitude and 155 for those at a similar elevation.
 
 ## Languages and publication calendar
 

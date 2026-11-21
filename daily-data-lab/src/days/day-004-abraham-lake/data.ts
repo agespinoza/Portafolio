@@ -42,10 +42,33 @@ interface Snapshot {
   top300: number[];
   trends: Record<string, number[]>;
   series: Record<string, Series>;
+  laketemp: Record<string, (number | null | (number | null)[])[]>;
+  iceByLat: [band: number, n: number, p25: number, p50: number, p75: number, openMean: number][];
+  iceUniverse: { good: number; with_ice: number; more_ice_than_abraham: number };
   abraham: {
     monthsAir: [month: number, mean: number, min: number, max: number, pctBelowZero: number][];
     trend1991: { slope: number; se: number };
+    peersSameLatElevation: { p50: number; n: number };
   };
+}
+
+/** LakeTEMP v1.1 (Korver et al. 2024) statistics for one lake, converted to °C and dates. */
+export interface LakeTemp {
+  nObs: number;
+  /** stat_method = 0, intermittency = 0, n_obs ≥ 46, as the LakeTEMP tech doc advises */
+  ok: boolean;
+  yearMean: number | null;
+  openMean: number | null;
+  yearMax: number | null;
+  iceDays: number | null;
+  iceMin: number | null;
+  iceMax: number | null;
+  /** day of year */
+  iceStart: number | null;
+  iceEnd: number | null;
+  months: (number | null)[];
+  monthsLo?: (number | null)[];
+  monthsHi?: (number | null)[];
 }
 
 const S = SNAPSHOT as unknown as Snapshot;
@@ -72,6 +95,28 @@ export const TRENDS = new Map<number, Trend>(Object.entries(S.trends).map(([id, 
 export const SERIES = new Map<number, Series>(Object.entries(S.series).map(([id, s]) => [Number(id), s]));
 
 export const lakeName = (l: Lake) => l.name ?? `Lake #${l.id}`;
+
+/* ---------- LakeTEMP ---------- */
+const c100 = (v: unknown) => (v == null ? null : (v as number) / 100);
+const c10 = (a: unknown) => ((a as (number | null)[] | undefined) ?? []).map((v) => (v == null ? null : v / 10));
+export const LAKETEMP = new Map<number, LakeTemp>(Object.entries(S.laketemp).map(([id, r]) => [Number(id), {
+  nObs: r[0] as number, ok: r[1] === 1, yearMean: c100(r[2]), openMean: c100(r[3]), yearMax: c100(r[4]),
+  iceDays: r[5] as number | null, iceMin: r[6] as number | null, iceMax: r[7] as number | null,
+  iceStart: r[8] as number | null, iceEnd: r[9] as number | null,
+  months: c10(r[10]), monthsLo: r[11] ? c10(r[11]) : undefined, monthsHi: r[12] ? c10(r[12]) : undefined,
+}]));
+export const ICE_BY_LAT = S.iceByLat;
+export const ICE_UNIVERSE = S.iceUniverse;
+export const ABRAHAM_PEERS = S.abraham.peersSameLatElevation;
+
+/** Median ice days of all high-quality LakeTEMP lakes in the same 1° latitude band. */
+export function icePeers(lat: number): { p25: number; p50: number; p75: number; n: number } | null {
+  const b = ICE_BY_LAT.find((r) => r[0] === Math.floor(lat));
+  return b ? { n: b[1], p25: b[2], p50: b[3], p75: b[4] } : null;
+}
+
+/** Day of year → a date in a non-leap year, for ice-on / ice-off labels. */
+export const dayToDate = (doy: number) => new Date(Date.UTC(2023, 0, doy));
 
 /** Ordinary least squares of winter mean on year, as °C per decade with its standard error. */
 export function fitTrend(series: Series): Trend | null {
