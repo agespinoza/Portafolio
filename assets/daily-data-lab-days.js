@@ -9,6 +9,8 @@ export const DAILY_DATA_LAB_DAYS = [
     topic: "Mobility",
     tags: ["React", "SVG", "Live API", "CBP data"],
     source: "U.S. Customs and Border Protection",
+    preview: "assets/img/lab-day-001.svg",
+    previewAlt: "Preview: a heatmap of average border wait times at Calexico by weekday and hour.",
   },
   {
     day: 2,
@@ -20,6 +22,8 @@ export const DAILY_DATA_LAB_DAYS = [
     topic: "Nature",
     tags: ["React", "SVG map", "GBIF", "Open-Meteo"],
     source: "GBIF.org and Open-Meteo",
+    preview: "assets/img/lab-day-002.svg",
+    previewAlt: "Preview: a night-sky map of New Zealand with glowworm records glowing along the coasts and caves.",
   },
   {
     day: 3,
@@ -31,6 +35,8 @@ export const DAILY_DATA_LAB_DAYS = [
     topic: "Atmosphere",
     tags: ["React", "TypeScript", "Canvas 3-D", "Wikimedia Commons", "ERA5"],
     source: "Wikimedia Commons and Open-Meteo (ERA5)",
+    preview: "assets/img/lab-day-003.svg",
+    previewAlt: "Preview: a night-sky world map of photographed light pillars and ice halos, next to a simulated view of three coloured light pillars",
   },
   {
     day: 4,
@@ -42,5 +48,7 @@ export const DAILY_DATA_LAB_DAYS = [
     topic: "Climate",
     tags: ["React", "TypeScript", "DuckDB", "HydroLAKES", "ERA5"],
     source: "HydroSHEDS (HydroLAKES) and Open-Meteo (ERA5)",
+    preview: "assets/img/lab-day-004.svg",
+    previewAlt: "Preview: a night-sky world map of the 300 largest lakes colored by ice days, next to 75 winters of air temperature at Abraham Lake with a warming trend.",
   },
 ];

@@ -267,16 +267,16 @@ export default function AbrahamLakeDay() {
       </div>
 
       {/* Map */}
-      <section className="card gw-sky al-sky">
+      <section className="card al-sky">
         <div className="card__head">
           <div>
             <h2>{tr(language, "mapTitle", "Winter warming at the world's largest lakes")}</h2>
-            <p className="gw-sub">{tr(language, "mapSub", "The 300 largest lakes in HydroLAKES plus Abraham, colored by their 1991–2025 winter trend. {ready} of {total} trends are ready; grey dots are still downloading.", {
+            <p className="muted">{tr(language, "mapSub", "The 300 largest lakes in HydroLAKES plus Abraham, colored by their 1991–2025 winter trend. {ready} of {total} trends are ready; grey dots are still downloading.", {
               ready: num(cmpReady.length, language), total: num(cmpLakes.length, language),
             })}</p>
           </div>
           <div className="card__tools">
-            <div className="seg seg--small seg--dark">
+            <div className="seg seg--small">
               <span className="mono">{tr(language, "colorBy", "Color by")}</span>
               <div className="seg__opts" role="radiogroup" aria-label={tr(language, "colorBy", "Color by")}>
                 <button type="button" role="radio" aria-checked={metric === "trend"} className={metric === "trend" ? "on" : ""} onClick={() => setMetric("trend")}>{tr(language, "metricTrend", "Winter trend")}</button>

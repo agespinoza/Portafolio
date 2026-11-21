@@ -349,11 +349,13 @@ const MESSAGES = {
         title: "¿Dónde y cuándo aparecen los pilares de luz?",
         summary: "Un atlas de pilares de luz, parhelios y halos de hielo fotografiados entre 2000 y 2026, con el clima de cada momento y un simulador 3D de los cristales de hielo que convierten una luz en columna.",
         topic: "Atmósfera",
+        previewAlt: "Vista previa: mapa mundial nocturno de pilares de luz y halos de hielo fotografiados, junto a una vista simulada de tres pilares de luz de colores.",
       },
       "abraham-lake": {
         title: "¿Qué tan rápido se calientan los inviernos en el Lago Abraham?",
         summary: "El embalse de Alberta famoso por las burbujas de metano congeladas en su hielo, frente a 1.43 millones de lagos de HydroLAKES y 75 inviernos de temperatura ERA5, con la tendencia de calentamiento de los 300 lagos más grandes del mundo.",
         topic: "Clima",
+        previewAlt: "Vista previa: mapa mundial nocturno de los 300 lagos más grandes coloreados por días de hielo, junto a 75 inviernos de temperatura del aire en el Lago Abraham con su tendencia de calentamiento.",
       },
     },
     lab: {
@@ -724,11 +726,13 @@ const MESSAGES = {
         title: "光柱はいつ、どこに現れる？",
         summary: "2000〜2026年に撮影された光柱、幻日、氷晶ハロのアトラス。各瞬間の気象と、光を柱に変える氷晶の3Dシミュレーターつき。",
         topic: "大気",
+        previewAlt: "プレビュー：撮影された光柱と氷晶ハロを示す夜空の世界地図と、3色の光柱のシミュレーション画面。",
       },
       "abraham-lake": {
         title: "アブラハム湖の冬はどれくらい速く暖かくなっている？",
         summary: "氷に閉じ込められたメタンの泡で知られるアルバータ州の貯水池を、HydroLAKESの143万の湖とERA5の75回の冬の気温、世界最大級300湖の温暖化傾向と比べます。",
         topic: "気候",
+        previewAlt: "プレビュー：結氷日数で色分けした世界最大級300湖の夜空の世界地図と、アブラハム湖の75回の冬の気温と温暖化傾向。",
       },
     },
     lab: {
@@ -1099,11 +1103,13 @@ const MESSAGES = {
         title: "Dove e quando compaiono le colonne di luce?",
         summary: "Un atlante di colonne di luce, pareli e aloni di ghiaccio fotografati dal 2000 al 2026, con il meteo di ogni momento e un simulatore 3D dei cristalli di ghiaccio che trasformano una luce in una colonna.",
         topic: "Atmosfera",
+        previewAlt: "Anteprima: una mappa notturna del mondo con colonne di luce e aloni di ghiaccio fotografati, accanto a una vista simulata di tre colonne di luce colorate.",
       },
       "abraham-lake": {
         title: "Quanto velocemente si scaldano gli inverni al lago Abraham?",
         summary: "Il bacino dell'Alberta famoso per le bolle di metano congelate nel ghiaccio, confrontato con 1,43 milioni di laghi di HydroLAKES e 75 inverni di temperatura ERA5, con la tendenza di riscaldamento dei 300 laghi più grandi del mondo.",
         topic: "Clima",
+        previewAlt: "Anteprima: mappa del mondo notturna dei 300 laghi più grandi colorati per giorni di ghiaccio, accanto a 75 inverni di temperatura dell'aria al lago Abraham con la tendenza al riscaldamento.",
       },
     },
     lab: {
@@ -1474,11 +1480,13 @@ const MESSAGES = {
         title: "Où et quand apparaissent les piliers lumineux ?",
         summary: "Un atlas des piliers lumineux, parhélies et halos de glace photographiés de 2000 à 2026, avec la météo de chaque instant et un simulateur 3D des cristaux de glace qui changent une lumière en colonne.",
         topic: "Atmosphère",
+        previewAlt: "Aperçu : une carte du monde nocturne des piliers lumineux et halos de glace photographiés, à côté d’une vue simulée de trois piliers lumineux colorés.",
       },
       "abraham-lake": {
         title: "À quelle vitesse les hivers se réchauffent-ils au lac Abraham ?",
         summary: "Le réservoir albertain célèbre pour ses bulles de méthane prises dans la glace, comparé à 1,43 million de lacs de HydroLAKES et à 75 hivers de température ERA5, avec la tendance de réchauffement des 300 plus grands lacs du monde.",
         topic: "Climat",
+        previewAlt: "Aperçu : carte du monde nocturne des 300 plus grands lacs colorés selon les jours de glace, à côté de 75 hivers de température de l'air au lac Abraham avec la tendance au réchauffement.",
       },
     },
     lab: {

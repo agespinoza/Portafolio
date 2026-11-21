@@ -7,10 +7,10 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261121b";
-import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261121b";
-import { getContributionCalendar } from "./contributions.js?v=20261121b";
-import { effectiveTheme, toggleTheme } from "./theme.js?v=20261121b";
+} from "./i18n.js?v=20261121c";
+import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261121c";
+import { getContributionCalendar } from "./contributions.js?v=20261121c";
+import { effectiveTheme, toggleTheme } from "./theme.js?v=20261121c";
 
 function el(tag, attrs, children) {
   var node = document.createElement(tag);
@@ -39,6 +39,33 @@ function initThemeToggle(language) {
   };
   render();
   button.addEventListener("click", function () { toggleTheme(); render(); });
+}
+
+// The Data Lab card on the front page always shows the newest day, from assets/daily-data-lab-days.js.
+function renderLabFeature(language) {
+  var card = document.querySelector(".lab-feature");
+  if (!card || !DAILY_DATA_LAB_DAYS.length) return;
+  var day = DAILY_DATA_LAB_DAYS.reduce(function (a, b) { return b.day > a.day ? b : a; });
+  var number = String(day.day).padStart(3, "0");
+  card.href = "lab/index.html#/day/" + day.day;
+  card.replaceChildren(
+    el("div", { class: "lab-feature__copy" }, [
+      el("p", { class: "mono-label", text: t(language, "site.labDay", "Day") + " " + number + " · " + dayText(language, day.slug, "topic", day.topic) }),
+      el("h3", { text: dayText(language, day.slug, "title", day.title) }),
+      el("p", { text: dayText(language, day.slug, "summary", day.summary) }),
+      el("div", { class: "card__tech" }, day.tags.map(function (tag) { return el("span", { text: tag }); })),
+      el("span", { class: "lab-feature__cta" }, [
+        el("span", { text: t(language, "site.openVisualization", "Open visualization") }), " ",
+        el("span", { "aria-hidden": "true", text: "→" }),
+      ]),
+    ]),
+    el("div", { class: "lab-feature__art" }, day.preview ? [
+      el("img", {
+        src: day.preview + "?v=20261121c", alt: dayText(language, day.slug, "previewAlt", day.previewAlt || ""),
+        width: "792", height: "346", loading: "lazy",
+      }),
+    ] : []),
+  );
 }
 
 function applyLanguage(language) {
@@ -72,6 +99,7 @@ function applyLanguage(language) {
     });
   }
   initThemeToggle(language);
+  renderLabFeature(language);
   document.querySelectorAll("[data-lab-link]").forEach(function (link) {
     var url = new URL(link.getAttribute("href"), window.location.href);
     if (language === "en") url.searchParams.delete("lang");

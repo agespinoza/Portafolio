@@ -19,7 +19,7 @@ This folder is Alicia's Daily Data Lab: one small, interactive React visualizati
 2. Register the day in `src/days/index.js` with `day`, `slug`, `date` (YYYY-MM-DD), `title` (a question works well), `summary`, `topic`, `tags`, `source`, and `component`.
 3. If the source API can fail, bundle a small JSON snapshot in the day folder and import it, so the page still works offline. Add a refresh script in `scripts/` when it helps. Day 001 shows the pattern in `api.js` and `scripts/snapshot.mjs`.
 4. Run `npm run build`. The build writes to `../lab/`, and both `daily-data-lab/` and `lab/` must be committed.
-5. Update the day table in `README.md`. When the new day should be featured, also update the Daily Data Lab section in `../index.html`, along with its preview image in `../assets/img/`.
+5. Update the day table in `README.md`. Add a preview image at `../assets/img/lab-day-NNN.svg` (792 × 346, made from the day's real data) and set `preview` and `previewAlt` in `../assets/daily-data-lab-days.js`, with `previewAlt`, `title`, `summary`, and `topic` translated under `labDays.<slug>` in `../assets/i18n.js`. The portfolio front page shows the newest day automatically.
 
 ## Analysis standards
 Treat each day as a small analysis, not only a chart:
