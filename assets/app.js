@@ -7,9 +7,9 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261120e";
-import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261120e";
-import { getContributionCalendar } from "./contributions.js?v=20261120e";
+} from "./i18n.js?v=20261121a";
+import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261121a";
+import { getContributionCalendar } from "./contributions.js?v=20261121a";
 
 function el(tag, attrs, children) {
   var node = document.createElement(tag);
@@ -72,6 +72,7 @@ function renderContributionCalendar(language) {
   summary.textContent = t(language, "site.calendarDescription", "{count} days published in the last 12 months", { count: contributionData.count });
   var calendar = el("div", {
     class: "contributions",
+    style: "--weeks: " + weeks.length,
     role: "grid",
     "aria-label": t(language, "calendar.aria", "Daily Data Lab publishing calendar")
   });
@@ -86,8 +87,8 @@ function renderContributionCalendar(language) {
   });
   var weekdays = el("div", { class: "contributions__weekdays", "aria-hidden": "true" });
   var weekdayNames = calendarWeekdays(language);
-  [1, 3, 5].forEach(function (index) {
-    weekdays.appendChild(el("span", { text: weekdayNames[index] }));
+  weekdayNames.forEach(function (name) {
+    weekdays.appendChild(el("span", { text: name }));
   });
   var grid = el("div", { class: "contributions__grid" });
   weeks.forEach(function (week) {

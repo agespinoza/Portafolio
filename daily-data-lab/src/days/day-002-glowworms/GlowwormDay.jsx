@@ -358,8 +358,10 @@ export default function GlowwormDay() {
 
       <section className="method lp-method">
         <h2>{tr(language, "methodTitle", "Method & sources")}</h2>
-        <p>{tr(language, "methodText", "Glowworm records are every georeferenced occurrence of Arachnocampa luminosa in New Zealand on GBIF.org, excluding records with geospatial issues. Most are iNaturalist research-grade observations and a few are museum specimens.")}</p>
-        <p>{tr(language, "methodRate", "The reporting rate divides iNaturalist glowworm records by all iNaturalist research-grade observations in New Zealand (every species) for the same region, month, and years, then scales to 100,000. GBIF gives effort per region by month and per region by year. When both a month and a year range are selected, they are combined assuming month and year are independent within each region. Intervals are approximate 95% Poisson intervals on the glowworm count. Records without a region are left out of rates. Snapshot taken {date}.", { date: fmtDate(SNAPSHOT_DATE, language) })}</p>
+        <div className="method__text">
+          <p>{tr(language, "methodText", "Glowworm records are every georeferenced occurrence of Arachnocampa luminosa in New Zealand on GBIF.org, excluding records with geospatial issues. Most are iNaturalist research-grade observations and a few are museum specimens.")}</p>
+          <p>{tr(language, "methodRate", "The reporting rate divides iNaturalist glowworm records by all iNaturalist research-grade observations in New Zealand (every species) for the same region, month, and years, then scales to 100,000. GBIF gives effort per region by month and per region by year. When both a month and a year range are selected, they are combined assuming month and year are independent within each region. Intervals are approximate 95% Poisson intervals on the glowworm count. Records without a region are left out of rates. Snapshot taken {date}.", { date: fmtDate(SNAPSHOT_DATE, language) })}</p>
+        </div>
         <p className="method__sources">
           {tr(language, "sources", "Sources")}:
           {" "}<a href="https://www.gbif.org/species/1564326" rel="noopener">GBIF.org</a>

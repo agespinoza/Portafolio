@@ -36,6 +36,7 @@ export default function ContributionCalendar({ language }) {
       <div className="contributions-scroll" ref={scrollRef}>
         <div
           className="contributions"
+          style={{ "--weeks": weeks.length }}
           role="grid"
           aria-label={t(language, "calendar.aria", "Daily Data Lab publishing calendar")}
         >
@@ -49,7 +50,7 @@ export default function ContributionCalendar({ language }) {
             </div>
             <div className="contributions__body">
               <div className="contributions__weekdays" aria-hidden="true">
-                {[1, 3, 5].map((index) => <span key={index}>{weekDays[index]}</span>)}
+                {weekDays.map((name) => <span key={name}>{name}</span>)}
               </div>
               <div className="contributions__grid">
                 {weeks.flat().map(({ date, iso, entry }) => {

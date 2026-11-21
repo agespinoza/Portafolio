@@ -463,8 +463,10 @@ function Method({ language }: { language: string }) {
   return (
     <section className="method lp-method">
       <h2>{tr(language, "methodTitle", "Method & sources")}</h2>
-      <p>{tr(language, "method1", "Photos: every file in the listed Wikimedia Commons categories (one level deep, plus the sun-pillar country categories), keeping those with a capture date from the EXIF or the file's information template between {from} and {to}. Countries come from point-in-polygon tests against Natural Earth. Weather: the Open-Meteo archive (ERA5 and ERA5-Land) at the photo's coordinates, at the capture hour in the location's time zone, or as a daily mean without a time. Camera clocks are assumed to show local time. Sun elevation uses the NOAA solar-position equations.", { from: WINDOW[0], to: WINDOW[1] })}</p>
-      <p>{tr(language, "method2", "Statistics: shares use 95% Wilson intervals; distributions show medians and interquartile ranges; an event merges photos by the same author on the same day within 25 km. Missing values stay empty. The simulator is an illustrative model, separate from the observational data. Snapshot accessed {date}.", { date: accessed })}</p>
+      <div className="method__text">
+        <p>{tr(language, "method1", "Photos: every file in the listed Wikimedia Commons categories (one level deep, plus the sun-pillar country categories), keeping those with a capture date from the EXIF or the file's information template between {from} and {to}. Countries come from point-in-polygon tests against Natural Earth. Weather: the Open-Meteo archive (ERA5 and ERA5-Land) at the photo's coordinates, at the capture hour in the location's time zone, or as a daily mean without a time. Camera clocks are assumed to show local time. Sun elevation uses the NOAA solar-position equations.", { from: WINDOW[0], to: WINDOW[1] })}</p>
+        <p>{tr(language, "method2", "Statistics: shares use 95% Wilson intervals; distributions show medians and interquartile ranges; an event merges photos by the same author on the same day within 25 km. Missing values stay empty. The simulator is an illustrative model, separate from the observational data. Snapshot accessed {date}.", { date: accessed })}</p>
+      </div>
       <div className="lp-table-wrap">
         <table className="lp-table lp-sources">
           <thead><tr>

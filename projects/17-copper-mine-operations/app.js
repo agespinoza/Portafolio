@@ -1,6 +1,6 @@
-import { CLASSES, DOMAINS, blockIndex, cutoffGrade, decodeBlocks, fleetTotals, inShell, predictRecovery, resourceStatement, shellForPrice } from './mine.js?v=20261120e';
-import { blockGrid, columnChart, d3, divergingBars, duplicateScatter, histogram, legend, lineChart } from './charts.js?v=20261120e';
-import { LANGUAGES, LANGUAGE_NAMES, language, locale, num, site, tr, translatePage } from './i18n.js?v=20261120e';
+import { CLASSES, DOMAINS, blockIndex, cutoffGrade, decodeBlocks, fleetTotals, inShell, predictRecovery, resourceStatement, shellForPrice } from './mine.js?v=20261121a';
+import { blockGrid, columnChart, d3, divergingBars, duplicateScatter, histogram, legend, lineChart } from './charts.js?v=20261121a';
+import { LANGUAGES, LANGUAGE_NAMES, language, locale, num, site, tr, translatePage } from './i18n.js?v=20261121a';
 
 const $ = selector => document.querySelector(selector);
 const el = (tag, props = {}, ...children) => {
@@ -85,7 +85,7 @@ const badge = (kind, text) => el('span', { class: `badge badge--${kind}` }, text
 
 async function loadData() {
     const names = ['block-model', 'resource', 'operations', 'qaqc'];
-    const [model, resource, operations, qaqc] = await Promise.all(names.map(n => fetch(`data/${n}.json?v=20261120e`).then(r => {
+    const [model, resource, operations, qaqc] = await Promise.all(names.map(n => fetch(`data/${n}.json?v=20261121a`).then(r => {
         if (!r.ok) throw new Error(`${n}.json: HTTP ${r.status}`);
         return r.json();
     })));

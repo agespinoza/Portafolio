@@ -398,18 +398,20 @@ export default function BorderDay() {
 
       <section className="method lp-method">
         <h2>{t(language, "border.methodTitle", "Method & sources")}</h2>
-        <p>
-          {t(language, "border.methodIntro", "Data comes from the U.S. Customs and Border Protection")}{" "}
-          <a href="https://bwt.cbp.gov/" rel="noopener">Border Wait Times</a>.{" "}
-          {t(language, "border.methodLive", "\"Right now\" uses the live feed (refreshed every five minutes). The heatmap shows CBP's historical average for each weekday and hour of the selected month.")}{" "}
-          {t(language, "border.methodToday", "\"Today\" compares the hourly waits reported so far with the typical value for the same weekday.")}{" "}
-          {t(language, "border.methodTimezone", "Times are Pacific Time, the local time in Mexicali and Calexico.")}{" "}
-          {t(language, "border.methodNorthbound", "Waits are northbound (Mexico → U.S.).")}{" "}
-          {t(language, "border.methodSnapshot", "If the live service is unreachable, the page falls back to a snapshot captured on {date}.", {
-            date: snapshot ? formatDate(language, snapshot.capturedAt.slice(0, 10), { dateStyle: "medium" }) : "build",
-          })}
-        </p>
-        <p>{tr(language, "methodCaveats", "CBP waits are estimates posted by officers, not measured times, and CBP does not publish how many days each average covers, so small differences (under about 10 minutes) are within normal noise. Hours reported as zero are treated as closed or missing. Differences between crossings or lanes use only the hours where both report a wait. The planner ranks hours by the monthly average and shows CBP's typical maximum for that weekday as a bad-day check.")}</p>
+        <div className="method__text">
+          <p>
+            {t(language, "border.methodIntro", "Data comes from the U.S. Customs and Border Protection")}{" "}
+            <a href="https://bwt.cbp.gov/" rel="noopener">Border Wait Times</a>.{" "}
+            {t(language, "border.methodLive", "\"Right now\" uses the live feed (refreshed every five minutes). The heatmap shows CBP's historical average for each weekday and hour of the selected month.")}{" "}
+            {t(language, "border.methodToday", "\"Today\" compares the hourly waits reported so far with the typical value for the same weekday.")}{" "}
+            {t(language, "border.methodTimezone", "Times are Pacific Time, the local time in Mexicali and Calexico.")}{" "}
+            {t(language, "border.methodNorthbound", "Waits are northbound (Mexico → U.S.).")}{" "}
+            {t(language, "border.methodSnapshot", "If the live service is unreachable, the page falls back to a snapshot captured on {date}.", {
+              date: snapshot ? formatDate(language, snapshot.capturedAt.slice(0, 10), { dateStyle: "medium" }) : "build",
+            })}
+          </p>
+          <p>{tr(language, "methodCaveats", "CBP waits are estimates posted by officers, not measured times, and CBP does not publish how many days each average covers, so small differences (under about 10 minutes) are within normal noise. Hours reported as zero are treated as closed or missing. Differences between crossings or lanes use only the hours where both report a wait. The planner ranks hours by the monthly average and shows CBP's typical maximum for that weekday as a bad-day check.")}</p>
+        </div>
         <BorderSources checkedOn={formatDate(language, "2026-11-21", { dateStyle: "medium" })} language={language} />
       </section>
     </div>

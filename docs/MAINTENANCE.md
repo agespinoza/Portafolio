@@ -61,7 +61,7 @@ Then open http://localhost:8000/ in Safari. Add `?lang=es` (or `ja`, `it`, `fr`)
 
 ## Cache versions
 
-GitHub Pages lets browsers cache every file for 10 minutes. Without versions, a browser can mix new HTML with old scripts, and the page breaks. To prevent that, every local stylesheet, script, import and data file is loaded with a version, for example `app.js?v=20261120e`.
+GitHub Pages lets browsers cache every file for 10 minutes. Without versions, a browser can mix new HTML with old scripts, and the page breaks. To prevent that, every local stylesheet, script, import and data file is loaded with a version, for example `app.js?v=20261121a`.
 
 - The format is `YYYYMMDD` plus a letter. Use today's date, and move to the next letter for each new publish on the same day.
 - Bump **all** the versions of a page together. That includes the front page (`index.html` and the imports in `assets/app.js`), the résumé (`resume.html` and `assets/resume.js`) and each console folder.

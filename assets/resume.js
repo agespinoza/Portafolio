@@ -1,7 +1,7 @@
 // Résumé page: renders assets/resume-data.js in the visitor's language (?lang=xx, English by default)
 // and shares the portfolio's navigation, language selector and print-to-PDF.
-import { languageFromSearch, localeFor, t, projectText } from "./i18n.js?v=20261120e";
-import { CERTIFICATIONS, EARLIER, EDUCATION, LINKS, MEXICO_ROLES, PUBLICATIONS, ROLES, SELECTED_PROJECTS, SKILLS, TEXT } from "./resume-data.js?v=20261120e";
+import { languageFromSearch, localeFor, t, projectText } from "./i18n.js?v=20261121a";
+import { CERTIFICATIONS, EARLIER, EDUCATION, LINKS, MEXICO_ROLES, PUBLICATIONS, ROLES, SELECTED_PROJECTS, SKILLS, TEXT } from "./resume-data.js?v=20261121a";
 
 const language = languageFromSearch(window.location.search);
 const L = TEXT[language] || TEXT.en;
