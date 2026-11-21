@@ -348,6 +348,11 @@ const MESSAGES = {
         summary: "Un atlas de pilares de luz, parhelios y halos de hielo fotografiados entre 2000 y 2026, con el clima de cada momento y un simulador 3D de los cristales de hielo que convierten una luz en columna.",
         topic: "Atmósfera",
       },
+      "abraham-lake": {
+        title: "¿Qué tan rápido se calientan los inviernos en el Lago Abraham?",
+        summary: "El embalse de Alberta famoso por las burbujas de metano congeladas en su hielo, frente a 1.43 millones de lagos de HydroLAKES y 75 inviernos de temperatura ERA5, con la tendencia de calentamiento de los 300 lagos más grandes del mundo.",
+        topic: "Clima",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -715,6 +720,11 @@ const MESSAGES = {
         title: "光柱はいつ、どこに現れる？",
         summary: "2000〜2026年に撮影された光柱、幻日、氷晶ハロのアトラス。各瞬間の気象と、光を柱に変える氷晶の3Dシミュレーターつき。",
         topic: "大気",
+      },
+      "abraham-lake": {
+        title: "アブラハム湖の冬はどれくらい速く暖かくなっている？",
+        summary: "氷に閉じ込められたメタンの泡で知られるアルバータ州の貯水池を、HydroLAKESの143万の湖とERA5の75回の冬の気温、世界最大級300湖の温暖化傾向と比べます。",
+        topic: "気候",
       },
     },
     lab: {
@@ -1084,6 +1094,11 @@ const MESSAGES = {
         summary: "Un atlante di colonne di luce, pareli e aloni di ghiaccio fotografati dal 2000 al 2026, con il meteo di ogni momento e un simulatore 3D dei cristalli di ghiaccio che trasformano una luce in una colonna.",
         topic: "Atmosfera",
       },
+      "abraham-lake": {
+        title: "Quanto velocemente si scaldano gli inverni al lago Abraham?",
+        summary: "Il bacino dell'Alberta famoso per le bolle di metano congelate nel ghiaccio, confrontato con 1,43 milioni di laghi di HydroLAKES e 75 inverni di temperatura ERA5, con la tendenza di riscaldamento dei 300 laghi più grandi del mondo.",
+        topic: "Clima",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -1451,6 +1466,11 @@ const MESSAGES = {
         title: "Où et quand apparaissent les piliers lumineux ?",
         summary: "Un atlas des piliers lumineux, parhélies et halos de glace photographiés de 2000 à 2026, avec la météo de chaque instant et un simulateur 3D des cristaux de glace qui changent une lumière en colonne.",
         topic: "Atmosphère",
+      },
+      "abraham-lake": {
+        title: "À quelle vitesse les hivers se réchauffent-ils au lac Abraham ?",
+        summary: "Le réservoir albertain célèbre pour ses bulles de méthane prises dans la glace, comparé à 1,43 million de lacs de HydroLAKES et à 75 hivers de température ERA5, avec la tendance de réchauffement des 300 plus grands lacs du monde.",
+        topic: "Climat",
       },
     },
     lab: {

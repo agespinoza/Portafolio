@@ -7,6 +7,7 @@ One small, interactive data visualization a day, each on a different everyday to
 | 001 | Mobility | [When is the best time to cross from Mexicali?](https://agespinoza.github.io/Portafolio/lab/#/day/1) | U.S. Customs and Border Protection, [Border Wait Times](https://bwt.cbp.gov/) |
 | 002 | Nature | [Where do New Zealand's glowworms shine?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/2) | [GBIF.org](https://www.gbif.org/species/1564326) occurrences and [Open-Meteo](https://open-meteo.com/) weather |
 | 003 | Atmosphere | [Where and when do light pillars appear?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/3) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/Category:Halo_phenomena) photos, [ERA5](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels) weather via [Open-Meteo](https://open-meteo.com/), and [Natural Earth](https://www.naturalearthdata.com/) |
+| 004 | Climate | [How fast are winters warming at Abraham Lake?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/4) | [HydroSHEDS · HydroLAKES](https://www.hydrosheds.org/products/hydrolakes) (CC-BY 4.0) and ERA5 air temperature via [Open-Meteo](https://open-meteo.com/) |
 
 ## Day 001: When is the best time to cross from Mexicali?
 
@@ -44,6 +45,22 @@ This day is a small observatory of ice-crystal optics from 2000 to 2026. It is t
 
 The catalog is a saved snapshot in [`src/days/day-003-light-pillars/catalog.json`](src/days/day-003-light-pillars/catalog.json). Refreshing it takes a few minutes, because Commons rate-limits requests and Open-Meteo is queried once per located photo.
 
+## Day 004: How fast are winters warming at Abraham Lake?
+
+Abraham Lake, a reservoir in Alberta, is famous for methane bubbles frozen into its winter ice. The page puts it in a global context: every lake in HydroLAKES (1,427,688 lakes of at least 0.1 km²) and the winter warming trend of the 300 largest lakes. Mode: FULL (Saturday), with a world map and on-demand API calls.
+
+- **Data pipeline (DuckDB, `scripts/day-004/`):** `dim_lake.sql` reads the HydroLAKES pour-point shapefile with the spatial extension into `dim_lake.parquet` (lake_id = Hylak_id, name, country, lat, lon, area_km2, depth_m, is_reservoir = Lake_type 2). `winter.sql` computes winter means and `regr_slope` trends in °C per decade. `snapshot.mjs` bundles the result into `src/days/day-004-abraham-lake/snapshot.json`.
+- **Weather:** ERA5 daily mean air temperature from Open-Meteo (`models=era5`). Abraham uses every winter since 1951. The 300 largest lakes use 1991–2025, because Open-Meteo counts a request as one call per two weeks of data and the free tier allows 10,000 calls a day; `fetch-winters.mjs` keeps a daily ledger and resumes where it stopped, so the backfill takes about 8 days; its progress is versioned in `data/day-004-abraham-lake/` and `update-trends.mjs` refreshes the trends without needing `raw/`. Any other lake is fetched in the browser on demand and cached in `localStorage`.
+- **Downloads** go to `daily-data-lab/raw/` (not versioned): `HydroLAKES_points_v10_shp.zip` from `data.hydrosheds.org`.
+
+### Sprint 1
+
+- [x] HydroLAKES points to `/raw`, `dim_lake.parquet` with DuckDB spatial, Abraham Lake verified (Hylak_id 7243, reservoir, 52.12 km², 34 m)
+- [ ] LakeTEMP ice days and water temperature, joined by Hylak_id. Blocked: the official download (figshare, DOI 10.6084/m9.figshare.23844660) returns HTTP 403 to scripts. Moved to Sprint 2; download it in a browser and place the zip in `raw/day-004-abraham-lake/`.
+- [x] Open-Meteo ERA5 winter means and `regr_slope` trends: Abraham since 1951 done; 300 largest lakes 1991–2025 in progress (30 of 300 on 2026-11-21; the `Abraham Lake winter backfill` GitHub Action runs `npm run fetch:abraham` every day at 07:41 UTC and commits the progress in `data/day-004-abraham-lake/`)
+- [x] Dashboard: 4 KPI cards (ice days and water temperature pending LakeTEMP), winter trend chart, monthly chart (air temperature until LakeTEMP), lake profile, family mode with 3 facts, Abraham by default
+- [x] Footer attribution to HydroSHEDS and "Weather data by Open-Meteo.com"
+
 ## Languages and publication calendar
 
 The portfolio and Daily Data Lab can be switched manually between English, Spanish, Japanese, Italian, and French. English is the default; the selected language is shared through the `lang` URL parameter. The contribution-style calendar shows published days from the last 12 months and links each marked date to its visualization. Publication metadata is maintained once in [`../assets/daily-data-lab-days.js`](../assets/daily-data-lab-days.js) and used by both the portfolio and this app.
@@ -59,6 +76,8 @@ npm run build      # builds into ../lab for GitHub Pages
 npm run snapshot   # refreshes the saved CBP data (Day 001)
 npm run snapshot:glowworms   # refreshes GBIF records, climate, and the NZ outline (Day 002)
 npm run snapshot:pillars     # rebuilds the Commons catalog, ERA5 weather, and world outline (Day 003)
+npm run data:abraham         # HydroLAKES → dim_lake.parquet → snapshot (Day 004; needs the zip in raw/)
+npm run fetch:abraham        # continues the Open-Meteo winter backfill within today's budget (Day 004)
 npm run typecheck            # checks the TypeScript days (the build runs it too)
 ```
 

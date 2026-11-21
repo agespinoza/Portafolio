@@ -13,13 +13,16 @@
     "snapshot": "node scripts/snapshot.mjs",
     "snapshot:glowworms": "node scripts/snapshot-glowworms.mjs",
     "snapshot:pillars": "node scripts/snapshot-light-pillars.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "data:abraham": "node scripts/day-004/run-sql.mjs scripts/day-004/dim_lake.sql && node scripts/day-004/run-sql.mjs scripts/day-004/top300.sql && node scripts/day-004/snapshot.mjs",
+    "fetch:abraham": "node scripts/day-004/fetch-winters.mjs 9000 && node scripts/day-004/update-trends.mjs"
   },
   "dependencies": {
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
   "devDependencies": {
+    "@duckdb/node-api": "^1.4.5-r.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "4.3.4",

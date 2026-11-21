@@ -32,4 +32,15 @@ export const DAILY_DATA_LAB_DAYS = [
     tags: ["React", "TypeScript", "Canvas 3-D", "Wikimedia Commons", "ERA5"],
     source: "Wikimedia Commons and Open-Meteo (ERA5)",
   },
+  {
+    day: 4,
+    slug: "abraham-lake",
+    date: "2026-11-21",
+    title: "How fast are winters warming at Abraham Lake?",
+    summary:
+      "The Alberta reservoir famous for methane bubbles frozen in its ice, set against 1.43 million lakes in HydroLAKES and 75 winters of ERA5 air temperature, with the warming trend of the world's 300 largest lakes.",
+    topic: "Climate",
+    tags: ["React", "TypeScript", "DuckDB", "HydroLAKES", "ERA5"],
+    source: "HydroSHEDS (HydroLAKES) and Open-Meteo (ERA5)",
+  },
 ];

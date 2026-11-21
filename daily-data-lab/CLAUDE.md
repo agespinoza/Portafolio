@@ -7,6 +7,13 @@ This folder is Alicia's Daily Data Lab: one small, interactive React visualizati
 - Write all published content in English. Talk to Alicia in Spanish.
 - She is still learning the tools, so give clear step-by-step instructions for anything she has to do herself, such as pushing changes or using Safari or GitHub Desktop.
 
+## Daily modes
+- **Monday–Thursday = SIMPLE mode:** 8–12 simple charts, one precomputed JSON bundled with the day, top 50–100 entities, and 3 follow-up issues (ideas for later) listed in the day's README.
+- **Friday–Sunday = FULL mode:** in-browser queries (DuckDB-WASM when the data is large), a map, and APIs called on demand.
+- Public data only, with source and license attribution in the day's "Method & sources" footer.
+- Reuse existing components and patterns from earlier days before creating new ones.
+- Keep replies to Alicia short; do not explain the obvious.
+
 ## Adding a day
 1. Create `src/days/day-NNN-<slug>/` with a component such as `Day.tsx`, plus `api.ts` when the day fetches data. Alicia prefers TypeScript (`.tsx`) from Day 003 on; Days 001–002 are still `.jsx`. `npm run build` runs `tsc --noEmit` first.
 2. Register the day in `src/days/index.js` with `day`, `slug`, `date` (YYYY-MM-DD), `title` (a question works well), `summary`, `topic`, `tags`, `source`, and `component`.

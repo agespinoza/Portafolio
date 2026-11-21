@@ -1,0 +1,60 @@
+name: Abraham Lake winter backfill
+
+# Daily Data Lab · Day 004. Downloads one more day's worth of ERA5 winter temperatures for the
+# 300 largest lakes from Open-Meteo, recomputes the trends with DuckDB, rebuilds the lab, and commits.
+# Open-Meteo's free tier allows 10,000 calls a day; the script stops at 9,000 and resumes the next day.
+# Once all 300 lakes are complete, runs find nothing to download and exit without a commit.
+on:
+  schedule:
+    - cron: "41 7 * * *"   # 07:41 UTC every day
+  workflow_dispatch:        # allows a manual run from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: abraham-winters
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    defaults:
+      run:
+        working-directory: daily-data-lab
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: daily-data-lab/package-lock.json
+
+      - run: npm ci
+
+      - name: Download today's winters and update the trends
+        run: npm run fetch:abraham
+
+      - name: Rebuild the lab if the data changed
+        run: |
+          if [ -z "$(git status --porcelain -- data/day-004-abraham-lake src/days/day-004-abraham-lake/snapshot.json)" ]; then
+            echo "No new winters today."
+            echo "CHANGED=0" >> "$GITHUB_ENV"
+          else
+            npm run build
+            echo "CHANGED=1" >> "$GITHUB_ENV"
+          fi
+
+      - name: Commit and push
+        if: env.CHANGED == '1'
+        working-directory: .
+        run: |
+          git add daily-data-lab/data/day-004-abraham-lake daily-data-lab/src/days/day-004-abraham-lake/snapshot.json lab
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          DONE=$(node -e "const s=require('./daily-data-lab/src/days/day-004-abraham-lake/snapshot.json');console.log(Object.keys(s.trends).length-1)")
+          git commit -m "Update Abraham Lake winter trends ($DONE of 300 lakes)"
+          git pull --rebase --autostash
+          git push

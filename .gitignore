@@ -2,3 +2,8 @@
 node_modules/
 __pycache__/
 *.pyc
+
+# Raw downloads for the Daily Data Lab (large, not versioned)
+daily-data-lab/raw/
+*.duckdb
+*.duckdb.wal
