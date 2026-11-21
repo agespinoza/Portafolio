@@ -7,11 +7,11 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261121d";
-import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261121d";
-import { getContributionCalendar } from "./contributions.js?v=20261121d";
-import { effectiveTheme, toggleTheme } from "./theme.js?v=20261121d";
-import { LAB_INSIGHT, insightText } from "./daily-data-lab-insights.js?v=20261121d";
+} from "./i18n.js?v=20261121e";
+import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261121e";
+import { getContributionCalendar } from "./contributions.js?v=20261121e";
+import { effectiveTheme, toggleTheme } from "./theme.js?v=20261121e";
+import { LAB_INSIGHT, insightText } from "./daily-data-lab-insights.js?v=20261121e";
 
 function el(tag, attrs, children) {
   var node = document.createElement(tag);
@@ -62,7 +62,7 @@ function renderLabFeature(language) {
     ]),
     el("div", { class: "lab-feature__art" }, day.preview ? [
       el("img", {
-        src: day.preview + "?v=20261121d", alt: dayText(language, day.slug, "previewAlt", day.previewAlt || ""),
+        src: day.preview + "?v=20261121e", alt: dayText(language, day.slug, "previewAlt", day.previewAlt || ""),
         width: "792", height: "346", loading: "lazy",
       }),
     ] : []),
