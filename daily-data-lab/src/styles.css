@@ -80,7 +80,9 @@ h1 em { font-style: italic; color: var(--accent); }
 .pager { display: flex; justify-content: space-between; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); font-weight: 600; }
 
 /* Visualization */
-.viz { display: grid; gap: 20px; }
+.viz { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr); }
+/* Grid items default to min-width: auto, so one wide chart would stretch the whole page on a phone. */
+.viz > *, .two > *, .plan > *, .stats > * { min-width: 0; }
 .controls { display: flex; flex-wrap: wrap; gap: 16px 24px; align-items: flex-end; padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); position: sticky; top: 72px; z-index: 5; box-shadow: var(--shadow); }
 .seg { display: flex; flex-direction: column; gap: 8px; }
 .seg__opts { display: flex; flex-wrap: wrap; gap: 4px; padding: 4px; background: var(--paper-2); border-radius: 999px; }
@@ -102,7 +104,7 @@ h1 em { font-style: italic; color: var(--accent); }
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; min-width: 0; }
 .card__head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
 .card h2 { font-size: 18px; font-weight: 600; letter-spacing: -.01em; margin-bottom: 4px; }
-.two { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+.two { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 20px; }
 
 .legend { display: flex; flex-wrap: wrap; gap: 10px; font: 400 11px/1 var(--mono); color: var(--ink-3); }
 .legend span { display: inline-flex; align-items: center; gap: 5px; }
@@ -116,6 +118,7 @@ h1 em { font-style: italic; color: var(--accent); }
 .cell.now { stroke: var(--ink); stroke-width: 2.5; }
 .readout { margin-top: 12px; font-size: 14px; color: var(--ink-2); min-height: 22px; }
 
+.chart { margin: 0; } /* <figure> has 40px side margins by default */
 .chart svg { width: 100%; height: auto; display: block; }
 .chart .grid { stroke: var(--line); }
 .band { fill: color-mix(in srgb, var(--accent) 14%, transparent); }
@@ -202,7 +205,7 @@ h1 em { font-style: italic; color: var(--accent); }
   .stats { grid-template-columns: 1fr 1fr; }
   .stat:nth-child(2) { border-right: 0; }
   .stat:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
-  .two, .takeaways ul { grid-template-columns: 1fr; }
+  .two, .takeaways ul { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 640px) {
   .wrap { padding: 0 16px; }
@@ -683,3 +686,21 @@ h1 em { font-style: italic; color: var(--accent); }
 :root[data-theme="light"] .lp-downloads button, :root[data-theme="light"] .lp-pager button { background: rgba(13,107,127,.08); }
 :root[data-theme="light"] .lp-coverage .n { background: repeating-linear-gradient(45deg, #e6e1d7 0 4px, #f3efe7 4px 8px); }
 :root[data-theme="light"] .lp-bar:hover .lp-bar__hit, :root[data-theme="light"] .lp-bar:focus .lp-bar__hit { fill: rgba(13,107,127,.06); }
+
+/* Phone top bar: keep brand and links on one line */
+.brand, .topbar__link { white-space: nowrap; }
+@media (max-width: 480px) {
+  .brand { gap: 8px; font-size: 15px; }
+  .language-select { padding: 6px 22px 6px 9px; font-size: 12.5px; max-width: 104px; }
+  .theme-toggle { width: 34px; height: 34px; font-size: 15px; }
+  .topbar__actions { gap: 6px; }
+}
+@media (max-width: 380px) { .brand > span:last-child { display: none; } }
+
+/* Phones: detailed charts keep a readable size and scroll sideways inside their card (like the heatmap);
+   maps and Day 003's own charts still fit the width. */
+@media (max-width: 640px) {
+  .viz:not(.lp) .chart:not(.al-map) { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .viz:not(.lp) .chart:not(.al-map) > svg { min-width: 540px; }
+  .viz:not(.lp) .chart:not(.al-map) figcaption { position: sticky; left: 0; }
+}

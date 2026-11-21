@@ -49,6 +49,7 @@ export const DAILY_DATA_LAB_DAYS = [
     tags: ["React", "TypeScript", "DuckDB", "HydroLAKES", "ERA5"],
     source: "HydroSHEDS (HydroLAKES) and Open-Meteo (ERA5)",
     preview: "assets/img/lab-day-004.svg",
+    previewLight: "assets/img/lab-day-004-light.svg",
     previewAlt: "Preview: a night-sky world map of the 300 largest lakes colored by ice days, next to 75 winters of air temperature at Abraham Lake with a warming trend.",
   },
 ];

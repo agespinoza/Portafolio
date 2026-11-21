@@ -457,3 +457,12 @@ a.tag:hover { text-decoration: none; border-color: var(--accent); color: var(--a
 .btn--light { background: var(--band-strong); color: var(--contact-bg); border-color: var(--band-strong); }
 .btn--outline-light { color: var(--band-ink); border-color: var(--band-line); }
 .btn--outline-light:hover { border-color: var(--band-strong); }
+
+/* Lab preview art: light image in the light theme, night image in the dark theme */
+.lab-feature__art .art-dark { display: none; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .lab-feature__art .art-dark { display: block; }
+  :root:not([data-theme="light"]) .lab-feature__art .art-light { display: none; }
+}
+:root[data-theme="dark"] .lab-feature__art .art-dark { display: block; }
+:root[data-theme="dark"] .lab-feature__art .art-light { display: none; }

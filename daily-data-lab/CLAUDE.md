@@ -19,7 +19,7 @@ This folder is Alicia's Daily Data Lab: one small, interactive React visualizati
 2. Register the day in `src/days/index.js` with `day`, `slug`, `date` (YYYY-MM-DD), `title` (a question works well), `summary`, `topic`, `tags`, `source`, and `component`.
 3. If the source API can fail, bundle a small JSON snapshot in the day folder and import it, so the page still works offline. Add a refresh script in `scripts/` when it helps. Day 001 shows the pattern in `api.js` and `scripts/snapshot.mjs`.
 4. Run `npm run build`. The build writes to `../lab/`, and both `daily-data-lab/` and `lab/` must be committed.
-5. Update the day table in `README.md`. Add a preview image at `../assets/img/lab-day-NNN.svg` (792 × 346, made from the day's real data) and set `preview` and `previewAlt` in `../assets/daily-data-lab-days.js`, with `previewAlt`, `title`, `summary`, and `topic` translated under `labDays.<slug>` in `../assets/i18n.js`. The portfolio front page shows the newest day automatically.
+5. Update the day table in `README.md`. Add preview images at `../assets/img/lab-day-NNN.svg` (night) and `lab-day-NNN-light.svg` (light), 792 × 346, made from the day's real data, and set `preview`, `previewLight`, and `previewAlt` in `../assets/daily-data-lab-days.js`, with `previewAlt`, `title`, `summary`, and `topic` translated under `labDays.<slug>` in `../assets/i18n.js`. The portfolio front page shows the newest day automatically.
 
 ## Analysis standards
 Treat each day as a small analysis, not only a chart:
@@ -36,6 +36,7 @@ Rewrite `../assets/daily-data-lab-insights.js` whenever a day is added. It is sh
 The site has five languages (`../assets/i18n.js`). Spanish is Mexican Spanish (`es-MX`): decimal point and comma thousands (10.5, 1,427,688); never write decimals with a comma in Spanish text. Each day keeps its own strings in `messages.js` next to the component and reads them through `src/days/tr.js`, with the English text written at each call. Add Spanish, French, Italian, and Japanese for every new string.
 
 ## Rules that prevent past bugs
+- Check every day at phone width (390 px) before publishing: the page must not scroll sideways. Grid children need `min-width: 0` and grids need `minmax(0, 1fr)` columns, or one wide chart stretches the whole page. Detailed SVG charts scroll inside their card on phones; maps fit the width.
 - Keep the `classic-script` plugin and the IIFE output in `vite.config.js`. Browsers block `type="module"` scripts on `file://`, which made the page blank.
 - Make links point to explicit `index.html` files, for example `lab/index.html#/day/2`, not to folders. When opened from disk, folder links show a directory listing.
 - Use hash routes (`#/day/N`) because GitHub Pages has no server-side routing.
