@@ -440,3 +440,11 @@ a.tag:hover { text-decoration: none; border-color: var(--accent); color: var(--a
 .theme-toggle { display: inline-grid; place-items: center; width: 38px; height: 38px; border: 1px solid var(--line-2); border-radius: 999px; background: var(--surface); color: var(--ink); font: 400 17px/1 var(--sans); cursor: pointer; transition: border-color .2s, transform .2s; }
 .theme-toggle:hover { border-color: var(--accent); transform: rotate(-12deg); }
 .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Cross-day insight under the newest lab day */
+.lab-insight:empty { display: none; }
+.lab-insight { margin-top: 20px; padding: 28px 32px; border-radius: var(--radius, 18px); background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent); }
+.lab-insight .mono-label { color: var(--accent); }
+.lab-insight h3 { margin: 8px 0 10px; font: 400 clamp(24px, 3vw, 32px)/1.15 var(--serif); color: var(--ink); max-width: 30ch; }
+.lab-insight p { color: var(--ink-2); max-width: 90ch; }
+.lab-insight a { display: inline-block; margin-top: 14px; font-weight: 600; color: var(--accent); }

@@ -29,6 +29,9 @@ Treat each day as a small analysis, not only a chart:
 - Note caveats and assumptions in "Method & sources": what the source measures, what it does not, and any modeling assumption.
 - End every day with the shared research blocks in `src/days/Research.tsx` (first built for Day 003): about six research questions tagged *From this data*, *From the literature*, or *Hypothesis*; a quality panel (provenance in numbers, implemented, pending); a sources table (institution, title, published, coverage, license, limitations, use); and references. Check every DOI against Crossref and doi.org, read the abstract before citing a claim, and check every link before publishing. Never invent a source.
 
+## Cross-day insight (every new day)
+Rewrite `../assets/daily-data-lab-insights.js` whenever a day is added. It is shown on the lab home and under the newest day on the portfolio. Connect the new day with the earlier ones through measurable links (compute the numbers, list where each comes from in the file's header comment), write one conclusion about how the data relate as a whole, and tag each thread as data or hypothesis. Never claim causation; end with a caveat when places, years, or sources differ. Translate it into all five languages and update `throughDay` and the day lists.
+
 ## Translations
 The site has five languages (`../assets/i18n.js`). Spanish is Mexican Spanish (`es-MX`): decimal point and comma thousands (10.5, 1,427,688); never write decimals with a comma in Spanish text. Each day keeps its own strings in `messages.js` next to the component and reads them through `src/days/tr.js`, with the English text written at each call. Add Spanish, French, Italian, and Japanese for every new string.
 

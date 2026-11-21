@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { LANGUAGES, dayText, getLanguage, languageFromSearch, localeFor, t } from "../../assets/i18n.js";
 import { DAYS } from "./days/index.js";
 import ContributionCalendar from "./ContributionCalendar.jsx";
+import { LAB_INSIGHT, insightText } from "../../assets/daily-data-lab-insights.js";
 import { LanguageContext } from "./language.jsx";
 import { effectiveTheme, toggleTheme } from "../../assets/theme.js";
 
@@ -97,6 +98,7 @@ function Gallery({ language }) {
         <div><strong>{fmt(DAYS.reduce((earliest, d) => d.date < earliest.date ? d : earliest, DAYS[0]).date, language)}</strong><span>{t(language, "lab.started", "started")}</span></div>
       </div>
       <ContributionCalendar language={language} />
+      <CrossDayInsight language={language} />
       <div className="grid">
         {days.map((day) => (
           <a key={day.day} className="tile" href={`#/day/${day.day}`}>
@@ -150,5 +152,37 @@ function ThemeToggle({ language }) {
     <button type="button" className="theme-toggle" aria-label={label} title={label} onClick={() => setThemeState(toggleTheme())}>
       <span aria-hidden="true">{dark ? "☀" : "☾"}</span>
     </button>
+  );
+}
+
+/** How the newest day connects with the earlier ones (assets/daily-data-lab-insights.js). */
+function CrossDayInsight({ language }) {
+  const T = (key, values) => insightText(language, key, values);
+  const threads = [
+    { id: "cold", tags: ["data"] },
+    { id: "seasons", tags: ["data", "hyp"] },
+    { id: "observers", tags: ["data"] },
+  ];
+  return (
+    <section className="insight" aria-labelledby="insight-title">
+      <p className="mono insight__eyebrow">{T("eyebrow", { day: pad(LAB_INSIGHT.throughDay) })}</p>
+      <h2 id="insight-title">{T("title")}</h2>
+      <p className="insight__lead">{T("conclusion")}</p>
+      <div className="insight__threads">
+        {threads.map((th) => (
+          <article key={th.id} className="insight__thread">
+            <div className="insight__tags">
+              {th.tags.map((tag) => <span key={tag} className={`lp-tag lp-tag--${tag}`}>{T(tag === "data" ? "dataTag" : "hypTag")}</span>)}
+            </div>
+            <h3>{T(`${th.id}Title`)}</h3>
+            <p>{T(th.id)}</p>
+            <div className="insight__days">
+              {LAB_INSIGHT.days[th.id].map((n) => <a key={n} href={`#/day/${n}`}>{T("day", { n: pad(n) })}</a>)}
+            </div>
+          </article>
+        ))}
+      </div>
+      <p className="insight__caveat">{T("caveat")}</p>
+    </section>
   );
 }

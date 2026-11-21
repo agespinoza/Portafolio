@@ -7,10 +7,11 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261121c";
-import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261121c";
-import { getContributionCalendar } from "./contributions.js?v=20261121c";
-import { effectiveTheme, toggleTheme } from "./theme.js?v=20261121c";
+} from "./i18n.js?v=20261121d";
+import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261121d";
+import { getContributionCalendar } from "./contributions.js?v=20261121d";
+import { effectiveTheme, toggleTheme } from "./theme.js?v=20261121d";
+import { LAB_INSIGHT, insightText } from "./daily-data-lab-insights.js?v=20261121d";
 
 function el(tag, attrs, children) {
   var node = document.createElement(tag);
@@ -61,10 +62,23 @@ function renderLabFeature(language) {
     ]),
     el("div", { class: "lab-feature__art" }, day.preview ? [
       el("img", {
-        src: day.preview + "?v=20261121c", alt: dayText(language, day.slug, "previewAlt", day.previewAlt || ""),
+        src: day.preview + "?v=20261121d", alt: dayText(language, day.slug, "previewAlt", day.previewAlt || ""),
         width: "792", height: "346", loading: "lazy",
       }),
     ] : []),
+  );
+}
+
+// Cross-day insight: how the newest lab day connects with the earlier ones.
+function renderLabInsight(language) {
+  var box = document.getElementById("lab-insight");
+  if (!box) return;
+  var T = function (key, values) { return insightText(language, key, values); };
+  box.replaceChildren(
+    el("p", { class: "mono-label", text: T("eyebrow", { day: String(LAB_INSIGHT.throughDay).padStart(3, "0") }) }),
+    el("h3", { id: "lab-insight-title", text: T("title") }),
+    el("p", { text: T("conclusion") }),
+    el("a", { href: "lab/index.html", "data-lab-link": "" }, [T("readMore") + " →"]),
   );
 }
 
@@ -100,6 +114,7 @@ function applyLanguage(language) {
   }
   initThemeToggle(language);
   renderLabFeature(language);
+  renderLabInsight(language);
   document.querySelectorAll("[data-lab-link]").forEach(function (link) {
     var url = new URL(link.getAttribute("href"), window.location.href);
     if (language === "en") url.searchParams.delete("lang");
