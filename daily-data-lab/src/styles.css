@@ -634,7 +634,7 @@ h1 em { font-style: italic; color: var(--accent); }
 .theme-toggle:hover { border-color: var(--accent); transform: rotate(-12deg); }
 
 /* Cross-day insight on the lab home */
-.insight { margin-bottom: 40px; padding: 32px; border-radius: var(--radius); background: var(--hl-bg); color: var(--hl-ink); border: 1px solid var(--hl-line); }
+.insight { margin-top: 40px; padding: 32px; border-radius: var(--radius); background: var(--hl-bg); color: var(--hl-ink); border: 1px solid var(--hl-line); }
 .insight__eyebrow { color: var(--hl-accent) !important; margin-bottom: 10px; }
 .insight h2 { font: 400 clamp(28px, 3.4vw, 40px)/1.1 var(--serif); color: var(--hl-strong); max-width: 26ch; letter-spacing: -.01em; }
 .insight__lead { margin-top: 14px; font-size: 17px; color: var(--hl-ink); max-width: 90ch; }

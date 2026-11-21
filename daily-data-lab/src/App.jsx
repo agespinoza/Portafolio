@@ -98,7 +98,6 @@ function Gallery({ language }) {
         <div><strong>{fmt(DAYS.reduce((earliest, d) => d.date < earliest.date ? d : earliest, DAYS[0]).date, language)}</strong><span>{t(language, "lab.started", "started")}</span></div>
       </div>
       <ContributionCalendar language={language} />
-      <CrossDayInsight language={language} />
       <div className="grid">
         {days.map((day) => (
           <a key={day.day} className="tile" href={`#/day/${day.day}`}>
@@ -113,6 +112,7 @@ function Gallery({ language }) {
           </a>
         ))}
       </div>
+      <CrossDayInsight language={language} />
     </section>
   );
 }
