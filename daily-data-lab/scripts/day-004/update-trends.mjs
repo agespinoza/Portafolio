@@ -28,6 +28,8 @@ snap.trends = { [ABRAHAM]: snap.trends[ABRAHAM] };
 snap.series = { [ABRAHAM]: snap.series[ABRAHAM] };
 trends.forEach((t) => { snap.trends[t.lake_id] = [n(t.f), n(t.l), n(t.n), n(t.m), n(t.s), n(t.i), n(t.r2), n(t.se)]; });
 series.forEach((r) => { snap.series[r.lake_id] = r.s.map(([w, m]) => [n(w), n(m)]); });
-snap.trendsUpdatedAt = new Date().toISOString();
-writeFileSync(SNAP, JSON.stringify(snap));
-console.log(`✓ trends for ${trends.length} of ${snap.top300.length} large lakes`);
+// Write only when the trends changed, so a run with no new winters makes no commit.
+delete snap.trendsUpdatedAt;
+const next = JSON.stringify(snap);
+if (next === readFileSync(SNAP, "utf8")) console.log(`No change: trends for ${trends.length} of ${snap.top300.length} large lakes`);
+else { writeFileSync(SNAP, next); console.log(`✓ trends for ${trends.length} of ${snap.top300.length} large lakes`); }
