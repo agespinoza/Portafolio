@@ -256,8 +256,8 @@ function MapLegend({ active, rows, language }: { active: Phenomenon[]; rows: Obs
       </ul>
       <p className="lp-legend__note">{tr(language, "legendCounts", "Numbers: on the map / in the filtered catalog.")}</p>
       <div className="lp-legend__ev">
-        <span><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="#f4efe6" /></svg> {tr(language, "evA", EV_TEXT.A)}</span>
-        <span><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="#f4efe6" strokeWidth="1.5" /></svg> {tr(language, "evB", EV_TEXT.B)}</span>
+        <span><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="currentColor" /></svg> {tr(language, "evA", EV_TEXT.A)}</span>
+        <span><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg> {tr(language, "evB", EV_TEXT.B)}</span>
       </div>
       <p className="lp-legend__note">{tr(language, "legendFamilies", "Warm colours reflect light (pillars); cool colours refract it (halos, sun dogs, arcs). The two mechanisms are never pooled in a statistic.")}</p>
       <p className="lp-legend__note">{tr(language, "legendClick", "Click a point to see the photo, its credit and license, and the weather at that hour.")}</p>

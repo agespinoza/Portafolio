@@ -67,7 +67,7 @@ export default function App() {
             <select id="language-select" className="language-select" value={language} onChange={changeLanguage}>
               {LANGUAGES.map((code) => <option key={code} value={code}>{LANGUAGE_NAMES[code]}</option>)}
             </select>
-            <ThemeToggle language={language} />
+            <ThemeToggle language={language} nightDefault={current?.slug === "light-pillars"} />
             <a className="topbar__link" href={portfolioLink}>{t(language, "lab.backToPortfolio", "← Portfolio")}</a>
           </nav>
         </div>
@@ -144,12 +144,12 @@ function DayPage({ day, language }) {
 }
 
 /** Light/dark switch shared with the portfolio; the icon shows the theme you would switch to. */
-function ThemeToggle({ language }) {
-  const [theme, setThemeState] = useState(() => effectiveTheme());
-  const dark = theme === "dark";
+function ThemeToggle({ language, nightDefault }) {
+  const [, rerender] = useState(0);
+  const dark = effectiveTheme(nightDefault) === "dark";
   const label = dark ? t(language, "nav.themeToLight", "Switch to light theme") : t(language, "nav.themeToDark", "Switch to dark theme");
   return (
-    <button type="button" className="theme-toggle" aria-label={label} title={label} onClick={() => setThemeState(toggleTheme())}>
+    <button type="button" className="theme-toggle" aria-label={label} title={label} onClick={() => { toggleTheme(nightDefault); rerender((n) => n + 1); }}>
       <span aria-hidden="true">{dark ? "☀" : "☾"}</span>
     </button>
   );

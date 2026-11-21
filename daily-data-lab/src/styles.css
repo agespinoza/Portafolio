@@ -279,7 +279,7 @@ h1 em { font-style: italic; color: var(--accent); }
 
 /* Day 003 · Light pillars: a night-sky observatory.
    The whole page switches to night tokens while this day is open (:has), whatever the OS theme. */
-:root:has(.lp) {
+:root:not([data-theme="light"]):has(.lp) {
   --paper: #050a16; --paper-2: #0d1628; --surface: #0a1324;
   --ink: #eef2f7; --ink-2: #b9c4d6; --ink-3: #8693a8;
   --line: #18243b; --line-2: #24344f;
@@ -289,7 +289,7 @@ h1 em { font-style: italic; color: var(--accent); }
   --shadow: 0 1px 2px rgba(0,0,0,.4), 0 18px 40px -18px rgba(0,0,0,.8);
   color-scheme: dark;
 }
-:root:has(.lp) body {
+:root:not([data-theme="light"]):has(.lp) body {
   background:
     radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.55), transparent 60%),
     radial-gradient(1px 1px at 68% 9%, rgba(255,255,255,.45), transparent 60%),
@@ -301,8 +301,8 @@ h1 em { font-style: italic; color: var(--accent); }
     #050a16;
   background-attachment: fixed;
 }
-:root:has(.lp) .brand__mark { background: var(--accent); color: #04101c; }
-:root:has(.lp) .day h1 em, :root:has(.lp) .day .kicker span { color: var(--accent); }
+:root:not([data-theme="light"]):has(.lp) .brand__mark { background: var(--accent); color: #04101c; }
+:root:not([data-theme="light"]):has(.lp) .day h1 em, :root:not([data-theme="light"]):has(.lp) .day .kicker span { color: var(--accent); }
 
 .lp { gap: 22px; grid-template-columns: minmax(0, 1fr); }
 .lp > * { min-width: 0; }
@@ -650,3 +650,36 @@ h1 em { font-style: italic; color: var(--accent); }
 .insight__caveat { margin-top: 18px; font-size: 13px; color: var(--hl-ink-2); }
 @media (max-width: 960px) { .insight__threads { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .insight { padding: 22px; } }
+
+/* Day 003 in the light theme: the page follows the theme; the night "screens" (map, 3-D simulator,
+   photo, crystal close-up) keep the night palette, like the Day 002 glowworm map. */
+.lp-map, .lp-sim, .lp-record__img, .lp-closeup {
+  --paper: #050a16; --paper-2: #0d1628; --surface: #0a1324;
+  --ink: #eef2f7; --ink-2: #b9c4d6; --ink-3: #8693a8;
+  --line: #18243b; --line-2: #24344f;
+  --accent: #7fd3e3; --accent-2: #a6e4ef; --accent-soft: #10283a; --copper: #f2a65a;
+  color: var(--ink);
+}
+:root[data-theme="light"] .lp .stat--accent { background: var(--hl-bg); color: var(--hl-ink); }
+:root[data-theme="light"] .lp .takeaways { background: var(--hl-bg); border-color: var(--hl-line); }
+:root[data-theme="light"] .lp-tag--lit { color: #0d6b7f; background: var(--accent-soft); }
+:root[data-theme="light"] .lp-tag--data { color: #7a5a00; background: #f6ecc8; }
+:root[data-theme="light"] .lp-tag--hyp { color: #9a4f16; background: #f8e3d0; }
+:root[data-theme="light"] .lp-tag--sim { color: #6a3fb0; background: #ece3fb; }
+:root[data-theme="light"] .lp-ev--A { background: var(--accent); color: #fff; }
+:root[data-theme="light"] .lp-ev--B { border-color: var(--accent); color: var(--accent); }
+:root[data-theme="light"] .lp-flag { color: #8a4a12; background: rgba(242,166,90,.16); }
+:root[data-theme="light"] .lp-mbar--n { fill: var(--accent); }
+:root[data-theme="light"] .lp-mbar--u { fill: #b8c0cc; }
+:root[data-theme="light"] .lp-share, :root[data-theme="light"] .lp-whisker, :root[data-theme="light"] .lp-ref { stroke: #b8860b; }
+:root[data-theme="light"] .lp-share { fill: #e0b52a; }
+:root[data-theme="light"] .lp-ref__label { fill: #8a6500; }
+:root[data-theme="light"] .lp-box { fill: rgba(11,20,36,.04); }
+:root[data-theme="light"] .lp-ice { stroke: var(--accent); }
+:root[data-theme="light"] .lp-dot { stroke: var(--surface); }
+:root[data-theme="light"] .lp-dot:hover { stroke: var(--ink); }
+:root[data-theme="light"] .lp-table tbody tr:hover { background: rgba(13,107,127,.05); }
+:root[data-theme="light"] .lp-table tr.on { background: rgba(13,107,127,.09); }
+:root[data-theme="light"] .lp-downloads button, :root[data-theme="light"] .lp-pager button { background: rgba(13,107,127,.08); }
+:root[data-theme="light"] .lp-coverage .n { background: repeating-linear-gradient(45deg, #e6e1d7 0 4px, #f3efe7 4px 8px); }
+:root[data-theme="light"] .lp-bar:hover .lp-bar__hit, :root[data-theme="light"] .lp-bar:focus .lp-bar__hit { fill: rgba(13,107,127,.06); }

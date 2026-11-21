@@ -3,9 +3,11 @@
 // each page's <head> applies a saved choice before the first paint, so there is no flash.
 export const THEME_KEY = "ae-theme";
 
-export function effectiveTheme() {
+/** The theme on screen. A page that is night-themed by default (lab Day 003) passes nightDefault. */
+export function effectiveTheme(nightDefault = false) {
   const saved = document.documentElement.dataset.theme;
   if (saved === "light" || saved === "dark") return saved;
+  if (nightDefault) return "dark";
   return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
@@ -14,8 +16,8 @@ export function setTheme(theme) {
   try { window.localStorage.setItem(THEME_KEY, theme); } catch (error) { /* storage blocked: the choice lasts for this page only */ }
 }
 
-export function toggleTheme() {
-  const next = effectiveTheme() === "dark" ? "light" : "dark";
+export function toggleTheme(nightDefault = false) {
+  const next = effectiveTheme(nightDefault) === "dark" ? "light" : "dark";
   setTheme(next);
   return next;
 }
