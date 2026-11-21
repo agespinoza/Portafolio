@@ -3,6 +3,7 @@ import { LANGUAGES, dayText, getLanguage, languageFromSearch, localeFor, t } fro
 import { DAYS } from "./days/index.js";
 import ContributionCalendar from "./ContributionCalendar.jsx";
 import { LanguageContext } from "./language.jsx";
+import { effectiveTheme, toggleTheme } from "../../assets/theme.js";
 
 const LANGUAGE_NAMES = {
   en: "English",
@@ -65,6 +66,7 @@ export default function App() {
             <select id="language-select" className="language-select" value={language} onChange={changeLanguage}>
               {LANGUAGES.map((code) => <option key={code} value={code}>{LANGUAGE_NAMES[code]}</option>)}
             </select>
+            <ThemeToggle language={language} />
             <a className="topbar__link" href={portfolioLink}>{t(language, "lab.backToPortfolio", "← Portfolio")}</a>
           </nav>
         </div>
@@ -136,5 +138,17 @@ function DayPage({ day, language }) {
           : <span className="muted">{t(language, "lab.nextComing", "Next day coming soon")}</span>}
       </nav>
     </article>
+  );
+}
+
+/** Light/dark switch shared with the portfolio; the icon shows the theme you would switch to. */
+function ThemeToggle({ language }) {
+  const [theme, setThemeState] = useState(() => effectiveTheme());
+  const dark = theme === "dark";
+  const label = dark ? t(language, "nav.themeToLight", "Switch to light theme") : t(language, "nav.themeToDark", "Switch to dark theme");
+  return (
+    <button type="button" className="theme-toggle" aria-label={label} title={label} onClick={() => setThemeState(toggleTheme())}>
+      <span aria-hidden="true">{dark ? "☀" : "☾"}</span>
+    </button>
   );
 }

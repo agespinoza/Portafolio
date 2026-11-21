@@ -7,9 +7,10 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261121a";
-import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261121a";
-import { getContributionCalendar } from "./contributions.js?v=20261121a";
+} from "./i18n.js?v=20261121b";
+import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261121b";
+import { getContributionCalendar } from "./contributions.js?v=20261121b";
+import { effectiveTheme, toggleTheme } from "./theme.js?v=20261121b";
 
 function el(tag, attrs, children) {
   var node = document.createElement(tag);
@@ -22,6 +23,22 @@ function el(tag, attrs, children) {
     if (child) node.appendChild(typeof child === "string" ? document.createTextNode(child) : child);
   });
   return node;
+}
+
+// Light/dark switch: the icon shows the theme you would switch to.
+function initThemeToggle(language) {
+  var button = document.getElementById("theme-toggle");
+  if (!button) return;
+  var render = function () {
+    var dark = effectiveTheme() === "dark";
+    button.setAttribute("aria-label", dark
+      ? t(language, "nav.themeToLight", "Switch to light theme")
+      : t(language, "nav.themeToDark", "Switch to dark theme"));
+    button.title = button.getAttribute("aria-label");
+    button.querySelector(".theme-toggle__icon").textContent = dark ? "☀" : "☾";
+  };
+  render();
+  button.addEventListener("click", function () { toggleTheme(); render(); });
 }
 
 function applyLanguage(language) {
@@ -54,6 +71,7 @@ function applyLanguage(language) {
       window.location.assign(url.href);
     });
   }
+  initThemeToggle(language);
   document.querySelectorAll("[data-lab-link]").forEach(function (link) {
     var url = new URL(link.getAttribute("href"), window.location.href);
     if (language === "en") url.searchParams.delete("lang");

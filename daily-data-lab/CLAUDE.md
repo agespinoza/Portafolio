@@ -39,7 +39,7 @@ The site has five languages (`../assets/i18n.js`). Spanish is Mexican Spanish (`
 - Verify the APIs from the browser: check CORS with `curl -H 'Origin: https://agespinoza.github.io'` and look for `access-control-allow-origin`.
 
 ## Design
-- Match the portfolio's visual language: the tokens are in `src/styles.css`. The fonts are Instrument Serif for headings, Inter for text, and JetBrains Mono for labels. Use the paper/ink/teal/copper palette and keep dark mode working.
+- Match the portfolio's visual language: the tokens are in `src/styles.css`. The fonts are Instrument Serif for headings, Inter for text, and JetBrains Mono for labels. Use the paper/ink/teal/copper palette and keep both themes working. Visitors can pick light or dark with the ☀/☾ button (`assets/theme.js`, saved as `ae-theme`), so write dark styles twice: inside `@media (prefers-color-scheme: dark)` with selectors starting `:root:not([data-theme="light"])`, and again with `:root[data-theme="dark"]`. Use CSS variables, not fixed colors, so most rules need no dark copy.
 - Draw charts as hand-built SVG in React with no chart library. Make them accessible: add `role` and `aria-label`, keep cells focusable, and give a text readout on hover or focus.
 - A day page usually includes controls, a row of key numbers, one main chart, one or two supporting charts, a "What the data says" takeaways box, and a "Method & sources" note.
 

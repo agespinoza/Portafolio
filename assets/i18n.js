@@ -11,6 +11,8 @@ export const LOCALES = {
 const MESSAGES = {
   es: {
     nav: {
+      themeToDark: "Cambiar a tema oscuro",
+      themeToLight: "Cambiar a tema claro",
       experience: "Experiencia",
       projects: "Proyectos",
       applications: "Aplicaciones",
@@ -384,6 +386,8 @@ const MESSAGES = {
   },
   ja: {
     nav: {
+      themeToDark: "ダークテーマに切り替え",
+      themeToLight: "ライトテーマに切り替え",
       experience: "職歴",
       projects: "プロジェクト",
       applications: "アプリケーション",
@@ -757,6 +761,8 @@ const MESSAGES = {
   },
   it: {
     nav: {
+      themeToDark: "Passa al tema scuro",
+      themeToLight: "Passa al tema chiaro",
       experience: "Esperienza",
       projects: "Progetti",
       applications: "Applicazioni",
@@ -1130,6 +1136,8 @@ const MESSAGES = {
   },
   fr: {
     nav: {
+      themeToDark: "Passer au thème sombre",
+      themeToLight: "Passer au thème clair",
       experience: "Expérience",
       projects: "Projets",
       applications: "Applications",
