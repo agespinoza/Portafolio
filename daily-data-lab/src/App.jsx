@@ -133,7 +133,8 @@ function DayPage({ day, language }) {
         {navigation}
         <p className="kicker">
           <span>{t(language, "lab.day", "Day {number}", { number: pad(day.day) })}</span>
-          {" "}{fmt(day.date, language)} · {dayText(language, day.slug, "topic", day.topic)}
+          <time dateTime={day.date}>{fmt(day.date, language)}</time>
+          <span className="study-header__topic">{dayText(language, day.slug, "topic", day.topic)}</span>
         </p>
         <h1 tabIndex={-1}>{title}</h1>
         <p className="lead">{dayText(language, day.slug, "summary", day.summary)}</p>

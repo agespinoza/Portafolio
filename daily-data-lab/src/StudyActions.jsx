@@ -3,18 +3,35 @@ import { dayText, t } from "../../assets/i18n.js";
 import { studyUrl } from "../share-url.js";
 import { archiveCopy } from "./archive-copy.js";
 
+const iconPaths = {
+  archive: "M4 7h16v13H4z M3 3h18v4H3z M10 11h4",
+  prev: "m12 6-6 6 6 6 M6 12h13",
+  next: "m12 6 6 6-6 6 M5 12h13",
+  share: "M12 15V3m-4 4 4-4 4 4 M7 10H5v10h14V10h-2",
+  link: "m10 13 4-4 M8 15l-1 1a3 3 0 0 1-4-4l4-4a3 3 0 0 1 4 0 M16 9l1-1a3 3 0 0 1 4 4l-4 4a3 3 0 0 1-4 0",
+};
+
+function StudyIcon({ name }) {
+  return (
+    <svg className="study-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <path d={iconPaths[name]} />
+    </svg>
+  );
+}
+
 export function StudyNavigation({ previous, next, language }) {
   const copy = archiveCopy(language);
   return (
     <nav className="study-nav" aria-label={t(language, "lab.otherDays", "Other days")}>
-      <a href="#/archive">{copy.archive}</a>
+      <a className="study-nav__archive" href="#/archive" aria-label={copy.archive}><StudyIcon name="archive" />{copy.archiveLink}</a>
       {[["prev", previous, copy.previous], ["next", next, copy.next]].map(([direction, entry, label]) => {
         if (!entry) return null;
         const title = dayText(language, entry.slug, "title", entry.title);
         return (
           <a key={direction} rel={direction} href={`#/day/${entry.day}`}
             title={title} aria-label={`${label} · ${title}`}>
-            {label}
+            {direction === "prev" && <StudyIcon name="prev" />}{label}{direction === "next" && <StudyIcon name="next" />}
           </a>
         );
       })}
@@ -48,8 +65,8 @@ export function ShareStudy({ day, title, language }) {
 
   return (
     <div className="study-share">
-      {nativeShare && <button className="study-button" type="button" onClick={share}>{copy.share}</button>}
-      <button className="study-button" type="button" onClick={copyLink}>{copy.copy}</button>
+      {nativeShare && <button className="study-button" type="button" onClick={share}><StudyIcon name="share" />{copy.share}</button>}
+      <button className="study-button" type="button" onClick={copyLink}><StudyIcon name="link" />{copy.copy}</button>
       {feedback === "manual" && (
         <input className="study-share__url" aria-label={copy.manual} value={url} readOnly
           onFocus={(event) => event.target.select()} />
