@@ -357,6 +357,12 @@ const MESSAGES = {
         topic: "Clima",
         previewAlt: "Vista previa: mapa mundial nocturno de los 300 lagos más grandes coloreados por días de hielo, junto a 75 inviernos de temperatura del aire en el Lago Abraham con su tendencia de calentamiento.",
       },
+      "endangered-languages": {
+        title: "¿Qué lenguas están en peligro y casi sin documentar?",
+        summary: "Las 7,685 lenguas maternas habladas de Glottolog 5.4, en un mapa según su nivel de peligro y qué tan bien están descritas, con las familias y los países con más riesgo y los huecos en las bases de datos gramaticales del mundo.",
+        topic: "Lenguas",
+        previewAlt: "Vista previa: mapa mundial nocturno de 7,685 lenguas coloreadas por nivel de peligro, junto a una cuadrícula de nivel de peligro contra nivel de documentación.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -733,6 +739,12 @@ const MESSAGES = {
         summary: "氷に閉じ込められたメタンの泡で知られるアルバータ州の貯水池を、HydroLAKESの143万の湖とERA5の75回の冬の気温、世界最大級300湖の温暖化傾向と比べます。",
         topic: "気候",
         previewAlt: "プレビュー：結氷日数で色分けした世界最大級300湖の夜空の世界地図と、アブラハム湖の75回の冬の気温と温暖化傾向。",
+      },
+      "endangered-languages": {
+        title: "危機にあり、ほとんど記録されていない言語はどれか？",
+        summary: "Glottolog 5.4の話し言葉の第一言語7,685すべてを、危機度と記述の程度で地図化。最も危うい語族と国、そして世界の文法データベースの空白を示します。",
+        topic: "言語",
+        previewAlt: "プレビュー：危機度で色分けした7,685言語の夜空風世界地図と、危機度と記録の程度を掛け合わせたグリッド。",
       },
     },
     lab: {
@@ -1111,6 +1123,12 @@ const MESSAGES = {
         topic: "Clima",
         previewAlt: "Anteprima: mappa del mondo notturna dei 300 laghi più grandi colorati per giorni di ghiaccio, accanto a 75 inverni di temperatura dell'aria al lago Abraham con la tendenza al riscaldamento.",
       },
+      "endangered-languages": {
+        title: "Quali lingue sono in pericolo e appena documentate?",
+        summary: "Tutte le 7.685 lingue materne parlate di Glottolog 5.4, mappate per livello di pericolo e grado di descrizione, con le famiglie e i paesi più a rischio e i vuoti nelle banche dati grammaticali del mondo.",
+        topic: "Lingue",
+        previewAlt: "Anteprima: una mappa del mondo notturna di 7.685 lingue colorate per livello di pericolo, accanto a una griglia che incrocia pericolo e livello di documentazione.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -1487,6 +1505,12 @@ const MESSAGES = {
         summary: "Le réservoir albertain célèbre pour ses bulles de méthane prises dans la glace, comparé à 1,43 million de lacs de HydroLAKES et à 75 hivers de température ERA5, avec la tendance de réchauffement des 300 plus grands lacs du monde.",
         topic: "Climat",
         previewAlt: "Aperçu : carte du monde nocturne des 300 plus grands lacs colorés selon les jours de glace, à côté de 75 hivers de température de l'air au lac Abraham avec la tendance au réchauffement.",
+      },
+      "endangered-languages": {
+        title: "Quelles langues sont en danger et à peine documentées ?",
+        summary: "Les 7 685 langues maternelles parlées de Glottolog 5.4, cartographiées selon leur niveau de danger et leur degré de description, avec les familles et les pays les plus menacés et les lacunes des bases de données grammaticales mondiales.",
+        topic: "Langues",
+        previewAlt: "Aperçu : une carte du monde nocturne de 7 685 langues colorées selon leur niveau de danger, à côté d'une grille croisant danger et niveau de documentation.",
       },
     },
     lab: {

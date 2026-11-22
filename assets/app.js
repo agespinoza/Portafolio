@@ -7,11 +7,11 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261121f";
-import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261121f";
-import { getContributionCalendar } from "./contributions.js?v=20261121f";
-import { effectiveTheme, toggleTheme } from "./theme.js?v=20261121f";
-import { LAB_INSIGHT, insightText } from "./daily-data-lab-insights.js?v=20261121f";
+} from "./i18n.js?v=20261122a";
+import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261122a";
+import { getContributionCalendar } from "./contributions.js?v=20261122a";
+import { effectiveTheme, toggleTheme } from "./theme.js?v=20261122a";
+import { LAB_INSIGHT, insightText } from "./daily-data-lab-insights.js?v=20261122a";
 
 function el(tag, attrs, children) {
   var node = document.createElement(tag);
@@ -63,11 +63,11 @@ function renderLabFeature(language) {
     // Two previews when the day has a light one; CSS shows the one that matches the theme.
     el("div", { class: "lab-feature__art" }, day.preview ? [
       el("img", {
-        class: day.previewLight ? "art-dark" : "", src: day.preview + "?v=20261121f",
+        class: day.previewLight ? "art-dark" : "", src: day.preview + "?v=20261122a",
         alt: dayText(language, day.slug, "previewAlt", day.previewAlt || ""), width: "792", height: "346", loading: "lazy",
       }),
       day.previewLight ? el("img", {
-        class: "art-light", src: day.previewLight + "?v=20261121f",
+        class: "art-light", src: day.previewLight + "?v=20261122a",
         alt: dayText(language, day.slug, "previewAlt", day.previewAlt || ""), width: "792", height: "346", loading: "lazy",
       }) : null,
     ] : []),

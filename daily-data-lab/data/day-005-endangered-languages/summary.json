@@ -1,0 +1,2265 @@
+{
+ "source": "Glottolog 5.4 CLDF, doi:10.5281/zenodo.24101243 (CC-BY 4.0)",
+ "global": {
+  "languages": 7685,
+  "living": 6702,
+  "endangered": 4082,
+  "extinct": 972,
+  "priority": 881,
+  "unassessed": 11
+ },
+ "byMacroarea": [
+  {
+   "macroarea": "Africa",
+   "languages": 2213,
+   "living": 2118,
+   "endangered": 829,
+   "extinct": 94,
+   "priority": 203,
+   "unassessed": 1
+  },
+  {
+   "macroarea": "Papunesia",
+   "languages": 2131,
+   "living": 2070,
+   "endangered": 1368,
+   "extinct": 61,
+   "priority": 481,
+   "unassessed": 0
+  },
+  {
+   "macroarea": "Eurasia",
+   "languages": 1745,
+   "living": 1536,
+   "endangered": 998,
+   "extinct": 204,
+   "priority": 114,
+   "unassessed": 5
+  },
+  {
+   "macroarea": "North America",
+   "languages": 670,
+   "living": 477,
+   "endangered": 415,
+   "extinct": 189,
+   "priority": 39,
+   "unassessed": 4
+  },
+  {
+   "macroarea": "South America",
+   "languages": 570,
+   "living": 373,
+   "endangered": 345,
+   "extinct": 197,
+   "priority": 31,
+   "unassessed": 0
+  },
+  {
+   "macroarea": "Australia",
+   "languages": 355,
+   "living": 128,
+   "endangered": 127,
+   "extinct": 227,
+   "priority": 13,
+   "unassessed": 0
+  }
+ ],
+ "byCountry": [
+  {
+   "country": "ID",
+   "languages": 730,
+   "living": 708,
+   "endangered": 575,
+   "extinct": 22,
+   "priority": 181,
+   "unassessed": 0
+  },
+  {
+   "country": "PG",
+   "languages": 869,
+   "living": 851,
+   "endangered": 483,
+   "extinct": 18,
+   "priority": 220,
+   "unassessed": 0
+  },
+  {
+   "country": "CN",
+   "languages": 424,
+   "living": 394,
+   "endangered": 262,
+   "extinct": 28,
+   "priority": 31,
+   "unassessed": 2
+  },
+  {
+   "country": "IN",
+   "languages": 479,
+   "living": 452,
+   "endangered": 259,
+   "extinct": 27,
+   "priority": 26,
+   "unassessed": 0
+  },
+  {
+   "country": "MX",
+   "languages": 308,
+   "living": 278,
+   "endangered": 225,
+   "extinct": 26,
+   "priority": 31,
+   "unassessed": 4
+  },
+  {
+   "country": "NG",
+   "languages": 550,
+   "living": 522,
+   "endangered": 222,
+   "extinct": 28,
+   "priority": 80,
+   "unassessed": 0
+  },
+  {
+   "country": "BR",
+   "languages": 267,
+   "living": 173,
+   "endangered": 163,
+   "extinct": 94,
+   "priority": 18,
+   "unassessed": 0
+  },
+  {
+   "country": "AU",
+   "languages": 366,
+   "living": 139,
+   "endangered": 135,
+   "extinct": 227,
+   "priority": 13,
+   "unassessed": 0
+  },
+  {
+   "country": "US",
+   "languages": 284,
+   "living": 147,
+   "endangered": 132,
+   "extinct": 137,
+   "priority": 6,
+   "unassessed": 0
+  },
+  {
+   "country": "CM",
+   "languages": 306,
+   "living": 293,
+   "endangered": 118,
+   "extinct": 13,
+   "priority": 25,
+   "unassessed": 0
+  },
+  {
+   "country": "RU",
+   "languages": 162,
+   "living": 141,
+   "endangered": 117,
+   "extinct": 21,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "MY",
+   "languages": 125,
+   "living": 122,
+   "endangered": 99,
+   "extinct": 3,
+   "priority": 22,
+   "unassessed": 0
+  },
+  {
+   "country": "VU",
+   "languages": 119,
+   "living": 115,
+   "endangered": 97,
+   "extinct": 4,
+   "priority": 43,
+   "unassessed": 0
+  },
+  {
+   "country": "NP",
+   "languages": 114,
+   "living": 112,
+   "endangered": 89,
+   "extinct": 2,
+   "priority": 11,
+   "unassessed": 0
+  },
+  {
+   "country": "CO",
+   "languages": 108,
+   "living": 85,
+   "endangered": 81,
+   "extinct": 23,
+   "priority": 5,
+   "unassessed": 0
+  },
+  {
+   "country": "PE",
+   "languages": 118,
+   "living": 92,
+   "endangered": 79,
+   "extinct": 26,
+   "priority": 6,
+   "unassessed": 0
+  },
+  {
+   "country": "CA",
+   "languages": 89,
+   "living": 81,
+   "endangered": 77,
+   "extinct": 8,
+   "priority": 4,
+   "unassessed": 0
+  },
+  {
+   "country": "PH",
+   "languages": 169,
+   "living": 167,
+   "endangered": 63,
+   "extinct": 2,
+   "priority": 7,
+   "unassessed": 0
+  },
+  {
+   "country": "CD",
+   "languages": 233,
+   "living": 229,
+   "endangered": 58,
+   "extinct": 4,
+   "priority": 9,
+   "unassessed": 0
+  },
+  {
+   "country": "SD",
+   "languages": 101,
+   "living": 92,
+   "endangered": 57,
+   "extinct": 8,
+   "priority": 19,
+   "unassessed": 1
+  },
+  {
+   "country": "VN",
+   "languages": 111,
+   "living": 109,
+   "endangered": 56,
+   "extinct": 2,
+   "priority": 12,
+   "unassessed": 0
+  },
+  {
+   "country": "TZ",
+   "languages": 132,
+   "living": 129,
+   "endangered": 52,
+   "extinct": 3,
+   "priority": 5,
+   "unassessed": 0
+  },
+  {
+   "country": "TD",
+   "languages": 140,
+   "living": 134,
+   "endangered": 52,
+   "extinct": 6,
+   "priority": 23,
+   "unassessed": 0
+  },
+  {
+   "country": "IR",
+   "languages": 87,
+   "living": 78,
+   "endangered": 49,
+   "extinct": 9,
+   "priority": 2,
+   "unassessed": 0
+  },
+  {
+   "country": "MM",
+   "languages": 133,
+   "living": 126,
+   "endangered": 49,
+   "extinct": 7,
+   "priority": 2,
+   "unassessed": 0
+  },
+  {
+   "country": "LA",
+   "languages": 91,
+   "living": 89,
+   "endangered": 45,
+   "extinct": 0,
+   "priority": 14,
+   "unassessed": 2
+  },
+  {
+   "country": "ET",
+   "languages": 96,
+   "living": 93,
+   "endangered": 43,
+   "extinct": 3,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "VE",
+   "languages": 60,
+   "living": 42,
+   "endangered": 39,
+   "extinct": 18,
+   "priority": 3,
+   "unassessed": 0
+  },
+  {
+   "country": "BO",
+   "languages": 61,
+   "living": 42,
+   "endangered": 36,
+   "extinct": 19,
+   "priority": 3,
+   "unassessed": 0
+  },
+  {
+   "country": "SS",
+   "languages": 86,
+   "living": 81,
+   "endangered": 34,
+   "extinct": 5,
+   "priority": 7,
+   "unassessed": 0
+  },
+  {
+   "country": "TH",
+   "languages": 76,
+   "living": 75,
+   "endangered": 34,
+   "extinct": 1,
+   "priority": 3,
+   "unassessed": 0
+  },
+  {
+   "country": "NC",
+   "languages": 37,
+   "living": 35,
+   "endangered": 30,
+   "extinct": 2,
+   "priority": 10,
+   "unassessed": 0
+  },
+  {
+   "country": "PK",
+   "languages": 79,
+   "living": 78,
+   "endangered": 30,
+   "extinct": 1,
+   "priority": 8,
+   "unassessed": 0
+  },
+  {
+   "country": "GA",
+   "languages": 48,
+   "living": 48,
+   "endangered": 29,
+   "extinct": 0,
+   "priority": 8,
+   "unassessed": 0
+  },
+  {
+   "country": "SN",
+   "languages": 45,
+   "living": 45,
+   "endangered": 27,
+   "extinct": 0,
+   "priority": 2,
+   "unassessed": 0
+  },
+  {
+   "country": "IT",
+   "languages": 48,
+   "living": 39,
+   "endangered": 25,
+   "extinct": 9,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SB",
+   "languages": 72,
+   "living": 70,
+   "endangered": 25,
+   "extinct": 2,
+   "priority": 6,
+   "unassessed": 0
+  },
+  {
+   "country": "CG",
+   "languages": 70,
+   "living": 70,
+   "endangered": 25,
+   "extinct": 0,
+   "priority": 3,
+   "unassessed": 0
+  },
+  {
+   "country": "BT",
+   "languages": 29,
+   "living": 29,
+   "endangered": 24,
+   "extinct": 0,
+   "priority": 6,
+   "unassessed": 0
+  },
+  {
+   "country": "CF",
+   "languages": 89,
+   "living": 87,
+   "endangered": 24,
+   "extinct": 2,
+   "priority": 7,
+   "unassessed": 0
+  },
+  {
+   "country": "GT",
+   "languages": 35,
+   "living": 28,
+   "endangered": 23,
+   "extinct": 7,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BW",
+   "languages": 37,
+   "living": 37,
+   "endangered": 22,
+   "extinct": 0,
+   "priority": 2,
+   "unassessed": 0
+  },
+  {
+   "country": "AF",
+   "languages": 47,
+   "living": 41,
+   "endangered": 22,
+   "extinct": 6,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "GH",
+   "languages": 90,
+   "living": 87,
+   "endangered": 21,
+   "extinct": 3,
+   "priority": 5,
+   "unassessed": 0
+  },
+  {
+   "country": "BD",
+   "languages": 49,
+   "living": 49,
+   "endangered": 21,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "PY",
+   "languages": 29,
+   "living": 26,
+   "endangered": 21,
+   "extinct": 3,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "GW",
+   "languages": 31,
+   "living": 31,
+   "endangered": 20,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "EC",
+   "languages": 23,
+   "living": 21,
+   "endangered": 20,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "ML",
+   "languages": 72,
+   "living": 72,
+   "endangered": 20,
+   "extinct": 0,
+   "priority": 3,
+   "unassessed": 0
+  },
+  {
+   "country": "CI",
+   "languages": 106,
+   "living": 104,
+   "endangered": 20,
+   "extinct": 2,
+   "priority": 5,
+   "unassessed": 0
+  },
+  {
+   "country": "AR",
+   "languages": 36,
+   "living": 26,
+   "endangered": 20,
+   "extinct": 10,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "DE",
+   "languages": 34,
+   "living": 28,
+   "endangered": 19,
+   "extinct": 6,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "KZ",
+   "languages": 27,
+   "living": 27,
+   "endangered": 19,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "KE",
+   "languages": 78,
+   "living": 75,
+   "endangered": 18,
+   "extinct": 3,
+   "priority": 4,
+   "unassessed": 0
+  },
+  {
+   "country": "AZ",
+   "languages": 28,
+   "living": 26,
+   "endangered": 18,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GE",
+   "languages": 26,
+   "living": 25,
+   "endangered": 18,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "TR",
+   "languages": 56,
+   "living": 37,
+   "endangered": 17,
+   "extinct": 19,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "NA",
+   "languages": 36,
+   "living": 36,
+   "endangered": 17,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "KH",
+   "languages": 24,
+   "living": 23,
+   "endangered": 16,
+   "extinct": 1,
+   "priority": 7,
+   "unassessed": 0
+  },
+  {
+   "country": "TW",
+   "languages": 26,
+   "living": 19,
+   "endangered": 16,
+   "extinct": 7,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "JP",
+   "languages": 20,
+   "living": 16,
+   "endangered": 15,
+   "extinct": 4,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GN",
+   "languages": 48,
+   "living": 47,
+   "endangered": 15,
+   "extinct": 1,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "BF",
+   "languages": 80,
+   "living": 80,
+   "endangered": 14,
+   "extinct": 0,
+   "priority": 4,
+   "unassessed": 0
+  },
+  {
+   "country": "UA",
+   "languages": 30,
+   "living": 26,
+   "endangered": 14,
+   "extinct": 4,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "FM",
+   "languages": 17,
+   "living": 17,
+   "endangered": 14,
+   "extinct": 0,
+   "priority": 3,
+   "unassessed": 0
+  },
+  {
+   "country": "TL",
+   "languages": 25,
+   "living": 24,
+   "endangered": 13,
+   "extinct": 1,
+   "priority": 4,
+   "unassessed": 0
+  },
+  {
+   "country": "ZA",
+   "languages": 36,
+   "living": 29,
+   "endangered": 12,
+   "extinct": 7,
+   "priority": 2,
+   "unassessed": 0
+  },
+  {
+   "country": "GY",
+   "languages": 22,
+   "living": 18,
+   "endangered": 12,
+   "extinct": 4,
+   "priority": 3,
+   "unassessed": 0
+  },
+  {
+   "country": "SE",
+   "languages": 18,
+   "living": 17,
+   "endangered": 12,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "ZM",
+   "languages": 47,
+   "living": 47,
+   "endangered": 12,
+   "extinct": 0,
+   "priority": 3,
+   "unassessed": 0
+  },
+  {
+   "country": "PA",
+   "languages": 14,
+   "living": 14,
+   "endangered": 11,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "DZ",
+   "languages": 22,
+   "living": 22,
+   "endangered": 11,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "FR",
+   "languages": 29,
+   "living": 24,
+   "endangered": 11,
+   "extinct": 4,
+   "priority": 0,
+   "unassessed": 1
+  },
+  {
+   "country": "IQ",
+   "languages": 27,
+   "living": 24,
+   "endangered": 11,
+   "extinct": 3,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "GR",
+   "languages": 25,
+   "living": 21,
+   "endangered": 10,
+   "extinct": 4,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "IL",
+   "languages": 27,
+   "living": 21,
+   "endangered": 10,
+   "extinct": 6,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "UG",
+   "languages": 58,
+   "living": 58,
+   "endangered": 10,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "TG",
+   "languages": 49,
+   "living": 49,
+   "endangered": 9,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "PL",
+   "languages": 20,
+   "living": 19,
+   "endangered": 9,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MN",
+   "languages": 16,
+   "living": 15,
+   "endangered": 9,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "AO",
+   "languages": 50,
+   "living": 49,
+   "endangered": 9,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "NZ",
+   "languages": 10,
+   "living": 9,
+   "endangered": 8,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "TJ",
+   "languages": 18,
+   "living": 17,
+   "endangered": 8,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "ZW",
+   "languages": 24,
+   "living": 24,
+   "endangered": 8,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "FI",
+   "languages": 19,
+   "living": 17,
+   "endangered": 8,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MZ",
+   "languages": 44,
+   "living": 44,
+   "endangered": 7,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "NL",
+   "languages": 22,
+   "living": 18,
+   "endangered": 7,
+   "extinct": 4,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GQ",
+   "languages": 12,
+   "living": 12,
+   "endangered": 7,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "NO",
+   "languages": 14,
+   "living": 12,
+   "endangered": 7,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SY",
+   "languages": 19,
+   "living": 15,
+   "endangered": 7,
+   "extinct": 4,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SR",
+   "languages": 18,
+   "living": 16,
+   "endangered": 7,
+   "extinct": 2,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "BJ",
+   "languages": 56,
+   "living": 56,
+   "endangered": 7,
+   "extinct": 0,
+   "priority": 2,
+   "unassessed": 0
+  },
+  {
+   "country": "SO",
+   "languages": 12,
+   "living": 12,
+   "endangered": 7,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "PF",
+   "languages": 8,
+   "living": 8,
+   "endangered": 7,
+   "extinct": 0,
+   "priority": 2,
+   "unassessed": 0
+  },
+  {
+   "country": "RO",
+   "languages": 21,
+   "living": 20,
+   "endangered": 7,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BN",
+   "languages": 12,
+   "living": 12,
+   "endangered": 7,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "OM",
+   "languages": 14,
+   "living": 14,
+   "endangered": 6,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "LT",
+   "languages": 15,
+   "living": 15,
+   "endangered": 6,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "EE",
+   "languages": 11,
+   "living": 11,
+   "endangered": 6,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "LR",
+   "languages": 38,
+   "living": 38,
+   "endangered": 6,
+   "extinct": 0,
+   "priority": 3,
+   "unassessed": 0
+  },
+  {
+   "country": "ES",
+   "languages": 21,
+   "living": 14,
+   "endangered": 6,
+   "extinct": 7,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GF",
+   "languages": 14,
+   "living": 13,
+   "endangered": 6,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GM",
+   "languages": 18,
+   "living": 17,
+   "endangered": 6,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "CR",
+   "languages": 10,
+   "living": 8,
+   "endangered": 6,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "AT",
+   "languages": 15,
+   "living": 15,
+   "endangered": 6,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "NE",
+   "languages": 25,
+   "living": 25,
+   "endangered": 6,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BY",
+   "languages": 15,
+   "living": 15,
+   "endangered": 6,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "LY",
+   "languages": 15,
+   "living": 14,
+   "endangered": 6,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "YE",
+   "languages": 18,
+   "living": 14,
+   "endangered": 6,
+   "extinct": 4,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GB",
+   "languages": 18,
+   "living": 11,
+   "endangered": 5,
+   "extinct": 7,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BE",
+   "languages": 10,
+   "living": 9,
+   "endangered": 5,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "CK",
+   "languages": 6,
+   "living": 6,
+   "endangered": 5,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "CL",
+   "languages": 14,
+   "living": 8,
+   "endangered": 5,
+   "extinct": 6,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "CH",
+   "languages": 15,
+   "living": 13,
+   "endangered": 5,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "UZ",
+   "languages": 17,
+   "living": 15,
+   "endangered": 5,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BG",
+   "languages": 18,
+   "living": 17,
+   "endangered": 5,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MW",
+   "languages": 28,
+   "living": 28,
+   "endangered": 4,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SL",
+   "languages": 23,
+   "living": 23,
+   "endangered": 4,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MA",
+   "languages": 14,
+   "living": 14,
+   "endangered": 4,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MP",
+   "languages": 4,
+   "living": 4,
+   "endangered": 4,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "MK",
+   "languages": 16,
+   "living": 16,
+   "endangered": 4,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "DK",
+   "languages": 8,
+   "living": 7,
+   "endangered": 4,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "NI",
+   "languages": 11,
+   "living": 7,
+   "endangered": 4,
+   "extinct": 4,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "HN",
+   "languages": 9,
+   "living": 8,
+   "endangered": 4,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "EG",
+   "languages": 14,
+   "living": 12,
+   "endangered": 4,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "ER",
+   "languages": 15,
+   "living": 14,
+   "endangered": 4,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "LV",
+   "languages": 14,
+   "living": 13,
+   "endangered": 4,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BZ",
+   "languages": 7,
+   "living": 7,
+   "endangered": 3,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SV",
+   "languages": 6,
+   "living": 4,
+   "endangered": 3,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "ST",
+   "languages": 3,
+   "living": 3,
+   "endangered": 3,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SG",
+   "languages": 6,
+   "living": 6,
+   "endangered": 3,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "TN",
+   "languages": 9,
+   "living": 7,
+   "endangered": 3,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "HU",
+   "languages": 14,
+   "living": 12,
+   "endangered": 3,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MD",
+   "languages": 9,
+   "living": 9,
+   "endangered": 3,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "PT",
+   "languages": 9,
+   "living": 9,
+   "endangered": 3,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "SK",
+   "languages": 11,
+   "living": 11,
+   "endangered": 3,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "CZ",
+   "languages": 10,
+   "living": 10,
+   "endangered": 3,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "HR",
+   "languages": 13,
+   "living": 12,
+   "endangered": 3,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "FJ",
+   "languages": 11,
+   "living": 11,
+   "endangered": 3,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "NR",
+   "languages": 3,
+   "living": 3,
+   "endangered": 3,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "JO",
+   "languages": 9,
+   "living": 9,
+   "endangered": 3,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "TM",
+   "languages": 12,
+   "living": 11,
+   "endangered": 2,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "LK",
+   "languages": 5,
+   "living": 4,
+   "endangered": 2,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "LU",
+   "languages": 4,
+   "living": 4,
+   "endangered": 2,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "YT",
+   "languages": 2,
+   "living": 2,
+   "endangered": 2,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "PW",
+   "languages": 3,
+   "living": 3,
+   "endangered": 2,
+   "extinct": 0,
+   "priority": 1,
+   "unassessed": 0
+  },
+  {
+   "country": "TO",
+   "languages": 4,
+   "living": 3,
+   "endangered": 2,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "KG",
+   "languages": 9,
+   "living": 9,
+   "endangered": 2,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GU",
+   "languages": 2,
+   "living": 2,
+   "endangered": 2,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "LI",
+   "languages": 3,
+   "living": 3,
+   "endangered": 2,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "RS",
+   "languages": 13,
+   "living": 13,
+   "endangered": 2,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SI",
+   "languages": 11,
+   "living": 10,
+   "endangered": 2,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GL",
+   "languages": 3,
+   "living": 3,
+   "endangered": 2,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "LB",
+   "languages": 6,
+   "living": 5,
+   "endangered": 1,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MR",
+   "languages": 8,
+   "living": 8,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "PR",
+   "languages": 5,
+   "living": 4,
+   "endangered": 1,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "TT",
+   "languages": 4,
+   "living": 3,
+   "endangered": 1,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "KW",
+   "languages": 5,
+   "living": 5,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MC",
+   "languages": 3,
+   "living": 3,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SM",
+   "languages": 2,
+   "living": 2,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MG",
+   "languages": 13,
+   "living": 13,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BB",
+   "languages": 1,
+   "living": 1,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "VG",
+   "languages": 1,
+   "living": 1,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GD",
+   "languages": 1,
+   "living": 1,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "NF",
+   "languages": 2,
+   "living": 2,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "KR",
+   "languages": 2,
+   "living": 2,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BA",
+   "languages": 6,
+   "living": 6,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SX",
+   "languages": 2,
+   "living": 2,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "TC",
+   "languages": 1,
+   "living": 1,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "AM",
+   "languages": 7,
+   "living": 5,
+   "endangered": 1,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "KM",
+   "languages": 5,
+   "living": 5,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "AL",
+   "languages": 11,
+   "living": 11,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "NU",
+   "languages": 1,
+   "living": 1,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "EH",
+   "languages": 4,
+   "living": 4,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "PS",
+   "languages": 7,
+   "living": 4,
+   "endangered": 1,
+   "extinct": 3,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "FO",
+   "languages": 2,
+   "living": 2,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "UY",
+   "languages": 7,
+   "living": 4,
+   "endangered": 1,
+   "extinct": 3,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BQ",
+   "languages": 3,
+   "living": 3,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "LS",
+   "languages": 5,
+   "living": 5,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MF",
+   "languages": 1,
+   "living": 1,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "KI",
+   "languages": 2,
+   "living": 2,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "PN",
+   "languages": 2,
+   "living": 2,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "AE",
+   "languages": 6,
+   "living": 6,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "CC",
+   "languages": 2,
+   "living": 2,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "AD",
+   "languages": 5,
+   "living": 5,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "TK",
+   "languages": 1,
+   "living": 1,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "TV",
+   "languages": 2,
+   "living": 2,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "CY",
+   "languages": 4,
+   "living": 4,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "VI",
+   "languages": 2,
+   "living": 1,
+   "endangered": 1,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "IE",
+   "languages": 4,
+   "living": 2,
+   "endangered": 1,
+   "extinct": 2,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "RE",
+   "languages": 2,
+   "living": 2,
+   "endangered": 1,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "AI",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GS",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "IS",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MH",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "AX",
+   "languages": 2,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "CU",
+   "languages": 3,
+   "living": 2,
+   "endangered": 0,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "DO",
+   "languages": 3,
+   "living": 3,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SC",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "LC",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "KY",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SJ",
+   "languages": 2,
+   "living": 2,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "TF",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GP",
+   "languages": 2,
+   "living": 2,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BI",
+   "languages": 8,
+   "living": 8,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "DJ",
+   "languages": 5,
+   "living": 5,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "CX",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "JE",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "WF",
+   "languages": 2,
+   "living": 2,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "IO",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "FK",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "UM",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "QA",
+   "languages": 2,
+   "living": 2,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BS",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BL",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "CW",
+   "languages": 2,
+   "living": 2,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "AW",
+   "languages": 3,
+   "living": 2,
+   "endangered": 0,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SZ",
+   "languages": 4,
+   "living": 4,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "DM",
+   "languages": 2,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GG",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MQ",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "WS",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SH",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "VA",
+   "languages": 2,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "AS",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "VC",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MV",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BM",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "JM",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "CV",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "AG",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "PM",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MT",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "BH",
+   "languages": 3,
+   "living": 3,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "HT",
+   "languages": 2,
+   "living": 2,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MU",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "ME",
+   "languages": 5,
+   "living": 5,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "KP",
+   "languages": 3,
+   "living": 3,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "MS",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "SA",
+   "languages": 11,
+   "living": 10,
+   "endangered": 0,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "IM",
+   "languages": 2,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "RW",
+   "languages": 8,
+   "living": 7,
+   "endangered": 0,
+   "extinct": 1,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "KN",
+   "languages": 1,
+   "living": 1,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  },
+  {
+   "country": "GI",
+   "languages": 2,
+   "living": 2,
+   "endangered": 0,
+   "extinct": 0,
+   "priority": 0,
+   "unassessed": 0
+  }
+ ]
+}

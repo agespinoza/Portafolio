@@ -158,11 +158,7 @@ function ThemeToggle({ language, nightDefault }) {
 /** How the newest day connects with the earlier ones (assets/daily-data-lab-insights.js). */
 function CrossDayInsight({ language }) {
   const T = (key, values) => insightText(language, key, values);
-  const threads = [
-    { id: "cold", tags: ["data"] },
-    { id: "seasons", tags: ["data", "hyp"] },
-    { id: "observers", tags: ["data"] },
-  ];
+  const threads = LAB_INSIGHT.threads;
   return (
     <section className="insight" aria-labelledby="insight-title">
       <p className="mono insight__eyebrow">{T("eyebrow", { day: pad(LAB_INSIGHT.throughDay) })}</p>

@@ -8,6 +8,7 @@ One small, interactive data visualization a day, each on a different everyday to
 | 002 | Nature | [Where do New Zealand's glowworms shine?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/2) | [GBIF.org](https://www.gbif.org/species/1564326) occurrences and [Open-Meteo](https://open-meteo.com/) weather |
 | 003 | Atmosphere | [Where and when do light pillars appear?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/3) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/Category:Halo_phenomena) photos, [ERA5](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels) weather via [Open-Meteo](https://open-meteo.com/), and [Natural Earth](https://www.naturalearthdata.com/) |
 | 004 | Climate | [How fast are winters warming at Abraham Lake?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/4) | [HydroSHEDS · HydroLAKES](https://www.hydrosheds.org/products/hydrolakes) (CC-BY 4.0) and ERA5 air temperature via [Open-Meteo](https://open-meteo.com/) |
+| 005 | Languages | [Which languages are endangered and barely documented?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/5) | [Glottolog 5.4](https://doi.org/10.5281/zenodo.24101243), [Grambank 1.0.3](https://doi.org/10.5281/zenodo.7844558), and [WALS Online](https://wals.info/) CLDF (all CC-BY 4.0) |
 
 ## Day 001: When is the best time to cross from Mexicali?
 
@@ -68,6 +69,22 @@ Abraham Lake, a reservoir in Alberta, is famous for methane bubbles frozen into 
 - [x] Ice days and water temperature KPI cards, ice season in the lake profile, monthly lake surface temperature with 95% intervals next to the air (`LswtMonthlyChart`), ice days by latitude across 1.2 M lakes, a map colored by ice days, and an ice fact in family mode.
 - Finding: Abraham freezes 142 days a year, against a median of 188 for lakes at its latitude and 155 for those at a similar elevation.
 
+## Day 005: Which languages are endangered and barely documented?
+
+All 7,685 spoken first languages in Glottolog 5.4, set against two Glottolog measures: the Agglomerated Endangerment Status (AES, six levels from "not endangered" to "extinct") and the Most Extensive Description (MED, from "long grammar" to "wordlist or less"). The core question is which languages are both endangered and poorly documented: 881 are shifting or worse and have no grammar sketch.
+
+- **Data pipeline (DuckDB, `scripts/day-005/`):** `build.sql` reads the CLDF `languages.csv` and `values.csv` into `dim_language.parquet` {glottocode, name, family, macroarea, lat, lon, iso639_3, countries}, `fact_status.parquet` {glottocode, aes, med, med_year, first_year}, `fact_features.parquet` {glottocode, feature_id, value, carriers, only_endangered} from Grambank, and `fact_coverage.parquet` (Grambank / WALS). `snapshot.mjs` writes `data/day-005-endangered-languages/summary.json` {global, byMacroarea, byCountry} and the bundled `snapshot.json`, and stops if the AES counts disagree with [GlottoScope](https://glottolog.org/langdoc/status). `preview.mjs` draws the two preview images.
+- **Check:** AES counts match GlottoScope exactly (7,850 languages once sign languages are added back). MED counts differ from that page (e.g. 1,896 vs 1,490 "wordlist or less"); the page uses the citable CLDF release and says so.
+- **Finding:** no Grambank feature value is carried *only* by endangered languages (`only_endangered` is false everywhere), and 385 of 398 values are carried mostly by endangered or extinct languages, which is close to the 64% base rate.
+- **Downloads** go to `daily-data-lab/raw/day-005-endangered-languages/` (not versioned): `glottolog-cldf-v5.4.zip` from Zenodo, and Grambank v1.0.3 / WALS v2020.6 CLDF tables from their GitHub releases.
+
+### Sprint 1
+
+- [x] Glottolog CLDF → DuckDB → parquet + summary.json, checked against GlottoScope (#17)
+- [x] Grambank + WALS coverage and feature table (#18)
+- [x] Dashboard: 4 KPIs, AES/MED map, stacked bars by macroarea, AES × MED heatmap with click filter, family treemap, country ranking, language profile with Glottolog link, family mode, attribution (#19)
+- [x] Research blocks with DOI-checked references, cross-day insight, previews (#20)
+
 ## Languages and publication calendar
 
 The portfolio and Daily Data Lab can be switched manually between English, Spanish, Japanese, Italian, and French. English is the default; the selected language is shared through the `lang` URL parameter. The contribution-style calendar shows published days from the last 12 months and links each marked date to its visualization. Publication metadata is maintained once in [`../assets/daily-data-lab-days.js`](../assets/daily-data-lab-days.js) and used by both the portfolio and this app.
@@ -85,6 +102,7 @@ npm run snapshot:glowworms   # refreshes GBIF records, climate, and the NZ outli
 npm run snapshot:pillars     # rebuilds the Commons catalog, ERA5 weather, and world outline (Day 003)
 npm run data:abraham         # HydroLAKES → dim_lake.parquet → snapshot (Day 004; needs the zip in raw/)
 npm run fetch:abraham        # continues the Open-Meteo winter backfill within today's budget (Day 004)
+npm run data:languages       # Glottolog/Grambank/WALS CLDF → parquet → snapshot and previews (Day 005; needs raw/)
 npm run typecheck            # checks the TypeScript days (the build runs it too)
 ```
 

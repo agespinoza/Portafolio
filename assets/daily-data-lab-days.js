@@ -52,4 +52,18 @@ export const DAILY_DATA_LAB_DAYS = [
     previewLight: "assets/img/lab-day-004-light.svg",
     previewAlt: "Preview: a night-sky world map of the 300 largest lakes colored by ice days, next to 75 winters of air temperature at Abraham Lake with a warming trend.",
   },
+  {
+    day: 5,
+    slug: "endangered-languages",
+    date: "2026-11-22",
+    title: "Which languages are endangered and barely documented?",
+    summary:
+      "All 7,685 spoken first languages in Glottolog 5.4, mapped by how endangered they are and how well they are described, with the families and countries most at risk and the gaps in the world's grammar databases.",
+    topic: "Languages",
+    tags: ["React", "TypeScript", "DuckDB", "Glottolog", "Grambank"],
+    source: "Glottolog 5.4, Grambank 1.0.3, and WALS Online (CLDF)",
+    preview: "assets/img/lab-day-005.svg",
+    previewLight: "assets/img/lab-day-005-light.svg",
+    previewAlt: "Preview: a night-sky world map of 7,685 languages colored by endangerment, next to a grid of endangerment status against documentation level.",
+  },
 ];
