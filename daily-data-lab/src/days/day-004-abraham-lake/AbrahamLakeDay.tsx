@@ -1,3 +1,4 @@
+import StudyFacts from "../StudyFacts.jsx";
 import { useEffect, useMemo, useState } from "react";
 import { useLanguage } from "../../language.jsx";
 import { monthNames } from "../locales.js";
@@ -43,7 +44,6 @@ export default function AbrahamLakeDay() {
   const [query, setQuery] = useState("");
   const [region, setRegion] = useState<Region>("all");
   const [type, setType] = useState<LakeType>("all");
-  const [family, setFamily] = useState(false);
   const [span, setSpan] = useState<"full" | "window">("full");
   const [metric, setMetric] = useState<"trend" | "ice">("trend");
   const [fetched, setFetched] = useState<Record<number, Fetch>>({});
@@ -99,8 +99,8 @@ export default function AbrahamLakeDay() {
     return LAKES.filter((l) => (l.name ?? "").toLowerCase().includes(q) || l.country.toLowerCase().includes(q) || String(l.id) === q).slice(0, 8);
   }, [query]);
   const pick = (id: number) => { setSelected(id); setQuery(""); setSpan("full"); };
-  const filtersOn = region !== "all" || type !== "all" || selected !== ABRAHAM_ID || family;
-  const reset = () => { setRegion("all"); setType("all"); pick(ABRAHAM_ID); setFamily(false); };
+  const filtersOn = region !== "all" || type !== "all" || selected !== ABRAHAM_ID;
+  const reset = () => { setRegion("all"); setType("all"); pick(ABRAHAM_ID); };
 
   const ci = trend ? 1.96 * trend.se : null;
   const coldest = series.length ? series.reduce((a, b) => (b[1] < a[1] ? b : a)) : null;
@@ -151,13 +151,6 @@ export default function AbrahamLakeDay() {
             ))}
           </div>
         </div>
-        <div className="seg">
-          <span className="mono">{tr(language, "familyMode", "Family mode")}</span>
-          <div className="seg__opts" role="radiogroup" aria-label={tr(language, "familyMode", "Family mode")}>
-            <button type="button" role="radio" aria-checked={!family} className={!family ? "on" : ""} onClick={() => setFamily(false)}>{tr(language, "off", "Off")}</button>
-            <button type="button" role="radio" aria-checked={family} className={family ? "on" : ""} onClick={() => setFamily(true)}>{tr(language, "on", "On")}</button>
-          </div>
-        </div>
         {filtersOn ? <button type="button" className="gw-reset" onClick={reset}>{tr(language, "reset", "Reset")}</button> : null}
       </div>
 
@@ -187,18 +180,7 @@ export default function AbrahamLakeDay() {
           ].filter(Boolean).join(" · ")} />
       </section>
 
-      {/* Family mode */}
-      {family && (
-        <section className="al-family" aria-label={tr(language, "familyAria", "Three fun facts")}>
-          {familyFacts(lake, series, language).map((f, i) => (
-            <article key={i} className="al-fact">
-              <span className="al-fact__n">{i + 1}</span>
-              <h3>{f.title}</h3>
-              <p>{f.text}</p>
-            </article>
-          ))}
-        </section>
-      )}
+      <StudyFacts facts={familyFacts(lake, series, language)} language={language} />
 
       <div className="two">
         <section className="card">

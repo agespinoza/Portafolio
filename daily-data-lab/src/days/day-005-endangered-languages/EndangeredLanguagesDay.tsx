@@ -6,7 +6,7 @@ import {
   countryStats, crossTab, familiesOver50, familyStats, isEndangered, isPriority, totals,
 } from "./data";
 import { type Cell, type ColorBy, CoverageChart, FamilyTreemap, GrammarAtRisk, LanguageMap, RiskDocHeatmap, StackedBarCard, aesName, medName } from "./Charts";
-import { FamilyMode, KpiCard, LanguageList, LanguageProfile, RankingTable } from "./Panels";
+import { LanguageFacts, KpiCard, LanguageList, LanguageProfile, RankingTable } from "./Panels";
 import { tr, num, pct, fmtDate, countryName } from "./text";
 import { LanguagesQuality, LanguagesQuestions, LanguagesSources } from "./Research";
 
@@ -25,7 +25,6 @@ export default function EndangeredLanguagesDay() {
   const [colorBy, setColorBy] = useState<ColorBy>("aes");
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<string | null>(DEFAULT_CODE);
-  const [familyMode, setFamilyMode] = useState(false);
 
   // Scope filters (macroarea, family, country); each chart drops the filter it controls so it can still switch it.
   const inMacro = (l: Language) => macro < 0 || l.macro === macro;
@@ -55,8 +54,8 @@ export default function EndangeredLanguagesDay() {
     return LANGUAGES.filter((l) => l.name.toLowerCase().includes(q) || l.code === q || l.iso === q).slice(0, 8);
   }, [query]);
   const pick = (code: string) => { setSelected(code); setQuery(""); };
-  const filtersOn = macro >= 0 || family != null || country != null || cell != null || familyMode;
-  const reset = () => { setMacro(-1); setFamily(null); setCountry(null); setCell(null); setFamilyMode(false); };
+  const filtersOn = macro >= 0 || family != null || country != null || cell != null;
+  const reset = () => { setMacro(-1); setFamily(null); setCountry(null); setCell(null); };
   const scopeName = [
     macro >= 0 ? tr(language, `macro${macro}`, MACROAREAS[macro]) : null,
     family != null ? FAMILIES[family].name : null,
@@ -102,13 +101,6 @@ export default function EndangeredLanguagesDay() {
             {MACROAREAS.map((m, i) => <option key={m} value={i}>{tr(language, `macro${i}`, m)}</option>)}
           </select>
         </label>
-        <div className="seg">
-          <span className="mono">{tr(language, "familyMode", "Family mode")}</span>
-          <div className="seg__opts" role="radiogroup" aria-label={tr(language, "familyMode", "Family mode")}>
-            <button type="button" role="radio" aria-checked={!familyMode} className={!familyMode ? "on" : ""} onClick={() => setFamilyMode(false)}>{tr(language, "off", "Off")}</button>
-            <button type="button" role="radio" aria-checked={familyMode} className={familyMode ? "on" : ""} onClick={() => setFamilyMode(true)}>{tr(language, "on", "On")}</button>
-          </div>
-        </div>
         {filtersOn ? <button type="button" className="gw-reset" onClick={reset}>{tr(language, "reset", "Reset")}</button> : null}
         {(family != null || country != null || cell) && (
           <p className="el-chips" aria-live="polite">
@@ -131,7 +123,7 @@ export default function EndangeredLanguagesDay() {
           note={tr(language, "kpiFamiliesNote", "of {n} families with ≥ {min} living languages", { n: num(eligibleFams, language), min: MIN_FAMILY })} />
       </section>
 
-      {familyMode && <FamilyMode list={scope} t={t} countries={scopeCountries} language={language} />}
+      <LanguageFacts list={scope} t={t} countries={scopeCountries} language={language} />
 
       {/* Map */}
       <section className="card al-sky">

@@ -1,3 +1,4 @@
+import StudyFacts from "../StudyFacts.jsx";
 import { useState } from "react";
 import { type CountryStat, type Language, type Totals, FAMILIES, MACROAREAS, aesColor, glottologUrl, isPriority, medColor, wilson } from "./data";
 import { aesName, medName } from "./Charts";
@@ -125,8 +126,8 @@ export function LanguageList({ list, selected, onSelect, language }: {
   );
 }
 
-/* ---------- family mode: three plain-language facts, computed from the current filter ---------- */
-export function FamilyMode({ list, t, countries, language }: { list: Language[]; t: Totals; countries: CountryStat[]; language: string }) {
+/* ---------- three plain-language facts, computed from the current filter ---------- */
+export function LanguageFacts({ list, t, countries, language }: { list: Language[]; t: Totals; countries: CountryStat[]; language: string }) {
   const top = [...countries].sort((a, b) => b.languages - a.languages)[0];
   const oldest = list.filter((l) => l.aes >= 2 && l.aes <= 5 && l.firstYear).sort((a, b) => a.firstYear! - b.firstYear!)[0];
   const facts = [
@@ -137,11 +138,5 @@ export function FamilyMode({ list, t, countries, language }: { list: Language[];
     { title: tr(language, "f3Head", "No grammar yet"), text: tr(language, "f3", "{priority} endangered languages here have no grammar, not even a short sketch. If their last speakers stop using them, a wordlist may be all that is left.", { priority: num(t.priority, language) }) },
     oldest ? { title: tr(language, "f4Head", "Written down long ago"), text: tr(language, "f4", "{name} was first described in {year} and is still spoken today, but it is now {status}.", { name: oldest.name, year: oldest.firstYear!, status: aesName(oldest.aes, language).toLowerCase() }) } : null,
   ].filter((f): f is { title: string; text: string } => !!f).slice(0, 3);
-  return (
-    <section className="al-family" aria-label={tr(language, "familyAria", "Three fun facts")}>
-      {facts.map((f, i) => (
-        <article key={i} className="al-fact"><span className="al-fact__n">{i + 1}</span><h3>{f.title}</h3><p>{f.text}</p></article>
-      ))}
-    </section>
-  );
+  return <StudyFacts facts={facts} language={language} />;
 }

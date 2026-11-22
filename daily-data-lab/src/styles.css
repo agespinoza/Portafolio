@@ -544,8 +544,9 @@ h1 em { font-style: italic; color: var(--accent); }
 .al-quick button.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 .stat--pending strong { color: var(--ink-3); }
 .stat--pending .stat__note { font-style: italic; }
-.al-family { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.al-fact { position: relative; padding: 24px 24px 24px 64px; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: var(--radius); }
+.study-facts > h2 { margin-bottom: 12px; font: 400 clamp(1.5rem, 3vw, 2rem)/1.15 var(--serif); }
+.al-family { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.al-fact { position: relative; overflow-wrap: anywhere; padding: 24px 24px 24px 64px; background: var(--accent-soft); border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent); border-radius: var(--radius); }
 .al-fact__n { position: absolute; left: 20px; top: 20px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: var(--paper); font: 400 18px/1 var(--serif); }
 .al-fact h3 { margin: 0 0 6px; font-size: 16px; }
 .al-fact p { color: var(--ink-2); font-size: 14.5px; }
@@ -579,7 +580,7 @@ h1 em { font-style: italic; color: var(--accent); }
 .al-sdot.on { stroke: var(--ink); stroke-width: 2; }
 .al-abr { stroke: var(--copper); stroke-width: 2; stroke-dasharray: 4 3; }
 .al-abr-label { font: 600 11px var(--mono); fill: var(--copper); }
-@media (max-width: 960px) { .al-family { grid-template-columns: 1fr; } }
+@media (max-width: 960px) { .al-family { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 640px) { .al-sheet dl > div { grid-template-columns: 1fr; gap: 2px; } }
 
 /* Day 004 · LakeTEMP (Sprint 2) */
@@ -852,7 +853,7 @@ h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; }
 .method a, .lp-method a, .lp-refs a, .method__sources a { text-decoration: underline; text-underline-offset: .15em; }
 .el-list li button.on span { color: var(--ink-2); }
 
-/* The archive leads with search and keeps the publication calendar as a secondary view. */
+/* Study archive and navigation */
 .archive { margin-bottom: 36px; }
 .archive > h2 { scroll-margin-top: 120px; margin-bottom: 16px; font: 400 clamp(1.75rem, 4vw, 2.5rem)/1.15 var(--serif); }
 .archive__filters {
@@ -872,20 +873,26 @@ h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; }
 }
 .archive__more { margin: 18px auto 0; }
 
-.study-nav {
-  display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px;
-  margin-top: 24px;
+.study-header, .study-nav-footer { max-width: 46rem; margin-inline: auto; }
+.study-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0 18px; padding-top: 8px; }
+.study-nav a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font: 600 .875rem/1.35 var(--sans);
 }
-.study-button, .study-nav__article {
+.study-header > :is(h1, .lead) {
+  max-width: none; text-align: justify; text-align-last: start; text-wrap: wrap; hyphens: auto;
+}
+.study-header > h1 { font-size: clamp(2.125rem, 6vw, 3.875rem); }
+.study-header > .lead { line-height: 1.65; }
+:lang(zh) .study-header > h1 { max-width: none; }
+.study-header .kicker { margin-top: 14px; flex-wrap: wrap; gap: 6px 10px; line-height: 1.35; }
+.study-button {
   display: inline-flex; align-items: center; min-height: 44px; padding: 8px 13px;
   color: var(--accent); background: var(--surface); border: 1px solid var(--line-2); border-radius: 10px;
   font: 600 .875rem/1.3 var(--sans); cursor: pointer;
 }
-.study-button:hover, .study-nav__article:hover { border-color: var(--accent); }
-.study-nav__article { display: grid; align-content: center; flex: 1 1 220px; gap: 3px; min-width: 0; }
-.study-nav__article span { font-size: .8125rem; }
-.study-nav__article strong { color: var(--ink); font-weight: 500; overflow-wrap: anywhere; }
-.study-nav-footer { margin-top: 32px; padding-top: 4px; border-top: 1px solid var(--line); }
+.study-button:hover { border-color: var(--accent); }
+.study-nav-footer { margin-top: 32px; border-top: 1px solid var(--line); }
 .study-share { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: -12px 0 24px; }
 .study-share__status { color: var(--ink-2); font-size: .875rem; }
 
@@ -899,9 +906,8 @@ h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; }
   .gallery .counter { margin-bottom: 28px; }
   .archive__filters select { padding-inline: 6px; }
   .lp-controls > .select { min-width: 0; max-width: 100%; }
-  .study-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .study-nav > .study-button { grid-column: 1 / -1; justify-self: start; }
-  .study-nav__article:last-child:nth-child(2) { grid-column: 1 / -1; }
+  .study-nav { column-gap: 12px; }
+  .study-header > .lead { font-size: 1rem; }
   .archive__filters label:last-child { grid-column: 1 / -1; }
 }
 

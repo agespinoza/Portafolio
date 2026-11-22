@@ -1,3 +1,4 @@
+import StudyFacts from "../StudyFacts.jsx";
 import { useMemo, useState } from "react";
 import { useLanguage } from "../../language.jsx";
 import { monthNames } from "../locales.js";
@@ -118,6 +119,27 @@ export default function LightPillarsDay() {
         <Stat label={tr(language, "statCza", "Physics check")} value={czaTimed.length ? `${czaOk}/${czaTimed.length}` : "—"}
           note={tr(language, "statCzaNote", "circumzenithal arcs with the Sun below 32.2°, as optics requires")} />
       </section>
+
+      <StudyFacts language={language} facts={[
+        {
+          title: tr(language, "t2h", "Bursts inflate counts."),
+          text: tr(language, "t2", "{photos} photos collapse to {events} events when shots by the same author, on the same day and at the same place are merged.", {
+            photos: num(TAKE.photos, language), events: num(TAKE.events, language),
+          }),
+        },
+        {
+          title: tr(language, "t4h", "Light pillars: very cold nights."),
+          text: tr(language, "t4", "The {n} light-pillar photos with weather ({ev} events) had a median ERA5 temperature of {med} °C (range {min} to {max} °C); all {timed} with a time were taken with the Sun far below the horizon. Too few to generalise, but consistent with low-level ice fog.", {
+            n: TAKE.lp.n, ev: TAKE.lp.ev, med: fmt1(TAKE.lp.med, language), min: fmt1(TAKE.lp.min, language), max: fmt1(TAKE.lp.max, language), timed: TAKE.lp.timed,
+          }),
+        },
+        {
+          title: tr(language, "t7h", "Ground weather does not describe cirrus."),
+          text: tr(language, "t7", "22° halo photos have a median ground temperature of {h} °C: the crystals are kilometres up in cirrus. Surface ERA5 is meaningful for ice fog and diamond dust, not for most halos.", {
+            h: fmt1(TAKE.haloMed, language),
+          }),
+        },
+      ]} />
 
       {/* A. Map */}
       <section className="card lp-panel" id="lp-map" aria-labelledby="lp-map-title">
@@ -364,19 +386,14 @@ function Takeaways({ language }: { language: string }) {
         <li><strong>{tr(language, "t1h", "A map of photographers first.")}</strong> {tr(language, "t1", "{p}% of the {n} located photos come from Europe and North America, and only {s} from the Southern Hemisphere. Only {loc}% of all dated photos have coordinates at all.", {
           p: Math.round((100 * T.euNa) / T.loc), n: T.loc, s: T.south, loc: Math.round((100 * T.loc) / T.photos),
         })}</li>
-        <li><strong>{tr(language, "t2h", "Bursts inflate counts.")}</strong> {tr(language, "t2", "{photos} photos collapse to {events} events once the same author's shots from the same day and place are merged, so one good display can look like a trend.", { photos: num(T.photos, language), events: num(T.events, language) })}</li>
         <li><strong>{tr(language, "t3h", "Pillars are a winter display.")}</strong> {tr(language, "t3", "In December–February, {w} of ice-optics photos are pillars (95% CI {wl}–{wh}), against {s} in June–August ({sl}–{sh}). Mostly Northern Hemisphere photos; shares compare like with like, so this is not just more winter photography.", {
           w: pct(T.winter.k / T.winter.n, language), wl: pct(T.winter.ci[0], language), wh: pct(T.winter.ci[1], language),
           s: pct(T.summer.k / T.summer.n, language), sl: pct(T.summer.ci[0], language), sh: pct(T.summer.ci[1], language),
-        })}</li>
-        <li><strong>{tr(language, "t4h", "Light pillars: very cold nights.")}</strong> {tr(language, "t4", "The {n} light-pillar photos with weather ({ev} events) had a median ERA5 temperature of {med} °C (range {min} to {max} °C); all {timed} with a time were taken with the Sun far below the horizon. Too few to generalise, but consistent with low-level ice fog.", {
-          n: T.lp.n, ev: T.lp.ev, med: fmt1(T.lp.med, language), min: fmt1(T.lp.min, language), max: fmt1(T.lp.max, language), timed: T.lp.timed,
         })}</li>
         <li><strong>{tr(language, "t5h", "Physics passes a test.")}</strong> {tr(language, "t5", "All {k} of {n} circumzenithal arcs with a time and place were photographed with the Sun below 32.2°, the limit refraction imposes (highest: {max}°). Parhelia sit at a median Sun elevation of {p}°, far below 22° halos ({h}°): consistent with optics, since sun dogs fade as the Sun climbs and vanish above 60.75°, while a 22° halo can form at any Sun height.", {
           k: T.cza.k, n: T.cza.n, max: fmt1(T.cza.max, language), p: fmt1(T.parhMed, language), h: fmt1(T.haloSunMed, language),
         })}</li>
         <li><strong>{tr(language, "t6h", "Camera clocks are the weak link.")}</strong> {tr(language, "t6", "{hard} of {n} timed photos break a hard physical limit (such as a sun dog with the Sun above 60.75°), and {soft} more were taken after dark, so they are lunar displays or have wrong clocks. All stay in the catalog with a ⚠ flag instead of being silently dropped.", { hard: T.hard, soft: T.soft, n: T.timed })}</li>
-        <li><strong>{tr(language, "t7h", "Ground weather does not describe cirrus.")}</strong> {tr(language, "t7", "22° halo photos have a median ground temperature of {h} °C: the crystals are kilometres up in cirrus. Surface ERA5 is meaningful for ice fog and diamond dust, not for most halos.", { h: fmt1(T.haloMed, language) })}</li>
       </ul>
     </section>
   );

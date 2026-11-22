@@ -1,3 +1,5 @@
+import { facts } from "./facts.js";
+import StudyFacts from "../StudyFacts.jsx";
 import { useEffect, useMemo, useState } from "react";
 import {
   CROSSINGS, LANES, DAY_NAMES, MONTHS, borderNow, fetchLive, fetchToday, fetchHistorical, fetchSnapshot, toGrid, shiftDate,
@@ -255,6 +257,8 @@ export default function BorderDay() {
             minutes: mins(insights.bestDay.v, language), from: formatHour(hourFrom), to: formatHour(hourTo),
           }) : ""} />
       </section>
+
+      <StudyFacts language={language} facts={(facts[language] ?? facts.en).map(([title, text]) => ({ title, text }))} />
 
       {/* Planner */}
       <section className="card">

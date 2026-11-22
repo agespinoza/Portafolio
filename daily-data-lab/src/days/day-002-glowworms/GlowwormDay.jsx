@@ -1,3 +1,4 @@
+import StudyFacts from "../StudyFacts.jsx";
 import { useEffect, useMemo, useState } from "react";
 import {
   SIGHTINGS, NZ_RINGS, SNAPSHOT_DATE, MONTHS, WAITOMO, EFFORT, EFFORT_ISLAND, effortFor, poissonCI,
@@ -225,6 +226,27 @@ export default function GlowwormDay() {
           note={tr(language, "withinRecords", "within {km} km of the caves · {percent} of records", { km: NEAR_KM, percent: pct(near, shown.length) })} />
       </section>
 
+      <StudyFacts language={language} facts={[
+        {
+          title: tr(language, "effortHeadline", "Raw counts favor busy places."),
+          text: tr(language, "effortStats", "{raw} has the most records ({rawCount}), but adjusted for iNaturalist activity, {top} leads with {topRate} per 100k observations, {ratio}× {raw}'s rate.", {
+            raw: TAKE.rawTop.name, rawCount: num(TAKE.rawTop.n, language), top: TAKE.adjTop.name,
+            topRate: fmtRate(TAKE.adjTop.v, language), ratio: (TAKE.adjTop.v / TAKE.rawTopRate).toLocaleString(localeFor(language), { maximumFractionDigits: 1 }),
+          }),
+        },
+        {
+          title: tr(language, "northHeadline", "Mostly a North Island story"),
+          text: tr(language, "northStats", "{percent} of records are from the North Island, but the South Island's West Coast alone has {count}.", {
+            percent: pct(ROWS.filter((s) => s.island === "North").length, ROWS.length),
+            count: num(ROWS.filter((s) => s.region === "West Coast").length, language),
+          }),
+        },
+        {
+          title: tr(language, "biasHeadline", "Presence, not abundance."),
+          text: tr(language, "biasStats", "These are records of where people saw glowworms, not counts of glowworms. Popular tracks and caves are over-represented, and iNaturalist can blur the location of some observations."),
+        },
+      ]} />
+
       {rate && (
         <p className="notice" role="note">
           {tr(language, "rateExplainer", "Rate mode divides glowworm records by all iNaturalist observations made in the same region and period. It corrects for where people use the app, so busy cities no longer dominate. Whiskers show 95% intervals; faded rows have fewer than {n} records.", { n: LOW_N })}
@@ -331,10 +353,6 @@ export default function GlowwormDay() {
       <section className="card takeaways">
         <h2>{tr(language, "takeawaysTitle", "What the data says")}</h2>
         <ul>
-          <li><strong>{tr(language, "effortHeadline", "Raw counts favor busy places.")}</strong> {tr(language, "effortStats", "{raw} has the most records ({rawCount}), but adjusted for how much people use iNaturalist there, {top} leads with {topRate} per 100k observations, {ratio}× {raw}'s rate.", {
-            raw: TAKE.rawTop.name, rawCount: num(TAKE.rawTop.n, language), top: TAKE.adjTop.name,
-            topRate: fmtRate(TAKE.adjTop.v, language), ratio: (TAKE.adjTop.v / TAKE.rawTopRate).toLocaleString(localeFor(language), { maximumFractionDigits: 1 }),
-          })}</li>
           <li><strong>{tr(language, "seasonHeadline", "Winter is glowworm season, relatively.")}</strong> {tr(language, "seasonStats", "Raw records peak in {rawPeak}, but relative to all iNaturalist activity the peak is {first} and {second} ({peakRate} per 100k, against {lowRate} in {low}). Dark early evenings help, and fewer other species are being logged in winter.", {
             rawPeak: months[TAKE.rawPeak], first: months[TAKE.ratePeaks[0].m], second: months[TAKE.ratePeaks[1].m],
             peakRate: fmtRate(TAKE.ratePeaks[0].v, language), lowRate: fmtRate(TAKE.rateLow.v, language), low: months[TAKE.rateLow.m],
@@ -343,14 +361,9 @@ export default function GlowwormDay() {
             a: num(TAKE.growth.a, language), b: num(TAKE.growth.b, language), fromYear: TAKE.growth.fromYear, toYear: TAKE.growth.toYear,
             lo: fmtRate(TAKE.growth.lo, language), hi: fmtRate(TAKE.growth.hi, language), stableFrom: TAKE.growth.stableFrom,
           })}</li>
-          <li><strong>{tr(language, "northHeadline", "Mostly a North Island story:")}</strong> {tr(language, "northStats", "{percent} of records are from the North Island, but the South Island's West Coast alone has {count}.", {
-            percent: pct(ROWS.filter((s) => s.island === "North").length, ROWS.length),
-            count: num(ROWS.filter((s) => s.region === "West Coast").length, language),
-          })}</li>
           {insights && <li><strong>{tr(language, "temperatureHeadline", "A big swing outside:")}</strong> {tr(language, "temperatureStats", "Average highs at Waitomo range from {cool}°C in {coolMonth} to {warm}°C in {warmMonth}, and the coldest nights fall below {min}°C. The cave's stable air is what lets the larvae glow all year.", {
             cool: insights.coolHigh, coolMonth: insights.coolMonth, warm: insights.warmHigh, warmMonth: insights.warmMonth, min: insights.minLow,
           })}</li>}
-          <li><strong>{tr(language, "biasHeadline", "Presence, not abundance.")}</strong> {tr(language, "biasStats", "These are records of where people saw glowworms, not counts of glowworms. Popular tracks and caves are over-represented, and iNaturalist can blur the location of some observations.")}</li>
         </ul>
       </section>
 

@@ -1,7 +1,7 @@
 // Day 004 translations. English is written next to each call (see text.ts); these hold the rest.
 const ES: Record<string, string> = {
   controlsAria: "Elige un lago y filtra la comparación", lake: "Lago", searchPlaceholder: "Busca entre {count} lagos con nombre o grandes…",
-  region: "Comparar en", type: "Tipo", familyMode: "Modo familia", off: "No", on: "Sí", reset: "Restablecer",
+  region: "Comparar en", type: "Tipo", reset: "Restablecer",
   statsAria: "Datos clave de {name}", iceDays: "Días de hielo al año", waterTemp: "Temperatura del agua", winterTrend: "Tendencia invernal", trendNote: "por década · ±{ci} (95%) · {first}–{last}",
   fetching: "Descargando inviernos de Open-Meteo…", fetchError: "Open-Meteo no disponible ({error})", area: "Área",
   depthNote: "{depth} m de profundidad media", reservoir: "embalse", natural: "lago natural", familyAria: "Tres datos curiosos",
@@ -89,7 +89,7 @@ const ES: Record<string, string> = {
 
 const FR: Record<string, string> = {
   controlsAria: "Choisissez un lac et filtrez la comparaison", lake: "Lac", searchPlaceholder: "Rechercher parmi {count} lacs nommés ou grands…",
-  region: "Comparer dans", type: "Type", familyMode: "Mode famille", off: "Non", on: "Oui", reset: "Réinitialiser",
+  region: "Comparer dans", type: "Type", reset: "Réinitialiser",
   statsAria: "Chiffres clés pour {name}", iceDays: "Jours de glace par an", waterTemp: "Température de l'eau", winterTrend: "Tendance hivernale", trendNote: "par décennie · ±{ci} (95 %) · {first}–{last}",
   fetching: "Téléchargement des hivers depuis Open-Meteo…", fetchError: "Open-Meteo indisponible ({error})", area: "Superficie",
   depthNote: "{depth} m de profondeur moyenne", reservoir: "réservoir", natural: "lac naturel", familyAria: "Trois anecdotes",
@@ -177,7 +177,7 @@ const FR: Record<string, string> = {
 
 const IT: Record<string, string> = {
   controlsAria: "Scegli un lago e filtra il confronto", lake: "Lago", searchPlaceholder: "Cerca tra {count} laghi con nome o grandi…",
-  region: "Confronta in", type: "Tipo", familyMode: "Modalità famiglia", off: "No", on: "Sì", reset: "Reimposta",
+  region: "Confronta in", type: "Tipo", reset: "Reimposta",
   statsAria: "Dati principali di {name}", iceDays: "Giorni di ghiaccio all'anno", waterTemp: "Temperatura dell'acqua", winterTrend: "Tendenza invernale", trendNote: "per decennio · ±{ci} (95%) · {first}–{last}",
   fetching: "Download degli inverni da Open-Meteo…", fetchError: "Open-Meteo non disponibile ({error})", area: "Superficie",
   depthNote: "{depth} m di profondità media", reservoir: "bacino artificiale", natural: "lago naturale", familyAria: "Tre curiosità",
@@ -265,7 +265,7 @@ const IT: Record<string, string> = {
 
 const JA: Record<string, string> = {
   controlsAria: "湖を選び、比較を絞り込む", lake: "湖", searchPlaceholder: "名前のある湖・大きな湖 {count}件から検索…",
-  region: "比較する地域", type: "種類", familyMode: "家族モード", off: "オフ", on: "オン", reset: "リセット",
+  region: "比較する地域", type: "種類", reset: "リセット",
   statsAria: "{name}の主な数値", iceDays: "年間の結氷日数", waterTemp: "水温", winterTrend: "冬の傾向", trendNote: "10年あたり · ±{ci}（95%）· {first}–{last}",
   fetching: "Open-Meteoから冬のデータを取得中…", fetchError: "Open-Meteoを利用できません（{error}）", area: "面積",
   depthNote: "平均水深 {depth} m", reservoir: "貯水池", natural: "自然湖", familyAria: "3つの豆知識",
@@ -357,9 +357,6 @@ const PT: Record<string, string> = {
   "searchPlaceholder": "Pesquise {count} lagos nomeados ou grandes…",
   "region": "Comparar em",
   "type": "Tipo",
-  "familyMode": "Modo família",
-  "off": "Desligado",
-  "on": "Sobre",
   "reset": "Reiniciar",
   "statsAria": "Números-chave para {name}",
   "iceDays": "Dias de gelo por ano",
@@ -498,9 +495,6 @@ const ZH: Record<string, string> = {
   "searchPlaceholder": "搜索 {count} 命名或大型湖泊...",
   "region": "比较",
   "type": "类型",
-  "familyMode": "家庭模式",
-  "off": "离开",
-  "on": "在",
   "reset": "重置",
   "statsAria": "{name} 的关键数字",
   "iceDays": "每年结冰天数",

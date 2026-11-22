@@ -115,8 +115,8 @@ function Gallery({ language }) {
         <div><strong>{new Set(DAYS.map((d) => d.topic)).size}</strong><span>{t(language, "lab.topics", "topics")}</span></div>
         <div><strong>{fmt(DAYS.reduce((earliest, d) => d.date < earliest.date ? d : earliest, DAYS[0]).date, language)}</strong><span>{t(language, "lab.started", "started")}</span></div>
       </div>
-      <StudyArchive language={language} />
       <ContributionCalendar language={language} />
+      <StudyArchive language={language} />
       <CrossDayInsight language={language} />
     </section>
   );
@@ -129,14 +129,16 @@ function DayPage({ day, language }) {
   const navigation = <StudyNavigation previous={chronological[index - 1]} next={chronological[index + 1]} language={language} />;
   return (
     <article className="wrap day">
-      {navigation}
-      <p className="kicker">
-        <span>{t(language, "lab.day", "Day {number}", { number: pad(day.day) })}</span>
-        {" "}{fmt(day.date, language)} · {dayText(language, day.slug, "topic", day.topic)}
-      </p>
-      <h1 tabIndex={-1}>{title}</h1>
-      <p className="lead">{dayText(language, day.slug, "summary", day.summary)}</p>
-      <ShareStudy day={day} title={title} language={language} />
+      <header className="study-header">
+        {navigation}
+        <p className="kicker">
+          <span>{t(language, "lab.day", "Day {number}", { number: pad(day.day) })}</span>
+          {" "}{fmt(day.date, language)} · {dayText(language, day.slug, "topic", day.topic)}
+        </p>
+        <h1 tabIndex={-1}>{title}</h1>
+        <p className="lead">{dayText(language, day.slug, "summary", day.summary)}</p>
+        <ShareStudy day={day} title={title} language={language} />
+      </header>
       <Component />
       <div className="study-nav-footer">{navigation}</div>
     </article>

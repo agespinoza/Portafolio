@@ -7,13 +7,17 @@ export function StudyNavigation({ previous, next, language }) {
   const copy = archiveCopy(language);
   return (
     <nav className="study-nav" aria-label={t(language, "lab.otherDays", "Other days")}>
-      <a className="study-button" href="#/archive">{copy.archive}</a>
-      {[["prev", previous, copy.previous], ["next", next, copy.next]].map(([direction, entry, label]) => entry && (
-        <a key={direction} className="study-nav__article" rel={direction} href={`#/day/${entry.day}`}>
-          <span>{label}</span>
-          <strong>{dayText(language, entry.slug, "title", entry.title)}</strong>
-        </a>
-      ))}
+      <a href="#/archive">{copy.archive}</a>
+      {[["prev", previous, copy.previous], ["next", next, copy.next]].map(([direction, entry, label]) => {
+        if (!entry) return null;
+        const title = dayText(language, entry.slug, "title", entry.title);
+        return (
+          <a key={direction} rel={direction} href={`#/day/${entry.day}`}
+            title={title} aria-label={`${label} · ${title}`}>
+            {label}
+          </a>
+        );
+      })}
     </nav>
   );
 }
