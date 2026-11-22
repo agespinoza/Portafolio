@@ -117,12 +117,12 @@ export default function AbrahamLakeDay() {
             <span className="mono">{tr(language, "lake", "Lake")}</span>
             <input type="search" value={query} placeholder={tr(language, "searchPlaceholder", "Search {count} named or large lakes…", { count: num(LAKES.length, language) })}
               onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && results[0]) pick(results[0].id); }}
-              aria-controls="al-results" aria-autocomplete="list" />
+              aria-controls={results.length > 0 ? "al-results" : undefined} />
           </label>
           {results.length > 0 && (
-            <ul id="al-results" className="al-results" role="listbox">
+            <ul id="al-results" className="al-results">
               {results.map((l) => (
-                <li key={l.id}><button type="button" role="option" aria-selected={false} onClick={() => pick(l.id)}>
+                <li key={l.id}><button type="button" onClick={() => pick(l.id)}>
                   <strong>{lakeName(l)}</strong><span>{l.country} · {num(Math.round(l.area * 10) / 10, language)} km²</span>
                 </button></li>
               ))}

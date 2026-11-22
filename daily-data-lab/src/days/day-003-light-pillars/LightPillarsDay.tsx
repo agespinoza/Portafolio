@@ -319,7 +319,7 @@ function Questions({ language }: { language: string }) {
       <div className="lp-qs">
         {QUESTIONS.map((x, i) => (
           <details key={x.q} className="lp-q" open={i < 2}>
-            <summary><span className="lp-q__n">{i + 1}</span>{tr(language, x.q, Q_EN[x.q])}<span className={`lp-tag lp-tag--${x.tag}`}>{tagText[x.tag]}</span></summary>
+            <summary><span className="lp-q__n">{i + 1}</span><span className="lp-q__text">{tr(language, x.q, Q_EN[x.q])}</span><span className={`lp-tag lp-tag--${x.tag}`}>{tagText[x.tag]}</span></summary>
             <p>{tr(language, x.a, Q_EN[x.a])}</p>
           </details>
         ))}

@@ -1,6 +1,6 @@
 // D3 charts for the integration console. Colors come from CSS custom properties.
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
-import { num } from './i18n.js?v=20261121a';
+import { num } from './i18n.js?v=20261122b';
 
 function tooltip(container) {
     const tip = document.createElement('div');

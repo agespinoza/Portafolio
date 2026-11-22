@@ -1,5 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import { socialPages } from "./social-pages.js";
+
 
 // Browsers block <script type="module"> on file:// pages, so the build emits a
 // classic deferred script. The lab then works both on GitHub Pages and when
@@ -15,7 +17,7 @@ const classicScript = {
 };
 
 export default defineConfig({
-  plugins: [react(), classicScript],
+  plugins: [react(), classicScript, socialPages],
   base: "./",
   build: {
     outDir: "../lab",

@@ -1,13 +1,12 @@
 // Language for the copper mine operations console. Follows the portfolio convention (?lang=xx, English by default):
 // shared site strings from assets/i18n.js win, then this page's messages.js, then the English
 // fallback written next to each call.
-import { LANGUAGES, getLanguage, languageFromSearch, localeFor, t } from '../../assets/i18n.js?v=20261121a';
-import { MESSAGES } from './messages.js?v=20261121a';
+import { LANGUAGES, LANGUAGE_NAMES, getLanguage, languageFromSearch, localeFor, t } from '../../assets/i18n.js?v=20261122b';
+import { MESSAGES } from './messages.js?v=20261122b';
 
-export { LANGUAGES };
+export { LANGUAGES, LANGUAGE_NAMES, localeFor };
 export const language = getLanguage(languageFromSearch(window.location.search));
 export const locale = localeFor(language);
-export const LANGUAGE_NAMES = { en: 'English', es: 'Español', ja: '日本語', it: 'Italiano', fr: 'Français' };
 
 /** Console string: tr('kpi.tracked', 'Spacecraft tracked', { n: 3 }). */
 export const tr = (key, fallback, values) =>

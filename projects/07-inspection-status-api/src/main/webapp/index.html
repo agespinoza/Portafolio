@@ -18,25 +18,104 @@ input,button{font:inherit;padding:.55rem;margin:.25rem 0}
 button{background:var(--color-border);color:white;border:0;border-radius:.35rem;cursor:pointer}
 button:hover{opacity:.9}
 button:disabled{opacity:.5;cursor:not-allowed}
-h1{margin-bottom:1.5rem}
+h1{margin-bottom:1.5rem;line-height:1.2;text-wrap:balance;overflow-wrap:anywhere}
+select{min-height:44px;font:inherit;padding:.3rem;max-width:100%}
+.language,.nav__inner{display:flex;flex-wrap:wrap;align-items:center}
+.language{gap:.5rem}
+button{min-height:44px}
+input{max-width:100%}
+@media(max-width:420px){.container{padding:1.25rem}}
 </style>
 <header class="nav">
   <div class="nav__inner">
-    <a class="brand" href="../../../index.html#projects">← Portfolio</a>
+    <a class="brand" href="https://agespinoza.github.io/Portafolio/index.html#projects" data-label="portfolio">← Portfolio</a>
+    <label class="language"><span data-label="language">Language</span>
+      <select id="language-select">
+        <option value="en" lang="en">English</option>
+        <option value="pt" lang="pt-BR">Português</option>
+        <option value="zh" lang="zh-Hans">简体中文</option>
+      </select>
+    </label>
   </div>
 </header>
 <main>
   <div class="container">
-    <h1>Inspection status</h1>
+    <h1 data-label="heading">Inspection status</h1>
     <form>
-      <label for="inspection-id">Inspection ID</label><br>
+      <label for="inspection-id" data-label="id">Inspection ID</label><br>
       <input id="inspection-id" value="INS-101" pattern="INS-[0-9]+" required>
-      <button>Look up</button>
+      <button data-label="submit">Look up</button>
     </form>
     <p role="status"></p>
   </div>
 </main>
 <script>
+const messages = {
+    "en": {
+        "portfolio": "← Portfolio",
+        "language": "Language",
+        "page": "Inspection Status",
+        "heading": "Inspection status",
+        "id": "Inspection ID",
+        "submit": "Look up",
+        "checking": "Checking status…",
+        "failed": "Lookup failed.",
+        "notFound": "Inspection not found.",
+        "unavailable": "The inspection service is unavailable.",
+        "Passed": "Passed",
+        "Pending review": "Pending review"
+    },
+    "pt": {
+        "portfolio": "← Portfólio",
+        "language": "Idioma",
+        "page": "Status da inspeção",
+        "heading": "Status da inspeção",
+        "id": "ID da inspeção",
+        "submit": "Consultar",
+        "checking": "Consultando status…",
+        "failed": "Falha na consulta.",
+        "notFound": "Inspeção não encontrada.",
+        "unavailable": "O serviço de inspeção está indisponível.",
+        "Passed": "Aprovada",
+        "Pending review": "Aguardando revisão"
+    },
+    "zh": {
+        "portfolio": "← 作品集",
+        "language": "语言",
+        "page": "检查状态",
+        "heading": "检查状态",
+        "id": "检查编号",
+        "submit": "查询",
+        "checking": "正在查询状态…",
+        "failed": "查询失败。",
+        "notFound": "未找到该检查记录。",
+        "unavailable": "检查服务暂不可用。",
+        "Passed": "已通过",
+        "Pending review": "待审核"
+    }
+};
+const locales = { en: 'en', pt: 'pt-BR', zh: 'zh-Hans' };
+const url = new URL(window.location.href);
+const requested = url.searchParams.get('lang');
+const language = Object.hasOwn(locales, requested) ? requested : 'en';
+const copy = messages[language];
+document.documentElement.lang = locales[language];
+document.title = copy.page;
+document.querySelectorAll('[data-label]').forEach(node => {
+    node.textContent = copy[node.dataset.label];
+});
+const portfolio = document.querySelector('.brand');
+const back = new URL(portfolio.href);
+if (language !== 'en') back.searchParams.set('lang', language);
+portfolio.href = back;
+const languageSelect = document.querySelector('#language-select');
+languageSelect.value = language;
+languageSelect.addEventListener('change', () => {
+    if (languageSelect.value === 'en') url.searchParams.delete('lang');
+    else url.searchParams.set('lang', languageSelect.value);
+    window.location.assign(url.href);
+});
+
 const form = document.querySelector('form');
 const result = document.querySelector('[role=status]');
 form.addEventListener('submit', async event => {
@@ -44,13 +123,13 @@ form.addEventListener('submit', async event => {
     const button = form.querySelector('button');
     const id = document.querySelector('#inspection-id').value;
     button.disabled = true;
-    result.textContent = 'Checking status…';
+    result.textContent = copy.checking;
     try {
         const response = await fetch(`api/inspections/${encodeURIComponent(id)}`);
         const data = await response.json();
-        result.textContent = response.ok ? `${data.id} · ${data.status}` : data.error ?? 'Lookup failed.';
+        result.textContent = response.ok ? `${data.id} · ${copy[data.status] ?? data.status}` : response.status === 404 ? copy.notFound : copy.failed;
     } catch {
-        result.textContent = 'The inspection service is unavailable.';
+        result.textContent = copy.unavailable;
     } finally {
         button.disabled = false;
     }

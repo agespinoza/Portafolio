@@ -22,6 +22,38 @@ export const LAB_INSIGHT = {
     { id: "observers", tags: ["data", "hyp"] },
   ],
   text: {
+    pt: {
+      "eyebrow": "Conectando os dias · até o dia {day}",
+      "title": "Todos os lugares do laboratório até agora estão perdendo alguma coisa",
+      "conclusion": "Os locais dos primeiros quatro dias compartilham mais que frio. Dos 17 locais Glottolog em um raio de 300 km de Mexicali (Dia 001), Waitomo (Dia 002) e Abraham Lake (Dia 004), nenhum é classificado como seguro: 12 estão em perigo e 5 estão extintos (Dia 005). Abraham Lake também está perdendo seus dias mais frios de inverno, o tipo de luz que os pilares de luz precisam (Dias 003–004). Ambas as perdas são medidas de forma desigual, por pessoas que escolhem onde procurar.",
+      "placesTitle": "Línguas ameaçadas nos locais do laboratório",
+      "places": "A 300 km da travessia Mexicali-Calexico, Glottolog lista 13 línguas, incluindo Cocopa a 63 km de distância e Kumeyaay, Paipai e Kiliwa: 8 estão ameaçadas de extinção e 5 extintas. Perto do Lago Abraham, Stoney está mudando e Tsuut'ina e Shuswap estão quase extintos. Perto das cavernas de Waitomo, Māori é classificado como mutável, embora tenha uma gramática longa.",
+      "coldTitle": "O frio por trás do espetáculo",
+      "cold": "As fotos do pilar de luz do dia 003 foram tiradas a uma temperatura média de -19,4 °C. Em Abraham Lake, os dias de inverno com média diária de frio caíram de 10,7 para 8,3 por inverno, e os dias de -15 °C ou mais frios de 26,8 para 20,8 por ano, enquanto os invernos aqueceram +0,25 °C por década. Um parâmetro aproximado: apenas 6 fotos de pilares têm hora e clima, e essas são leituras de hora em hora.",
+      "observersTitle": "Cada conjunto de dados também é um mapa de seus observadores",
+      "observers": "As contagens brutas de pirilampos favoreceram Wellington até serem divididas pelo esforço iNaturalist (Dia 002), e 78% das fotos de halo localizadas vêm da Europa e América do Norte (Dia 003). As gramáticas seguem os linguistas da mesma maneira: 66% das línguas vivas na América do Sul têm gramática, mas apenas 25% na Papunésia (Dia 005). Se isto reflecte acesso, financiamento ou história é uma hipótese que hoje em dia não se testa.",
+      "caveat": "Cada dia usa lugares, anos e fontes diferentes, e um círculo de 300 km em torno de um ponto Glottolog é um parâmetro aproximado, portanto, essas ligações são padrões que vale a pena explorar, e não uma prova.",
+      "dataTag": "A partir dos dados",
+      "hypTag": "Hipótese",
+      "day": "Dia {n}",
+      "readMore": "Veja as conexões no laboratório"
+    },
+    zh: {
+      "eyebrow": "连接日子·通过日 {day}",
+      "title": "到目前为止，实验室的每个地方都在失去一些东西",
+      "conclusion": "前四天的地方共享的不仅仅是寒冷。在 Glottolog 距墨西卡利（第 001 天）、怀托摩（第 002 天）和亚伯拉罕湖（第 004 天）300 公里范围内的 17 种语言中，没有一种语言被评为安全：12 种濒临灭绝，5 种灭绝（第 005 天）。亚伯拉罕湖也正在失去光柱所需要的最冷的冬季（第 003-004 天）。对于这两种损失的衡量，根据人们选择的去处而有所不同。",
+      "placesTitle": "实验室周围的濒危语言",
+      "places": "Glottolog 在墨西卡利-卡莱克西科过境点 300 公里范围内列出了 13 种语言，包括 63 公里外的 Cocopa 语言以及 Kumeyaay、Paipai 和 Kiliwa：8 种语言濒临灭绝，5 种语言灭绝。在亚伯拉罕湖附近，斯托尼正在移动，而苏蒂纳和舒斯瓦普几乎灭绝。在怀托摩洞穴附近，毛利语虽然语法很长，但仍被评定为变动语。",
+      "coldTitle": "奇观背后的寒冷",
+      "cold": "第 003 天的光柱照片是在中值 -19.4 °C 下拍摄的。在亚伯拉罕湖，冬季每日平均寒冷天数从每年 10.7 下降到 8.3，-15°C 或更低的天数从每年 26.8 下降到 20.8，而冬季每十年变暖 0.25°C。粗略的标准是：只有 6 张柱子照片有时间和天气，而且是每小时的读数。",
+      "observersTitle": "每个数据集也是其观察者的地图",
+      "observers": "原始萤火虫计数对惠灵顿有利，直到除以 iNaturalist 工作量（第 002 天），并且 78% 的定位光环照片来自欧洲和北美（第 003 天）。语法也以同样的方式遵循语言学家的说法：南美洲 66% 的现有语言都有语法，但巴布尼西亚只有 25%（第 005 天）。这是否反映了准入、资金或历史只是一个假设，目前还没有得到检验。",
+      "caveat": "每天使用不同的地点、年份和来源，围绕 Glottolog 点 300 公里的圆圈是一个粗略的尺度，因此这些链接是值得探索的模式，而不是证明。",
+      "dataTag": "从数据来看",
+      "hypTag": "假设",
+      "day": "日 {n}",
+      "readMore": "查看实验室中的连接"
+    },
     en: {
       eyebrow: "Connecting the days · through Day {day}",
       title: "Every place in the lab so far is losing something",

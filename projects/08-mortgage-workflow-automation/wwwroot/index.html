@@ -18,22 +18,35 @@ button{font:inherit;padding:.65rem;border-radius:.4rem;border:1px solid var(--co
 button:hover:not(:disabled){background:var(--color-border);color:white}
 button:disabled{opacity:.5;cursor:not-allowed}
 li{margin:.6rem 0}
-h1{margin-bottom:1.5rem}
+h1{margin-bottom:1.5rem;line-height:1.2;text-wrap:balance;overflow-wrap:anywhere}
+select{min-height:44px;font:inherit;padding:.3rem;max-width:100%}
+.language,.nav__inner{display:flex;flex-wrap:wrap;align-items:center}
+.language{gap:.5rem}
+button{min-height:44px}
+input{max-width:100%}
+@media(max-width:420px){.container{padding:1.25rem}}
 #status{margin-bottom:1rem}
 #error{color:#dc2626;margin:1rem 0}
 </style>
 <header class="nav">
   <div class="nav__inner">
-    <a class="brand" href="../../../index.html#projects">← Portfolio</a>
+    <a class="brand" href="https://agespinoza.github.io/Portafolio/index.html#projects" data-label="portfolio">← Portfolio</a>
+    <label class="language"><span data-label="language">Language</span>
+      <select id="language-select">
+        <option value="en" lang="en">English</option>
+        <option value="pt" lang="pt-BR">Português</option>
+        <option value="zh" lang="zh-Hans">简体中文</option>
+      </select>
+    </label>
   </div>
 </header>
 <main>
   <div class="container">
-    <h1>Mortgage application</h1>
-    <p id="status" role="status">Loading…</p>
-    <button disabled>Advance stage</button>
+    <h1 data-label="heading">Mortgage application</h1>
+    <p id="status" role="status" data-label="loading">Loading…</p>
+    <button disabled data-label="advance">Advance stage</button>
     <p id="error" role="alert"></p>
-    <h2>Activity log</h2>
+    <h2 data-label="log">Activity log</h2>
     <ol></ol>
   </div>
 </main>

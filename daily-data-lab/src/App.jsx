@@ -1,32 +1,41 @@
 import { useEffect, useState } from "react";
-import { LANGUAGES, dayText, getLanguage, languageFromSearch, localeFor, t } from "../../assets/i18n.js";
+import { LANGUAGES, LANGUAGE_NAMES, dayText, getLanguage, languageFromSearch, localeFor, t } from "../../assets/i18n.js";
 import { DAYS } from "./days/index.js";
+import StudyArchive from "./StudyArchive.jsx";
+import { ShareStudy, StudyNavigation } from "./StudyActions.jsx";
 import ContributionCalendar from "./ContributionCalendar.jsx";
 import { LAB_INSIGHT, insightText } from "../../assets/daily-data-lab-insights.js";
 import { LanguageContext } from "./language.jsx";
 import { effectiveTheme, toggleTheme } from "../../assets/theme.js";
 
-const LANGUAGE_NAMES = {
-  en: "English",
-  es: "Español",
-  ja: "日本語",
-  it: "Italiano",
-  fr: "Français",
-};
-
 function useHashRoute() {
   const [hash, setHash] = useState(window.location.hash);
   useEffect(() => {
+    let frame;
+    const moveFocus = (hash) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const heading = document.querySelector(hash === "#/archive" ? "#archive-title" : "main h1");
+        if (hash === "#/archive") heading?.scrollIntoView({ block: "start" });
+        else window.scrollTo(0, 0);
+        heading?.focus({ preventScroll: true });
+      });
+    };
     const onChange = () => {
       setHash(window.location.hash);
-      window.scrollTo(0, 0);
+      moveFocus(window.location.hash);
     };
+    if (window.location.hash === "#/archive") moveFocus(window.location.hash);
     window.addEventListener("hashchange", onChange);
-    return () => window.removeEventListener("hashchange", onChange);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("hashchange", onChange);
+    };
   }, []);
   return hash;
 }
 
+const chronological = [...DAYS].sort((a, b) => a.day - b.day);
 const pad = (n) => String(n).padStart(3, "0");
 const fmt = (iso, language) =>
   new Date(iso + "T12:00:00").toLocaleDateString(localeFor(language), { month: "short", day: "numeric", year: "numeric" });
@@ -34,7 +43,7 @@ const fmt = (iso, language) =>
 export default function App() {
   const language = getLanguage(languageFromSearch(window.location.search));
   const hash = useHashRoute();
-  const match = hash.match(/^#\/day\/(\d+)/);
+  const match = hash.match(/^#\/day\/(\d+)$/);
   const current = match ? DAYS.find((d) => d.day === Number(match[1])) : null;
 
   useEffect(() => {
@@ -43,6 +52,12 @@ export default function App() {
       ? `${t(language, "lab.day", "Day {number}", { number: pad(current.day) })} · ${dayText(language, current.slug, "title", current.title)} | Daily Data Lab`
       : `${t(language, "lab.brand", "Daily Data Lab")} | Alicia Espinoza`;
     document.title = title;
+    const description = document.querySelector('meta[name="description"]');
+    if (description) {
+      description.content = current
+        ? dayText(language, current.slug, "summary", current.summary)
+        : t(language, "lab.lead", "One interactive visualization a day, built with React and public data.");
+    }
   }, [current, language]);
 
   function changeLanguage(event) {
@@ -56,6 +71,10 @@ export default function App() {
 
   return (
     <LanguageContext.Provider value={language}>
+      <a className="skip" href="#main" onClick={(event) => {
+        event.preventDefault();
+        document.getElementById("main")?.focus();
+      }}>{t(language, "site.skip", "Skip to content")}</a>
       <header className="topbar">
         <div className="wrap topbar__inner">
           <a className="brand" href="#/" aria-label={t(language, "lab.brand", "Daily Data Lab")}>
@@ -65,15 +84,15 @@ export default function App() {
           <nav className="topbar__actions" aria-label={t(language, "nav.primary", "Primary navigation")}>
             <label className="sr" htmlFor="language-select">{t(language, "nav.language", "Language")}</label>
             <select id="language-select" className="language-select" value={language} onChange={changeLanguage}>
-              {LANGUAGES.map((code) => <option key={code} value={code}>{LANGUAGE_NAMES[code]}</option>)}
+              {LANGUAGES.map((code) => <option key={code} value={code} lang={localeFor(code)}>{LANGUAGE_NAMES[code]}</option>)}
             </select>
             <ThemeToggle language={language} nightDefault={current?.slug === "light-pillars"} />
             <a className="topbar__link" href={portfolioLink}>{t(language, "lab.backToPortfolio", "← Portfolio")}</a>
           </nav>
         </div>
       </header>
-      <main>
-        {current ? <DayPage day={current} language={language} /> : <Gallery language={language} />}
+      <main id="main" tabIndex={-1}>
+        {current ? <DayPage key={current.day} day={current} language={language} /> : <Gallery language={language} />}
       </main>
       <footer className="foot">
         <div className="wrap foot__inner">
@@ -86,32 +105,18 @@ export default function App() {
 }
 
 function Gallery({ language }) {
-  const days = [...DAYS].sort((a, b) => b.day - a.day);
   return (
     <section className="wrap gallery">
       <p className="kicker"><span>Lab</span> {t(language, "lab.kicker", "Learning in public")}</p>
-      <h1>Daily Data <em>Lab</em></h1>
+      <h1 tabIndex={-1}>Daily Data <em>Lab</em></h1>
       <p className="lead">{t(language, "lab.lead", "One small, interactive data visualization a day, each one on a different everyday topic, built with React and public data.")}</p>
       <div className="counter">
         <div><strong>{DAYS.length}</strong><span>{t(language, "lab.daysPublished", "days published")}</span></div>
         <div><strong>{new Set(DAYS.map((d) => d.topic)).size}</strong><span>{t(language, "lab.topics", "topics")}</span></div>
         <div><strong>{fmt(DAYS.reduce((earliest, d) => d.date < earliest.date ? d : earliest, DAYS[0]).date, language)}</strong><span>{t(language, "lab.started", "started")}</span></div>
       </div>
+      <StudyArchive language={language} />
       <ContributionCalendar language={language} />
-      <div className="grid">
-        {days.map((day) => (
-          <a key={day.day} className="tile" href={`#/day/${day.day}`}>
-            <div className="tile__top">
-              <span className="tile__num">{t(language, "lab.day", "Day {number}", { number: pad(day.day) })}</span>
-              <span className="tile__topic">{dayText(language, day.slug, "topic", day.topic)}</span>
-            </div>
-            <h2>{dayText(language, day.slug, "title", day.title)}</h2>
-            <p>{dayText(language, day.slug, "summary", day.summary)}</p>
-            <div className="tile__tags">{day.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
-            <span className="tile__cta">{t(language, "lab.openVisualization", "Open visualization")} →</span>
-          </a>
-        ))}
-      </div>
       <CrossDayInsight language={language} />
     </section>
   );
@@ -119,26 +124,21 @@ function Gallery({ language }) {
 
 function DayPage({ day, language }) {
   const Component = day.component;
-  const prev = DAYS.find((d) => d.day === day.day - 1);
-  const next = DAYS.find((d) => d.day === day.day + 1);
+  const index = chronological.indexOf(day);
+  const title = dayText(language, day.slug, "title", day.title);
+  const navigation = <StudyNavigation previous={chronological[index - 1]} next={chronological[index + 1]} language={language} />;
   return (
     <article className="wrap day">
-      <a className="back" href="#/">{t(language, "lab.allDays", "← All days")}</a>
+      {navigation}
       <p className="kicker">
         <span>{t(language, "lab.day", "Day {number}", { number: pad(day.day) })}</span>
         {" "}{fmt(day.date, language)} · {dayText(language, day.slug, "topic", day.topic)}
       </p>
-      <h1>{dayText(language, day.slug, "title", day.title)}</h1>
+      <h1 tabIndex={-1}>{title}</h1>
       <p className="lead">{dayText(language, day.slug, "summary", day.summary)}</p>
+      <ShareStudy day={day} title={title} language={language} />
       <Component />
-      <nav className="pager" aria-label={t(language, "lab.otherDays", "Other days")}>
-        {prev
-          ? <a href={`#/day/${prev.day}`}>{t(language, "lab.previousDay", "← Day {number}", { number: pad(prev.day) })}</a>
-          : <span />}
-        {next
-          ? <a href={`#/day/${next.day}`}>{t(language, "lab.nextDay", "Day {number} →", { number: pad(next.day) })}</a>
-          : <span className="muted">{t(language, "lab.nextComing", "Next day coming soon")}</span>}
-      </nav>
+      <div className="study-nav-footer">{navigation}</div>
     </article>
   );
 }

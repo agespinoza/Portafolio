@@ -1,5 +1,5 @@
 // Résumé content. Language-neutral facts (dates, organisations, technologies) live in ROLES, EARLIER,
-// EDUCATION and SKILLS; every sentence a reader sees is in TEXT, in the five site languages.
+// EDUCATION and SKILLS; every sentence a reader sees is in TEXT, in the site languages.
 // The current employer is never named (see the portfolio's privacy rule); that role is described by industry.
 
 export const LINKS = {
@@ -62,6 +62,354 @@ export const SKILLS = [
 export const SELECTED_PROJECTS = ["17-copper-mine-operations", "02-trajectory-visualization", "09-employee-erp-integration", "16-inspection-model-mlops"];
 
 export const TEXT = {
+  pt: {
+    "title": "Currículo | Alicia Espinoza",
+    "description": "Currículo de Alicia Espinoza, engenheira de software em plataformas de dados e IA: experiência, formação, competências e projetos selecionados.",
+    "back": "← Portfólio",
+    "kicker": "Currículo",
+    "headline": "Engenheira de software · Plataformas de dados e IA · Sistemas de conhecimento · Transformação digital e liderança técnica",
+    "location": "Arizona, Estados Unidos",
+    "pdf": "Salvar como PDF",
+    "pdfHint": "Abre a caixa de diálogo de impressão; escolha “Salvar como PDF”.",
+    "summaryTitle": "Resumo",
+    "summary": "Sou engenheira de software e transformo dados e tecnologia em soluções que as pessoas usam no dia a dia. Ao longo de duas décadas, trabalhei em mineração, finanças, governo, operações espaciais, inspeção automotiva e educação. Desenvolvi aplicações, aperfeiçoei processos de dados e ajudei equipes a adotar ferramentas digitais para tomar decisões mais bem fundamentadas. Como professora universitária, aprendi a comunicar temas complexos a públicos diversos. Hoje trabalho com IA e plataformas de conhecimento para extrair valor de informações confiáveis.",
+    "experienceTitle": "Experiência",
+    "earlierTitle": "Experiência anterior, 2002–2016",
+    "educationTitle": "Educação",
+    "skillsTitle": "Habilidades",
+    "certificationsTitle": "Certificações",
+    "certificationsIssuer": "LinkedIn Learning",
+    "publicationsTitle": "Publicações",
+    "languagesTitle": "Idiomas",
+    "projectsTitle": "Projetos selecionados",
+    "learning": "{n} Cursos do LinkedIn Learning concluídos desde 2019.",
+    "learningLink": "Veja o registro de aprendizagem",
+    "present": "Presente",
+    "places": {
+      "tucson": "Tucson, Arizona, EUA",
+      "us": "Estados Unidos",
+      "mexicali": "Mexicali, Baixa Califórnia, México"
+    },
+    "languages": [
+      [
+        "Inglês",
+        "Competência profissional completa"
+      ],
+      [
+        "Espanhol",
+        "Nativo"
+      ]
+    ],
+    "skills": {
+      "software": "Engenharia de software",
+      "data": "Dados e BI",
+      "cloud": "Nuvem e DevOps",
+      "ai": "IA e MLOps",
+      "delivery": "Liderança e entrega"
+    },
+    "skillItems": {
+      "Big data deployments": "Implantações de big data",
+      "Model evaluation": "Avaliação do modelo",
+      "Generative AI": "IA generativa",
+      "Agentic AI": "IA Agente",
+      "Requirements": "Requisitos",
+      "IT management": "Gestão de TI",
+      "University teaching": "Ensino universitário"
+    },
+    "roles": {
+      "current": {
+        "role": "Engenheiro de Software II",
+        "org": "Função atual · tecnologia de mineração",
+        "bullets": [
+          "Faça parceria com cientistas de dados para transformar pipelines de dados em aplicativos de produção.",
+          "Projete soluções em nuvem seguras, escaláveis e altamente disponíveis para plataformas analíticas.",
+          "Liderar a operação e manutenção de implantações de software de big data."
+        ]
+      },
+      "space": {
+        "role": "Engenheiro de Software de P&D II, Instituto Espacial",
+        "bullets": [
+          "Desenvolvi software Java e Python que automatiza a verificação de regras de voo para operações de missão.",
+          "Coordenei programas e projetos no Laboratório Lunar e Planetário, alinhados aos objetivos da missão.",
+          "Criei serviços de back-end Jakarta EE 10 e recursos de front-end JavaScript."
+        ]
+      },
+      "freelance": {
+        "role": "Engenheiro de software",
+        "org": "Freelance",
+        "bullets": [
+          "Levantamento de requisitos junto aos stakeholders para melhorias de sistema e novos projetos.",
+          "Contribuiu para gerenciamento de projetos, design de sistemas, testes e implementação."
+        ]
+      },
+      "opus": {
+        "role": "Engenheiro de software",
+        "bullets": [
+          "Processos ETL ajustados e consultas SQL e entrega de relatórios do Power BI.",
+          "Ajudou a migrar data warehouses legados entre Azure e SQL Server.",
+          "Desenvolvi software de inspeção veicular em VB, C#, R, Python e ASP.NET Core MVC.",
+          "Implementei integração contínua em Azure DevOps com Scrum e Kanban."
+        ]
+      },
+      "nova": {
+        "role": "Engenheiro de Automação",
+        "bullets": [
+          "Aplicativos projetados e solucionados que simplificam os fluxos de trabalho de hipotecas.",
+          "Desenvolvido em C#, SQL Server, MDX e JavaScript em ASP.NET MVC.",
+          "Trabalhei com equipes de suporte a aplicações e BI para melhorar o ERP da empresa."
+        ]
+      },
+      "mining2017": {
+        "role": "Programador de software",
+        "org": "Software de operações de mineração",
+        "bullets": [
+          "Operações suportadas e sistemas de inteligência de negócios para operações de mineração.",
+          "Aplicativos existentes aprimorados com T-SQL, MDX e JavaScript."
+        ]
+      }
+    },
+    "earlier": {
+      "contractor": [
+        "Engenheiro de software",
+        "Empreiteiro / freelancer",
+        "Desenvolvimento web e back-end (Java, C++, C#, PHP), administração de SQL Server e Oracle, consultoria de TI e treinamentos online."
+      ],
+      "cefppbc": [
+        "Gerente de TI",
+        null,
+        "Operações de TI, infraestrutura de redes e servidores, bancos de dados e sistemas web administrativos."
+      ],
+      "upbc": [
+        "professor adjunto",
+        null,
+        "Cursos de tecnologia da informação, mecatrônica, energia e tecnologias de manufatura."
+      ],
+      "uvm": [
+        "professor adjunto",
+        null,
+        "Fundamentos de programação, algoritmos e desenvolvimento de aplicações web."
+      ],
+      "cut": [
+        "professor adjunto",
+        null,
+        "Teoria das cores para educadores, suporte de TI e orientação de alunos."
+      ],
+      "itm": [
+        "professor adjunto",
+        null,
+        "Arquitetura de computadores, redes, programação e business intelligence."
+      ],
+      "uad": [
+        "professor adjunto",
+        null,
+        "Fundamentos de TI com laboratórios de Excel, VBA e Access."
+      ],
+      "teleplan": [
+        "Engenheiro de Qualidade",
+        null,
+        "Critérios de inspeção, casos de teste e documentação de defeitos."
+      ],
+      "dif": [
+        "Engenheiro de software",
+        null,
+        "Desenhei um ERP Oracle e C# integrado com recursos humanos; Suporte Citrix e VMware."
+      ],
+      "police": [
+        "Gerente de TI, Academia de Polícia",
+        null,
+        "Planos de rede, orçamentos de TI e gerenciamento de equipe."
+      ],
+      "juebc": [
+        "Engenheiro de software",
+        null,
+        "Sistemas Web e desktop com PowerBuilder, Sybase, Oracle, C#, ASP e Crystal Reports."
+      ],
+      "sidue": [
+        "Engenheiro de software",
+        null,
+        "Sistemas de helpdesk, gerenciamento de incidentes e aplicações web e desktop."
+      ]
+    },
+    "education": {
+      "phd": "Ph.D. em Educação, Tecnologia Educacional e Instrucional",
+      "msc": "Mestrado em Tecnologias de Informação e Comunicação, E-Business",
+      "bsc": "Bacharelado em Engenharia de Sistemas Computacionais, Sistemas Distribuídos"
+    }
+  },
+  zh: {
+    "title": "简历 | Alicia Espinoza",
+    "description": "数据和人工智能平台软件工程师 Alicia Espinoza 的简历：经验、教育、技能和选定的项目。",
+    "back": "← 作品集",
+    "kicker": "简历",
+    "headline": "软件工程师 · 数据与 AI 平台 · 知识系统 · 数字化转型与技术领导",
+    "location": "美国亚利桑那州",
+    "pdf": "另存为 PDF",
+    "pdfHint": "打开打印对话框；选择“另存为 PDF”。",
+    "summaryTitle": "概括",
+    "summary": "将数据和技术转化为人们实际使用的实用解决方案的软件工程师。二十多年来，我在采矿、金融、政府、太空运营、汽车检查和教育领域工作过：构建应用程序、改进数据流程并帮助团队采用数字工具做出更好的决策。作为大学教授的岁月增强了我分享知识和向不同受众阐明复杂主题的热情。今天，我专注于人工智能和基于知识的平台，将可信信息转化为真正的价值。",
+    "experienceTitle": "工作经历",
+    "earlierTitle": "早期经验，2002-2016",
+    "educationTitle": "教育背景",
+    "skillsTitle": "专业技能",
+    "certificationsTitle": "认证证书",
+    "certificationsIssuer": "领英学习",
+    "publicationsTitle": "刊物",
+    "languagesTitle": "语言",
+    "projectsTitle": "选定的项目",
+    "learning": "{n} 自 2019 年起完成的 LinkedIn 学习课程。",
+    "learningLink": "查看学习记录",
+    "present": "展示",
+    "places": {
+      "tucson": "美国亚利桑那州图森",
+      "us": "美国",
+      "mexicali": "墨西哥下加利福尼亚州墨西卡利"
+    },
+    "languages": [
+      [
+        "英语",
+        "全面的专业能力"
+      ],
+      [
+        "西班牙语",
+        "本国的"
+      ]
+    ],
+    "skills": {
+      "software": "软件工程",
+      "data": "数据与商业智能",
+      "cloud": "云与开发运营",
+      "ai": "人工智能和 MLOps",
+      "delivery": "领导力与交付"
+    },
+    "skillItems": {
+      "Big data deployments": "大数据部署",
+      "Model evaluation": "模型评估",
+      "Generative AI": "生成式人工智能",
+      "Agentic AI": "代理人工智能",
+      "Requirements": "要求",
+      "IT management": "信息技术管理",
+      "University teaching": "大学教学"
+    },
+    "roles": {
+      "current": {
+        "role": "二级软件工程师",
+        "org": "现任职务·采矿技术",
+        "bullets": [
+          "与数据科学家合作，将数据管道转化为生产应用程序。",
+          "为分析平台设计安全、可扩展且高度可用的云解决方案。",
+          "领导大数据软件部署的运营和维护。"
+        ]
+      },
+      "space": {
+        "role": "航天所二级研发软件工程师",
+        "bullets": [
+          "开发了 Java 和 Python 软件，可自动检查任务操作的飞行规则。",
+          "协调月球和行星实验室的计划和项目，与任务目标保持一致。",
+          "构建了 Jakarta EE 10 后端服务和 JavaScript 前端功能。"
+        ]
+      },
+      "freelance": {
+        "role": "软件工程师",
+        "org": "自由职业者",
+        "bullets": [
+          "与利益相关者收集系统改进和新项目的要求。",
+          "参与项目管理、系统设计、测试和实施。"
+        ]
+      },
+      "opus": {
+        "role": "软件工程师",
+        "bullets": [
+          "调整 ETL 流程和 SQL 查询并交付 Power BI 报告。",
+          "帮助在 Azure 和 SQL Server 之间迁移旧数据仓库。",
+          "使用VB、C#、R、Python和ASP.NET Core MVC开发车辆检测软件。",
+          "在 Azure DevOps 中与 Scrum 和看板实现持续集成。"
+        ]
+      },
+      "nova": {
+        "role": "自动化工程师",
+        "bullets": [
+          "设计可简化抵押贷款工作流程的应用程序并对其进行故障排除。",
+          "在 ASP.NET MVC 上使用 C#、SQL Server、MDX 和 JavaScript 进行开发。",
+          "与应用支持和 BI 团队合作改进公司 ERP。"
+        ]
+      },
+      "mining2017": {
+        "role": "软件程序员",
+        "org": "采矿作业软件",
+        "bullets": [
+          "支持采矿作业的运营和商业智能系统。",
+          "使用 T-SQL、MDX 和 JavaScript 增强了现有应用程序。"
+        ]
+      }
+    },
+    "earlier": {
+      "contractor": [
+        "软件工程师",
+        "承包商/自由职业者",
+        "Web 和后端开发（Java、C++、C#、PHP）、SQL Server 和 Oracle 管理、IT 咨询和在线培训。"
+      ],
+      "cefppbc": [
+        "信息技术经理",
+        null,
+        "IT 运营、网络和服务器基础设施、数据库和管理网络系统。"
+      ],
+      "upbc": [
+        "副教授",
+        null,
+        "信息技术、机电一体化、能源和制造技术课程。"
+      ],
+      "uvm": [
+        "副教授",
+        null,
+        "编程基础、算法和 Web 应用程序开发。"
+      ],
+      "cut": [
+        "副教授",
+        null,
+        "适用于教育工作者、IT 支持和学生指导的色彩理论。"
+      ],
+      "itm": [
+        "副教授",
+        null,
+        "计算机体系结构、网络、编程和商业智能。"
+      ],
+      "uad": [
+        "副教授",
+        null,
+        "Excel、VBA 和 Access 实验室的 IT 基础知识。"
+      ],
+      "teleplan": [
+        "质量工程师",
+        null,
+        "检查标准、测试用例和缺陷文档。"
+      ],
+      "dif": [
+        "软件工程师",
+        null,
+        "设计了一个与人力资源集成的Oracle和C# ERP； Citrix 和 VMware 支持。"
+      ],
+      "police": [
+        "警察学院 IT 经理",
+        null,
+        "网络规划、IT 预算和员工管理。"
+      ],
+      "juebc": [
+        "软件工程师",
+        null,
+        "使用 PowerBuilder、Sybase、Oracle、C#、ASP 和 Crystal Reports 的 Web 和桌面系统。"
+      ],
+      "sidue": [
+        "软件工程师",
+        null,
+        "帮助台系统、事件管理以及网络和桌面应用程序。"
+      ]
+    },
+    "education": {
+      "phd": "博士教育、教育和教学技术学士",
+      "msc": "理学硕士信息与通信技术、电子商务",
+      "bsc": "理学学士计算机系统工程、分布式系统博士"
+    }
+  },
   en: {
     title: "Résumé | Alicia Espinoza",
     description: "Résumé of Alicia Espinoza, software engineer in data and AI platforms: experience, education, skills and selected projects.",

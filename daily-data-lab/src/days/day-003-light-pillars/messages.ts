@@ -4,4 +4,7 @@ import { FR } from "./messages.fr";
 import { IT } from "./messages.it";
 import { JA } from "./messages.ja";
 
-export const MESSAGES: Record<string, Record<string, string>> = { es: ES, fr: FR, it: IT, ja: JA };
+import { PT } from "./messages.pt";
+import { ZH } from "./messages.zh";
+
+export const MESSAGES: Record<string, Record<string, string>> = { es: ES, fr: FR, it: IT, ja: JA, pt: PT, zh: ZH };

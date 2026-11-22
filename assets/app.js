@@ -7,11 +7,11 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261122a";
+} from "./i18n.js?v=20261122b";
 import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261122a";
 import { getContributionCalendar } from "./contributions.js?v=20261122a";
 import { effectiveTheme, toggleTheme } from "./theme.js?v=20261122a";
-import { LAB_INSIGHT, insightText } from "./daily-data-lab-insights.js?v=20261122a";
+import { LAB_INSIGHT, insightText } from "./daily-data-lab-insights.js?v=20261122b";
 
 function el(tag, attrs, children) {
   var node = document.createElement(tag);
@@ -139,7 +139,7 @@ function renderContributionCalendar(language) {
   var calendar = el("div", {
     class: "contributions",
     style: "--weeks: " + weeks.length,
-    role: "grid",
+    role: "group",
     "aria-label": t(language, "calendar.aria", "Daily Data Lab publishing calendar")
   });
   var monthLabels = el("div", { class: "contributions__months", "aria-hidden": "true" });
@@ -174,7 +174,7 @@ function renderContributionCalendar(language) {
         })
         : el("span", {
           class: "contributions__day",
-          "aria-label": cellLabel,
+          "aria-hidden": "true",
           title: cellLabel,
           "data-date": entry.iso
         });
@@ -183,7 +183,8 @@ function renderContributionCalendar(language) {
   });
   container.textContent = "";
   var body = el("div", { class: "contributions__body" }, [weekdays, grid]);
-  container.appendChild(el("div", { class: "contributions__layout" }, [monthLabels, body]));
+  calendar.appendChild(el("div", { class: "contributions__layout" }, [monthLabels, body]));
+  container.appendChild(calendar);
   container.scrollLeft = container.scrollWidth;
 }
 

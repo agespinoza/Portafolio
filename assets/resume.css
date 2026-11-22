@@ -78,3 +78,8 @@
   .cv__chip { font-size: 8.5pt; padding: 2px 7px; }
   a { color: inherit; text-decoration: none; }
 }
+
+.cv__identity > div, .cv__summary, .cv__role, .cv__list { overflow-wrap: anywhere; }
+@media screen and (min-width: 901px) {
+  .cv__summary { text-align: justify; hyphens: auto; }
+}

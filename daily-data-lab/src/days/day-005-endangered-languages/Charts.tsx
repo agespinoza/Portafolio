@@ -92,7 +92,7 @@ export function StackedBarCard({ list, active, onSelect, language }: {
   const W = 760, L = 120, R = 56, RH = 30, GAP = 10, T = 6;
   const H = T + rows.length * (RH + GAP);
   return (
-    <figure className="chart el-chart">
+    <figure className="chart el-chart" tabIndex={0}>
       <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label={tr(language, "stackAria", "Share of languages in each endangerment status, by macroarea")}>
         {rows.map((r, i) => {
           const y = T + i * (RH + GAP);
@@ -139,7 +139,7 @@ export function RiskDocHeatmap({ matrix, cell, onCellClick, language }: {
   const step = (v: number) => (v === 0 ? 0 : 1 + Math.min(4, Math.floor(Math.sqrt(v / max) * 5)));
   const zone = { x: L + 3 * CW, y: T + 2 * CH, w: 2 * CW, h: 3 * CH };
   return (
-    <figure className="chart el-chart el-heat">
+    <figure className="chart el-chart el-heat" tabIndex={0}>
       <svg viewBox={`0 0 ${W} ${H}`} role="grid" aria-label={tr(language, "heatAria", "Number of languages for each combination of endangerment status (rows) and most extensive description (columns)")}>
         {MED_COLS.map((m, j) => (
           <text key={m} x={L + j * CW + CW / 2} y={T - 12} className="axis" textAnchor="middle">
@@ -222,7 +222,7 @@ export function FamilyTreemap({ fams, active, onSelect, language }: {
     return squarify(all.map((f) => ({ ...f, value: f.languages })), { x: 0, y: 0, w: W, h: H });
   }, [fams, language]);
   return (
-    <figure className="chart el-chart el-tree">
+    <figure className="chart el-chart el-tree" tabIndex={0}>
       <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label={tr(language, "treeAria", "Language families sized by number of languages and colored by the share of living languages that are endangered")}>
         {items.map((f) => {
           const share = f.living ? f.endangered / f.living : 0;
@@ -231,7 +231,7 @@ export function FamilyTreemap({ fams, active, onSelect, language }: {
           const on = active === f.idx;
           const label = `${f.name}: ${num(f.languages, language)} ${tr(language, "langsShort", "languages")} · ${pct(share, language)} ${tr(language, "endangeredShort", "endangered")} · ${num(f.extinct, language)} ${tr(language, "extinctShort", "extinct")}`;
           return (
-            <g key={f.idx} className={`el-tile${clickable ? " el-tile--btn" : ""}${on ? " on" : ""}`} tabIndex={clickable ? 0 : -1} role={clickable ? "button" : undefined}
+            <g key={f.idx} className={`el-tile${clickable ? " el-tile--btn" : ""}${on ? " on" : ""}`} tabIndex={clickable ? 0 : -1} role={clickable ? "button" : "img"}
               aria-label={label} aria-pressed={clickable ? on : undefined}
               onClick={() => clickable && onSelect(on ? null : f.idx)}
               onKeyDown={(e) => { if (clickable && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); onSelect(on ? null : f.idx); } }}
@@ -264,7 +264,7 @@ export function GrammarAtRisk({ language }: { language: string }) {
   const x = (p: number) => L + p * (W - L - R);
   const base = GRAMBANK.baseEndangered;
   return (
-    <figure className="chart el-chart el-gram">
+    <figure className="chart el-chart el-gram" tabIndex={0}>
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={tr(language, "gramAria", "Ten Grambank feature values with the highest share of endangered or extinct languages among the languages that have them, with 95% intervals")}>
         {[0, 0.25, 0.5, 0.75, 1].map((v) => (
           <g key={v}>
@@ -303,7 +303,7 @@ export function CoverageChart({ list, language }: { list: Language[]; language: 
   const x = (p: number) => L + (p / top) * (W - L - R);
   const ticks = Array.from({ length: Math.round(top * 10) + 1 }, (_, i) => i / 10);
   return (
-    <figure className="chart el-chart">
+    <figure className="chart el-chart" tabIndex={0}>
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={tr(language, "covAria", "Share of languages coded in Grambank and in WALS, by endangerment status")}>
         {ticks.map((v) => (
           <g key={v}>

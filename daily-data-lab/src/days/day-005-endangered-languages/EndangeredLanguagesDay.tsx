@@ -83,12 +83,12 @@ export default function EndangeredLanguagesDay() {
             <span className="mono">{tr(language, "search", "Language")}</span>
             <input type="search" value={query} placeholder={tr(language, "searchPlaceholder", "Search {count} languages by name, Glottocode, or ISO…", { count: num(LANGUAGES.length, language) })}
               onChange={(e) => setQuery(e.target.value)} onKeyDown={(e) => { if (e.key === "Enter" && results[0]) pick(results[0].code); }}
-              aria-controls="el-results" aria-autocomplete="list" />
+              aria-controls={results.length > 0 ? "el-results" : undefined} />
           </label>
           {results.length > 0 && (
-            <ul id="el-results" className="al-results" role="listbox">
+            <ul id="el-results" className="al-results">
               {results.map((l) => (
-                <li key={l.code}><button type="button" role="option" aria-selected={false} onClick={() => pick(l.code)}>
+                <li key={l.code}><button type="button" onClick={() => pick(l.code)}>
                   <strong>{l.name}</strong><span>{aesName(l.aes, language)} · {l.code}</span>
                 </button></li>
               ))}

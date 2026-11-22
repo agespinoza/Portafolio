@@ -1,6 +1,6 @@
 import { CLASSES, DOMAINS, blockIndex, cutoffGrade, decodeBlocks, fleetTotals, inShell, predictRecovery, resourceStatement, shellForPrice } from './mine.js?v=20261121a';
-import { blockGrid, columnChart, d3, divergingBars, duplicateScatter, histogram, legend, lineChart } from './charts.js?v=20261121a';
-import { LANGUAGES, LANGUAGE_NAMES, language, locale, num, site, tr, translatePage } from './i18n.js?v=20261121a';
+import { blockGrid, columnChart, d3, divergingBars, duplicateScatter, histogram, legend, lineChart } from './charts.js?v=20261122b';
+import { LANGUAGES, LANGUAGE_NAMES, localeFor, language, locale, num, site, tr, translatePage } from './i18n.js?v=20261122b';
 
 const $ = selector => document.querySelector(selector);
 const el = (tag, props = {}, ...children) => {
@@ -39,7 +39,7 @@ let D;           // all data
 
 function initNav() {
     const select = $('#language-select');
-    select.replaceChildren(...LANGUAGES.map(code => el('option', { value: code }, LANGUAGE_NAMES[code])));
+    select.replaceChildren(...LANGUAGES.map(code => el('option', { value: code, lang: localeFor(code) }, LANGUAGE_NAMES[code])));
     select.value = language;
     select.addEventListener('change', () => {
         const url = new URL(window.location.href);

@@ -111,33 +111,38 @@ export default function Simulator({ language }: { language: string }) {
             <>
               <div>
                 <dt>{tr(language, "readSubsun", "Subsun seen at")}</dt>
-                <dd>{size.peakEl == null ? "—" : `${fmt1(size.peakEl, language)}°`}</dd>
-                <small>{tr(language, "readSubsunNote", "mirror image of the Sun, expected at −{e}°", { e: fmt1(p.elevation, language) })}</small>
+                <dd>{size.peakEl == null ? "—" : `${fmt1(size.peakEl, language)}°`}
+                  <small>{tr(language, "readSubsunNote", "mirror image of the Sun, expected at −{e}°", { e: fmt1(p.elevation, language) })}</small>
+                </dd>
               </div>
               <div>
                 <dt>{tr(language, "readExtent", "Subsun vertical extent")}</dt>
-                <dd>{size.extent == null ? "—" : `${fmt1(size.extent, language)}°`}</dd>
-                <small>{tr(language, "readExtentNote", "half maximum; theory for Gaussian tilt ≈ 4.7σ = {v}°", { v: fmt1(4.71 * p.tilt, language) })}</small>
+                <dd>{size.extent == null ? "—" : `${fmt1(size.extent, language)}°`}
+                  <small>{tr(language, "readExtentNote", "half maximum; theory for Gaussian tilt ≈ 4.7σ = {v}°", { v: fmt1(4.71 * p.tilt, language) })}</small>
+                </dd>
               </div>
             </>
           ) : (
             <>
               <div>
                 <dt>{tr(language, "readHeight", "Pillar height above the light")}</dt>
-                <dd>{size.height == null || noPillar ? "—" : `${fmt1(size.height, language)}°`}</dd>
-                <small>{noPillar ? tr(language, "readNoPillar", "tumbling crystals: a diffuse glow, no pillar") : tr(language, "readHeightNote", "half-maximum brightness, centre line")}</small>
+                <dd>{size.height == null || noPillar ? "—" : `${fmt1(size.height, language)}°`}
+                  <small>{noPillar ? tr(language, "readNoPillar", "tumbling crystals: a diffuse glow, no pillar") : tr(language, "readHeightNote", "half-maximum brightness, centre line")}</small>
+                </dd>
               </div>
               <div>
                 <dt>{tr(language, "readRatio", "Height ÷ tilt spread")}</dt>
-                <dd>{size.height == null || noPillar ? "—" : `${fmt1(size.height / p.tilt, language)}×`}</dd>
-                <small>{tr(language, "readRatioNote", "angles double on reflection: ≈ 2.4× for a Sun on the horizon in clear air; haze and long sight lines change it")}</small>
+                <dd>{size.height == null || noPillar ? "—" : `${fmt1(size.height / p.tilt, language)}×`}
+                  <small>{tr(language, "readRatioNote", "angles double on reflection: ≈ 2.4× for a Sun on the horizon in clear air; haze and long sight lines change it")}</small>
+                </dd>
               </div>
             </>
           )}
           <div>
             <dt>{tr(language, "readFresnel", "Reflectance at the face")}</dt>
-            <dd>{fmt1(R * 100, language)}%</dd>
-            <small>{tr(language, "readFresnelNote", "Fresnel, ice n = 1.31, incidence {deg}°", { deg: Math.round(incidence) })}</small>
+            <dd>{fmt1(R * 100, language)}%
+              <small>{tr(language, "readFresnelNote", "Fresnel, ice n = 1.31, incidence {deg}°", { deg: Math.round(incidence) })}</small>
+            </dd>
           </div>
         </dl>
       </div>

@@ -56,7 +56,7 @@ export function ResearchQuestions({ title, lead, items, language }: { title: str
       <div className="lp-qs">
         {items.map((x, i) => (
           <details key={i} className="lp-q" open={i < 2}>
-            <summary><span className="lp-q__n">{i + 1}</span>{x.q}<span className={`lp-tag lp-tag--${x.tag}`}>{tagText[x.tag]}</span></summary>
+            <summary><span className="lp-q__n">{i + 1}</span><span className="lp-q__text">{x.q}</span><span className={`lp-tag lp-tag--${x.tag}`}>{tagText[x.tag]}</span></summary>
             <p>{x.a}</p>
           </details>
         ))}

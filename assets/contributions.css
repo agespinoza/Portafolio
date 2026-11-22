@@ -15,3 +15,8 @@
 .contributions-legend { display: flex; justify-content: flex-end; align-items: center; gap: 5px; margin-top: 6px; color: var(--ink-3); font: 10px/1 var(--sans); }
 .contributions-legend i { width: 11px; height: 11px; border: 1px solid var(--line); border-radius: 3px; background: var(--paper-2); }
 .contributions-legend i:last-of-type { background: var(--accent); border-color: var(--accent); }
+
+@media (max-width: 640px) {
+  .contributions { min-width: calc(35px + var(--weeks, 53) * 27px); }
+  .contributions__day { min-height: 24px; }
+}

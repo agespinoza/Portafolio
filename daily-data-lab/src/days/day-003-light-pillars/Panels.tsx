@@ -96,7 +96,7 @@ export function Comparator({ rows, language, months }: { rows: Obs[]; language: 
       {picked.length < 2
         ? <p className="muted pad">{tr(language, "pickTwo", "Pick at least two regions to compare.")}</p>
         : (
-          <div className="lp-table-wrap">
+          <div className="lp-table-wrap" tabIndex={0} role="region" aria-labelledby="lp-cmp-title">
             <table className="lp-table lp-compare">
               <thead><tr><th scope="col">{tr(language, "metric", "Metric")}</th>{stats.map((s) => <th key={s.id} scope="col">{name(s.id)}</th>)}</tr></thead>
               <tbody>

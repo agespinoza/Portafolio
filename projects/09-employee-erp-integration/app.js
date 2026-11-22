@@ -1,8 +1,8 @@
 import {
     COLUMNS, OWNERSHIP, ACTIONS, SYNCED_FIELDS, parseCsv, validate, plan, apply, undo, reconcile, headcountByDepartment,
 } from './engine.js?v=20261121a';
-import { barChart, groupedBars, runLines, runStacks } from './charts.js?v=20261121a';
-import { LANGUAGES, LANGUAGE_NAMES, language, tr, site, num, utcFull, translatePage } from './i18n.js?v=20261121a';
+import { barChart, groupedBars, runLines, runStacks } from './charts.js?v=20261122b';
+import { LANGUAGES, LANGUAGE_NAMES, localeFor, language, tr, site, num, utcFull, translatePage } from './i18n.js?v=20261122b';
 
 const AUDIT_ROWS = 150;
 const GLYPH = { insert: '+', update: '✎', transfer: '⇄', terminate: '−', rehire: '↺', review: '!', unchanged: '=', rejected: '✕', undo: '⟲' };
@@ -38,7 +38,7 @@ const state = {
 
 function initNav() {
     const select = $('#language-select');
-    select.replaceChildren(...LANGUAGES.map(code => el('option', { value: code }, LANGUAGE_NAMES[code])));
+    select.replaceChildren(...LANGUAGES.map(code => el('option', { value: code, lang: localeFor(code) }, LANGUAGE_NAMES[code])));
     select.value = language;
     select.addEventListener('change', () => {
         const url = new URL(window.location.href);

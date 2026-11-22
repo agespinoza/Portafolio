@@ -14,8 +14,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=20261122a">
-  <link rel="stylesheet" href="assets/contributions.css?v=20261122a">
+  <link rel="stylesheet" href="assets/styles.css?v=20261122b">
+  <link rel="stylesheet" href="assets/contributions.css?v=20261122b">
 </head>
 <body>
   <a class="skip" href="#main" data-i18n="site.skip">Skip to content</a>
@@ -43,6 +43,8 @@
               <option value="ja">日本語</option>
               <option value="it">Italiano</option>
               <option value="fr">Français</option>
+              <option value="pt" lang="pt-BR">Português</option>
+              <option value="zh" lang="zh-Hans">简体中文</option>
             </select>
           </li>
           <li class="nav__theme">
@@ -196,7 +198,7 @@
 
         <div class="panel reveal">
           <div class="panel__head panel__head--wrap">
-            <h3 class="panel__title" data-i18n="site.completeHistory">Complete history</h3>
+            <h3 class="panel__title" id="course-table-title" data-i18n="site.completeHistory">Complete history</h3>
             <div class="filters">
               <label class="sr" for="q" data-i18n="site.searchCourses">Search courses</label>
               <input id="q" type="search" placeholder="Search title or instructor" data-i18n-placeholder="site.searchPlaceholder" autocomplete="off">
@@ -207,7 +209,7 @@
             </div>
           </div>
           <p class="result-count" id="result-count" aria-live="polite"></p>
-          <div class="table-wrap">
+          <div class="table-wrap" tabindex="0" role="region" aria-labelledby="course-table-title">
             <table class="courses">
               <thead><tr><th scope="col" data-i18n="site.course">Course</th><th scope="col" data-i18n="site.skillArea">Skill area</th><th scope="col" data-i18n="site.completed">Completed</th></tr></thead>
               <tbody id="course-rows"></tbody>
@@ -280,6 +282,6 @@
   </footer>
 
   <script src="assets/learning-data.js?v=20261122a"></script>
-  <script type="module" src="assets/app.js?v=20261122a"></script>
+  <script type="module" src="assets/app.js?v=20261122b"></script>
 </body>
 </html>

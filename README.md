@@ -40,7 +40,7 @@ I publish one small interactive visualization a day, each on a different everyda
 
 [agespinoza.github.io/Portafolio](https://agespinoza.github.io/Portafolio/) presents my experience, applications, projects, and learning record on a single page. Its Applications section links to the live static demo and provides setup instructions for applications that need a local runtime or backend.
 
-The site includes a responsive navigation menu and a manual language selector for English, Spanish, Japanese, Italian, and French. Daily Data Lab's contribution-style calendar uses the publication dates in [`assets/daily-data-lab-days.js`](assets/daily-data-lab-days.js), which is shared with the lab application.
+The site includes a responsive navigation menu and a manual language selector for English, Spanish, Japanese, Italian, French, Brazilian Portuguese, and Simplified Chinese. Daily Data Lab's contribution-style calendar uses the publication dates in [`assets/daily-data-lab-days.js`](assets/daily-data-lab-days.js), which is shared with the lab application.
 
 To preview the portfolio locally, serve the repository root (the page uses JavaScript modules):
 

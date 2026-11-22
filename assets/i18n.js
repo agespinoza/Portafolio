@@ -1,4 +1,17 @@
-export const LANGUAGES = ["en", "es", "ja", "it", "fr"];
+import { PT } from "./i18n.pt.js";
+import { ZH } from "./i18n.zh.js";
+
+export const LANGUAGES = ["en", "es", "ja", "it", "fr", "pt", "zh"];
+
+export const LANGUAGE_NAMES = {
+  en: "English",
+  es: "Español",
+  ja: "日本語",
+  it: "Italiano",
+  fr: "Français",
+  pt: "Português",
+  zh: "简体中文",
+};
 
 export const LOCALES = {
   en: "en-US",
@@ -6,9 +19,13 @@ export const LOCALES = {
   ja: "ja-JP",
   it: "it-IT",
   fr: "fr-FR",
+  pt: "pt-BR",
+  zh: "zh-Hans",
 };
 
 const MESSAGES = {
+  pt: PT,
+  zh: ZH,
   es: {
     nav: {
       themeToDark: "Cambiar a tema oscuro",

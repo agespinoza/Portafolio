@@ -5,9 +5,9 @@ import {
 import {
     REGIMES, REGIME_LABEL, regimeColor, symbolPath, utcFull, utcShort, utcTime, utcHm,
     timeSeries, contactPlan, createMap, skyPlot, regimeChart,
-} from './charts.js?v=20261121a';
+} from './charts.js?v=20261122b';
 import { landMask, landDots, globeTexture } from './earth.js?v=20261121a';
-import { LANGUAGES, LANGUAGE_NAMES, language, tr, site, num, signed, duration, translatePage } from './i18n.js?v=20261121a';
+import { LANGUAGES, LANGUAGE_NAMES, localeFor, language, tr, site, num, signed, duration, translatePage } from './i18n.js?v=20261122b';
 
 const LAND_URL = 'https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/land-110m.json';
 const CELESTRAK = norad => `https://celestrak.org/NORAD/elements/gp.php?CATNR=${norad}&FORMAT=tle`;
@@ -66,7 +66,7 @@ const passesOf = norad => state.fleetPasses.get(norad) || [];
 
 function initNav() {
     const select = $('#language-select');
-    select.replaceChildren(...LANGUAGES.map(code => el('option', { value: code }, LANGUAGE_NAMES[code])));
+    select.replaceChildren(...LANGUAGES.map(code => el('option', { value: code, lang: localeFor(code) }, LANGUAGE_NAMES[code])));
     select.value = language;
     select.addEventListener('change', () => {
         const url = new URL(window.location.href);

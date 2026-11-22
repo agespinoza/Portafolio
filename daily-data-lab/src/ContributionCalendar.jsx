@@ -37,7 +37,7 @@ export default function ContributionCalendar({ language }) {
         <div
           className="contributions"
           style={{ "--weeks": weeks.length }}
-          role="grid"
+          role="group"
           aria-label={t(language, "calendar.aria", "Daily Data Lab publishing calendar")}
         >
           <div className="contributions__layout">
@@ -68,13 +68,12 @@ export default function ContributionCalendar({ language }) {
                     <a
                       key={iso}
                       className={className}
-                      role="gridcell"
                       href={language === "en" ? `#/day/${entry.day}` : `?lang=${language}#/day/${entry.day}`}
                       aria-label={label}
                       title={label}
                     />
                   ) : (
-                    <span key={iso} className={className} role="gridcell" aria-label={label} title={label} />
+                    <span key={iso} className={className} aria-hidden="true" title={label} />
                   );
                 })}
               </div>

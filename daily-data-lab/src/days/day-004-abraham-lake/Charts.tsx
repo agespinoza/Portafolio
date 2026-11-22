@@ -123,7 +123,7 @@ export function WinterTrendChart({ series, trend, language }: { series: Series; 
   const fit = (w: number) => (trend ? trend.intercept + (trend.slope / 10) * w : 0);
   const bw = Math.max(2, (W - L - R) / series.length - 2);
   return (
-    <figure className="chart">
+    <figure className="chart" tabIndex={0}>
       <svg viewBox={`0 0 ${W} ${H}`} role="img"
         aria-label={tr(language, "trendAria", "Winter mean air temperature for each winter from {first} to {last}, with a 5-winter average and a linear trend", { first: x0, last: x1 })}>
         {ticks.map((v) => (
@@ -174,7 +174,7 @@ export function LswtMonthlyChart({ lt, air, names, language }: {
   const step = hi - lo > 30 ? 10 : 5;
   const ticks = []; for (let v = lo; v <= hi; v += step) ticks.push(v);
   return (
-    <figure className="chart">
+    <figure className="chart" tabIndex={0}>
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={tr(language, "lswtAria", "Lake surface water temperature by month from LakeTEMP, with its 95% interval{air}", {
         air: air ? tr(language, "lswtAriaAir", " and the air temperature above the lake") : "",
       })}>
@@ -224,7 +224,7 @@ export function IceLatitudeChart({ bands, points, language }: {
   const area = `M${rows.map((b) => `${x(mid(b[0])).toFixed(1)},${y(b[4]).toFixed(1)}`).join("L")}L${[...rows].reverse().map((b) => `${x(mid(b[0])).toFixed(1)},${y(b[2]).toFixed(1)}`).join("L")}Z`;
   const median = rows.map((b, i) => `${i && b[0] - rows[i - 1][0] === 1 ? "L" : "M"}${x(mid(b[0])).toFixed(1)},${y(b[3]).toFixed(1)}`).join("");
   return (
-    <figure className="chart">
+    <figure className="chart" tabIndex={0}>
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={tr(language, "latAria", "Ice days per year by latitude for about 1.2 million lakes: median and middle half, with the chosen lakes marked")}>
         {[0, 90, 180, 270, 365].map((d) => (
           <g key={d}>
@@ -265,7 +265,7 @@ export function TrendStrip({ lakes, trends, selected, abrahamSlope, onSelect, la
   const ticks = []; for (let v = Math.ceil(lo * 5) / 5; v <= hi; v += 0.2) ticks.push(Math.round(v * 10) / 10);
   const sel = trends.get(selected);
   return (
-    <figure className="chart">
+    <figure className="chart" tabIndex={0}>
       <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label={tr(language, "stripAria", "Winter warming trend of each large lake, 1991–2025")}>
         {ticks.map((v) => (
           <g key={v}>

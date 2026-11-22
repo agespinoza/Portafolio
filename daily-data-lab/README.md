@@ -87,7 +87,7 @@ All 7,685 spoken first languages in Glottolog 5.4, set against two Glottolog mea
 
 ## Languages and publication calendar
 
-The portfolio and Daily Data Lab can be switched manually between English, Spanish, Japanese, Italian, and French. English is the default; the selected language is shared through the `lang` URL parameter. The contribution-style calendar shows published days from the last 12 months and links each marked date to its visualization. Publication metadata is maintained once in [`../assets/daily-data-lab-days.js`](../assets/daily-data-lab-days.js) and used by both the portfolio and this app.
+The portfolio and Daily Data Lab can be switched manually between English, Spanish, Japanese, Italian, French, Brazilian Portuguese, and Simplified Chinese. English is the default; the selected language is shared through the `lang` URL parameter. The contribution-style calendar shows published days from the last 12 months and links each marked date to its visualization. Publication metadata is maintained once in [`../assets/daily-data-lab-days.js`](../assets/daily-data-lab-days.js) and used by both the portfolio and this app.
 
 ## Run locally
 
@@ -114,3 +114,8 @@ New days can be written in TypeScript (`.tsx`); `tsconfig.json` allows the older
 2. Add the date, title, summary, topic, tags, and source to [`../assets/daily-data-lab-days.js`](../assets/daily-data-lab-days.js), then map its slug to the component in [`src/days/index.js`](src/days/index.js).
 3. Add the day's public interface text to the five-language dictionaries in [`../assets/i18n.js`](../assets/i18n.js).
 4. Run `npm run build` and commit both `daily-data-lab/` and `lab/`.
+
+
+### Sharing a study
+
+The build generates a share page in `lab/studies/` for each entry in the shared day registry. It serves the study’s title, description and preview image as Open Graph metadata, then opens the interactive study in the selected language. To give a new study its own social card, save a 1200 × 630 PNG beside its preview SVG with the suffix `-social.png`.

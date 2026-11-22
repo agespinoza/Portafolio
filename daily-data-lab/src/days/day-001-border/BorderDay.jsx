@@ -571,7 +571,7 @@ function ProfileChart({ grids, day, crossing, win, best, formatHour, language })
   const [from, to] = win;
   const spans = from <= to ? [[from, to]] : [[from, 23], [0, to]];
   return (
-    <figure className="chart">
+    <figure className="chart" tabIndex={0}>
       <svg viewBox={`0 0 ${W} ${H}`} role="img"
         aria-label={tr(language, "profileAria", "Average wait by hour at both crossings, with the selected hours shaded")}>
         {spans.map(([a, b]) => <rect key={a} x={x(a) - 6} y={T} width={x(b) - x(a) + 12} height={H - T - B} className="win" rx={6} />)}
@@ -609,7 +609,7 @@ function TodayChart({ slots, prefix, hour, language, formatHour }) {
   const band = `M${pts.map((p) => `${x(p.h)},${y(p.max)}`).join(" L")} L${[...pts].reverse().map((p) => `${x(p.h)},${y(p.min)}`).join(" L")} Z`;
   const ticks = Array.from({ length: top / 30 + 1 }, (_, i) => i * 30);
   return (
-    <figure className="chart">
+    <figure className="chart" tabIndex={0}>
       <svg viewBox={`0 0 ${W} ${H}`} role="img"
         aria-label={t(language, "border.chartAria", "Hourly waits today compared with the typical average. Current hour {hour}.", { hour: formatHour(hour) })}>
         {ticks.map((v) => (
@@ -639,9 +639,9 @@ function MonthChart({ data, current, onPick, months, language }) {
   const max = Math.max(...data.map((d) => d.value || 0), 1);
   const worst = data.reduce((a, b) => ((b.value || 0) > (a.value || 0) ? b : a));
   return (
-    <div className="months" role="list">
+    <div className="months">
       {data.map((d) => (
-        <button key={d.month} role="listitem" type="button"
+        <button key={d.month} type="button" aria-pressed={d.month === current}
           className={`m${d.month === current ? " on" : ""}${d.month === worst.month ? " peak" : ""}`}
           onClick={() => onPick(d.month)} aria-label={t(language, "border.monthAria", "{month}: {minutes} average. Show in heatmap.", {
             month: months[d.month - 1], minutes: mins(d.value, language),

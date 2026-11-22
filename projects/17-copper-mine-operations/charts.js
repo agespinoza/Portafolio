@@ -1,6 +1,6 @@
 // D3 charts for the mine console. Colors come from CSS custom properties; text uses ink tokens.
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm';
-import { num } from './i18n.js?v=20261121a';
+import { num } from './i18n.js?v=20261122b';
 
 export { d3 };
 
