@@ -1,5 +1,5 @@
 import { DEFAULTS, POLICIES, amplify, compare, simulate, usableLength } from './engine.js?v=20261122a';
-import { costBars, costChart, dataChart, shareChart } from './charts.js?v=20261122a';
+import { costBars, costChart, dataChart, shareChart } from './charts.js?v=20261122b';
 import { LANGUAGES, LANGUAGE_NAMES, date, language, localeFor, num, pct, site, tr, translatePage } from './i18n.js?v=20261122a';
 
 const $ = selector => document.querySelector(selector);

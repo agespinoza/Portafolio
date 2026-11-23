@@ -98,6 +98,13 @@ export function shareChart(container, { labels, scaled, steps, index, onPick, la
     steps.forEach((s, i) => {
         if (s.estimate !== null) root.append(svg('circle', { class: 'est-dot', cx: x(i), cy: y(Math.min(s.estimate, ticks[ticks.length - 1])), r: 2.6 }));
     });
+    // Rolling mean of the last three estimates, so the trend reads through the quarter-to-quarter noise.
+    const cap = ticks[ticks.length - 1];
+    const smooth = steps.map((_, i) => {
+        const w = steps.slice(Math.max(0, i - 2), i + 1).map(s => s.estimate).filter(v => v !== null);
+        return w.length ? Math.min(w.reduce((a, b) => a + b, 0) / w.length, cap) : null;
+    });
+    for (const s of segments(smooth, x, y)) root.append(svg('path', { class: 'line line--est', d: path(s) }));
     for (const s of segments(scaled, x, y)) root.append(svg('path', { class: 'line line--real', d: path(s) }));
     steps.forEach((s, i) => {
         if (s.retuned) root.append(svg('path', { class: 'retune', d: `M${x(i) - 5} ${top - 2}h10l-5 9z` }));

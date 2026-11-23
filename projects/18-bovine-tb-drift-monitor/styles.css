@@ -291,3 +291,22 @@ select { padding-right: 28px; cursor: pointer; max-width: 100%; text-overflow: e
 .phases strong { font: 500 14px var(--mono); color: var(--ink); }
 @media (max-width: 640px) { .phases { flex-direction: column; } }
 .notes p { font-size: 13.5px; color: var(--ink-2); }
+
+/* ---------- Polish: hero kicker, narrow cards, wrapping table headers, print ---------- */
+.hero .kicker span + span { color: var(--ink-3); }
+.hero .kicker span + span::before { content: "·"; margin-right: 12px; color: var(--line-2); }
+.phases { flex-wrap: wrap; }
+.phases li { min-width: 9.5rem; }
+.data-table th { white-space: normal; min-width: 6.5rem; vertical-align: bottom; }
+.data-table th:first-child { min-width: 0; }
+@media print {
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .nav, .controls { position: static; }
+  #play, #reseed, #nav-toggle { display: none; }
+  .table-wrap { overflow: visible; }
+  .data-table td, .data-table td.wrap-cell { white-space: normal; min-width: 0; }
+  .panel { break-inside: avoid; }
+}
+.est-dot { opacity: .35; }
+.line--est { stroke: var(--accent); stroke-width: 2.25; }
+.key--est { width: 18px; height: 3px; border-radius: 2px; }
