@@ -7,11 +7,11 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261122e";
-import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261122b";
+} from "./i18n.js?v=20261123a";
+import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261123a";
 import { getContributionCalendar } from "./contributions.js?v=20261122a";
 import { effectiveTheme, toggleTheme } from "./theme.js?v=20261122a";
-import { LAB_INSIGHT, insightText } from "./daily-data-lab-insights.js?v=20261122b";
+import { LAB_INSIGHT, insightText } from "./daily-data-lab-insights.js?v=20261123a";
 import { syncLanguageMeta } from "./seo.js?v=20261122a";
 
 function el(tag, attrs, children) {

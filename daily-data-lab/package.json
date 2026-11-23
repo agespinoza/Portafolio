@@ -16,7 +16,8 @@
     "typecheck": "tsc --noEmit",
     "data:abraham": "node scripts/day-004/run-sql.mjs scripts/day-004/dim_lake.sql && node scripts/day-004/run-sql.mjs scripts/day-004/top300.sql && node scripts/day-004/snapshot.mjs",
     "fetch:abraham": "node scripts/day-004/fetch-winters.mjs 9000 && node scripts/day-004/update-trends.mjs",
-    "data:languages": "node scripts/day-004/run-sql.mjs scripts/day-005/build.sql && node scripts/day-005/snapshot.mjs && node scripts/day-005/preview.mjs"
+    "data:languages": "node scripts/day-004/run-sql.mjs scripts/day-005/build.sql && node scripts/day-005/snapshot.mjs && node scripts/day-005/preview.mjs",
+    "data:foodwaste": "python3 -I scripts/day-006/annex3.py && node scripts/day-004/run-sql.mjs scripts/day-006/build.sql && node scripts/day-006/snapshot.mjs && node scripts/day-006/preview.mjs"
   },
   "dependencies": {
     "react": "18.3.1",

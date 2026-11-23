@@ -385,6 +385,12 @@ export const MESSAGES = {
         topic: "Lenguas",
         previewAlt: "Vista previa: mapa mundial nocturno de 7,685 lenguas coloreadas por nivel de peligro, junto a una cuadrícula de nivel de peligro contra nivel de documentación.",
       },
+      "food-waste": {
+        title: "¿Dónde se desperdicia la comida del mundo, y quién la tira?",
+        summary: "Los 1,050 millones de toneladas de comida que UNEP estima desperdiciadas en 2022, repartidas entre hogares, restaurantes y tiendas en los 100 países más poblados, frente al hambre, el ingreso y el clima, con México y Estados Unidos lado a lado.",
+        topic: "Alimentación",
+        previewAlt: "Vista previa: desperdicio de alimentos en casa por persona en los 20 países con más desperdicio entre los 100 más poblados, con México y Estados Unidos resaltados, junto a una dona del desperdicio por sector.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -772,6 +778,12 @@ export const MESSAGES = {
         summary: "Glottolog 5.4の話し言葉の第一言語7,685すべてを、危機度と記述の程度で地図化。最も危うい語族と国、そして世界の文法データベースの空白を示します。",
         topic: "言語",
         previewAlt: "プレビュー：危機度で色分けした7,685言語の夜空風世界地図と、危機度と記録の程度を掛け合わせたグリッド。",
+      },
+      "food-waste": {
+        title: "世界の食品はどこで、誰に捨てられているのか？",
+        summary: "UNEPが推計した2022年の食品廃棄10.5億トンを、人口上位100か国について家庭・外食・小売に分け、飢餓・所得・気候と比較。メキシコと米国を並べて示します。",
+        topic: "食",
+        previewAlt: "プレビュー：人口上位100か国のうち家庭での1人あたり食品廃棄が多い20か国（メキシコと米国を強調）と、部門別の食品廃棄のドーナツグラフ。",
       },
     },
     lab: {
@@ -1161,6 +1173,12 @@ export const MESSAGES = {
         topic: "Lingue",
         previewAlt: "Anteprima: una mappa del mondo notturna di 7.685 lingue colorate per livello di pericolo, accanto a una griglia che incrocia pericolo e livello di documentazione.",
       },
+      "food-waste": {
+        title: "Dove si spreca il cibo del mondo, e chi lo spreca?",
+        summary: "Secondo l'UNEP, nel 2022 sono state sprecate 1,05 miliardi di tonnellate di cibo: qui divise tra case, ristoranti e negozi per i 100 paesi più popolosi e confrontate con fame, reddito e clima, con Messico e Stati Uniti fianco a fianco.",
+        topic: "Cibo",
+        previewAlt: "Anteprima: spreco alimentare domestico a persona nei 20 paesi che sprecano di più tra i 100 più popolosi, con Messico e Stati Uniti evidenziati, accanto a una ciambella dello spreco per settore.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -1548,6 +1566,12 @@ export const MESSAGES = {
         summary: "Les 7 685 langues maternelles parlées de Glottolog 5.4, cartographiées selon leur niveau de danger et leur degré de description, avec les familles et les pays les plus menacés et les lacunes des bases de données grammaticales mondiales.",
         topic: "Langues",
         previewAlt: "Aperçu : une carte du monde nocturne de 7 685 langues colorées selon leur niveau de danger, à côté d'une grille croisant danger et niveau de documentation.",
+      },
+      "food-waste": {
+        title: "Où la nourriture du monde est-elle gaspillée, et par qui ?",
+        summary: "Les 1,05 milliard de tonnes de nourriture gaspillées en 2022 selon le PNUE, réparties entre foyers, restaurants et magasins pour les 100 pays les plus peuplés, face à la faim, au revenu et au climat, avec le Mexique et les États-Unis côte à côte.",
+        topic: "Alimentation",
+        previewAlt: "Aperçu : gaspillage alimentaire domestique par personne dans les 20 pays les plus gaspilleurs parmi les 100 plus peuplés, Mexique et États-Unis surlignés, à côté d'un anneau du gaspillage par secteur.",
       },
     },
     lab: {

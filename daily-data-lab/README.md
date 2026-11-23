@@ -9,6 +9,7 @@ One small, interactive data visualization a day, each on a different everyday to
 | 003 | Atmosphere | [Where and when do light pillars appear?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/3) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/Category:Halo_phenomena) photos, [ERA5](https://cds.climate.copernicus.eu/datasets/reanalysis-era5-single-levels) weather via [Open-Meteo](https://open-meteo.com/), and [Natural Earth](https://www.naturalearthdata.com/) |
 | 004 | Climate | [How fast are winters warming at Abraham Lake?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/4) | [HydroSHEDS · HydroLAKES](https://www.hydrosheds.org/products/hydrolakes) (CC-BY 4.0) and ERA5 air temperature via [Open-Meteo](https://open-meteo.com/) |
 | 005 | Languages | [Which languages are endangered and barely documented?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/5) | [Glottolog 5.4](https://doi.org/10.5281/zenodo.24101243), [Grambank 1.0.3](https://doi.org/10.5281/zenodo.7844558), and [WALS Online](https://wals.info/) CLDF (all CC-BY 4.0) |
+| 006 | Food | [Where is the world's food wasted, and by whom?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/6) | [UNEP Food Waste Index Report 2024](https://digitallibrary.un.org/record/4042857), [FAOSTAT](https://www.fao.org/faostat/en/#data/FS) (CC-BY 4.0), [World Bank WDI](https://datatopics.worldbank.org/world-development-indicators/) and CCKP (CC-BY 4.0) |
 
 ## Day 001: When is the best time to cross from Mexicali?
 
@@ -85,6 +86,27 @@ All 7,685 spoken first languages in Glottolog 5.4, set against two Glottolog mea
 - [x] Dashboard: 4 KPIs, AES/MED map, stacked bars by macroarea, AES × MED heatmap with click filter, family treemap, country ranking, language profile with Glottolog link, family mode, attribution (#19)
 - [x] Research blocks with DOI-checked references, cross-day insight, previews (#20)
 
+## Day 006: Where is the world's food wasted, and by whom?
+
+UNEP's Food Waste Index Report 2024 estimates (year 2022) for the 100 most populous countries, split into households, food service, and retail, and set against undernourishment (FAOSTAT), income group and region (World Bank), and mean temperature (CCKP). Mexico and the United States are highlighted throughout. One global filter (region) recomputes KPIs, rankings, scatter fits, and facts.
+
+- **Data pipeline (DuckDB, `scripts/day-006/`):** `fetch.sh` downloads the raw files; `annex3.py` parses the report's Annex 3 (household estimates for 228 countries) and stops unless it sums to 630.96 Mt; `build.sql` joins Annex 3, the UN SDG series AG_FOOD_WST(_PC) for food service and retail, FAOSTAT undernourishment 2021–2023, World Bank population/region/income, and CCKP CRU TS 4.08 temperature into `country.parquet`; `snapshot.mjs` writes `data/day-006-food-waste/day-006.json` {kpis, countries[100], bySector, byIncome, byRegion, confidence, foodLossIndex} and stops if the world totals differ from UNEP's 1,052 / 631 / 290 / 131 Mt; `preview.mjs` draws the two preview images.
+- **Check:** world totals match UNEP exactly (1,052.0 Mt; household 79.1 kg/cap and 631.0 Mt; food service 289.8 Mt; retail 131.2 Mt). The 228 countries sum to 1,051.5 Mt (−0.04%): the SDG database has Eurostat rows instead of FWI 2024 rows for 27 European countries, so their food service and retail use the Eurostat 2020 values UNEP used.
+- **Finding:** household waste correlates with temperature at r = 0.23 across the 100 countries but only r = 0.10 across the 45 with measured (high or medium confidence) estimates; extrapolated values inflate regional patterns.
+- **Downloads** go to `daily-data-lab/raw/day-006-food-waste/` (not versioned). wedocs.unep.org blocks scripts, so the report PDF comes from the UN Digital Library.
+
+### Sprint 1
+
+- [x] UNEP / FAOSTAT / World Bank / CCKP → DuckDB → day-006.json, checked against UNEP totals (#21)
+- [x] Dashboard: 5 KPIs, top-20 bars, sector and confidence donuts, income and region bars, temperature and hunger scatters, Food Loss Index lines, sortable table, family mode, attribution (#22)
+- [x] Research blocks with DOI-checked references, translations, cross-day insight, previews (#23)
+
+### Follow-up ideas
+
+- Food-service and retail confidence per country from the UNEP Appendix tables.
+- FAO Food Loss Index by country, to compare loss (farm to retail) with waste (retail to home).
+- Refrigerator ownership and food prices as covariates for the temperature pattern.
+
 ## Languages and publication calendar
 
 The portfolio and Daily Data Lab can be switched manually between English, Spanish, Japanese, Italian, French, Brazilian Portuguese, and Simplified Chinese. English is the default; the selected language is shared through the `lang` URL parameter. The contribution-style calendar shows published days from the last 12 months and links each marked date to its visualization. Publication metadata is maintained once in [`../assets/daily-data-lab-days.js`](../assets/daily-data-lab-days.js) and used by both the portfolio and this app.
@@ -103,6 +125,7 @@ npm run snapshot:pillars     # rebuilds the Commons catalog, ERA5 weather, and w
 npm run data:abraham         # HydroLAKES → dim_lake.parquet → snapshot (Day 004; needs the zip in raw/)
 npm run fetch:abraham        # continues the Open-Meteo winter backfill within today's budget (Day 004)
 npm run data:languages       # Glottolog/Grambank/WALS CLDF → parquet → snapshot and previews (Day 005; needs raw/)
+npm run data:foodwaste       # UNEP/FAOSTAT/World Bank/CCKP → parquet → day-006.json and previews (Day 006; needs raw/)
 npm run typecheck            # checks the TypeScript days (the build runs it too)
 ```
 

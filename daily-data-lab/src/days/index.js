@@ -3,6 +3,7 @@ import GlowwormDay from "./day-002-glowworms/GlowwormDay.jsx";
 import LightPillarsDay from "./day-003-light-pillars/LightPillarsDay.tsx";
 import AbrahamLakeDay from "./day-004-abraham-lake/AbrahamLakeDay.tsx";
 import EndangeredLanguagesDay from "./day-005-endangered-languages/EndangeredLanguagesDay.tsx";
+import FoodWasteDay from "./day-006-food-waste/FoodWasteDay.tsx";
 import { DAILY_DATA_LAB_DAYS } from "../../../assets/daily-data-lab-days.js";
 
 const COMPONENTS = {
@@ -11,6 +12,7 @@ const COMPONENTS = {
   "light-pillars": LightPillarsDay,
   "abraham-lake": AbrahamLakeDay,
   "endangered-languages": EndangeredLanguagesDay,
+  "food-waste": FoodWasteDay,
 };
 
 export const DAYS = DAILY_DATA_LAB_DAYS.map((day) => ({

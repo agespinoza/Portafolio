@@ -434,6 +434,12 @@ export const PT = {
       "summary": "Um mapa das 7.685 línguas maternas faladas do Glottolog 5.4, por grau de ameaça e documentação, com as famílias e os países em maior risco e as lacunas nas bases de dados gramaticais.",
       "topic": "Idiomas",
       "previewAlt": "Mapa mundial noturno das 7.685 línguas, coloridas por grau de ameaça, ao lado de uma matriz que cruza o grau de ameaça com o nível de documentação."
+    },
+    "food-waste": {
+      "title": "Onde a comida do mundo é desperdiçada, e por quem?",
+      "summary": "As 1,05 bilhão de toneladas de comida desperdiçadas em 2022 segundo o PNUMA, divididas entre casas, restaurantes e lojas nos 100 países mais populosos, comparadas com fome, renda e clima, com México e Estados Unidos lado a lado.",
+      "topic": "Alimentação",
+      "previewAlt": "Desperdício doméstico de alimentos por pessoa nos 20 países que mais desperdiçam entre os 100 mais populosos, com México e Estados Unidos destacados, ao lado de uma rosca do desperdício por setor."
     }
   },
   "lab": {

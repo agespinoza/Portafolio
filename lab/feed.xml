@@ -5,8 +5,17 @@
   <link href="https://agespinoza.github.io/Portafolio/lab/"/>
   <link rel="self" type="application/atom+xml" href="https://agespinoza.github.io/Portafolio/lab/feed.xml"/>
   <id>https://agespinoza.github.io/Portafolio/lab/</id>
-  <updated>2026-11-22T00:00:00Z</updated>
+  <updated>2026-11-23T00:00:00Z</updated>
   <author><name>Alicia Espinoza</name></author>
+  <entry>
+    <title>Day 006: Where is the world&#39;s food wasted, and by whom?</title>
+    <link href="https://agespinoza.github.io/Portafolio/lab/studies/food-waste.html"/>
+    <id>https://agespinoza.github.io/Portafolio/lab/studies/food-waste.html</id>
+    <published>2026-11-23T00:00:00Z</published>
+    <updated>2026-11-23T00:00:00Z</updated>
+    <category term="Food"/>
+    <summary>UNEP&#39;s 1.05 billion tonnes of food wasted in 2022, split into homes, restaurants, and shops for the 100 most populous countries, set against hunger, income, and climate, with Mexico and the United States side by side.</summary>
+  </entry>
   <entry>
     <title>Day 005: Which languages are endangered and barely documented?</title>
     <link href="https://agespinoza.github.io/Portafolio/lab/studies/endangered-languages.html"/>

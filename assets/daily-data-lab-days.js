@@ -66,4 +66,18 @@ export const DAILY_DATA_LAB_DAYS = [
     previewLight: "assets/img/lab-day-005-light.svg",
     previewAlt: "Preview: a night-sky world map of 7,685 languages colored by endangerment, next to a grid of endangerment status against documentation level.",
   },
+  {
+    day: 6,
+    slug: "food-waste",
+    date: "2026-11-23",
+    title: "Where is the world's food wasted, and by whom?",
+    summary:
+      "UNEP's 1.05 billion tonnes of food wasted in 2022, split into homes, restaurants, and shops for the 100 most populous countries, set against hunger, income, and climate, with Mexico and the United States side by side.",
+    topic: "Food",
+    tags: ["React", "TypeScript", "DuckDB", "UNEP", "FAOSTAT"],
+    source: "UNEP Food Waste Index Report 2024, FAOSTAT, and the World Bank",
+    preview: "assets/img/lab-day-006.svg",
+    previewLight: "assets/img/lab-day-006-light.svg",
+    previewAlt: "Preview: household food waste per person in the 20 most wasteful of the 100 most populous countries, with Mexico and the United States highlighted, next to a donut of food waste by sector.",
+  },
 ];
