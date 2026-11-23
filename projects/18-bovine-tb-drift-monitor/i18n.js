@@ -2,7 +2,7 @@
 // shared site strings from assets/i18n.js win, then this page's messages.js, then the English
 // fallback written next to each call.
 import { LANGUAGES, LANGUAGE_NAMES, getLanguage, languageFromSearch, localeFor, t } from '../../assets/i18n.js?v=20261122b';
-import { MESSAGES } from './messages.js?v=20261122b';
+import { MESSAGES } from './messages.js?v=20261122c';
 
 export { LANGUAGES, LANGUAGE_NAMES, localeFor };
 export const language = getLanguage(languageFromSearch(window.location.search));
