@@ -23,7 +23,7 @@ export const LOCALES = {
   zh: "zh-Hans",
 };
 
-const MESSAGES = {
+export const MESSAGES = {
   pt: PT,
   zh: ZH,
   es: {
@@ -75,7 +75,7 @@ const MESSAGES = {
       projectsIntro: "{n} demostraciones con datos y escenarios simulados. Cada una incluye código fuente, datos de ejemplo e instrucciones.",
       applicationsKicker: "Software para explorar",
       applicationsTitle: "Aplicaciones",
-      applicationsIntro: "La consola de operaciones satelitales, la consola de integración RH–ERP, la consola de operaciones de la mina de cobre y Daily Data Lab funcionan en este sitio. Power BI y las aplicaciones con servidor incluyen código fuente e instrucciones de configuración.",
+      applicationsIntro: "La consola de operaciones satelitales, la consola de integración RH–ERP, la consola de operaciones de la mina de cobre, el monitor de vigilancia de tuberculosis bovina y Daily Data Lab funcionan en este sitio. Power BI y las aplicaciones con servidor incluyen código fuente e instrucciones de configuración.",
       learningKicker: "Aprendizaje continuo",
       learningTitle: "Registro de aprendizaje",
       learningIntro: "Cursos completados en LinkedIn Learning desde 2019, organizados por área y relacionados con los proyectos donde apliqué lo aprendido.",
@@ -106,6 +106,10 @@ const MESSAGES = {
       labImageAlt: "Vista previa: mapa mundial nocturno de pilares de luz y halos de hielo fotografiados, junto a una vista simulada de tres pilares de luz de colores.",
       openVisualization: "Abrir visualización",
       seeAllDays: "Ver todos los días",
+      labNewer: "Día más reciente",
+      labOlder: "Día anterior",
+      labPage: "Página {page}",
+      labPagination: "Páginas del Daily Data Lab",
       contact: "Contacto",
       contactTitleStart: "Construyamos algo",
       contactTitleEm: "confiable",
@@ -342,6 +346,7 @@ const MESSAGES = {
       "15-excel-data-cleaning-lesson": { title: "Lección de limpieza de datos en Excel", text: "Lección guiada, libro de práctica y rúbrica para limpiar y resumir datos de inspección." },
       "16-inspection-model-mlops": { title: "Pipeline de modelo de duración de inspección", text: "Entrena, evalúa y versiona un modelo de regresión pequeño frente a una línea base y una partición de prueba fija." },
       "17-copper-mine-operations": { title: "Consola de operaciones de una mina de cobre", text: "Sigue una mina de cobre a cielo abierto ficticia del barreno al cobre: modelo de recursos por kriging, optimización del pit, flota de acarreo, modelo de recuperación de planta, reconciliación y QA/QC de ensayes." },
+      "18-bovine-tb-drift-monitor": { title: "Monitor de vigilancia de tuberculosis bovina", text: "Reproduce estadísticas públicas reales de tuberculosis bovina de Gran Bretaña e Irlanda, escaladas con las importaciones de ganado de México a EE. UU., para mostrar cuándo el umbral de un modelo de detección se vuelve obsoleto y cuánto cuesta cada corrección." }
     },
     timeline: [
       { title: "Software público, ERP y operaciones de TI", text: "Creé aplicaciones internas web y de escritorio en Mexicali, administré infraestructura y presupuestos de TI, y desarrollé sistemas ERP y administrativos." },
@@ -370,7 +375,7 @@ const MESSAGES = {
       },
       "abraham-lake": {
         title: "¿Qué tan rápido se calientan los inviernos en el Lago Abraham?",
-        summary: "El embalse de Alberta famoso por las burbujas de metano congeladas en su hielo, frente a 1.43 millones de lagos de HydroLAKES y 75 inviernos de temperatura ERA5, con la tendencia de calentamiento de los 300 lagos más grandes del mundo.",
+        summary: "El embalse de Alberta famoso por las burbujas de metano congeladas en su hielo, frente a 1.43 millones de lagos de HydroLAKES y 75 inviernos de temperatura ERA5, con la tendencia de calentamiento de los lagos más grandes del mundo, que crece cada día.",
         topic: "Clima",
         previewAlt: "Vista previa: mapa mundial nocturno de los 300 lagos más grandes coloreados por días de hielo, junto a 75 inviernos de temperatura del aire en el Lago Abraham con su tendencia de calentamiento.",
       },
@@ -458,7 +463,7 @@ const MESSAGES = {
       projectsIntro: "シミュレーションデータとシナリオを用いた{n}のデモです。それぞれにソースコード、サンプルデータ、実行手順があります。",
       applicationsKicker: "操作できるソフトウェア",
       applicationsTitle: "アプリケーション",
-      applicationsIntro: "衛星運用コンソール、人事–ERP連携コンソール、銅鉱山オペレーションコンソール、Daily Data Labはこのサイトで利用できます。Power BIやサーバーが必要なアプリには、ソースコードとセットアップ手順を掲載しています。",
+      applicationsIntro: "衛星運用コンソール、人事–ERP連携コンソール、銅鉱山オペレーションコンソール、牛結核病サーベイランス・モニター、Daily Data Labはこのサイトで利用できます。Power BIやサーバーが必要なアプリには、ソースコードとセットアップ手順を掲載しています。",
       learningKicker: "継続的な学習",
       learningTitle: "学習記録",
       learningIntro: "2019年以降にLinkedIn Learningで修了したコースを分野別に整理し、学びを活用したプロジェクトと関連付けています。",
@@ -489,6 +494,10 @@ const MESSAGES = {
       labImageAlt: "プレビュー：撮影された光柱と氷晶ハロを示す夜空の世界地図と、3色の光柱のシミュレーション画面。",
       openVisualization: "可視化を開く",
       seeAllDays: "すべての日を見る",
+      labNewer: "新しい日",
+      labOlder: "前の日",
+      labPage: "{page}ページ目",
+      labPagination: "Daily Data Lab のページ",
       contact: "連絡先",
       contactTitleStart: "信頼できるものを",
       contactTitleEm: "一緒に",
@@ -725,6 +734,7 @@ const MESSAGES = {
       "15-excel-data-cleaning-lesson": { title: "Excelデータクリーニング講座", text: "検査データの整理と集計を学ぶレッスン、練習用ブック、評価基準です。" },
       "16-inspection-model-mlops": { title: "検査時間モデルのパイプライン", text: "固定ホールドアウトでベースラインと比較し、小規模な回帰モデルを学習・評価・バージョン管理します。" },
       "17-copper-mine-operations": { title: "銅鉱山オペレーションコンソール", text: "架空の露天掘り銅鉱山をボーリングから銅まで追跡：クリギングによる資源モデル、ピット最適化、運搬フリート、選鉱回収率モデル、リコンシリエーション、分析のQA/QC。" },
+      "18-bovine-tb-drift-monitor": { title: "牛結核病サーベイランス・モニター", text: "英国とアイルランドの牛結核に関する実際の公開統計を、メキシコから米国への牛の輸入頭数で調整して再生し、スクリーニングモデルのしきい値がいつ古くなるか、各対策にどれだけのコストがかかるかを示します。" }
     },
     timeline: [
       { title: "公共向けソフトウェア、ERP、IT運用", text: "メヒカリで社内Web・デスクトップアプリを開発し、ITインフラと予算を管理し、ERPや管理システムを構築しました。" },
@@ -753,7 +763,7 @@ const MESSAGES = {
       },
       "abraham-lake": {
         title: "アブラハム湖の冬はどれくらい速く暖かくなっている？",
-        summary: "氷に閉じ込められたメタンの泡で知られるアルバータ州の貯水池を、HydroLAKESの143万の湖とERA5の75回の冬の気温、世界最大級300湖の温暖化傾向と比べます。",
+        summary: "氷に閉じ込められたメタンの泡で知られるアルバータ州の貯水池を、HydroLAKESの143万の湖とERA5の75回の冬の気温、世界最大級の湖の温暖化傾向（日々増えています）と比べます。",
         topic: "気候",
         previewAlt: "プレビュー：結氷日数で色分けした世界最大級300湖の夜空の世界地図と、アブラハム湖の75回の冬の気温と温暖化傾向。",
       },
@@ -841,7 +851,7 @@ const MESSAGES = {
       projectsIntro: "{n} dimostrazioni con dati e scenari simulati. Ognuna include codice sorgente, dati di esempio e istruzioni.",
       applicationsKicker: "Software da esplorare",
       applicationsTitle: "Applicazioni",
-      applicationsIntro: "La console operativa satellitare, la console di integrazione HR–ERP, la console operativa della miniera di rame e Daily Data Lab sono disponibili su questo sito. Power BI e le applicazioni server includono codice sorgente e istruzioni di configurazione.",
+      applicationsIntro: "La console operativa satellitare, la console di integrazione HR–ERP, la console operativa della miniera di rame, il monitor di sorveglianza della tubercolosi bovina e Daily Data Lab sono disponibili su questo sito. Power BI e le applicazioni server includono codice sorgente e istruzioni di configurazione.",
       learningKicker: "Apprendimento continuo",
       learningTitle: "Registro formativo",
       learningIntro: "Corsi completati su LinkedIn Learning dal 2019, organizzati per competenza e collegati ai progetti in cui ho applicato quanto appreso.",
@@ -872,6 +882,10 @@ const MESSAGES = {
       labImageAlt: "Anteprima: una mappa notturna del mondo con colonne di luce e aloni di ghiaccio fotografati, accanto a una vista simulata di tre colonne di luce colorate.",
       openVisualization: "Apri la visualizzazione",
       seeAllDays: "Vedi tutti i giorni",
+      labNewer: "Giorno più recente",
+      labOlder: "Giorno precedente",
+      labPage: "Pagina {page}",
+      labPagination: "Pagine del Daily Data Lab",
       contact: "Contatti",
       contactTitleStart: "Costruiamo qualcosa di",
       contactTitleEm: "affidabile",
@@ -1108,6 +1122,7 @@ const MESSAGES = {
       "15-excel-data-cleaning-lesson": { title: "Lezione di pulizia dati in Excel", text: "Lezione guidata, workbook di esercitazione e rubrica per pulire e riepilogare dati di ispezione." },
       "16-inspection-model-mlops": { title: "Pipeline del modello di durata ispezioni", text: "Addestra, valuta e versiona un piccolo modello di regressione rispetto a una baseline con holdout fisso." },
       "17-copper-mine-operations": { title: "Console operativa di una miniera di rame", text: "Segue una miniera di rame a cielo aperto immaginaria dal sondaggio al rame: modello delle risorse con kriging, ottimizzazione della cava, flotta di trasporto, modello di recupero dell'impianto, riconciliazione e QA/QC delle analisi." },
+      "18-bovine-tb-drift-monitor": { title: "Monitor di sorveglianza della tubercolosi bovina", text: "Riproduce statistiche pubbliche reali sulla tubercolosi bovina di Gran Bretagna e Irlanda, scalate sulle importazioni di bovini dal Messico agli Stati Uniti, per mostrare quando la soglia di un modello di screening diventa obsoleta e quanto costa ogni correzione." }
     },
     timeline: [
       { title: "Software pubblico, ERP e operazioni IT", text: "Ho sviluppato applicazioni web e desktop interne a Mexicali, gestito infrastrutture e budget IT e realizzato sistemi ERP e amministrativi." },
@@ -1136,7 +1151,7 @@ const MESSAGES = {
       },
       "abraham-lake": {
         title: "Quanto velocemente si scaldano gli inverni al lago Abraham?",
-        summary: "Il bacino dell'Alberta famoso per le bolle di metano congelate nel ghiaccio, confrontato con 1,43 milioni di laghi di HydroLAKES e 75 inverni di temperatura ERA5, con la tendenza di riscaldamento dei 300 laghi più grandi del mondo.",
+        summary: "Il bacino dell'Alberta famoso per le bolle di metano congelate nel ghiaccio, confrontato con 1,43 milioni di laghi di HydroLAKES e 75 inverni di temperatura ERA5, con la tendenza di riscaldamento dei laghi più grandi del mondo, che cresce ogni giorno.",
         topic: "Clima",
         previewAlt: "Anteprima: mappa del mondo notturna dei 300 laghi più grandi colorati per giorni di ghiaccio, accanto a 75 inverni di temperatura dell'aria al lago Abraham con la tendenza al riscaldamento.",
       },
@@ -1224,7 +1239,7 @@ const MESSAGES = {
       projectsIntro: "{n} démonstrations fondées sur des données et scénarios simulés. Chacune inclut le code source, des données d'exemple et des instructions.",
       applicationsKicker: "Logiciels à découvrir",
       applicationsTitle: "Applications",
-      applicationsIntro: "La console d'opérations satellites, la console d'intégration RH–ERP, la console d'exploitation de la mine de cuivre et Daily Data Lab fonctionnent sur ce site. Power BI et les applications avec serveur incluent le code source et les instructions de configuration.",
+      applicationsIntro: "La console d'opérations satellites, la console d'intégration RH–ERP, la console d'exploitation de la mine de cuivre, le moniteur de surveillance de la tuberculose bovine et Daily Data Lab fonctionnent sur ce site. Power BI et les applications avec serveur incluent le code source et les instructions de configuration.",
       learningKicker: "Apprentissage continu",
       learningTitle: "Parcours de formation",
       learningIntro: "Cours suivis sur LinkedIn Learning depuis 2019, organisés par compétence et reliés aux projets où j'ai appliqué ces acquis.",
@@ -1255,6 +1270,10 @@ const MESSAGES = {
       labImageAlt: "Aperçu : une carte du monde nocturne des piliers lumineux et halos de glace photographiés, à côté d’une vue simulée de trois piliers lumineux colorés.",
       openVisualization: "Ouvrir la visualisation",
       seeAllDays: "Voir tous les jours",
+      labNewer: "Jour plus récent",
+      labOlder: "Jour précédent",
+      labPage: "Page {page}",
+      labPagination: "Pages du Daily Data Lab",
       contact: "Contact",
       contactTitleStart: "Construisons quelque chose de",
       contactTitleEm: "fiable",
@@ -1491,6 +1510,7 @@ const MESSAGES = {
       "15-excel-data-cleaning-lesson": { title: "Cours de nettoyage de données avec Excel", text: "Cours guidé, classeur d'exercices et grille d'évaluation pour nettoyer et résumer des données d'inspection." },
       "16-inspection-model-mlops": { title: "Pipeline de modèle de durée d'inspection", text: "Entraîne, évalue et versionne un petit modèle de régression face à une référence avec un jeu de test fixe." },
       "17-copper-mine-operations": { title: "Console d'exploitation d'une mine de cuivre", text: "Suit une mine de cuivre à ciel ouvert fictive du sondage au cuivre : modèle de ressources krigé, optimisation de la fosse, flotte de roulage, modèle de récupération de l'usine, réconciliation et QA/QC des analyses." },
+      "18-bovine-tb-drift-monitor": { title: "Moniteur de surveillance de la tuberculose bovine", text: "Rejoue des statistiques publiques réelles sur la tuberculose bovine en Grande-Bretagne et en Irlande, mises à l'échelle des importations de bovins du Mexique vers les États-Unis, pour montrer quand le seuil d'un modèle de dépistage devient obsolète et ce que coûte chaque correction." }
     },
     timeline: [
       { title: "Logiciels publics, ERP et opérations informatiques", text: "J'ai créé des applications web et de bureau internes à Mexicali, géré l'infrastructure et les budgets informatiques, et développé des systèmes ERP et administratifs." },
@@ -1519,7 +1539,7 @@ const MESSAGES = {
       },
       "abraham-lake": {
         title: "À quelle vitesse les hivers se réchauffent-ils au lac Abraham ?",
-        summary: "Le réservoir albertain célèbre pour ses bulles de méthane prises dans la glace, comparé à 1,43 million de lacs de HydroLAKES et à 75 hivers de température ERA5, avec la tendance de réchauffement des 300 plus grands lacs du monde.",
+        summary: "Le réservoir albertain célèbre pour ses bulles de méthane prises dans la glace, comparé à 1,43 million de lacs de HydroLAKES et à 75 hivers de température ERA5, avec la tendance de réchauffement des plus grands lacs du monde, qui s'enrichit chaque jour.",
         topic: "Climat",
         previewAlt: "Aperçu : carte du monde nocturne des 300 plus grands lacs colorés selon les jours de glace, à côté de 75 hivers de température de l'air au lac Abraham avec la tendance au réchauffement.",
       },

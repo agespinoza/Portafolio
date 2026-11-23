@@ -7,11 +7,12 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261122b";
-import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261122a";
+} from "./i18n.js?v=20261122e";
+import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261122b";
 import { getContributionCalendar } from "./contributions.js?v=20261122a";
 import { effectiveTheme, toggleTheme } from "./theme.js?v=20261122a";
 import { LAB_INSIGHT, insightText } from "./daily-data-lab-insights.js?v=20261122b";
+import { syncLanguageMeta } from "./seo.js?v=20261122a";
 
 function el(tag, attrs, children) {
   var node = document.createElement(tag);
@@ -42,16 +43,62 @@ function initThemeToggle(language) {
   button.addEventListener("click", function () { toggleTheme(); render(); });
 }
 
-// The Data Lab card on the front page always shows the newest day, from assets/daily-data-lab-days.js.
+function localizeLabLink(link, language) {
+  var url = new URL(link.getAttribute("href"), window.location.href);
+  if (language === "en") url.searchParams.delete("lang");
+  else url.searchParams.set("lang", language);
+  link.href = url.href;
+}
+
+// The Data Lab card on the front page pages through the days of assets/daily-data-lab-days.js, newest first.
+var labPage = 1;
+
+function labDaysNewestFirst() {
+  return DAILY_DATA_LAB_DAYS.slice().sort(function (a, b) { return b.day - a.day; });
+}
+
+function renderLabPager(language, total) {
+  var pager = document.getElementById("lab-pager");
+  if (!pager) return;
+  if (total < 2) { pager.hidden = true; return; }
+  pager.hidden = false;
+  var control = function (text, label, key, target, disabled) {
+    var button = el("button", { type: "button", class: "lab-pager__btn", "aria-label": label, "data-key": key, text: text });
+    button.disabled = disabled;
+    button.addEventListener("click", function () {
+      labPage = target;
+      renderLabFeature(language);
+      var next = document.querySelector("#lab-pager [data-key='" + key + "']:not(:disabled)")
+        || document.querySelector("#lab-pager [aria-current='page']");
+      if (next) next.focus();
+    });
+    return button;
+  };
+  var items = [control("←", t(language, "site.labNewer", "Newer day"), "prev", labPage - 1, labPage === 1)];
+  for (var page = 1; page <= total; page++) {
+    var button = control(String(page), t(language, "site.labPage", "Page {page}", { page: page }), "p" + page, page, false);
+    button.classList.add("lab-pager__page");
+    if (page === labPage) button.setAttribute("aria-current", "page");
+    items.push(button);
+  }
+  items.push(control("→", t(language, "site.labOlder", "Older day"), "next", labPage + 1, labPage === total));
+  pager.setAttribute("aria-label", t(language, "site.labPagination", "Daily Data Lab pages"));
+  pager.replaceChildren.apply(pager, items);
+}
+
 function renderLabFeature(language) {
   var card = document.querySelector(".lab-feature");
   if (!card || !DAILY_DATA_LAB_DAYS.length) return;
-  var day = DAILY_DATA_LAB_DAYS.reduce(function (a, b) { return b.day > a.day ? b : a; });
+  var days = labDaysNewestFirst();
+  labPage = Math.min(Math.max(labPage, 1), days.length);
+  var day = days[labPage - 1];
   var number = String(day.day).padStart(3, "0");
-  card.href = "lab/index.html#/day/" + day.day;
+  card.setAttribute("href", "lab/index.html#/day/" + day.day);
+  localizeLabLink(card, language);
+  renderLabPager(language, days.length);
   card.replaceChildren(
     el("div", { class: "lab-feature__copy" }, [
-      el("p", { class: "mono-label", text: t(language, "site.labDay", "Day") + " " + number + " · " + dayText(language, day.slug, "topic", day.topic) }),
+      el("p", { class: "mono-label", text: t(language, "lab.day", "Day {number}", { number: number }) + " · " + dayText(language, day.slug, "topic", day.topic) }),
       el("h3", { text: dayText(language, day.slug, "title", day.title) }),
       el("p", { text: dayText(language, day.slug, "summary", day.summary) }),
       el("div", { class: "card__tech" }, day.tags.map(function (tag) { return el("span", { text: tag }); })),
@@ -89,6 +136,7 @@ function renderLabInsight(language) {
 
 function applyLanguage(language) {
   document.documentElement.lang = localeFor(language);
+  syncLanguageMeta(language, localeFor(language));
   document.title = t(language, "site.title", document.title);
   var description = document.getElementById("meta-description");
   if (description) description.content = t(language, "site.description", description.content);
@@ -120,12 +168,7 @@ function applyLanguage(language) {
   initThemeToggle(language);
   renderLabFeature(language);
   renderLabInsight(language);
-  document.querySelectorAll("[data-lab-link]").forEach(function (link) {
-    var url = new URL(link.getAttribute("href"), window.location.href);
-    if (language === "en") url.searchParams.delete("lang");
-    else url.searchParams.set("lang", language);
-    link.href = url.href;
-  });
+  document.querySelectorAll("[data-lab-link]").forEach(function (link) { localizeLabLink(link, language); });
 }
 
 function renderContributionCalendar(language) {
@@ -231,7 +274,9 @@ function renderContributionCalendar(language) {
     { id: "16-inspection-model-mlops", title: "Inspection Duration Model Pipeline", area: "ai", tech: ["Python", "MLOps", "Model evaluation"],
       text: "Trains, evaluates, and versions a small regression model against a baseline with a fixed holdout." },
     { id: "17-copper-mine-operations", title: "Copper Mine Operations Console", area: "analytics", tech: ["Python", "Geostatistics", "Optimization", "Machine learning", "D3.js"], demo: true, applicationStatus: "Live demo on this site",
-      text: "Follows a fictional open-pit copper mine from drillhole to copper: kriged resource model, pit optimization, haul fleet, plant recovery model, reconciliation, and assay QA/QC." }
+      text: "Follows a fictional open-pit copper mine from drillhole to copper: kriged resource model, pit optimization, haul fleet, plant recovery model, reconciliation, and assay QA/QC." },
+    { id: "18-bovine-tb-drift-monitor", title: "Bovine TB Surveillance Monitor", area: "ai", tech: ["JavaScript", "Model monitoring", "Data drift", "Public data", "Automated tests"], demo: true, applicationStatus: "Live demo on this site",
+      text: "Replays real public bovine tuberculosis statistics from Great Britain and Ireland, scaled by US cattle imports from Mexico, to show when a screening model's threshold goes stale and what each fix costs." }
   ];
 
   /* Project count: computed from PROJECTS, so adding a project updates the hero stat and the intro in every language. */
@@ -253,7 +298,7 @@ function renderContributionCalendar(language) {
   var TIMELINE = [
     { years: "2002 – 2016", title: "Public-sector software, ERP & IT operations",
       text: "Built internal web and desktop applications in Mexicali, managed IT infrastructure and budgets, and developed ERP and administrative systems.",
-      projects: ["13-office-backup-recovery", "09-employee-erp-integration", "10-internal-request-tracker"] },
+      projects: ["13-office-backup-recovery", "09-employee-erp-integration", "10-internal-request-tracker", "18-bovine-tb-drift-monitor"] },
     { years: "2008 – 2016", title: "Teaching, quality assurance & consulting",
       text: "Designed engineering and technology courses with hands-on labs, and applied formal test criteria and defect documentation as a quality engineer.",
       projects: ["15-excel-data-cleaning-lesson", "11-inspection-workflow-qa"] },
@@ -349,6 +394,7 @@ function renderContributionCalendar(language) {
     "08-mortgage-workflow-automation": ["site.statusDotnet", "Requires .NET 8"],
     "09-employee-erp-integration": ["site.statusLiveDemo", "Live demo on this site"],
     "17-copper-mine-operations": ["site.statusLiveDemo", "Live demo on this site"],
+    "18-bovine-tb-drift-monitor": ["site.statusLiveDemo", "Live demo on this site"],
     "10-internal-request-tracker": ["site.statusPhp", "Requires PHP 8.1 and SQLite"],
     "daily-data-lab": ["site.statusLiveApp", "Live app on this site"]
   };

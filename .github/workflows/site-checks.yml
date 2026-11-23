@@ -1,0 +1,28 @@
+name: Site checks
+
+# Fast checks that need no build: translations have the same keys and placeholders in every language,
+# the résumé is complete in every language, local links resolve, and sitemap.xml is up to date.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Translations, résumé, links and structured data
+        run: node scripts/check-site.mjs
+
+      - name: Sitemap
+        run: node scripts/generate-sitemap.mjs --check

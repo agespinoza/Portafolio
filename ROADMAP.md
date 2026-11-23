@@ -60,3 +60,4 @@ Since March 2026, back in mining operations software, I collaborate with data sc
 | Skill | Demonstration | Deliverable |
 | --- | --- | --- |
 | AI and MLOps | Evaluate and version a small model using sample data. | [Reproducible pipeline and evaluation summary](projects/16-inspection-model-mlops/). |
+| Model monitoring and data drift | Watch a simulated cattle TB screening model against real public data from Great Britain, Ireland and US cattle imports from Mexico, and compare threshold re-tuning policies by cost. | [Bovine TB surveillance monitor](projects/18-bovine-tb-drift-monitor/). |

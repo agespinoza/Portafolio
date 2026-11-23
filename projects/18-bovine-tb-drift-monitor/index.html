@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bovine TB Surveillance Monitor | Alicia Espinoza</title>
+<meta name="description" content="A simulated cattle-screening model watched against real public data: herd tuberculosis in Great Britain and Ireland and US cattle imports from Mexico. See when its threshold goes stale and what each fix costs.">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://agespinoza.github.io/Portafolio/projects/18-bovine-tb-drift-monitor/index.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1424'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23f4efe6' text-anchor='middle'%3EAE%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261122a">
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="site:site.skip">Skip to content</a>
+<header class="nav" id="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="../../index.html" data-portfolio-link aria-label="Alicia Espinoza, back to the portfolio" data-i18n-aria="nav.brand">
+      <span class="brand__mark" aria-hidden="true">AE</span>
+      <span class="brand__name">Alicia Espinoza</span>
+    </a>
+    <nav aria-label="Primary" data-i18n-aria="site:nav.primary">
+      <ul class="nav__links" id="primary-links">
+        <li><a href="../../index.html#experience" data-portfolio-link data-i18n="site:nav.experience">Experience</a></li>
+        <li><a href="../../index.html#projects" data-portfolio-link data-i18n="site:nav.projects">Projects</a></li>
+        <li><a href="../../index.html#applications" data-portfolio-link data-i18n="site:nav.applications">Applications</a></li>
+        <li><a href="../../index.html#learning" data-portfolio-link data-i18n="site:nav.learning">Learning</a></li>
+        <li><a href="../../lab/index.html" data-portfolio-link data-i18n="site:nav.lab">Data Lab</a></li>
+        <li><a href="../../resume.html" data-portfolio-link data-i18n="site:nav.resume">Résumé</a></li>
+        <li><a href="../../index.html#contact" class="nav__cta" data-portfolio-link data-i18n="site:nav.contact">Get in touch</a></li>
+        <li class="nav__language">
+          <label class="visually-hidden" for="language-select" data-i18n="site:nav.language">Language</label>
+          <select id="language-select" class="language-select"></select>
+        </li>
+      </ul>
+    </nav>
+    <button class="nav__toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links">
+      <span class="nav__toggle-label" data-i18n="site:nav.menu">Menu</span>
+      <span class="nav__toggle-icon" aria-hidden="true">☰</span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero wrap">
+  <p class="breadcrumb"><a href="../../index.html#applications" data-portfolio-link data-i18n="hero.back">← Applications</a></p>
+  <p class="kicker"><span data-i18n="hero.kicker">Model monitoring</span> <span data-i18n="hero.kickerRest">Cattle TB screening on public data</span></p>
+  <h1><span data-i18n="hero.title">When the herds change,</span> <em data-i18n="hero.titleEm">does the model?</em></h1>
+  <p class="lead" data-i18n="hero.lead">A screening model flags cattle herds for a confirmatory tuberculosis test. The share of infected herds it sees changes over the years. This console replays real public statistics from Great Britain and Ireland, scales the herds screened by US cattle imports from Mexico, and shows when a fixed threshold goes stale, how a team can notice without waiting for lab results, and what each response costs.</p>
+  <p class="badge-line"><span class="sim-badge" data-i18n="hero.badge">Simulation on public data</span> <span data-i18n="hero.experience">From 2015 to 2016 I was IT Manager at the Comité Estatal para el Fomento y Protección Pecuaria de Baja California (CEFPPBC). Our team managed the farm and cattle-shipment records used in bovine tuberculosis analysis for cattle sent to the United States: I scanned those records and loaded them into databases that we then used for analysis. This demo uses none of that data: it runs on simulated herds driven by public international statistics.</span></p>
+  <div class="kpis" id="kpis"></div>
+</section>
+
+<section class="controls" aria-label="Controls" data-i18n-aria="controls.aria">
+  <div class="wrap controls__inner">
+    <div class="control-group">
+      <label class="field"><span data-i18n="controls.region">Whose share of infected herds</span>
+        <select id="region"></select>
+      </label>
+      <label class="field"><span data-i18n="controls.policy">Policy shown</span>
+        <select id="policy"></select>
+      </label>
+      <label class="field field--range"><span><span data-i18n="controls.quarter">Quarter</span> <output id="quarter-out"></output></span>
+        <input type="range" id="quarter" min="0" max="0" step="1">
+      </label>
+    </div>
+    <div class="control-group">
+      <button type="button" class="button" id="play" data-i18n="controls.play">Play</button>
+      <button type="button" class="button" id="reseed" data-i18n="controls.reseed">New simulation</button>
+      <span class="status" id="status" role="status"></span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap console">
+  <section class="panel panel--wide" aria-labelledby="data-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>01</span> <span data-i18n="data.kicker">Real data</span></p>
+        <h2 id="data-title">—</h2>
+      </div>
+      <ul class="legend" id="data-legend"></ul>
+    </div>
+    <div class="chart" id="data-chart"></div>
+    <p class="panel__note" id="data-note"></p>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="whatif-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>02</span> <span data-i18n="whatif.kicker">What if</span></p>
+        <h2 id="whatif-title" data-i18n="whatif.title">Change the assumptions</h2>
+      </div>
+      <button type="button" class="button" id="reset" data-i18n="whatif.reset">Reset</button>
+    </div>
+    <div class="sliders" id="sliders"></div>
+    <p class="panel__note" data-i18n="whatif.note">Each change reruns the simulation over many random draws. The shares and the cattle flow always come from the real series; the herds, their scores, and the costs are simulated.</p>
+  </section>
+
+  <section class="panel panel--half" aria-labelledby="share-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>03</span> <span data-i18n="share.kicker">Watching without labels</span></p>
+        <h2 id="share-title" data-i18n="share.title">What the flag rate reveals</h2>
+      </div>
+      <ul class="legend" id="share-legend"></ul>
+    </div>
+    <div class="chart" id="share-chart"></div>
+    <p class="panel__note" data-i18n="share.note">The model flags a different share of herds when the real share changes. Knowing how often it catches infected herds and raises false alarms, that flag rate gives an estimate of the real share without waiting for confirmed results (Lipton et al. 2018). It fails when the test itself changes.</p>
+  </section>
+
+  <section class="panel panel--half" aria-labelledby="cost-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>04</span> <span data-i18n="cost.kicker">Cost</span></p>
+        <h2 id="cost-title" data-i18n="cost.title">Cumulative cost by policy</h2>
+      </div>
+      <ul class="legend" id="cost-legend"></ul>
+    </div>
+    <div class="chart" id="cost-chart"></div>
+    <p class="panel__note" id="cost-note"></p>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="table-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>05</span> <span data-i18n="table.kicker">This quarter</span></p>
+        <h2 id="table-title">—</h2>
+      </div>
+      <span class="panel__meta" id="table-meta"></span>
+    </div>
+    <div class="table-wrap"><table class="data-table data-table--static" id="policy-table"></table></div>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="runs-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>06</span> <span data-i18n="runs.kicker">Many simulated years</span></p>
+        <h2 id="runs-title" data-i18n="runs.title">Which policy costs least, on average?</h2>
+      </div>
+      <span class="panel__meta" id="runs-meta"></span>
+    </div>
+    <ul class="cost-bars" id="cost-bars"></ul>
+    <p class="panel__note" id="runs-note"></p>
+  </section>
+
+  <section class="panel panel--wide" aria-labelledby="sources-title">
+    <div class="panel__head">
+      <div>
+        <p class="kicker kicker--small"><span>07</span> <span data-i18n="sources.kicker">Sources</span></p>
+        <h2 id="sources-title" data-i18n="sources.title">Public data behind the shares</h2>
+      </div>
+    </div>
+    <div class="table-wrap"><table class="data-table data-table--static" id="sources-table"></table></div>
+    <div class="context" id="context"></div>
+  </section>
+
+  <section class="panel panel--wide notes" aria-labelledby="method-title">
+    <p class="kicker kicker--small"><span>08</span> <span data-i18n="method.kicker">Method</span></p>
+    <h2 id="method-title" data-i18n="method.title">What this shows, and what it does not</h2>
+    <div class="notes__grid">
+      <div>
+        <h3 data-i18n="method.modelTitle">The simulated model</h3>
+        <p data-i18n="method.model">Each quarter a number of herds is scored. A clean herd scores around 0 and an infected one around 2, with the same spread, so the test is useful but imperfect. The model flags a herd when its score is above a threshold chosen to minimize cost for the share of infected herds it expects. Missing an infected herd costs more than a false alarm, as set in the controls.</p>
+      </div>
+      <div>
+        <h3 data-i18n="method.driftTitle">The drift</h3>
+        <p data-i18n="method.drift">Only the share of infected herds changes, following the real series for the chosen region (label shift). Great Britain reports herds that are not officially TB-free at quarter end; Ireland reports herds restricted at quarter end. The definitions are similar but not identical, so the levels should not be compared like for like.</p>
+      </div>
+      <div>
+        <h3 data-i18n="method.limitsTitle">Limits</h3>
+        <p data-i18n="method.limits">The data are national or regional totals, so nothing here describes a farm, a shipment, or a cause. Cattle imports from Mexico only scale how many herds are scored; they are not infection data. Months with no cattle imports have no row in the source and count as zero. No data from any employer is used.</p>
+      </div>
+    </div>
+    <p class="panel__note" id="engine-note"></p>
+  </section>
+</div>
+</main>
+<footer class="foot"><div class="wrap foot__inner"><span>© 2026 Alicia Espinoza</span><span data-i18n="footer.data">Herds, scores, and costs are simulated; shares and cattle flow come from public sources.</span></div></footer>
+<script type="module" src="app.js?v=20261122a"></script>
+</body>
+</html>

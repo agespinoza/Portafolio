@@ -1,7 +1,8 @@
 // Résumé page: renders assets/resume-data.js in the visitor's language (?lang=xx, English by default)
 // and shares the portfolio's navigation, language selector and print-to-PDF.
 import { languageFromSearch, localeFor, t, projectText } from "./i18n.js?v=20261122b";
-import { CERTIFICATIONS, EARLIER, EDUCATION, LINKS, MEXICO_ROLES, PUBLICATIONS, ROLES, SELECTED_PROJECTS, SKILLS, TEXT } from "./resume-data.js?v=20261122b";
+import { syncLanguageMeta } from "./seo.js?v=20261122a";
+import { CERTIFICATIONS, EARLIER, EDUCATION, LINKS, MEXICO_ROLES, PUBLICATIONS, ROLES, SELECTED_PROJECTS, SKILLS, TEXT } from "./resume-data.js?v=20261122d";
 
 const language = languageFromSearch(window.location.search);
 const L = TEXT[language] || TEXT.en;
@@ -48,6 +49,7 @@ function section(title, ...content) {
 
 function render() {
   document.documentElement.lang = locale;
+  syncLanguageMeta(language, locale);
   document.title = L.title;
   document.getElementById("meta-description").content = L.description;
   document.getElementById("back-link").textContent = L.back;

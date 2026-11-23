@@ -22,7 +22,7 @@ export const ROLES = [
 
 export const EARLIER = [
   { id: "contractor", from: "2008", to: "2016" },
-  { id: "cefppbc", org: "Comité Estatal de Protección Pecuaria de Baja California", from: "2015", to: "2016" },
+  { id: "cefppbc", org: "Comité Estatal para el Fomento y Protección Pecuaria de Baja California", from: "2015", to: "2016" },
   { id: "upbc", org: "Universidad Politécnica de Baja California", from: "2008", to: "2015" },
   { id: "uvm", org: "Universidad del Valle de México", from: "2014", to: "2015" },
   { id: "cut", org: "Universidad de Tijuana CUT", from: "2013", to: "2015" },
@@ -72,19 +72,19 @@ export const TEXT = {
     "pdf": "Salvar como PDF",
     "pdfHint": "Abre a caixa de diálogo de impressão; escolha “Salvar como PDF”.",
     "summaryTitle": "Resumo",
-    "summary": "Sou engenheira de software e transformo dados e tecnologia em soluções que as pessoas usam no dia a dia. Ao longo de duas décadas, trabalhei em mineração, finanças, governo, operações espaciais, inspeção automotiva e educação. Desenvolvi aplicações, aperfeiçoei processos de dados e ajudei equipes a adotar ferramentas digitais para tomar decisões mais bem fundamentadas. Como professora universitária, aprendi a comunicar temas complexos a públicos diversos. Hoje trabalho com IA e plataformas de conhecimento para extrair valor de informações confiáveis.",
+    "summary": "Engenheira de software que transforma dados e tecnologia em soluções práticas que as pessoas realmente usam. Ao longo de duas décadas, trabalhei em mineração, finanças, governo, operações espaciais, inspeção automotiva e educação: desenvolvendo aplicações, aprimorando processos de dados e ajudando equipes a adotar ferramentas digitais para decidir melhor. Meus anos como professora universitária fortaleceram minha paixão por compartilhar conhecimento e explicar temas complexos com clareza a públicos diversos. Hoje, concentro-me em plataformas de IA e de conhecimento que transformam informações confiáveis em valor real.",
     "experienceTitle": "Experiência",
     "earlierTitle": "Experiência anterior, 2002–2016",
-    "educationTitle": "Educação",
+    "educationTitle": "Formação",
     "skillsTitle": "Habilidades",
     "certificationsTitle": "Certificações",
     "certificationsIssuer": "LinkedIn Learning",
     "publicationsTitle": "Publicações",
     "languagesTitle": "Idiomas",
     "projectsTitle": "Projetos selecionados",
-    "learning": "{n} Cursos do LinkedIn Learning concluídos desde 2019.",
+    "learning": "{n} cursos do LinkedIn Learning concluídos desde 2019.",
     "learningLink": "Veja o registro de aprendizagem",
-    "present": "Presente",
+    "present": "Atual",
     "places": {
       "tucson": "Tucson, Arizona, EUA",
       "us": "Estados Unidos",
@@ -109,69 +109,69 @@ export const TEXT = {
     },
     "skillItems": {
       "Big data deployments": "Implantações de big data",
-      "Model evaluation": "Avaliação do modelo",
+      "Model evaluation": "Avaliação de modelos",
       "Generative AI": "IA generativa",
-      "Agentic AI": "IA Agente",
+      "Agentic AI": "IA agêntica",
       "Requirements": "Requisitos",
       "IT management": "Gestão de TI",
       "University teaching": "Ensino universitário"
     },
     "roles": {
       "current": {
-        "role": "Engenheiro de Software II",
+        "role": "Engenheira de software II",
         "org": "Função atual · tecnologia de mineração",
         "bullets": [
-          "Faça parceria com cientistas de dados para transformar pipelines de dados em aplicativos de produção.",
-          "Projete soluções em nuvem seguras, escaláveis e altamente disponíveis para plataformas analíticas.",
-          "Liderar a operação e manutenção de implantações de software de big data."
+          "Atuo com cientistas de dados para transformar pipelines de dados em aplicativos de produção.",
+          "Projeto soluções em nuvem seguras, escaláveis e de alta disponibilidade para plataformas analíticas.",
+          "Lidero a operação e a manutenção de implantações de software de big data."
         ]
       },
       "space": {
-        "role": "Engenheiro de Software de P&D II, Instituto Espacial",
+        "role": "Engenheira de software de P&D II, Space Institute",
         "bullets": [
-          "Desenvolvi software Java e Python que automatiza a verificação de regras de voo para operações de missão.",
-          "Coordenei programas e projetos no Laboratório Lunar e Planetário, alinhados aos objetivos da missão.",
-          "Criei serviços de back-end Jakarta EE 10 e recursos de front-end JavaScript."
+          "Desenvolvi software em Java e Python que automatiza a verificação de regras de voo para operações de missão.",
+          "Coordenei programas e projetos no Lunar and Planetary Laboratory, alinhados aos objetivos da missão.",
+          "Criei serviços de back-end com Jakarta EE 10 e funcionalidades de front-end em JavaScript."
         ]
       },
       "freelance": {
-        "role": "Engenheiro de software",
-        "org": "Freelance",
+        "role": "Engenheira de software",
+        "org": "Autônoma",
         "bullets": [
-          "Levantamento de requisitos junto aos stakeholders para melhorias de sistema e novos projetos.",
-          "Contribuiu para gerenciamento de projetos, design de sistemas, testes e implementação."
+          "Levantei requisitos com as partes interessadas para melhorias de sistemas e novos projetos.",
+          "Contribuí para o gerenciamento de projetos, o desenho, os testes e a implementação de sistemas."
         ]
       },
       "opus": {
-        "role": "Engenheiro de software",
+        "role": "Engenheira de software",
         "bullets": [
-          "Processos ETL ajustados e consultas SQL e entrega de relatórios do Power BI.",
-          "Ajudou a migrar data warehouses legados entre Azure e SQL Server.",
+          "Otimizei processos ETL e consultas SQL e entreguei relatórios no Power BI.",
+          "Ajudei a migrar data warehouses legados entre Azure e SQL Server.",
           "Desenvolvi software de inspeção veicular em VB, C#, R, Python e ASP.NET Core MVC.",
           "Implementei integração contínua em Azure DevOps com Scrum e Kanban."
         ]
       },
       "nova": {
-        "role": "Engenheiro de Automação",
+        "role": "Engenheira de automação",
         "bullets": [
-          "Aplicativos projetados e solucionados que simplificam os fluxos de trabalho de hipotecas.",
-          "Desenvolvido em C#, SQL Server, MDX e JavaScript em ASP.NET MVC.",
+          "Projetei e depurei aplicativos que simplificam os fluxos de trabalho de crédito imobiliário.",
+          "Desenvolvi com C#, SQL Server, MDX e JavaScript sobre ASP.NET MVC.",
           "Trabalhei com equipes de suporte a aplicações e BI para melhorar o ERP da empresa."
         ]
       },
       "mining2017": {
-        "role": "Programador de software",
+        "role": "Programadora de software",
         "org": "Software de operações de mineração",
         "bullets": [
-          "Operações suportadas e sistemas de inteligência de negócios para operações de mineração.",
-          "Aplicativos existentes aprimorados com T-SQL, MDX e JavaScript."
+          "Dei suporte a sistemas operacionais e de business intelligence para operações de mineração.",
+          "Aprimorei aplicativos existentes com T-SQL, MDX e JavaScript."
         ]
       }
     },
     "earlier": {
       "contractor": [
-        "Engenheiro de software",
-        "Empreiteiro / freelancer",
+        "Engenheira de software",
+        "Prestadora de serviços / autônoma",
         "Desenvolvimento web e back-end (Java, C++, C#, PHP), administração de SQL Server e Oracle, consultoria de TI e treinamentos online."
       ],
       "cefppbc": [
@@ -180,39 +180,39 @@ export const TEXT = {
         "Operações de TI, infraestrutura de redes e servidores, bancos de dados e sistemas web administrativos."
       ],
       "upbc": [
-        "professor adjunto",
+        "Professora adjunta",
         null,
         "Cursos de tecnologia da informação, mecatrônica, energia e tecnologias de manufatura."
       ],
       "uvm": [
-        "professor adjunto",
+        "Professora adjunta",
         null,
         "Fundamentos de programação, algoritmos e desenvolvimento de aplicações web."
       ],
       "cut": [
-        "professor adjunto",
+        "Professora adjunta",
         null,
         "Teoria das cores para educadores, suporte de TI e orientação de alunos."
       ],
       "itm": [
-        "professor adjunto",
+        "Professora adjunta",
         null,
         "Arquitetura de computadores, redes, programação e business intelligence."
       ],
       "uad": [
-        "professor adjunto",
+        "Professora adjunta",
         null,
         "Fundamentos de TI com laboratórios de Excel, VBA e Access."
       ],
       "teleplan": [
-        "Engenheiro de Qualidade",
+        "Engenheira de qualidade",
         null,
         "Critérios de inspeção, casos de teste e documentação de defeitos."
       ],
       "dif": [
-        "Engenheiro de software",
+        "Engenheira de software",
         null,
-        "Desenhei um ERP Oracle e C# integrado com recursos humanos; Suporte Citrix e VMware."
+        "Projetei um ERP em Oracle e C# integrado a recursos humanos; suporte a Citrix e VMware."
       ],
       "police": [
         "Gerente de TI, Academia de Polícia",
@@ -220,12 +220,12 @@ export const TEXT = {
         "Planos de rede, orçamentos de TI e gerenciamento de equipe."
       ],
       "juebc": [
-        "Engenheiro de software",
+        "Engenheira de software",
         null,
-        "Sistemas Web e desktop com PowerBuilder, Sybase, Oracle, C#, ASP e Crystal Reports."
+        "Sistemas web e desktop com PowerBuilder, Sybase, Oracle, C#, ASP e Crystal Reports."
       ],
       "sidue": [
-        "Engenheiro de software",
+        "Engenheira de software",
         null,
         "Sistemas de helpdesk, gerenciamento de incidentes e aplicações web e desktop."
       ]
@@ -238,27 +238,27 @@ export const TEXT = {
   },
   zh: {
     "title": "简历 | Alicia Espinoza",
-    "description": "数据和人工智能平台软件工程师 Alicia Espinoza 的简历：经验、教育、技能和选定的项目。",
+    "description": "数据与人工智能平台软件工程师 Alicia Espinoza 的简历：工作经历、教育背景、技能和精选项目。",
     "back": "← 作品集",
     "kicker": "简历",
     "headline": "软件工程师 · 数据与 AI 平台 · 知识系统 · 数字化转型与技术领导",
     "location": "美国亚利桑那州",
     "pdf": "另存为 PDF",
     "pdfHint": "打开打印对话框；选择“另存为 PDF”。",
-    "summaryTitle": "概括",
-    "summary": "将数据和技术转化为人们实际使用的实用解决方案的软件工程师。二十多年来，我在采矿、金融、政府、太空运营、汽车检查和教育领域工作过：构建应用程序、改进数据流程并帮助团队采用数字工具做出更好的决策。作为大学教授的岁月增强了我分享知识和向不同受众阐明复杂主题的热情。今天，我专注于人工智能和基于知识的平台，将可信信息转化为真正的价值。",
+    "summaryTitle": "个人简介",
+    "summary": "软件工程师，擅长把数据和技术转化为人们真正会用的实用解决方案。二十多年来，我先后在采矿、金融、政府、航天运营、汽车检测和教育领域工作：开发应用程序、改进数据流程，并帮助团队采用数字工具，以做出更好的决策。作为大学教师的经历，让我更热爱分享知识，也更善于向不同受众讲清复杂的主题。如今我专注于 AI 与知识型平台，把可信的信息转化为真正的价值。",
     "experienceTitle": "工作经历",
-    "earlierTitle": "早期经验，2002-2016",
+    "earlierTitle": "早期经历，2002–2016",
     "educationTitle": "教育背景",
     "skillsTitle": "专业技能",
     "certificationsTitle": "认证证书",
-    "certificationsIssuer": "领英学习",
-    "publicationsTitle": "刊物",
+    "certificationsIssuer": "LinkedIn Learning",
+    "publicationsTitle": "发表论文",
     "languagesTitle": "语言",
-    "projectsTitle": "选定的项目",
-    "learning": "{n} 自 2019 年起完成的 LinkedIn 学习课程。",
+    "projectsTitle": "精选项目",
+    "learning": "自 2019 年起已完成 {n} 门 LinkedIn Learning 课程。",
     "learningLink": "查看学习记录",
-    "present": "展示",
+    "present": "至今",
     "places": {
       "tucson": "美国亚利桑那州图森",
       "us": "美国",
@@ -271,29 +271,29 @@ export const TEXT = {
       ],
       [
         "西班牙语",
-        "本国的"
+        "母语"
       ]
     ],
     "skills": {
       "software": "软件工程",
       "data": "数据与商业智能",
-      "cloud": "云与开发运营",
-      "ai": "人工智能和 MLOps",
+      "cloud": "云与 DevOps",
+      "ai": "AI 与 MLOps",
       "delivery": "领导力与交付"
     },
     "skillItems": {
       "Big data deployments": "大数据部署",
       "Model evaluation": "模型评估",
       "Generative AI": "生成式人工智能",
-      "Agentic AI": "代理人工智能",
-      "Requirements": "要求",
+      "Agentic AI": "智能体 AI",
+      "Requirements": "需求分析",
       "IT management": "信息技术管理",
       "University teaching": "大学教学"
     },
     "roles": {
       "current": {
         "role": "二级软件工程师",
-        "org": "现任职务·采矿技术",
+        "org": "现任职位 · 矿业技术",
         "bullets": [
           "与数据科学家合作，将数据管道转化为生产应用程序。",
           "为分析平台设计安全、可扩展且高度可用的云解决方案。",
@@ -301,7 +301,7 @@ export const TEXT = {
         ]
       },
       "space": {
-        "role": "航天所二级研发软件工程师",
+        "role": "二级研发软件工程师，Space Institute",
         "bullets": [
           "开发了 Java 和 Python 软件，可自动检查任务操作的飞行规则。",
           "协调月球和行星实验室的计划和项目，与任务目标保持一致。",
@@ -312,17 +312,17 @@ export const TEXT = {
         "role": "软件工程师",
         "org": "自由职业者",
         "bullets": [
-          "与利益相关者收集系统改进和新项目的要求。",
+          "与利益相关方梳理系统改进和新项目的需求。",
           "参与项目管理、系统设计、测试和实施。"
         ]
       },
       "opus": {
         "role": "软件工程师",
         "bullets": [
-          "调整 ETL 流程和 SQL 查询并交付 Power BI 报告。",
+          "优化 ETL 流程和 SQL 查询，并交付 Power BI 报表。",
           "帮助在 Azure 和 SQL Server 之间迁移旧数据仓库。",
-          "使用VB、C#、R、Python和ASP.NET Core MVC开发车辆检测软件。",
-          "在 Azure DevOps 中与 Scrum 和看板实现持续集成。"
+          "使用 VB、C#、R、Python 和 ASP.NET Core MVC 开发车辆检测软件。",
+          "在 Azure DevOps 中结合 Scrum 和 Kanban 实施持续集成。"
         ]
       },
       "nova": {
@@ -351,32 +351,32 @@ export const TEXT = {
       "cefppbc": [
         "信息技术经理",
         null,
-        "IT 运营、网络和服务器基础设施、数据库和管理网络系统。"
+        "IT 运营、网络和服务器基础设施、数据库和 Web 行政管理系统。"
       ],
       "upbc": [
-        "副教授",
+        "兼职讲师",
         null,
         "信息技术、机电一体化、能源和制造技术课程。"
       ],
       "uvm": [
-        "副教授",
+        "兼职讲师",
         null,
         "编程基础、算法和 Web 应用程序开发。"
       ],
       "cut": [
-        "副教授",
+        "兼职讲师",
         null,
-        "适用于教育工作者、IT 支持和学生指导的色彩理论。"
+        "面向教师的色彩理论、IT 支持和学生辅导。"
       ],
       "itm": [
-        "副教授",
+        "代课教师",
         null,
         "计算机体系结构、网络、编程和商业智能。"
       ],
       "uad": [
-        "副教授",
+        "兼职讲师",
         null,
-        "Excel、VBA 和 Access 实验室的 IT 基础知识。"
+        "信息技术基础，含 Excel、VBA 和 Access 实验课。"
       ],
       "teleplan": [
         "质量工程师",
@@ -386,7 +386,7 @@ export const TEXT = {
       "dif": [
         "软件工程师",
         null,
-        "设计了一个与人力资源集成的Oracle和C# ERP； Citrix 和 VMware 支持。"
+        "设计了与人力资源系统集成的 Oracle 和 C# ERP；提供 Citrix 和 VMware 支持。"
       ],
       "police": [
         "警察学院 IT 经理",
@@ -405,9 +405,9 @@ export const TEXT = {
       ]
     },
     "education": {
-      "phd": "博士教育、教育和教学技术学士",
-      "msc": "理学硕士信息与通信技术、电子商务",
-      "bsc": "理学学士计算机系统工程、分布式系统博士"
+      "phd": "教育学博士（教育技术与教学技术）",
+      "msc": "信息与通信技术理学硕士（电子商务）",
+      "bsc": "计算机系统工程理学学士（分布式系统）"
     }
   },
   en: {
@@ -721,7 +721,7 @@ export const TEXT = {
     certificationsIssuer: "LinkedIn Learning",
     publicationsTitle: "Publications",
     languagesTitle: "Langues",
-    projectsTitle: "Projets choisis",
+    projectsTitle: "Projets sélectionnés",
     learning: "{n} cours suivis sur LinkedIn Learning depuis 2019.",
     learningLink: "Voir le registre de formation",
     present: "Aujourd'hui",

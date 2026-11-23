@@ -6,10 +6,39 @@ const escape = (text) => String(text).replace(/[&<>"']/g, (character) => ({
   "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
 })[character]);
 
+// Atom feed so readers can follow new days without visiting the site.
+function atomFeed(days) {
+  const newestFirst = [...days].sort((a, b) => b.day - a.day);
+  const labUrl = new URL("../", studyUrl(newestFirst[0].slug)).href;
+  const stamp = (day) => `${day.date}T00:00:00Z`;
+  const entries = newestFirst.map((day) => `  <entry>
+    <title>${escape(`Day ${String(day.day).padStart(3, "0")}: ${day.title}`)}</title>
+    <link href="${studyUrl(day.slug)}"/>
+    <id>${studyUrl(day.slug)}</id>
+    <published>${stamp(day)}</published>
+    <updated>${stamp(day)}</updated>
+    <category term="${escape(day.topic)}"/>
+    <summary>${escape(day.summary)}</summary>
+  </entry>`).join("\n");
+  return `<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Daily Data Lab</title>
+  <subtitle>One small interactive data visualization a day, built with React and public data.</subtitle>
+  <link href="${labUrl}"/>
+  <link rel="self" type="application/atom+xml" href="${labUrl}feed.xml"/>
+  <id>${labUrl}</id>
+  <updated>${stamp(newestFirst[0])}</updated>
+  <author><name>Alicia Espinoza</name></author>
+${entries}
+</feed>
+`;
+}
+
 export const socialPages = {
   name: "lab-social-pages",
   apply: "build",
   generateBundle() {
+    this.emitFile({ type: "asset", fileName: "feed.xml", source: atomFeed(DAILY_DATA_LAB_DAYS) });
     for (const day of DAILY_DATA_LAB_DAYS) {
       const canonical = studyUrl(day.slug);
       const socialImage = day.preview?.replace(/\.svg$/, "-social.png");

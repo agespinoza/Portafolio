@@ -47,7 +47,7 @@ export const PT = {
     "projectsIntro": "{n} demonstrações com dados e cenários simulados. Cada uma inclui código-fonte, dados de exemplo e instruções.",
     "applicationsKicker": "Software para explorar",
     "applicationsTitle": "Aplicativos",
-    "applicationsIntro": "O Satellite Operations Console, o RH–ERP Integration Console, o Copper Mine Operations Console e o Daily Data Lab operam neste local. O Power BI e os aplicativos baseados em servidor incluem código-fonte e instruções de configuração.",
+    "applicationsIntro": "O Satellite Operations Console, o RH–ERP Integration Console, o Copper Mine Operations Console, o monitor de vigilância da tuberculose bovina e o Daily Data Lab operam neste local. O Power BI e os aplicativos baseados em servidor incluem código-fonte e instruções de configuração.",
     "learningKicker": "Aprendizagem contínua",
     "learningTitle": "Registro de aprendizagem",
     "learningIntro": "Cursos realizados no LinkedIn Learning desde 2019, organizados por área e relacionados aos projetos onde apliquei o que aprendi.",
@@ -78,6 +78,10 @@ export const PT = {
     "labImageAlt": "Pré-visualização: Mapa mundial noturno de pilares de luz e halos de gelo fotografados, junto com uma visão simulada de três pilares de luz coloridos.",
     "openVisualization": "Abrir visualização",
     "seeAllDays": "Veja todos os dias",
+    "labNewer": "Dia mais recente",
+    "labOlder": "Dia anterior",
+    "labPage": "Página {page}",
+    "labPagination": "Páginas do Daily Data Lab",
     "contact": "Contato",
     "contactTitleStart": "Vamos construir algo",
     "contactTitleEm": "confiável",
@@ -123,7 +127,7 @@ export const PT = {
     "browseAll": "Veja o {count}",
     "appliedIn": "Aplicado em",
     "professionalCourses": "Mostrando {shown} dos cursos profissionais {total}, do mais recente ao mais antigo. Os títulos de desenvolvimento pessoal não são mostrados.",
-    "matchingOne": "{count} elemento coincidente.",
+    "matchingOne": "{count} item correspondente.",
     "matchingMany": "Itens correspondentes {count}."
   },
   "areas": {
@@ -368,6 +372,10 @@ export const PT = {
     "17-copper-mine-operations": {
       "title": "Console de operações de mina de cobre",
       "text": "Segue uma mina de cobre a céu aberto fictícia desde o furo até o cobre: modelo de recursos de krigagem, otimização de cava, frota de transporte, modelo de recuperação de planta, reconciliação e ensaio QA/QC."
+    },
+    "18-bovine-tb-drift-monitor": {
+      "title": "Monitor de vigilância da tuberculose bovina",
+      "text": "Reproduz estatísticas públicas reais de tuberculose bovina da Grã-Bretanha e da Irlanda, escaladas pelas importações de gado do México para os EUA, para mostrar quando o limiar de um modelo de triagem fica desatualizado e quanto custa cada correção."
     }
   },
   "timeline": [
@@ -417,7 +425,7 @@ export const PT = {
     },
     "abraham-lake": {
       "title": "Com que rapidez os invernos estão aquecendo no Lago Abraham?",
-      "summary": "O reservatório de Alberta, conhecido pelas bolhas de metano presas no gelo, em perspectiva: 1,43 milhão de lagos do HydroLAKES, 75 invernos de temperaturas da ERA5 e as tendências de aquecimento dos 300 maiores lagos do mundo.",
+      "summary": "O reservatório de Alberta, conhecido pelas bolhas de metano presas no gelo, em perspectiva: 1,43 milhão de lagos do HydroLAKES, 75 invernos de temperaturas da ERA5 e as tendências de aquecimento dos maiores lagos do mundo, que crescem a cada dia.",
       "topic": "Clima",
       "previewAlt": "Mapa noturno dos 300 maiores lagos do mundo, coloridos pelo número de dias com gelo, ao lado de um gráfico com 75 invernos de temperatura do ar no Lago Abraham e a tendência de aquecimento."
     },

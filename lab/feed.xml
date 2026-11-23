@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Daily Data Lab</title>
+  <subtitle>One small interactive data visualization a day, built with React and public data.</subtitle>
+  <link href="https://agespinoza.github.io/Portafolio/lab/"/>
+  <link rel="self" type="application/atom+xml" href="https://agespinoza.github.io/Portafolio/lab/feed.xml"/>
+  <id>https://agespinoza.github.io/Portafolio/lab/</id>
+  <updated>2026-11-22T00:00:00Z</updated>
+  <author><name>Alicia Espinoza</name></author>
+  <entry>
+    <title>Day 005: Which languages are endangered and barely documented?</title>
+    <link href="https://agespinoza.github.io/Portafolio/lab/studies/endangered-languages.html"/>
+    <id>https://agespinoza.github.io/Portafolio/lab/studies/endangered-languages.html</id>
+    <published>2026-11-22T00:00:00Z</published>
+    <updated>2026-11-22T00:00:00Z</updated>
+    <category term="Languages"/>
+    <summary>All 7,685 spoken first languages in Glottolog 5.4, mapped by how endangered they are and how well they are described, with the families and countries most at risk and the gaps in the world&#39;s grammar databases.</summary>
+  </entry>
+  <entry>
+    <title>Day 004: How fast are winters warming at Abraham Lake?</title>
+    <link href="https://agespinoza.github.io/Portafolio/lab/studies/abraham-lake.html"/>
+    <id>https://agespinoza.github.io/Portafolio/lab/studies/abraham-lake.html</id>
+    <published>2026-11-21T00:00:00Z</published>
+    <updated>2026-11-21T00:00:00Z</updated>
+    <category term="Climate"/>
+    <summary>The Alberta reservoir famous for methane bubbles frozen in its ice, set against 1.43 million lakes in HydroLAKES and 75 winters of ERA5 air temperature, with the warming trend of the world&#39;s largest lakes, growing every day.</summary>
+  </entry>
+  <entry>
+    <title>Day 003: Where and when do light pillars appear?</title>
+    <link href="https://agespinoza.github.io/Portafolio/lab/studies/light-pillars.html"/>
+    <id>https://agespinoza.github.io/Portafolio/lab/studies/light-pillars.html</id>
+    <published>2026-11-20T00:00:00Z</published>
+    <updated>2026-11-20T00:00:00Z</updated>
+    <category term="Atmosphere"/>
+    <summary>An atlas of photographed light pillars, sun dogs, and ice halos from 2000 to 2026, with the weather at each moment and a 3-D simulator of the ice crystals that turn a light into a column.</summary>
+  </entry>
+  <entry>
+    <title>Day 002: Where do New Zealand&#39;s glowworms shine?</title>
+    <link href="https://agespinoza.github.io/Portafolio/lab/studies/waitomo-glowworms.html"/>
+    <id>https://agespinoza.github.io/Portafolio/lab/studies/waitomo-glowworms.html</id>
+    <published>2026-11-19T00:00:00Z</published>
+    <updated>2026-11-19T00:00:00Z</updated>
+    <category term="Nature"/>
+    <summary>Every public record of the Waitomo glowworm on a night-sky map of New Zealand, set against the weather outside the caves where the larvae light up the ceilings.</summary>
+  </entry>
+  <entry>
+    <title>Day 001: When is the best time to cross from Mexicali?</title>
+    <link href="https://agespinoza.github.io/Portafolio/lab/studies/border-wait-times.html"/>
+    <id>https://agespinoza.github.io/Portafolio/lab/studies/border-wait-times.html</id>
+    <published>2026-11-18T00:00:00Z</published>
+    <updated>2026-11-18T00:00:00Z</updated>
+    <category term="Mobility"/>
+    <summary>Live and historical wait times at the Calexico ports of entry, with the best and worst hours to cross by day of the week.</summary>
+  </entry>
+</feed>

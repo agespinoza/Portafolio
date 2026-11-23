@@ -7,10 +7,12 @@ This guide explains how the site is put together and how to change it without br
 | Path | What it is |
 | --- | --- |
 | `index.html`, `assets/app.js`, `assets/styles.css` | The portfolio front page. `app.js` holds the list of projects (`PROJECTS`), the career timeline (`TIMELINE`) and the live applications. |
-| `assets/i18n.js` | Shared text in Spanish, Japanese, Italian and French. English text is written in the HTML or next to each call. |
+| `assets/i18n.js`, `i18n.pt.js`, `i18n.zh.js` | Shared text in Spanish, Japanese, Italian, French, Portuguese and Chinese. English text is written in the HTML or next to each call. |
 | `resume.html`, `assets/resume*.js`, `assets/resume.css` | The résumé page. See [Résumé](#résumé). |
 | `projects/NN-name/` | One folder per project, each with its own README. Three of them are live consoles: 02 (satellites), 09 (HR–ERP) and 17 (copper mine). |
-| `daily-data-lab/` → `lab/` | Source of the Daily Data Lab (React) and its built output. Both are committed. |
+| `daily-data-lab/` → `lab/` | Source of the Daily Data Lab (React) and its built output. Both are committed. The build also writes the study pages in `lab/studies/` and the Atom feed `lab/feed.xml` from `assets/daily-data-lab-days.js`. |
+| `assets/seo.js`, `sitemap.xml`, `robots.txt`, `404.html` | Search and sharing support. `seo.js` keeps the canonical URL and `og:locale` in step with the language shown; the `hreflang` links and the JSON-LD are in the `<head>` of `index.html` and `resume.html`. |
+| `scripts/` | `check-site.mjs` (translations, résumé, links) and `generate-sitemap.mjs`. Run by `.github/workflows/site-checks.yml` on every push and pull request. |
 | `learning/`, `LEARNING.md`, `assets/learning-data.js` | The LinkedIn Learning record. |
 | `.github/workflows/refresh-orbit-data.yml` | Daily job that refreshes the satellite data and commits it as `github-actions[bot]`. |
 | `README.md`, `ROADMAP.md` | The public introduction and the career-to-project map. |
@@ -23,7 +25,7 @@ From the repository root, in the VS Code terminal:
 python3 -m http.server 8000
 ```
 
-Then open http://localhost:8000/ in Safari. Add `?lang=es` (or `ja`, `it`, `fr`) to see another language.
+Then open http://localhost:8000/ in Safari. Add `?lang=es` (or `ja`, `it`, `fr`, `pt`, `zh`) to see another language.
 
 ## Publish a change
 
@@ -38,8 +40,8 @@ Then open http://localhost:8000/ in Safari. Add `?lang=es` (or `ja`, `it`, `fr`)
 1. Create `projects/NN-short-name/` with a `README.md`. The README should say what the project shows, the career context, how to run it and what the data is. Use simulated or public data only.
 2. Add an entry to `PROJECTS` in `assets/app.js` with `id`, `title`, `area`, `tech` and `text`. For a live demo, add `demo: true` and `applicationStatus`, and add the id to `statusKeys`.
 3. Add the id to the matching chapter in `TIMELINE`.
-4. Translate the card: add `"NN-short-name": { title, text }` to the `projects` block of each of the 4 languages in `assets/i18n.js`.
-5. If it is a live demo, add it to the sentence `site.applicationsIntro`, both in `index.html` (English) and in the 4 languages.
+4. Translate the card: add `"NN-short-name": { title, text }` to the `projects` block of each of the 6 languages in `assets/i18n.js`, `assets/i18n.pt.js` and `assets/i18n.zh.js`.
+5. If it is a live demo, add it to the sentence `site.applicationsIntro`, both in `index.html` (English) and in the 6 languages.
 6. **Project count.** The hero number and the Projects intro are computed from `PROJECTS`, so they update by themselves. Two places are plain text and must be edited by hand:
    - the `og:description` meta tag in `index.html` ("N portfolio projects"), which link previews read without running JavaScript;
    - "links all N demonstrations" in `README.md`.
@@ -48,7 +50,8 @@ Then open http://localhost:8000/ in Safari. Add `?lang=es` (or `ja`, `it`, `fr`)
 
 ## Translations
 
-- Every visible string exists in 5 languages. English is the fallback and sits in the HTML (`data-i18n="site.key"`) or next to the call in the code. The other 4 languages live in `assets/i18n.js`.
+- Every visible string exists in 7 languages. English is the fallback and sits in the HTML (`data-i18n="site.key"`) or next to the call in the code. The other 6 live in `assets/i18n.js`, `assets/i18n.pt.js` and `assets/i18n.zh.js`.
+- `node scripts/check-site.mjs` fails when a language lacks a key that Spanish has, or when placeholders differ. Portuguese and Chinese also hold the Data Lab research texts; the check accepts those extra keys when both have them.
 - Placeholders such as `{n}` must appear, with the same names, in every language.
 - Each live console has its own `messages.js` and `i18n.js`. Keys that start with `site:` come from the shared `assets/i18n.js`, such as the navigation labels.
 - The Daily Data Lab bundle embeds a copy of `assets/i18n.js`. **After any change to that file, rebuild the lab:**
@@ -70,7 +73,7 @@ GitHub Pages lets browsers cache every file for 10 minutes. Without versions, a 
 ## Résumé
 
 - All the content is in `assets/resume-data.js`. Facts (dates, organisations, technologies, degrees) are in `ROLES`, `EARLIER`, `EDUCATION`, `CERTIFICATIONS`, `PUBLICATIONS` and `SKILLS`. Every visible sentence is in `TEXT`, once per language.
-- To add a job, add its facts to `ROLES` (newest first) and its `role`, `org` and `bullets` to `TEXT.<language>.roles` in all 5 languages.
+- To add a job, add its facts to `ROLES` (newest first) and its `role`, `org` and `bullets` to `TEXT.<language>.roles` in all 7 languages.
 - The **Save as PDF** button opens the print dialog. The print layout is the `@media print` block in `assets/resume.css`.
 - The current employer is described by industry, never named (see [Privacy rules](#privacy-rules)).
 
@@ -81,6 +84,7 @@ GitHub Pages lets browsers cache every file for 10 minutes. Without versions, a 
 | 02 Satellite Operations Console | `fetch_data.py`, run daily by the workflow. CelesTrak throttles repeated downloads, so do not re-run it in a loop. | Review in the browser. |
 | 09 HR–ERP Integration Console | `node projects/09-employee-erp-integration/generate_data.mjs` | `node --test projects/09-employee-erp-integration/engine.test.mjs` |
 | 17 Copper Mine Operations Console | `python3 projects/17-copper-mine-operations/pipeline/build.py` (about a minute, seeded) | `python3 -m unittest discover -s projects/17-copper-mine-operations/tests` and `node --test projects/17-copper-mine-operations/mine.test.mjs` |
+| 18 Bovine TB Surveillance Monitor | `python3 projects/18-bovine-tb-drift-monitor/build_data.py` (downloads Defra/APHA, CSO and USDA ERS files; add `--cache DIR` to reuse saved copies) | `node --test projects/18-bovine-tb-drift-monitor/engine.test.mjs` |
 
 When a change alters the number of tests, update the count quoted in that project's README.
 
@@ -95,7 +99,8 @@ When a change alters the number of tests, update the count quoted in that projec
 
 - [ ] I pulled the latest `main` first.
 - [ ] I checked the page locally, in English and in at least one other language.
-- [ ] New text exists in all 5 languages, with matching placeholders.
+- [ ] New text exists in all 7 languages, with matching placeholders.
+- [ ] `node scripts/check-site.mjs` passes. After adding a Data Lab day or a page, run `node scripts/generate-sitemap.mjs` and rebuild the lab so `lab/feed.xml` lists the new day.
 - [ ] I bumped the cache versions, and rebuilt the lab if `assets/i18n.js` changed.
 - [ ] For a new project, I updated the `og:description` and README counts.
 - [ ] The tests of any console I touched pass.

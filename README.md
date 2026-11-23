@@ -8,7 +8,7 @@ In Arizona, I worked on mining operations software, mortgage workflow automation
 
 | Career stage | Selected demonstration |
 | --- | --- |
-| Public-sector software and IT operations | [HR–ERP Integration Console](projects/09-employee-erp-integration/) |
+| Public-sector software and IT operations | [HR–ERP Integration Console](projects/09-employee-erp-integration/), [Bovine TB Surveillance Monitor](projects/18-bovine-tb-drift-monitor/) |
 | Teaching and quality assurance | [Excel Data Cleaning Lesson](projects/15-excel-data-cleaning-lesson/) |
 | Mining systems and mortgage automation | [Copper Mine Operations Console](projects/17-copper-mine-operations/) |
 | Vehicle inspection software and data platforms | [Inspection Warehouse Migration](projects/04-inspection-warehouse-migration/) |

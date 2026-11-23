@@ -47,7 +47,7 @@ export const ZH = {
     "projectsIntro": "{n} 个使用模拟数据和场景的演示，每个都附有源代码、示例数据和使用说明。",
     "applicationsKicker": "探索软件",
     "applicationsTitle": "应用",
-    "applicationsIntro": "卫星操作控制台、RH-ERP 集成控制台、铜矿操作控制台和 Daily Data Lab 在此站点运行。 Power BI 和基于服务器的应用程序包括源代码和设置说明。",
+    "applicationsIntro": "卫星操作控制台、RH-ERP 集成控制台、铜矿操作控制台、牛结核病监测器和 Daily Data Lab 在此站点运行。 Power BI 和基于服务器的应用程序包括源代码和设置说明。",
     "learningKicker": "持续学习",
     "learningTitle": "学习记录",
     "learningIntro": "自 2019 年以来在 LinkedIn Learning 上完成的课程，按领域组织，并与我应用所学知识的项目相关。",
@@ -77,8 +77,12 @@ export const ZH = {
     "labDaySummary": "包含 2000 年至 2026 年间拍摄的 931 个光柱、幻日点和冰晕的图集，包含每个时刻的 ERA5 气候以及将光变成柱的冰晶的 3D 模拟器。",
     "labImageAlt": "预览：拍摄到的光柱和冰晕的夜间世界地图，以及三个彩色光柱的模拟视图。",
     "openVisualization": "查看可视化",
-    "seeAllDays": "天天见",
-    "contact": "接触",
+    "seeAllDays": "查看实验室的全部日期",
+    "labNewer": "较新的一天",
+    "labOlder": "较早的一天",
+    "labPage": "第 {page} 页",
+    "labPagination": "Daily Data Lab 分页",
+    "contact": "联系",
     "contactTitleStart": "一起打造",
     "contactTitleEm": "可靠的软件",
     "contactTitleEnd": "。",
@@ -123,9 +127,8 @@ export const ZH = {
     "browseAll": "查看 {count}",
     "appliedIn": "应用于",
     "professionalCourses": "显示 {shown} 的 {total} 专业课程，从最新到最旧。个人发展头衔未显示。",
-    "matchingOne": "{count} 匹配元件。",
-    "matchingMany": "{count} 匹配项目。",
-    "labMore": "查看全部研究"
+    "matchingOne": "{count} 个匹配项目。",
+    "matchingMany": "{count} 个匹配项目。"
   },
   "areas": {
     "all": "全部",
@@ -369,6 +372,10 @@ export const ZH = {
     "17-copper-mine-operations": {
       "title": "铜矿操作控制台",
       "text": "遵循虚构的露天铜矿从钻孔到铜的过程：克里金资源模型、矿坑优化、运输车队、工厂恢复模型、调节和分析 QA/QC。"
+    },
+    "18-bovine-tb-drift-monitor": {
+      "title": "牛结核病监测器",
+      "text": "回放英国和爱尔兰真实的牛结核病公开统计数据，并按从墨西哥输往美国的牛只进口量进行缩放，展示筛查模型的阈值何时失效以及每种修正的成本。"
     }
   },
   "timeline": [
@@ -418,7 +425,7 @@ export const ZH = {
     },
     "abraham-lake": {
       "title": "亚伯拉罕湖的冬季正在以多快的速度变暖？",
-      "summary": "艾伯塔省的亚伯拉罕湖以冰层中冻结的甲烷气泡闻名。本研究使用 HydroLAKES 的 143 万个湖泊和 ERA5 的 75 个冬季气温数据，并比较全球最大 300 个湖泊的变暖趋势。",
+      "summary": "艾伯塔省的亚伯拉罕湖以冰层中冻结的甲烷气泡闻名。本研究使用 HydroLAKES 的 143 万个湖泊和 ERA5 的 75 个冬季气温数据，并比较全球最大湖泊的变暖趋势（每天都在增加）。",
       "topic": "气候",
       "previewAlt": "左图为按结冰天数着色的全球 300 个最大湖泊夜间地图，右图为亚伯拉罕湖 75 个冬季的气温及其变暖趋势。"
     },

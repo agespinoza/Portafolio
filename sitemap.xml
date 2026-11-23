@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://agespinoza.github.io/Portafolio/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://agespinoza.github.io/Portafolio/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://agespinoza.github.io/Portafolio/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://agespinoza.github.io/Portafolio/?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://agespinoza.github.io/Portafolio/?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://agespinoza.github.io/Portafolio/?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://agespinoza.github.io/Portafolio/?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://agespinoza.github.io/Portafolio/?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://agespinoza.github.io/Portafolio/?lang=zh"/>
+  </url>
+  <url>
+    <loc>https://agespinoza.github.io/Portafolio/resume.html</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://agespinoza.github.io/Portafolio/resume.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://agespinoza.github.io/Portafolio/resume.html"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://agespinoza.github.io/Portafolio/resume.html?lang=es"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://agespinoza.github.io/Portafolio/resume.html?lang=ja"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://agespinoza.github.io/Portafolio/resume.html?lang=it"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://agespinoza.github.io/Portafolio/resume.html?lang=fr"/>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://agespinoza.github.io/Portafolio/resume.html?lang=pt"/>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://agespinoza.github.io/Portafolio/resume.html?lang=zh"/>
+  </url>
+  <url>
+    <loc>https://agespinoza.github.io/Portafolio/lab/</loc>
+  </url>
+  <url>
+    <loc>https://agespinoza.github.io/Portafolio/lab/studies/endangered-languages.html</loc>
+  </url>
+  <url>
+    <loc>https://agespinoza.github.io/Portafolio/lab/studies/abraham-lake.html</loc>
+  </url>
+  <url>
+    <loc>https://agespinoza.github.io/Portafolio/lab/studies/light-pillars.html</loc>
+  </url>
+  <url>
+    <loc>https://agespinoza.github.io/Portafolio/lab/studies/waitomo-glowworms.html</loc>
+  </url>
+  <url>
+    <loc>https://agespinoza.github.io/Portafolio/lab/studies/border-wait-times.html</loc>
+  </url>
+  <url>
+    <loc>https://agespinoza.github.io/Portafolio/projects/02-trajectory-visualization/index.html</loc>
+  </url>
+  <url>
+    <loc>https://agespinoza.github.io/Portafolio/projects/09-employee-erp-integration/index.html</loc>
+  </url>
+  <url>
+    <loc>https://agespinoza.github.io/Portafolio/projects/17-copper-mine-operations/index.html</loc>
+  </url>
+  <url>
+    <loc>https://agespinoza.github.io/Portafolio/projects/18-bovine-tb-drift-monitor/index.html</loc>
+  </url>
+</urlset>
