@@ -1,12 +1,23 @@
 import StudyFacts from "../StudyFacts.jsx";
 import { useState } from "react";
-import { type Cls, CLASSES, CLS_COLOR, OWNERS } from "./data";
+import { type Cause, type Cls, type RcsClass, CLASSES, CLS_COLOR, OWNERS } from "./data";
 import { tr, num, pct } from "./text";
 
 export { KpiCard } from "../day-005-endangered-languages/Panels";
 
 const CLS_EN: Record<Cls, string> = { active: "Active satellites", inactive: "Dead satellites", rocket: "Rocket bodies", debris: "Debris fragments", unknown: "Unidentified" };
 export const clsName = (c: Cls, language: string) => tr(language, `cls_${c}`, CLS_EN[c]);
+
+const CAUSE_EN: Record<Cause, string> = {
+  asat: "Anti-satellite tests", collision: "Accidental collisions", propulsion: "Propulsion explosions", battery: "Battery explosions",
+  selfDestruct: "Deliberate self-destruction", unknown: "Unknown cause", afterList: "After NASA's list", none: "No recorded break-up",
+};
+export const causeName = (c: Cause, language: string) => tr(language, `cause2_${c}`, CAUSE_EN[c]);
+const CAUSE_SHORT: Record<Cause, string> = { asat: "ASAT test", collision: "collision", propulsion: "propulsion", battery: "battery", selfDestruct: "self-destruct", unknown: "unknown", afterList: "after list", none: "none" };
+/** Short cause for chart labels. */
+export const causeShort = (c: Cause, language: string) => tr(language, `causeShort_${c}`, CAUSE_SHORT[c]);
+const RCS_EN: Record<RcsClass, string> = { small: "Small (< 0.1 m²)", medium: "Medium (0.1–1 m²)", large: "Large (> 1 m²)", none: "No radar size" };
+export const rcsName = (r: RcsClass, language: string) => tr(language, `rcs_${r}`, RCS_EN[r]);
 
 /** ESA's orbit classes (Space Environment Report 2026, Table 1.2), with a plain-language name. */
 const ORBIT_EN: Record<string, string> = {

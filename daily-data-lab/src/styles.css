@@ -1032,3 +1032,12 @@ h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; }
 .sd-globe canvas { cursor: grab; }
 .sd-globe canvas:active { cursor: grabbing; }
 .sd-globe canvas:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+/* Day 007 break-up causes (deliberate in rust, accidents in sand, explosions in teal, unknown/none in slate) and radar size. */
+:root { --sd-c0: #a84a28; --sd-c1: #d9a441; --sd-c2: #0d6b7f; --sd-c3: #5fa8b5; --sd-c4: #b07a3c; --sd-c5: #7d8798; --sd-c6: #b4bcc8; --sd-c7: #d5dae1;
+  --sd-r0: #e2b8a5; --sd-r1: #c47a52; --sd-r2: #7a2f14; --sd-r3: #d5dae1; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --sd-c0: #f08a4b; --sd-c1: #f4d35e; --sd-c2: #5cc2d6; --sd-c3: #2f8596; --sd-c4: #c9a26a; --sd-c5: #8390a5; --sd-c6: #4f5b70; --sd-c7: #2f3a4d;
+    --sd-r0: #6e4a2e; --sd-r1: #b06a3a; --sd-r2: #f0a06b; --sd-r3: #2f3a4d; }
+}
+:root[data-theme="dark"] { --sd-c0: #f08a4b; --sd-c1: #f4d35e; --sd-c2: #5cc2d6; --sd-c3: #2f8596; --sd-c4: #c9a26a; --sd-c5: #8390a5; --sd-c6: #4f5b70; --sd-c7: #2f3a4d;
+  --sd-r0: #6e4a2e; --sd-r1: #b06a3a; --sd-r2: #f0a06b; --sd-r3: #2f3a4d; }

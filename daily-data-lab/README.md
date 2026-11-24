@@ -117,7 +117,7 @@ Every Earth-orbiting object in CelesTrak's satellite catalogue (71,010 since 195
 - **ESA size classes:** the brief's 54,000 / 1.2 M / 140 M are older figures. The 2026 report (§2.4, MASTER at 1 February 2026) gives 68,450 objects > 10 cm, 1.5 million from 1 to 10 cm, and 230 million from 1 mm to 1 cm; the page uses those.
 - **Finding:** half of what is tracked is junk (50.5%). Active satellites peak at 450–500 km (10,007, mostly constellation shells) and junk at 750–850 km, where ESA dates the Fengyun-1C (2007) and Iridium–Cosmos (2009) break-ups. The catalogue-number proxy places Fengyun-1C debris in 2007 and Kosmos 1408 debris in 2021, matching ESA's event dates.
 - **3-D shell view:** a hand-drawn canvas globe (no 3-D library) with one dot per object in orbit at its real mean altitude and inclination, from a `shells` table in the JSON {orbit, owner, kind, altitude in 10 km steps, inclination in 1° steps}. SATCAT has no node or position along the orbit, so dots are spread around their shell with a fixed pseudo-random seed; the view shows density by height and tilt, not live positions. It follows the orbit and owner filters, has kind toggles, a stretched low-orbit close-up and a true-scale view out to GEO, drag and arrow-key rotation, a slow spin (off with reduced motion), and a hover readout per shell that matches the altitude bar chart.
-- **Downloads** go to `daily-data-lab/raw/day-007-space-debris/` (not versioned): `satcat.csv` (+ its HTTP headers, used for the snapshot date), `sources.html`, and ESA's report PDF.
+- **Downloads** go to `daily-data-lab/raw/day-007-space-debris/` (not versioned): `satcat.csv` (+ its HTTP headers, used for the snapshot date), `sources.html`, ESA's report PDF, and NASA's HOOSF 16e PDF with its text in `nasa/hoosf16.txt` (extracted with pypdf).
 
 ### Sprint 1
 
@@ -126,12 +126,17 @@ Every Earth-orbiting object in CelesTrak's satellite catalogue (71,010 since 195
 - [x] Research blocks with DOI-checked references, translations, cross-day insight, previews (#26)
 - [x] 3-D shell view of every object in orbit (altitude × inclination), with filters, kind toggles, two scales, and a shell readout (#27)
 
+### Sprint 2
+
+- [x] Break-up causes: `hoosf.py` parses Table 2.1 of NASA's History of On-orbit Satellite Fragmentations, 16th ed. (268 break-ups to 1 May 2022, stops unless all 268 parse) into `breakups.csv`; each debris piece takes its launch's main cause, the 2022 and 2024 CZ-6A stages follow ESA's propulsion class, later pieces are "after NASA's list". Finding: 37% of debris in orbit comes from propulsion or battery explosions, 18% from anti-satellite tests, 6% from accidental collisions (#28)
+- [x] Radar size: SATCAT RCS in the historical NORAD classes (< 0.1, 0.1–1, > 1 m², per Vierinen et al. 2026); 84% of sized debris is small, and 59% of objects in orbit have no RCS because none is published for payloads launched after April 2017 (#29)
+- [x] Live positions on the 3-D globe: CelesTrak GP data (active satellites plus the Fengyun-1C, Cosmos 2251 and Iridium 33 debris groups, about 19,600 objects; CORS `*`) propagated with SGP4 (satellite.js 6.0.2: version 7 ships a WASM build with top-level await that the IIFE bundle cannot load), loaded only on request, cached in the browser for 2 hours as CelesTrak's usage policy asks, recomputed every 30 s, with Natural Earth coastlines from Day 003 and a fallback to the shell view (#30)
+
 ### Follow-up ideas
 
-- Fragmentation causes per event (collision, explosion, anti-satellite test) from ESA DISCOS (needs a DISCOSweb account).
+- Causes for break-ups after May 2022, when NASA's list ends (ESA DISCOS needs a DISCOSweb account).
 - Mass and cross-section by orbit, to weigh junk by collision risk instead of count.
 - Altitude profile over time: how constellation shells moved active satellites below the debris belt.
-- FULL-mode map of live positions from CelesTrak GP elements propagated with SGP4.
 
 ## Languages and publication calendar
 
@@ -152,7 +157,7 @@ npm run data:abraham         # HydroLAKES → dim_lake.parquet → snapshot (Day
 npm run fetch:abraham        # continues the Open-Meteo winter backfill within today's budget (Day 004)
 npm run data:languages       # Glottolog/Grambank/WALS CLDF → parquet → snapshot and previews (Day 005; needs raw/)
 npm run data:foodwaste       # UNEP/FAOSTAT/World Bank/CCKP → parquet → day-006.json and previews (Day 006; needs raw/)
-npm run data:debris          # CelesTrak SATCAT → parquet → day-007.json and previews (Day 007; needs raw/)
+npm run data:debris          # NASA HOOSF + CelesTrak SATCAT → parquet → day-007.json and previews (Day 007; needs raw/)
 npm run typecheck            # checks the TypeScript days (the build runs it too)
 ```
 

@@ -37,6 +37,8 @@ const ISO3 = { SVK: "Slovakia", KWT: "Kuwait", JOR: "Jordan", UGA: "Uganda" };
 for (const [c, n] of Object.entries(ISO3)) ownerNames[c] ??= n;
 
 const CLS = ["active", "inactive", "rocket", "debris", "unknown"];
+const CAUSES = ["asat", "collision", "propulsion", "battery", "selfDestruct", "unknown", "afterList", "none"];
+const RCS = ["small", "medium", "large", "none"];
 const ORBITS = (await rows(`SELECT orbit FROM o GROUP BY 1 ORDER BY count(*) FILTER (WHERE in_orbit) DESC, count(*) DESC`)).map((r) => r.orbit);
 const OWNERS = (await rows(`SELECT owner FROM o GROUP BY 1 ORDER BY count(*) FILTER (WHERE in_orbit) DESC, count(*) DESC, 1`)).map((r) => r.owner);
 const missing = OWNERS.filter((o) => !ownerNames[o]);
@@ -79,10 +81,10 @@ const byOwner = (await rows(`SELECT owner,
 // Debris catalogued per launch (international designator YYYY-NNN). Parent = the launch's payload or rocket body named
 // in the debris pieces ("FENGYUN 1C DEB" → FENGYUN 1C). Event year ≈ the year most of its debris entered the catalogue.
 const topFragmentationParents = (await rows(`
-  SELECT d.launch_key, mode(regexp_replace(d.name, '\\s+DEB$', '')) parent, any_value(d.owner) AS "owner", mode(d.orbit) AS "orbit",
+  SELECT d.launch_key, mode(regexp_replace(d.name, '\\s+DEB$', '')) parent, any_value(d.cause) cause, any_value(d.owner) AS "owner", mode(d.orbit) AS "orbit",
     count(*) pieces, count(*) FILTER (WHERE d.in_orbit) inOrbit, mode(year(d.cat_date)) eventYear, min(d.launch)::VARCHAR launched
   FROM o d WHERE d.cls = 'debris' GROUP BY 1 ORDER BY pieces DESC LIMIT 10`))
-  .map((r) => ({ launch: r.launch_key, parent: r.parent, owner: r.owner, orbit: r.orbit, pieces: N(r.pieces), inOrbit: N(r.inOrbit), eventYear: N(r.eventYear), launched: r.launched }));
+  .map((r) => ({ launch: r.launch_key, parent: r.parent, owner: r.owner, orbit: r.orbit, pieces: N(r.pieces), inOrbit: N(r.inOrbit), cause: r.cause, eventYear: N(r.eventYear), launched: r.launched }));
 
 // Shells for the 3-D view: objects in orbit by mean altitude (10 km steps below 2,000 km, 100 km above, rounded down) and inclination (1°).
 // SATCAT has no node or phase, so the page spreads each object around its shell; only altitude and inclination are real.
@@ -94,6 +96,14 @@ const shells = (await rows(`
   FROM o WHERE in_orbit AND orbit <> 'UFO' GROUP BY ALL ORDER BY ALL`))
   .map((r) => [ORBITS.indexOf(r.orbit), OWNERS.indexOf(r.owner), CLS.indexOf(r.cls), N(r.alt), N(r.inc), N(r.n)]);
 
+// Debris by break-up cause (NASA HOOSF 16e Table 2.1 + ESA CZ-6A class): [orbit, owner, cause, inOrbit, catalogued].
+const causeCube = (await rows(`SELECT orbit, owner, cause, count(*) FILTER (WHERE in_orbit) inorb, count(*) n FROM o WHERE cls = 'debris' GROUP BY ALL ORDER BY ALL`))
+  .map((r) => [ORBITS.indexOf(r.orbit), OWNERS.indexOf(r.owner), CAUSES.indexOf(r.cause), N(r.inorb), N(r.n)]);
+// Objects in orbit by radar cross-section class (historical NORAD classes): [orbit, owner, cls, rcsClass, n].
+const rcsCube = (await rows(`SELECT orbit, owner, cls, rcs_class, count(*) n FROM o WHERE in_orbit GROUP BY ALL ORDER BY ALL`))
+  .map((r) => [ORBITS.indexOf(r.orbit), OWNERS.indexOf(r.owner), CLS.indexOf(r.cls), RCS.indexOf(r.rcs_class), N(r.n)]);
+const [bk] = await rows(`SELECT count(*) n FROM read_csv('${RAW}/breakups.csv', header = true)`);
+
 // Checks: the cube must reproduce the DuckDB aggregates.
 const sum = (f) => cube.filter(f).reduce((a, r) => a + r[7], 0);
 const check = (label, a, b) => { if (a !== b) throw new Error(`${label}: cube ${a} ≠ DuckDB ${b}`); };
@@ -104,14 +114,17 @@ check("catalogued", sum(() => true), kpis.catalogued);
 check("LEO bins", sum((r) => r[5] >= 0), byAltitudeBin.reduce((a, b) => a + b.n, 0));
 check("debris 2007", sum((r) => r[2] === 3 && r[3] <= 2007 && (r[4] === 0 || r[4] > 2007)), activeVsDebrisByYear.find((x) => x.year === 2007 && x.cls === "debris").n);
 const ufo = byOrbit.find((x) => x.key === "UFO")?.n ?? 0;
+if (causeCube.some((r) => r[2] < 0) || rcsCube.some((r) => r[3] < 0)) throw new Error("unknown cause or RCS class");
+check("causes", causeCube.reduce((a, r) => a + r[3], 0), byType.find((t) => t.key === "debris").n);
+check("rcs", rcsCube.reduce((a, r) => a + r[4], 0), kpis.tracked);
 check("shells", shells.reduce((a, r) => a + r[5], 0), kpis.tracked - ufo);
 console.log(`✓ cube (${cube.length} rows) and shells (${shells.length} rows) match DuckDB totals`);
 
 const out = {
   source: "CelesTrak SATCAT (celestrak.org/pub/satcat.csv); ESA Space Debris Office, Annual Space Environment Report 2026 (MASTER, 1 Feb 2026)",
   capturedAt: new Date().toISOString(), asOf, yearAgo, esa,
-  classes: CLS, orbits: ORBITS, owners: OWNERS.map((o) => ({ code: o, name: ownerNames[o] ?? o })),
-  kpis, byType, byOrbit, byAltitudeBin, byYearLaunched, byYearDecayed, activeVsDebrisByYear, byOwner, topFragmentationParents, cube, shells,
+  classes: CLS, causes: CAUSES, rcsClasses: RCS, breakups: N(bk.n), orbits: ORBITS, owners: OWNERS.map((o) => ({ code: o, name: ownerNames[o] ?? o })),
+  kpis, byType, byOrbit, byAltitudeBin, byYearLaunched, byYearDecayed, activeVsDebrisByYear, byOwner, topFragmentationParents, cube, shells, causeCube, rcsCube,
 };
 const dir = "data/day-007-space-debris";
 mkdirSync(dir, { recursive: true });

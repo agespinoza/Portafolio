@@ -6,7 +6,9 @@ import SNAPSHOT from "../../../data/day-007-space-debris/day-007.json";
 export type Cls = "active" | "inactive" | "rocket" | "debris" | "unknown";
 export interface Owner { code: string; name: string }
 export interface OwnerRow { owner: string; name: string; active: number; inactive: number; rocketBody: number; debris: number; unknown: number; catalogued: number }
-export interface Parent { launch: string; parent: string; owner: string; orbit: string; pieces: number; inOrbit: number; eventYear: number; launched: string }
+export type Cause = "asat" | "collision" | "propulsion" | "battery" | "selfDestruct" | "unknown" | "afterList" | "none";
+export type RcsClass = "small" | "medium" | "large" | "none";
+export interface Parent { launch: string; parent: string; owner: string; orbit: string; pieces: number; inOrbit: number; cause: Cause; eventYear: number; launched: string }
 interface Snapshot {
   capturedAt: string; asOf: string; yearAgo: string;
   esa: { report: string; epoch: string; gt10cm: number; activeInGt10cm: number; cm1to10: number; mm1to1cm: number };
@@ -18,6 +20,11 @@ interface Snapshot {
   cube: [number, number, number, number, number, number, number, number][];
   /** [orbit, owner, cls, meanAltKm, inclinationDeg, n] for objects in orbit with orbit data (3-D view). */
   shells: [number, number, number, number, number, number][];
+  causes: Cause[]; rcsClasses: RcsClass[]; breakups: number;
+  /** Debris by break-up cause: [orbit, owner, cause, inOrbit, catalogued]. */
+  causeCube: [number, number, number, number, number][];
+  /** Objects in orbit by radar cross-section class: [orbit, owner, cls, rcsClass, n]. */
+  rcsCube: [number, number, number, number, number][];
 }
 const S = SNAPSHOT as unknown as Snapshot;
 
@@ -29,6 +36,14 @@ export const CLASSES = S.classes;
 export const ORBITS = S.orbits;
 export const OWNERS = S.owners;
 export const PARENTS = S.topFragmentationParents;
+export const CAUSES = S.causes;
+export const RCS_CLASSES = S.rcsClasses;
+export const BREAKUPS = S.breakups;
+export const CAUSE_COLOR: Record<Cause, string> = {
+  asat: "var(--sd-c0)", collision: "var(--sd-c1)", propulsion: "var(--sd-c2)", battery: "var(--sd-c3)", selfDestruct: "var(--sd-c4)",
+  unknown: "var(--sd-c5)", afterList: "var(--sd-c6)", none: "var(--sd-c7)",
+};
+export const RCS_COLOR: Record<RcsClass, string> = { small: "var(--sd-r0)", medium: "var(--sd-r1)", large: "var(--sd-r2)", none: "var(--sd-r3)" };
 export const FIRST_YEAR = 1957;
 export const LAST_YEAR = Number(S.asOf.slice(0, 4));
 export const CLS_COLOR: Record<Cls, string> = {
@@ -79,7 +94,18 @@ export function aggregate(f: Filter) {
     for (let y = ey; y <= (dy === 0 ? LAST_YEAR : dy - 1); y++) pop[y - FIRST_YEAR][c] += n;
   }
   const tracked = inOrbit.reduce((a, b) => a + b, 0);
-  return { inOrbit, tracked, active: inOrbit[0], junk: tracked - inOrbit[0], added, decayed, pop, alt, byOrbit, byOwner, recent, recentIntact, catalogued };
+  // Debris by cause (in orbit and ever catalogued) and objects in orbit by kind × radar cross-section class.
+  const causeIn = CAUSES.map(() => 0), causeAll = CAUSES.map(() => 0);
+  for (const [o, w, c, inorb, n] of S.causeCube) {
+    if ((oi >= 0 && o !== oi) || (wi >= 0 && w !== wi)) continue;
+    causeIn[c] += inorb; causeAll[c] += n;
+  }
+  const rcs = CLASSES.map(() => RCS_CLASSES.map(() => 0));
+  for (const [o, w, c, r, n] of S.rcsCube) {
+    if ((oi >= 0 && o !== oi) || (wi >= 0 && w !== wi)) continue;
+    rcs[c][r] += n;
+  }
+  return { inOrbit, tracked, active: inOrbit[0], junk: tracked - inOrbit[0], causeIn, causeAll, rcs, added, decayed, pop, alt, byOrbit, byOwner, recent, recentIntact, catalogued };
 }
 export type Agg = ReturnType<typeof aggregate>;
 

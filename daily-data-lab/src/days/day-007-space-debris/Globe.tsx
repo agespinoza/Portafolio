@@ -4,6 +4,17 @@
 // inclination, not where anything is right now. Drag or use the arrow keys to turn the globe.
 import { type KeyboardEvent, type PointerEvent, useEffect, useMemo, useRef, useState } from "react";
 import { type Cls, CLASSES } from "./data";
+import LAND from "../day-003-light-pillars/world-land.json";
+
+/** Natural Earth 1:110m land rings ([lon, lat]) as unit vectors, drawn only in live mode (positions are Earth-fixed). */
+const COAST: Float32Array[] = (LAND as unknown as { rings: [number, number][][] }).rings.map((ring) => {
+  const out = new Float32Array(ring.length * 3);
+  ring.forEach(([lon, lat], i) => {
+    const a = (lon * Math.PI) / 180, b = (lat * Math.PI) / 180;
+    out[i * 3] = Math.cos(b) * Math.cos(a); out[i * 3 + 1] = Math.cos(b) * Math.sin(a); out[i * 3 + 2] = Math.sin(b);
+  });
+  return out;
+});
 
 const R_EARTH = 6378.137;
 /** Night palette (the canvas is always dark): same hues as the page's dark-mode tokens. */
@@ -11,8 +22,12 @@ const DOT: Record<Cls, string> = { active: "#5cc2d6", inactive: "#9aa6ba", rocke
 
 export type Scale = "leo" | "true";
 export interface GlobeCell { cls: number; alt: number; inc: number; n: number }
+/** Real Earth-fixed positions in Earth radii (z = north) from SGP4, one kind per object. */
+export interface LiveDots { pos: Float32Array; cls: Uint8Array }
 interface Props {
   cells: GlobeCell[]; scale: Scale; hidden: Set<number>; ariaLabel: string; hint: string;
+  /** When set, draw these real positions (and the continents) instead of the catalogue shells. */
+  live?: LiveDots | null;
   /** Readout for the shell whose outer edge is under the pointer. */
   shellReadout: (lo: number, hi: number, counts: number[]) => string;
 }
@@ -31,7 +46,7 @@ function mulberry32(seed: number) {
 const radius = (alt: number, scale: Scale) => (scale === "leo" ? 1 + (Math.min(alt, 2000) / 2000) * 0.7 : 1 + alt / R_EARTH);
 const altFromRadius = (r: number, scale: Scale) => (scale === "leo" ? ((r - 1) / 0.7) * 2000 : (r - 1) * R_EARTH);
 
-export function GlobeCard({ cells, scale, hidden, ariaLabel, hint, shellReadout }: Props) {
+export function GlobeCard({ cells, scale, hidden, ariaLabel, hint, shellReadout, live }: Props) {
   const box = useRef<HTMLDivElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
   const [w, setW] = useState(640);
@@ -43,9 +58,23 @@ export function GlobeCard({ cells, scale, hidden, ariaLabel, hint, shellReadout 
 
   // One dot per object: position in Earth radii (x, y, z with z = north), its kind, and its altitude.
   const dots = useMemo(() => {
+    if (live) {
+      // Real positions: keep the direction, map the altitude onto the chosen radial scale (close-up keeps low orbit only).
+      const n0 = live.cls.length, pos = new Float32Array(n0 * 3), cls = new Uint8Array(n0), altA = new Float32Array(n0);
+      let k = 0;
+      for (let j = 0; j < n0; j++) {
+        const x = live.pos[j * 3], y = live.pos[j * 3 + 1], z = live.pos[j * 3 + 2], r = Math.hypot(x, y, z);
+        if (r < 1) continue; // not propagated
+        const alt = (r - 1) * R_EARTH;
+        if (scale === "leo" && alt >= 2000) continue;
+        const f = radius(alt, scale) / r;
+        pos[k * 3] = x * f; pos[k * 3 + 1] = y * f; pos[k * 3 + 2] = z * f; cls[k] = live.cls[j]; altA[k] = alt; k++;
+      }
+      return { pos, cls, alt: altA, n: k };
+    }
     const visible = cells.filter((c) => (scale === "true" || c.alt < 2000));
     const total = visible.reduce((a, c) => a + c.n, 0);
-    const pos = new Float32Array(total * 3), cls = new Uint8Array(total);
+    const pos = new Float32Array(total * 3), cls = new Uint8Array(total), altA = new Float32Array(total);
     let k = 0;
     for (const c of visible) {
       const rnd = mulberry32(c.alt * 7919 + c.inc * 104729 + c.cls * 15485863);
@@ -57,25 +86,24 @@ export function GlobeCard({ cells, scale, hidden, ariaLabel, hint, shellReadout 
         pos[k * 3] = r * (cn * cu - sn * su * Math.cos(inc));
         pos[k * 3 + 1] = r * (sn * cu + cn * su * Math.cos(inc));
         pos[k * 3 + 2] = r * su * Math.sin(inc);
-        cls[k] = c.cls; k++;
+        cls[k] = c.cls; altA[k] = alt; k++;
       }
     }
-    return { pos, cls, n: total };
-  }, [cells, scale]);
+    return { pos, cls, alt: altA, n: total };
+  }, [cells, scale, live]);
 
   // Counts per shell for the pointer readout: 50 km bins in close-up, 1,000 km bins at true scale.
   const binKm = scale === "leo" ? 50 : 1000;
   const bins = useMemo(() => {
     const m = new Map<number, number[]>();
-    for (const c of cells) {
-      if (scale === "leo" && c.alt >= 2000) continue;
-      const b = Math.floor(c.alt / binKm);
+    for (let k = 0; k < dots.n; k++) {
+      const b = Math.floor(dots.alt[k] / binKm);
       const row = m.get(b) ?? CLASSES.map(() => 0);
-      row[c.cls] += c.n;
+      row[dots.cls[k]] += 1;
       m.set(b, row);
     }
     return m;
-  }, [cells, scale, binKm]);
+  }, [dots, binKm]);
 
   useEffect(() => {
     const el = box.current;
@@ -150,6 +178,20 @@ export function GlobeCard({ cells, scale, hidden, ariaLabel, hint, shellReadout 
       }
       ctx.stroke();
     }
+    if (live) {
+      ctx.strokeStyle = "rgba(127,211,227,.55)"; ctx.lineWidth = 0.9;
+      for (const ring of COAST) {
+        ctx.beginPath();
+        let pen = false;
+        for (let i = 0; i < ring.length / 3; i++) {
+          const p = project(ring[i * 3], ring[i * 3 + 1], ring[i * 3 + 2]);
+          if (p.d < 0) { pen = false; continue; }
+          if (pen) ctx.lineTo(p.sx, p.sy); else ctx.moveTo(p.sx, p.sy);
+          pen = true;
+        }
+        ctx.stroke();
+      }
+    }
     drawDots(true);
     // Altitude rings in the plane of the screen (outer edge of each shell), labeled.
     const marks = scale === "leo" ? [1000, 2000] : [2000, 20200, 35786];
@@ -161,7 +203,7 @@ export function GlobeCard({ cells, scale, hidden, ariaLabel, hint, shellReadout 
       ctx.fillStyle = "rgba(233,238,245,.55)";
       ctx.fillText(`${km.toLocaleString("en-US")} km`, cx + r * 0.71 + 4, cy - r * 0.71 - 4);
     }
-  }, [dots, w, H, hidden, scale, tick]);
+  }, [dots, w, H, hidden, scale, tick, live]);
 
   const onDown = (e: PointerEvent<HTMLCanvasElement>) => { drag.current = { x: e.clientX, y: e.clientY }; e.currentTarget.setPointerCapture(e.pointerId); };
   const onMove = (e: PointerEvent<HTMLCanvasElement>) => {
