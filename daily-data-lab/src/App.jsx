@@ -3,6 +3,7 @@ import { LANGUAGES, LANGUAGE_NAMES, dayText, getLanguage, languageFromSearch, lo
 import { DAYS } from "./days/index.js";
 import StudyArchive from "./StudyArchive.jsx";
 import { ShareStudy, StudyNavigation } from "./StudyActions.jsx";
+import { DownloadButton, StudyDownloads } from "./StudyDownloads.jsx";
 import ContributionCalendar from "./ContributionCalendar.jsx";
 import { LAB_INSIGHT, insightText } from "../../assets/daily-data-lab-insights.js";
 import { LanguageContext } from "./language.jsx";
@@ -138,9 +139,10 @@ function DayPage({ day, language }) {
         </p>
         <h1 tabIndex={-1}>{title}</h1>
         <p className="lead">{dayText(language, day.slug, "summary", day.summary)}</p>
-        <ShareStudy day={day} title={title} language={language} />
+        <ShareStudy day={day} title={title} language={language} extra={<DownloadButton slug={day.slug} language={language} />} />
       </header>
       <Component />
+      <StudyDownloads slug={day.slug} language={language} />
       <div className="study-nav-footer">{navigation}</div>
     </article>
   );

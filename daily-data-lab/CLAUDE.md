@@ -20,6 +20,7 @@ This folder is Alicia's Daily Data Lab: one small, interactive React visualizati
 3. If the source API can fail, bundle a small JSON snapshot in the day folder and import it, so the page still works offline. Add a refresh script in `scripts/` when it helps. Day 001 shows the pattern in `api.js` and `scripts/snapshot.mjs`.
 4. Run `npm run build`. The build writes to `../lab/`, and both `daily-data-lab/` and `lab/` must be committed.
 5. Update the day table in `README.md`. Add preview images at `../assets/img/lab-day-NNN.svg` (night) and `lab-day-NNN-light.svg` (light), 792 × 346, made from the day's real data, and set `preview`, `previewLight`, and `previewAlt` in `../assets/daily-data-lab-days.js`, with `previewAlt`, `title`, `summary`, and `topic` translated under `labDays.<slug>` in `../assets/i18n.js`. The portfolio front page shows the newest day automatically.
+6. Build the day's Excel workbooks: add `scripts/excel/days/dNNN.py` (copy the closest day) to `DAYS` in `scripts/excel/build.py`, run `npm run excel -- dNNN`, then `npm run excel:verify` (all checks PASS, no formula errors) before `npm run build`. Each workbook must be analyst-grade: every row (no top N), live formulas and drop-downs, native charts, the real pipeline steps, quality checks, data dictionary; the `.xlsm` adds the shared VBA module. See `scripts/excel/README.md`.
 
 ## Analysis standards
 Treat each day as a small analysis, not only a chart:

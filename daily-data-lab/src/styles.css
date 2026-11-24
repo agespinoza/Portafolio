@@ -903,6 +903,23 @@ h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; }
 .study-share { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: -12px 0 24px; }
 .study-share__status { color: var(--ink-2); font-size: .875rem; }
 
+/* Excel downloads (scripts/excel/) */
+.study-downloads { margin: 40px 0 8px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; scroll-margin-top: 16px; }
+.study-downloads:focus { outline: none; }
+.study-downloads:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.study-downloads h2 { margin: 0 0 6px; }
+.study-downloads__lead { margin: 0 0 18px; color: var(--ink-2); max-width: 70ch; }
+.study-downloads__files { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; }
+.study-downloads__file {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; align-items: center; min-width: 0;
+  padding: 14px 16px; border: 1px solid var(--line-2); border-radius: 10px; color: var(--ink); text-decoration: none; background: var(--paper);
+}
+.study-downloads__file:hover, .study-downloads__file:focus-visible { border-color: var(--accent); }
+.study-downloads__ext { grid-row: span 2; font: 600 .875rem/1 var(--mono, ui-monospace, monospace); color: var(--copper); padding: 10px 8px; border: 1px solid var(--line-2); border-radius: 8px; background: var(--surface); }
+.study-downloads__name { display: inline-flex; align-items: center; gap: 7px; font-weight: 600; color: var(--accent); }
+.study-downloads__note { color: var(--ink-3); font-size: .8125rem; line-height: 1.4; }
+.study-downloads__inside { margin: 16px 0 0; color: var(--ink-3); font-size: .8125rem; }
+
 @media (max-width: 760px) {
   .archive__filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .archive__search { grid-column: 1 / -1; }

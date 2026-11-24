@@ -39,7 +39,7 @@ export function StudyNavigation({ previous, next, language }) {
   );
 }
 
-export function ShareStudy({ day, title, language }) {
+export function ShareStudy({ day, title, language, extra = null }) {
   const copy = archiveCopy(language);
   const [feedback, setFeedback] = useState("");
   const url = studyUrl(day.slug, language);
@@ -67,6 +67,7 @@ export function ShareStudy({ day, title, language }) {
     <div className="study-share">
       {nativeShare && <button className="study-button" type="button" onClick={share}><StudyIcon name="share" />{copy.share}</button>}
       <button className="study-button" type="button" onClick={copyLink}><StudyIcon name="link" />{copy.copy}</button>
+      {extra}
       {feedback === "manual" && (
         <input className="study-share__url" aria-label={copy.manual} value={url} readOnly
           onFocus={(event) => event.target.select()} />

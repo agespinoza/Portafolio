@@ -12,6 +12,10 @@ One small, interactive data visualization a day, each on a different everyday to
 | 006 | Food | [Where is the world's food wasted, and by whom?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/6) | [UNEP Food Waste Index Report 2024](https://digitallibrary.un.org/record/4042857), [FAOSTAT](https://www.fao.org/faostat/en/#data/FS) (CC-BY 4.0), [World Bank WDI](https://datatopics.worldbank.org/world-development-indicators/) and CCKP (CC-BY 4.0) |
 | 007 | Space | [How much of Earth orbit is junk, and who left it there?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/7) | [CelesTrak SATCAT](https://celestrak.org/satcat/satcat-format.php) and the [ESA Space Environment Report 2026](https://www.esa.int/Space_Safety/Space_Debris/ESA_Space_Environment_Report_2026) |
 
+## Excel analysis downloads
+
+Each day page ends with a **Data analysis in Excel** card (and a header button) offering two workbooks built from the page's snapshot: an `.xlsx` (formulas, Excel tables, native charts, pipeline, quality checks, data dictionary) and an `.xlsm` with the same content plus VBA macros (refresh and check, PivotTable, column profile, CSV export, a Wilson-interval worksheet function). They are built by [`scripts/excel/`](scripts/excel/README.md) with `npm run excel` and checked in Excel with `npm run excel:verify`.
+
 ## Day 001: When is the best time to cross from Mexicali?
 
 The page shows northbound wait times at the Calexico West and Calexico East ports of entry:
