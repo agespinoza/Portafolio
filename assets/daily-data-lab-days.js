@@ -80,4 +80,18 @@ export const DAILY_DATA_LAB_DAYS = [
     previewLight: "assets/img/lab-day-006-light.svg",
     previewAlt: "Preview: household food waste per person in the countries that waste the most at home among 228, with Mexico and the United States highlighted, next to a donut of food waste by sector.",
   },
+  {
+    day: 7,
+    slug: "space-debris",
+    date: "2026-11-24",
+    title: "How much of Earth orbit is junk, and who left it there?",
+    summary:
+      "Every object in CelesTrak's satellite catalogue, 71,000 since 1957, sorted into working satellites, dead ones, rocket bodies, and fragments, by orbit, altitude, year, and owner, set against ESA's estimate of more than 1.5 million pieces too small to track.",
+    topic: "Space",
+    tags: ["React", "TypeScript", "DuckDB", "CelesTrak", "ESA"],
+    source: "CelesTrak SATCAT and the ESA Space Environment Report 2026",
+    preview: "assets/img/lab-day-007.svg",
+    previewLight: "assets/img/lab-day-007-light.svg",
+    previewAlt: "Preview: objects in low Earth orbit by altitude, working satellites against dead satellites, rocket bodies and debris, next to a donut showing that half of what is tracked in orbit is junk.",
+  },
 ];

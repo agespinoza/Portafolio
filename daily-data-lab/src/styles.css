@@ -998,3 +998,28 @@ h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; }
   .fw-donut { grid-template-columns: minmax(0, 1fr); justify-items: center; }
   .fw-stats .stat strong { font-size: 28px; }
 }
+
+/* ---------- Day 007 · Space debris ---------- */
+/* Kinds: teal (active) → slate (dead satellites) → sand (rocket bodies) → rust (debris) → pale (unidentified).
+   Orbit donut steps a teal ramp (LEO darkest). The selected owner uses the portfolio copper. Reuses the Day 006 layout. */
+:root {
+  --sd-active: #0d6b7f; --sd-inactive: #7d8798; --sd-rocket: #d9b37a; --sd-debris: #a84a28; --sd-debris-pale: #e2b8a5; --sd-unknown: #c9ced6;
+  --sd-o0: #0b4f5e; --sd-o1: #2b8d9c; --sd-o2: #5fa8b5; --sd-o3: #96cdd3; --sd-o4: #d9b37a; --sd-o5: #b07a3c; --sd-o6: #c9ced6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sd-active: #5cc2d6; --sd-inactive: #8390a5; --sd-rocket: #c9a26a; --sd-debris: #eda463; --sd-debris-pale: #6e4a2e; --sd-unknown: #3a465a;
+    --sd-o0: #7fd3e3; --sd-o1: #4fb0c2; --sd-o2: #2f8596; --sd-o3: #1f5a66; --sd-o4: #c9a26a; --sd-o5: #8f6a3a; --sd-o6: #3a465a;
+  }
+}
+:root[data-theme="dark"] {
+  --sd-active: #5cc2d6; --sd-inactive: #8390a5; --sd-rocket: #c9a26a; --sd-debris: #eda463; --sd-debris-pale: #6e4a2e; --sd-unknown: #3a465a;
+  --sd-o0: #7fd3e3; --sd-o1: #4fb0c2; --sd-o2: #2f8596; --sd-o3: #1f5a66; --sd-o4: #c9a26a; --sd-o5: #8f6a3a; --sd-o6: #3a465a;
+}
+.sd-area { stroke: var(--surface); stroke-width: .5; }
+.sd-hit { fill: transparent; outline: none; cursor: default; }
+.sd-hit:focus-visible { fill: color-mix(in srgb, var(--ink) 8%, transparent); }
+.sd-cursor { stroke: var(--ink-2); stroke-width: 1; pointer-events: none; }
+.sd-mark { font-size: 10px; }
+.sd .controls .select { min-width: 0; max-width: 100%; }
+.sd .controls .select select { max-width: min(100%, 22rem); text-overflow: ellipsis; }

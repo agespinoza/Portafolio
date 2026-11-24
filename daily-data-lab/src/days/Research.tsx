@@ -111,7 +111,7 @@ export function SourcesAndReferences({ sources, refs, checkedOn, language }: { s
       <h3>{rt(language, "refsTitle", "References (DOIs checked against Crossref and doi.org)")}</h3>
       <ol className="lp-refs">
         {refs.map((r) => (
-          <li key={r.doi ?? r.url}>{r.text}{" "}
+          <li key={r.doi ?? r.url ?? r.text}>{r.text}{" "}
             {r.doi ? <a href={`https://doi.org/${r.doi}`} target="_blank" rel="noopener">doi:{r.doi}</a>
               : r.url ? <a href={r.url} target="_blank" rel="noopener">{r.url.replace(/^https?:\/\//, "")}</a> : null}
           </li>

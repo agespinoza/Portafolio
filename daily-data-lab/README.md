@@ -10,6 +10,7 @@ One small, interactive data visualization a day, each on a different everyday to
 | 004 | Climate | [How fast are winters warming at Abraham Lake?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/4) | [HydroSHEDS · HydroLAKES](https://www.hydrosheds.org/products/hydrolakes) (CC-BY 4.0) and ERA5 air temperature via [Open-Meteo](https://open-meteo.com/) |
 | 005 | Languages | [Which languages are endangered and barely documented?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/5) | [Glottolog 5.4](https://doi.org/10.5281/zenodo.24101243), [Grambank 1.0.3](https://doi.org/10.5281/zenodo.7844558), and [WALS Online](https://wals.info/) CLDF (all CC-BY 4.0) |
 | 006 | Food | [Where is the world's food wasted, and by whom?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/6) | [UNEP Food Waste Index Report 2024](https://digitallibrary.un.org/record/4042857), [FAOSTAT](https://www.fao.org/faostat/en/#data/FS) (CC-BY 4.0), [World Bank WDI](https://datatopics.worldbank.org/world-development-indicators/) and CCKP (CC-BY 4.0) |
+| 007 | Space | [How much of Earth orbit is junk, and who left it there?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/7) | [CelesTrak SATCAT](https://celestrak.org/satcat/satcat-format.php) and the [ESA Space Environment Report 2026](https://www.esa.int/Space_Safety/Space_Debris/ESA_Space_Environment_Report_2026) |
 
 ## Day 001: When is the best time to cross from Mexicali?
 
@@ -107,6 +108,28 @@ UNEP's Food Waste Index Report 2024 estimates (year 2022) for all 228 countries 
 - FAO Food Loss Index by country, to compare loss (farm to retail) with waste (retail to home).
 - Refrigerator ownership and food prices as covariates for the temperature pattern.
 
+## Day 007: How much of Earth orbit is junk, and who left it there?
+
+Every Earth-orbiting object in CelesTrak's satellite catalogue (71,010 since 1957; 35,283 still in orbit on 2026-11-23), split into active satellites, dead satellites, rocket bodies, debris, and unidentified objects, by ESA orbit class, mean altitude, year, and owner. All 106 owners with objects in orbit are listed (no top-N cut). Two filters (orbit class and owner) recompute every KPI, chart, fact, and the owner ranking. Mode: SIMPLE (Tuesday), one bundled JSON, no API calls in the browser.
+
+- **Data pipeline (DuckDB, `scripts/day-007/`):** `build.sql` reads `raw/day-007-space-debris/satcat.csv` (downloaded once, as CelesTrak's usage policy asks) into `object.parquet`, with ESA orbit classes (Space Environment Report 2026, Table 1.2), active = `OPS_STATUS_CODE` in (+, P, B, S, X), mean altitude = (apogee + perigee) / 2, and a catalogue-entry date estimated from catalogue numbers (SATCAT has none). `snapshot.mjs` writes `data/day-007-space-debris/day-007.json` {kpis, byType, byOrbit, byAltitudeBin, byYearLaunched, byYearDecayed, activeVsDebrisByYear, byOwner, topFragmentationParents, cube} and stops if the filter cube does not reproduce the SQL totals; owner names come from CelesTrak's `sources.php`. `preview.mjs` draws the two preview images. Rebuild with `npm run data:debris`.
+- **Check against ESA:** 35,283 objects in orbit vs about 40,000 tracked by surveillance networks (ESA 2025 report, data to end of 2024); 17,473 active vs ≈11,300 active payloads in ESA's MASTER population at 1 February 2026. The gap is mostly ten months of launches (ESA: over 4,000 payloads in 2025) plus different definitions of "active". 1,022 intact re-entries in the last 12 months (2.8 a day) vs ESA's "more than three a day" for 2025.
+- **ESA size classes:** the brief's 54,000 / 1.2 M / 140 M are older figures. The 2026 report (§2.4, MASTER at 1 February 2026) gives 68,450 objects > 10 cm, 1.5 million from 1 to 10 cm, and 230 million from 1 mm to 1 cm; the page uses those.
+- **Finding:** half of what is tracked is junk (50.5%). Active satellites peak at 450–500 km (10,007, mostly constellation shells) and junk at 750–850 km, where ESA dates the Fengyun-1C (2007) and Iridium–Cosmos (2009) break-ups. The catalogue-number proxy places Fengyun-1C debris in 2007 and Kosmos 1408 debris in 2021, matching ESA's event dates.
+- **Downloads** go to `daily-data-lab/raw/day-007-space-debris/` (not versioned): `satcat.csv` (+ its HTTP headers, used for the snapshot date), `sources.html`, and ESA's report PDF.
+
+### Sprint 1
+
+- [x] CelesTrak SATCAT → DuckDB → day-007.json, cube checked against SQL totals (#24)
+- [x] Dashboard: 5 KPIs, type and orbit donuts, LEO altitude profile, population with ESA-dated events, additions and re-entries per year, all owners stacked and in a sortable table, top-10 debris clouds, ESA size classes on a log scale, family mode, attribution (#25)
+- [x] Research blocks with DOI-checked references, translations, cross-day insight, previews (#26)
+
+### Follow-up ideas
+
+- Fragmentation causes per event (collision, explosion, anti-satellite test) from ESA DISCOS (needs a DISCOSweb account).
+- Mass and cross-section by orbit, to weigh junk by collision risk instead of count.
+- Altitude profile over time: how constellation shells moved active satellites below the debris belt.
+
 ## Languages and publication calendar
 
 The portfolio and Daily Data Lab can be switched manually between English, Spanish, Japanese, Italian, French, Brazilian Portuguese, and Simplified Chinese. English is the default; the selected language is shared through the `lang` URL parameter. The contribution-style calendar shows published days from the last 12 months and links each marked date to its visualization. Publication metadata is maintained once in [`../assets/daily-data-lab-days.js`](../assets/daily-data-lab-days.js) and used by both the portfolio and this app.
@@ -126,6 +149,7 @@ npm run data:abraham         # HydroLAKES → dim_lake.parquet → snapshot (Day
 npm run fetch:abraham        # continues the Open-Meteo winter backfill within today's budget (Day 004)
 npm run data:languages       # Glottolog/Grambank/WALS CLDF → parquet → snapshot and previews (Day 005; needs raw/)
 npm run data:foodwaste       # UNEP/FAOSTAT/World Bank/CCKP → parquet → day-006.json and previews (Day 006; needs raw/)
+npm run data:debris          # CelesTrak SATCAT → parquet → day-007.json and previews (Day 007; needs raw/)
 npm run typecheck            # checks the TypeScript days (the build runs it too)
 ```
 

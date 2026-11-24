@@ -440,6 +440,12 @@ export const PT = {
       "summary": "As 1,05 bilhão de toneladas de comida desperdiçadas em 2022 segundo o PNUMA, divididas entre casas, restaurantes e lojas nos 228 países, comparadas com fome, renda e clima, com México e Estados Unidos lado a lado.",
       "topic": "Alimentação",
       "previewAlt": "Desperdício doméstico de alimentos por pessoa nos países que mais desperdiçam em casa entre os 228, com México e Estados Unidos destacados, ao lado de uma rosca do desperdício por setor."
+    },
+    "space-debris": {
+      "title": "Quanto da órbita terrestre é lixo, e quem o deixou lá?",
+      "summary": "Todos os objetos do catálogo de satélites do CelesTrak, 71.000 desde 1957, separados em satélites ativos, satélites mortos, corpos de foguete e fragmentos, por órbita, altitude, ano e dono, comparados à estimativa da ESA de mais de 1,5 milhão de peças pequenas demais para rastrear.",
+      "topic": "Espaço",
+      "previewAlt": "Objetos em órbita baixa por altitude, satélites ativos contra satélites mortos, corpos de foguete e detritos, ao lado de uma rosca que mostra que metade do que é rastreado em órbita é lixo."
     }
   },
   "lab": {

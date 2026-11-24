@@ -391,6 +391,12 @@ export const MESSAGES = {
         topic: "Alimentación",
         previewAlt: "Vista previa: desperdicio de alimentos en casa por persona en los países que más desperdician en casa de los 228, con México y Estados Unidos resaltados, junto a una dona del desperdicio por sector.",
       },
+      "space-debris": {
+        title: "¿Cuánto de la órbita terrestre es basura, y quién la dejó ahí?",
+        summary: "Todos los objetos del catálogo de satélites de CelesTrak, 71,000 desde 1957, separados en satélites que funcionan, satélites muertos, cuerpos de cohete y fragmentos, por órbita, altitud, año y dueño, frente a la estimación de la ESA de más de 1.5 millones de piezas demasiado pequeñas para rastrear.",
+        topic: "Espacio",
+        previewAlt: "Vista previa: objetos en órbita terrestre baja por altitud, satélites que funcionan frente a satélites muertos, cuerpos de cohete y basura, junto a una dona que muestra que la mitad de lo rastreado en órbita es basura.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -784,6 +790,12 @@ export const MESSAGES = {
         summary: "UNEPが推計した2022年の食品廃棄10.5億トンを、228か国すべてについて家庭・外食・小売に分け、飢餓・所得・気候と比較。メキシコと米国を並べて示します。",
         topic: "食",
         previewAlt: "プレビュー：228か国のうち家庭での1人あたり食品廃棄が多い国（メキシコと米国を強調）と、部門別の食品廃棄のドーナツグラフ。",
+      },
+      "space-debris": {
+        title: "地球周回軌道のどれだけがごみで、誰が残したのか？",
+        summary: "CelesTrakの衛星カタログに1957年以降登録された71,000個のすべての物体を、稼働衛星・停止衛星・ロケット本体・破片に分け、軌道・高度・年・所有者別に表示。追跡できないほど小さい150万個超の破片というESAの推定と比較します。",
+        topic: "宇宙",
+        previewAlt: "プレビュー：低軌道の物体を高度別に示し、稼働衛星と停止衛星・ロケット本体・デブリを比較。隣のドーナツグラフは、軌道上で追跡される物体の半分がごみであることを示します。",
       },
     },
     lab: {
@@ -1179,6 +1191,12 @@ export const MESSAGES = {
         topic: "Cibo",
         previewAlt: "Anteprima: spreco alimentare domestico a persona nei paesi che sprecano di più in casa tra i 228, con Messico e Stati Uniti evidenziati, accanto a una ciambella dello spreco per settore.",
       },
+      "space-debris": {
+        title: "Quanta parte dell'orbita terrestre è spazzatura, e chi l'ha lasciata lì?",
+        summary: "Tutti gli oggetti del catalogo satellitare di CelesTrak, 71.000 dal 1957, divisi in satelliti attivi, satelliti morti, corpi di razzo e frammenti, per orbita, quota, anno e proprietario, a confronto con la stima ESA di oltre 1,5 milioni di pezzi troppo piccoli per essere tracciati.",
+        topic: "Spazio",
+        previewAlt: "Anteprima: oggetti in orbita bassa per quota, satelliti attivi contro satelliti morti, corpi di razzo e detriti, accanto a una ciambella che mostra che metà di ciò che è tracciato in orbita è spazzatura.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -1572,6 +1590,12 @@ export const MESSAGES = {
         summary: "Les 1,05 milliard de tonnes de nourriture gaspillées en 2022 selon le PNUE, réparties entre foyers, restaurants et magasins pour les 228 pays, face à la faim, au revenu et au climat, avec le Mexique et les États-Unis côte à côte.",
         topic: "Alimentation",
         previewAlt: "Aperçu : gaspillage alimentaire domestique par personne dans les pays qui gaspillent le plus à la maison parmi les 228, Mexique et États-Unis surlignés, à côté d'un anneau du gaspillage par secteur.",
+      },
+      "space-debris": {
+        title: "Quelle part de l'orbite terrestre est un déchet, et qui l'y a laissé ?",
+        summary: "Tous les objets du catalogue de satellites de CelesTrak, 71 000 depuis 1957, répartis en satellites actifs, satellites morts, corps de fusée et fragments, par orbite, altitude, année et propriétaire, face à l'estimation de l'ESA de plus de 1,5 million de morceaux trop petits pour être suivis.",
+        topic: "Espace",
+        previewAlt: "Aperçu : objets en orbite basse par altitude, satellites actifs face aux satellites morts, corps de fusée et débris, à côté d'un anneau montrant que la moitié de ce qui est suivi en orbite est un déchet.",
       },
     },
     lab: {
