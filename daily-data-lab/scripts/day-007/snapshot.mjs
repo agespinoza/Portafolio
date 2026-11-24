@@ -84,6 +84,16 @@ const topFragmentationParents = (await rows(`
   FROM o d WHERE d.cls = 'debris' GROUP BY 1 ORDER BY pieces DESC LIMIT 10`))
   .map((r) => ({ launch: r.launch_key, parent: r.parent, owner: r.owner, orbit: r.orbit, pieces: N(r.pieces), inOrbit: N(r.inOrbit), eventYear: N(r.eventYear), launched: r.launched }));
 
+// Shells for the 3-D view: objects in orbit by mean altitude (10 km steps below 2,000 km, 100 km above, rounded down) and inclination (1°).
+// SATCAT has no node or phase, so the page spreads each object around its shell; only altitude and inclination are real.
+// [orbit, owner, cls, meanAltKm, inclinationDeg, n]; objects without orbit data are left out.
+const shells = (await rows(`
+  SELECT orbit, owner, cls,
+    (CASE WHEN mean_alt_km < 2000 THEN floor(mean_alt_km / 10) * 10 ELSE floor(mean_alt_km / 100) * 100 END)::INT alt,
+    round(incl)::INT inc, count(*) n
+  FROM o WHERE in_orbit AND orbit <> 'UFO' GROUP BY ALL ORDER BY ALL`))
+  .map((r) => [ORBITS.indexOf(r.orbit), OWNERS.indexOf(r.owner), CLS.indexOf(r.cls), N(r.alt), N(r.inc), N(r.n)]);
+
 // Checks: the cube must reproduce the DuckDB aggregates.
 const sum = (f) => cube.filter(f).reduce((a, r) => a + r[7], 0);
 const check = (label, a, b) => { if (a !== b) throw new Error(`${label}: cube ${a} ≠ DuckDB ${b}`); };
@@ -93,13 +103,15 @@ check("reentries", sum((r) => r[6] === 1), kpis.reentriesLastYear);
 check("catalogued", sum(() => true), kpis.catalogued);
 check("LEO bins", sum((r) => r[5] >= 0), byAltitudeBin.reduce((a, b) => a + b.n, 0));
 check("debris 2007", sum((r) => r[2] === 3 && r[3] <= 2007 && (r[4] === 0 || r[4] > 2007)), activeVsDebrisByYear.find((x) => x.year === 2007 && x.cls === "debris").n);
-console.log(`✓ cube (${cube.length} rows) matches DuckDB totals`);
+const ufo = byOrbit.find((x) => x.key === "UFO")?.n ?? 0;
+check("shells", shells.reduce((a, r) => a + r[5], 0), kpis.tracked - ufo);
+console.log(`✓ cube (${cube.length} rows) and shells (${shells.length} rows) match DuckDB totals`);
 
 const out = {
   source: "CelesTrak SATCAT (celestrak.org/pub/satcat.csv); ESA Space Debris Office, Annual Space Environment Report 2026 (MASTER, 1 Feb 2026)",
   capturedAt: new Date().toISOString(), asOf, yearAgo, esa,
   classes: CLS, orbits: ORBITS, owners: OWNERS.map((o) => ({ code: o, name: ownerNames[o] ?? o })),
-  kpis, byType, byOrbit, byAltitudeBin, byYearLaunched, byYearDecayed, activeVsDebrisByYear, byOwner, topFragmentationParents, cube,
+  kpis, byType, byOrbit, byAltitudeBin, byYearLaunched, byYearDecayed, activeVsDebrisByYear, byOwner, topFragmentationParents, cube, shells,
 };
 const dir = "data/day-007-space-debris";
 mkdirSync(dir, { recursive: true });

@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useLanguage } from "../../language.jsx";
-import { type Cls, AS_OF, CLASSES, CLS_COLOR, ESA, FIRST_YEAR, KPIS, ORBITS, OWNERS, PARENTS, YEAR_AGO, aggregate } from "./data";
+import { type Cls, AS_OF, CLASSES, CLS_COLOR, ESA, FIRST_YEAR, KPIS, ORBITS, OWNERS, PARENTS, YEAR_AGO, aggregate, shellsFor } from "./data";
+import { type Scale, GlobeCard } from "./Globe";
 import { type BarRow, BarChartCard, DonutCard, LogBarCard, YearChartCard } from "./Charts";
 import { type OwnerStat, DebrisFacts, KpiCard, OwnerTable, clsName, orbitName, ownerName } from "./Panels";
 import { tr, num, pct, fmtDate, compact } from "./text";
@@ -14,6 +15,8 @@ export default function SpaceDebrisDay() {
   const language: string = useLanguage();
   const [orbit, setOrbit] = useState<string>("all");
   const [owner, setOwner] = useState<string>("");
+  const [scale, setScale] = useState<Scale>("leo");
+  const [hidden, setHidden] = useState<Set<number>>(new Set());
 
   const all = orbit === "all" && !owner;
   const a = useMemo(() => aggregate({ orbit, owner }), [orbit, owner]);
@@ -74,6 +77,11 @@ export default function SpaceDebrisDay() {
   const wPeakActive = world.alt.reduce((b, v, i) => (v[0] > world.alt[b][0] ? i : b), 0);
   const wPeakJunk = world.alt.reduce((b, v, i) => (v[1] + v[2] + v[3] + v[4] > world.alt[b][1] + world.alt[b][2] + world.alt[b][3] + world.alt[b][4] ? i : b), 0);
   const topParent = PARENTS.filter((p) => (orbit === "all" || p.orbit === orbit) && (!owner || p.owner === owner)).sort((x, y) => y.inOrbit - x.inOrbit)[0];
+  // 3-D shell view: objects with orbit data in the filter; densest 50 km shells listed as text.
+  const cells = useMemo(() => shellsFor({ orbit, owner }), [orbit, owner]);
+  const shown = cells.filter((c) => (scale === "true" || c.alt < 2000) && !hidden.has(c.cls)).reduce((x, c) => x + c.n, 0);
+  const densest = a.alt.map((v, i) => ({ i, v, n: v.reduce((x, y) => x + y, 0) })).filter((x) => x.n > 0).sort((x, y) => y.n - x.n).slice(0, 3);
+  const toggle = (c: number) => setHidden((h) => { const n = new Set(h); if (n.has(c)) n.delete(c); else n.add(c); return n; });
   const km = (bin: number) => `${num(bin * 50, language)}–${num(bin * 50 + 50, language)} km`;
 
   return (
@@ -114,6 +122,42 @@ export default function SpaceDebrisDay() {
 
       <DebrisFacts tracked={a.tracked} junk={a.junk} debris={a.inOrbit[3]} recentIntact={a.recentIntact} language={language}
         topParent={topParent && topParent.inOrbit > 0 ? { name: topParent.parent, year: topParent.eventYear, inOrbit: topParent.inOrbit } : null} />
+
+      <section className="card sd-globe-card">
+        <div className="card__head"><div>
+          <h2>{tr(language, "globeTitle", "Every object in orbit, in 3-D")}</h2>
+          <p className="muted">{tr(language, "globeSub", "One dot per object, {scope}, at its real mean altitude and inclination. SATCAT has no position along the orbit, so each dot is spread around its shell: this shows how crowded each height and tilt is, not where anything is now. Drag or use the arrow keys to turn the globe.", { scope })}</p>
+        </div></div>
+        <div className="sd-globe-controls">
+          <div className="seg seg--small">
+            <span className="mono">{tr(language, "scale", "Scale")}</span>
+            <div className="seg__opts" role="radiogroup" aria-label={tr(language, "scale", "Scale")}>
+              {(["leo", "true"] as Scale[]).map((k) => (
+                <button key={k} type="button" role="radio" aria-checked={scale === k} className={scale === k ? "on" : ""} onClick={() => setScale(k)}>
+                  {k === "leo" ? tr(language, "scaleLeo", "Low orbit, stretched") : tr(language, "scaleTrue", "True scale, out to GEO")}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="sd-toggles" role="group" aria-label={tr(language, "showKinds", "Show kinds")}>
+            {CLASSES.map((c, i) => (
+              <button key={c} type="button" aria-pressed={!hidden.has(i)} className={hidden.has(i) ? "" : "on"} onClick={() => toggle(i)}>
+                <i style={{ background: CLS_COLOR[c] }} />{cName(c)}
+              </button>
+            ))}
+          </div>
+        </div>
+        <GlobeCard cells={cells} scale={scale} hidden={hidden}
+          ariaLabel={tr(language, "globeAria", "Globe with {n} objects in orbit drawn as dots by altitude and inclination. Densest shells: {list}.", {
+            n: num(shown, language), list: densest.map((d) => `${km(d.i)} (${num(d.n, language)})`).join(", ") })}
+          hint={scale === "leo"
+            ? tr(language, "globeHint", "{n} dots shown. Point at a height to read its shell. In close-up, altitude is stretched about 2.2 times so low orbit is visible.", { n: num(shown, language) })
+            : tr(language, "globeHintTrue", "{n} dots shown. Point at a height to read its 1,000 km shell. True scale: low orbit hugs the Earth, the navigation shell sits near 20,200 km and the geostationary ring at 35,786 km. Eccentric orbits are drawn at their mean altitude.", { n: num(shown, language) })}
+          shellReadout={(lo, hi, counts) => tr(language, "globeReadout", "{lo}–{hi} km shell: {total} objects · {parts}", {
+            lo: num(lo, language), hi: num(hi, language), total: num(counts.reduce((x, y) => x + y, 0), language), parts: readCounts(counts) || "—" })} />
+        {densest.length > 0 && <p className="lp-small">{tr(language, "globeDensest", "Densest 50 km shells in low orbit here: {list}.", {
+          list: densest.map((d) => `${km(d.i)}, ${num(d.n, language)} (${pct(d.v[0] / d.n, language)} ${tr(language, "activeShort", "active")})`).join(" · ") })}</p>}
+      </section>
 
       <div className="fw-grid">
         <section className="card">

@@ -1023,3 +1023,12 @@ h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; }
 .sd-mark { font-size: 10px; }
 .sd .controls .select { min-width: 0; max-width: 100%; }
 .sd .controls .select select { max-width: min(100%, 22rem); text-overflow: ellipsis; }
+.sd-globe-controls { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: flex-end; margin-bottom: 14px; }
+.sd-toggles { display: flex; flex-wrap: wrap; gap: 6px; }
+.sd-toggles button { display: inline-flex; align-items: center; gap: 6px; font: 500 12.5px/1 var(--sans); padding: 8px 11px; border-radius: 999px; border: 1px solid var(--line-2); background: transparent; color: var(--ink-3); cursor: pointer; }
+.sd-toggles button i { width: 10px; height: 10px; border-radius: 3px; opacity: .35; }
+.sd-toggles button.on { color: var(--ink); border-color: var(--ink-3); }
+.sd-toggles button.on i { opacity: 1; }
+.sd-globe canvas { cursor: grab; }
+.sd-globe canvas:active { cursor: grabbing; }
+.sd-globe canvas:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }

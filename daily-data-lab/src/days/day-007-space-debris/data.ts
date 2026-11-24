@@ -16,6 +16,8 @@ interface Snapshot {
   topFragmentationParents: Parent[];
   /** [orbit, owner, cls, entryYear, decayYear (0 = in orbit), altBin (50 km, LEO in orbit; -1), reenteredLast365, n] */
   cube: [number, number, number, number, number, number, number, number][];
+  /** [orbit, owner, cls, meanAltKm, inclinationDeg, n] for objects in orbit with orbit data (3-D view). */
+  shells: [number, number, number, number, number, number][];
 }
 const S = SNAPSHOT as unknown as Snapshot;
 
@@ -36,6 +38,12 @@ export const CLS_COLOR: Record<Cls, string> = {
 export const JUNK: Cls[] = ["inactive", "rocket", "debris", "unknown"];
 
 export interface Filter { orbit: string; owner: string }
+
+/** Objects in orbit with orbit data, for the 3-D view: one entry per (altitude, inclination, kind) cell in the filter. */
+export function shellsFor(f: Filter): { cls: number; alt: number; inc: number; n: number }[] {
+  const oi = f.orbit === "all" ? -1 : ORBITS.indexOf(f.orbit), wi = f.owner === "" ? -1 : OWNERS.findIndex((x) => x.code === f.owner);
+  return S.shells.filter(([o, w]) => (oi < 0 || o === oi) && (wi < 0 || w === wi)).map(([, , cls, alt, inc, n]) => ({ cls, alt, inc, n }));
+}
 const orbitIdx = (o: string) => (o === "all" ? -1 : ORBITS.indexOf(o));
 const ownerIdx = (o: string) => (o === "" ? -1 : OWNERS.findIndex((x) => x.code === o));
 

@@ -116,6 +116,7 @@ Every Earth-orbiting object in CelesTrak's satellite catalogue (71,010 since 195
 - **Check against ESA:** 35,283 objects in orbit vs about 40,000 tracked by surveillance networks (ESA 2025 report, data to end of 2024); 17,473 active vs ≈11,300 active payloads in ESA's MASTER population at 1 February 2026. The gap is mostly ten months of launches (ESA: over 4,000 payloads in 2025) plus different definitions of "active". 1,022 intact re-entries in the last 12 months (2.8 a day) vs ESA's "more than three a day" for 2025.
 - **ESA size classes:** the brief's 54,000 / 1.2 M / 140 M are older figures. The 2026 report (§2.4, MASTER at 1 February 2026) gives 68,450 objects > 10 cm, 1.5 million from 1 to 10 cm, and 230 million from 1 mm to 1 cm; the page uses those.
 - **Finding:** half of what is tracked is junk (50.5%). Active satellites peak at 450–500 km (10,007, mostly constellation shells) and junk at 750–850 km, where ESA dates the Fengyun-1C (2007) and Iridium–Cosmos (2009) break-ups. The catalogue-number proxy places Fengyun-1C debris in 2007 and Kosmos 1408 debris in 2021, matching ESA's event dates.
+- **3-D shell view:** a hand-drawn canvas globe (no 3-D library) with one dot per object in orbit at its real mean altitude and inclination, from a `shells` table in the JSON {orbit, owner, kind, altitude in 10 km steps, inclination in 1° steps}. SATCAT has no node or position along the orbit, so dots are spread around their shell with a fixed pseudo-random seed; the view shows density by height and tilt, not live positions. It follows the orbit and owner filters, has kind toggles, a stretched low-orbit close-up and a true-scale view out to GEO, drag and arrow-key rotation, a slow spin (off with reduced motion), and a hover readout per shell that matches the altitude bar chart.
 - **Downloads** go to `daily-data-lab/raw/day-007-space-debris/` (not versioned): `satcat.csv` (+ its HTTP headers, used for the snapshot date), `sources.html`, and ESA's report PDF.
 
 ### Sprint 1
@@ -123,12 +124,14 @@ Every Earth-orbiting object in CelesTrak's satellite catalogue (71,010 since 195
 - [x] CelesTrak SATCAT → DuckDB → day-007.json, cube checked against SQL totals (#24)
 - [x] Dashboard: 5 KPIs, type and orbit donuts, LEO altitude profile, population with ESA-dated events, additions and re-entries per year, all owners stacked and in a sortable table, top-10 debris clouds, ESA size classes on a log scale, family mode, attribution (#25)
 - [x] Research blocks with DOI-checked references, translations, cross-day insight, previews (#26)
+- [x] 3-D shell view of every object in orbit (altitude × inclination), with filters, kind toggles, two scales, and a shell readout (#27)
 
 ### Follow-up ideas
 
 - Fragmentation causes per event (collision, explosion, anti-satellite test) from ESA DISCOS (needs a DISCOSweb account).
 - Mass and cross-section by orbit, to weigh junk by collision risk instead of count.
 - Altitude profile over time: how constellation shells moved active satellites below the debris belt.
+- FULL-mode map of live positions from CelesTrak GP elements propagated with SGP4.
 
 ## Languages and publication calendar
 
