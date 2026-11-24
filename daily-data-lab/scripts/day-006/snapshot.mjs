@@ -37,9 +37,10 @@ console.log(`✓ ${recon.n} countries sum to ${(Number(recon.t) / 1e6).toFixed(1
 const EDIBLE = 0.25, MEAL_KG = 0.42;
 const mealsPerDay = (hhT) => (hhT * 1000 * EDIBLE) / MEAL_KG / 365;
 
-// Top 100 countries by World Bank population 2022 (World Bank members with a region).
-const countries = (await rows(`SELECT * FROM c WHERE region IS NOT NULL ORDER BY pop DESC LIMIT 100`)).map((r) => ({
-  iso3: r.iso3, iso2: r.iso2, name: r.name, region: r.region, incomeGroup: r.income, pop: Number(r.pop),
+// Every country in UNEP's Annex 3 (228). The 13 territories outside the World Bank list keep region "Not classified"
+// and the UN population implied by Annex 3.
+const countries = (await rows(`SELECT * FROM c ORDER BY coalesce(pop, pop_un) DESC`)).map((r) => ({
+  iso3: r.iso3, iso2: r.iso2, name: r.name, region: r.region ?? "Not classified", incomeGroup: r.income ?? "Not classified", pop: Math.round(Number(r.pop ?? r.pop_un)),
   householdKgCap: n(r.hh_kg, 0), foodServiceKgCap: n((1000 * Number(r.fs_t)) / Number(r.pop_un), 1), retailKgCap: n((1000 * Number(r.rt_t)) / Number(r.pop_un), 1),
   totalT: Math.round(Number(r.total_t)), confidence: r.confidence, eurostatFill: r.eurostat_fill,
   pou: n(r.pou, 1), pouFloor: r.pou_floor ?? false, hungryM: n(r.hungry_m, 1), tempC: n(r.temp_c, 1),

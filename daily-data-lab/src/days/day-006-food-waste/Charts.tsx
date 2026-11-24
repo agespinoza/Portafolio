@@ -1,24 +1,36 @@
 // Day 006 charts: hand-built SVG (no chart library), the same pattern as Days 004–005: a focusable row or mark per
 // datum, a hover/focus text readout, and a legend. All four card types are generic so the page reuses them.
-import { type KeyboardEvent, useState } from "react";
+import { type KeyboardEvent, useEffect, useRef, useState } from "react";
 
 const activate = (fn: () => void) => (e: KeyboardEvent) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); } };
 
 /* ---------- horizontal bars, optionally stacked ---------- */
 export interface BarRow { id: string; label: string; segments: number[]; highlight?: boolean; faded?: boolean; tag?: string; readout: string }
-export function BarChartCard({ rows, colors, legend, ariaLabel, hint, fmt, pinnedFrom, labelWidth = 150 }: {
+export function BarChartCard({ rows, colors, legend, ariaLabel, hint, fmt, pinnedFrom, labelWidth = 150, scroll, focusId }: {
   rows: BarRow[]; colors: string[]; legend?: string[]; ariaLabel: string; hint: string; fmt: (v: number) => string;
-  /** Rows from this index on are shown below a dashed rule (e.g. Mexico and the USA when they are outside the top 20). */
+  /** Rows from this index on are shown below a dashed rule. */
   pinnedFrom?: number; labelWidth?: number;
+  /** Long lists: cap the height and scroll inside the card. */
+  scroll?: boolean;
+  /** Row to scroll into view (the selected country). */
+  focusId?: string;
 }) {
   const [hover, setHover] = useState("");
+  const box = useRef<HTMLDivElement>(null);
   const W = 560, L = labelWidth, R = 64, RH = 16, GAP = 6, T = 4;
   const sep = pinnedFrom != null && pinnedFrom < rows.length ? 14 : 0;
   const H = T + rows.length * (RH + GAP) + sep + 4;
   const max = Math.max(1, ...rows.map((r) => r.segments.reduce((a, b) => a + b, 0)));
   const sx = (v: number) => (v / max) * (W - L - R);
-  return (
-    <figure className="chart fw-chart">
+  const focusIdx = focusId ? rows.findIndex((r) => r.id === focusId) : -1;
+  useEffect(() => {
+    const el = box.current;
+    if (!el || focusIdx < 0) return;
+    const svg = el.querySelector("svg");
+    const scale = svg ? svg.getBoundingClientRect().height / H : 1;
+    el.scrollTop = Math.max(0, (T + focusIdx * (RH + GAP)) * scale - el.clientHeight / 2);
+  }, [focusIdx, H]);
+  const svgEl = (
       <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label={ariaLabel}>
         {rows.map((r, i) => {
           const y = T + i * (RH + GAP) + (pinnedFrom != null && i >= pinnedFrom ? sep : 0);
@@ -41,6 +53,10 @@ export function BarChartCard({ rows, colors, legend, ariaLabel, hint, fmt, pinne
         })}
         {sep > 0 && <line x1={0} x2={W} y1={T + pinnedFrom! * (RH + GAP) + sep / 2 - 3} y2={T + pinnedFrom! * (RH + GAP) + sep / 2 - 3} className="fw-rule" />}
       </svg>
+  );
+  return (
+    <figure className="chart fw-chart">
+      {scroll && rows.length > 24 ? <div ref={box} className="fw-scroll">{svgEl}</div> : svgEl}
       {legend && legend.length > 1 && (
         <figcaption className="legend">{legend.map((l, k) => <span key={l}><i style={{ background: colors[k] }} />{l}</span>)}</figcaption>
       )}

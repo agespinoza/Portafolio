@@ -945,6 +945,11 @@ h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; }
 .fw-stats { grid-template-columns: repeat(5, minmax(0, 1fr)); }
 .fw-stats .stat strong { font-size: 34px; }
 .fw-scope { margin: 0; flex: 1 1 260px; }
+/* Long country rankings: every country is drawn; the chart scrolls inside its card. */
+.el-table-scroll { max-height: 520px; overflow: auto; overscroll-behavior: contain; }
+.el-table-scroll thead th { position: sticky; top: 0; background: var(--surface); z-index: 1; }
+.fw-scroll { max-height: 560px; overflow-y: auto; overscroll-behavior: contain; border-bottom: 1px solid var(--line); overflow-x: auto; }
+.fw-scroll svg { display: block; width: 100%; height: auto; }
 .fw-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
 .fw-grid > * { min-width: 0; }
 .fw-wide { grid-column: 1 / -1; }

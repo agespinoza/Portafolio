@@ -1,4 +1,4 @@
-// Day 006 data: UNEP Food Waste Index Report 2024 (year 2022) for the 100 most populous countries, joined with
+// Day 006 data: UNEP Food Waste Index Report 2024 (year 2022) for all 228 countries in Annex 3, joined with
 // FAOSTAT undernourishment, World Bank region / income group / population, and CCKP mean temperature.
 // Built with DuckDB (scripts/day-006/build.sql + snapshot.mjs) into one JSON bundled with the page: no network.
 import SNAPSHOT from "../../../data/day-006-food-waste/day-006.json";

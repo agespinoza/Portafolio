@@ -17,7 +17,7 @@ export const cName = (c: Country, language: string) => countryName(c.iso2, c.nam
 
 /* ---------- sortable country table ---------- */
 type Key = "name" | "pop" | "householdKgCap" | "foodServiceKgCap" | "retailKgCap" | "totalT" | "confidence" | "pou" | "tempC";
-export function DataTable({ rows, language }: { rows: Country[]; language: string }) {
+export function DataTable({ rows, focus, language }: { rows: Country[]; focus?: string; language: string }) {
   const [sort, setSort] = useState<{ key: Key; desc: boolean }>({ key: "totalT", desc: true });
   const [limit, setLimit] = useState(25);
   const COLS: [Key, string, string, boolean][] = [
@@ -31,8 +31,9 @@ export function DataTable({ rows, language }: { rows: Country[]; language: strin
     const d = typeof x === "string" ? x.localeCompare(y as string, language) : (x as number) - (y as number);
     return sort.desc ? -d : d;
   });
-  // Mexico and the USA always stay visible, even beyond the current page.
-  const shown = [...sorted.slice(0, limit), ...sorted.slice(limit).filter((c) => HIGHLIGHT.has(c.iso3))];
+  // Mexico, the USA and the selected country always stay visible, even beyond the current page.
+  const on = (iso3: string) => HIGHLIGHT.has(iso3) || iso3 === focus;
+  const shown = [...sorted.slice(0, limit), ...sorted.slice(limit).filter((c) => on(c.iso3))];
   const click = (k: Key, numeric: boolean) => setSort((s) => (s.key === k ? { key: k, desc: !s.desc } : { key: k, desc: numeric }));
   return (
     <div>
@@ -47,7 +48,7 @@ export function DataTable({ rows, language }: { rows: Country[]; language: strin
           </tr></thead>
           <tbody>
             {shown.map((c) => (
-              <tr key={c.iso3} className={HIGHLIGHT.has(c.iso3) ? "on fw-tr--hl" : ""}>
+              <tr key={c.iso3} className={on(c.iso3) ? "on fw-tr--hl" : ""}>
                 <th scope="row">{cName(c, language)}</th>
                 <td className="num">{num(c.pop / 1e6, language, 1)}</td>
                 <td className="num">{num(c.householdKgCap, language)}</td>

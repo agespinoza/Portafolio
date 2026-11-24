@@ -387,9 +387,9 @@ export const MESSAGES = {
       },
       "food-waste": {
         title: "¿Dónde se desperdicia la comida del mundo, y quién la tira?",
-        summary: "Los 1,050 millones de toneladas de comida que UNEP estima desperdiciadas en 2022, repartidas entre hogares, restaurantes y tiendas en los 100 países más poblados, frente al hambre, el ingreso y el clima, con México y Estados Unidos lado a lado.",
+        summary: "Los 1,050 millones de toneladas de comida que UNEP estima desperdiciadas en 2022, repartidas entre hogares, restaurantes y tiendas en los 228 países, frente al hambre, el ingreso y el clima, con México y Estados Unidos lado a lado.",
         topic: "Alimentación",
-        previewAlt: "Vista previa: desperdicio de alimentos en casa por persona en los 20 países con más desperdicio entre los 100 más poblados, con México y Estados Unidos resaltados, junto a una dona del desperdicio por sector.",
+        previewAlt: "Vista previa: desperdicio de alimentos en casa por persona en los países que más desperdician en casa de los 228, con México y Estados Unidos resaltados, junto a una dona del desperdicio por sector.",
       },
     },
     lab: {
@@ -781,9 +781,9 @@ export const MESSAGES = {
       },
       "food-waste": {
         title: "世界の食品はどこで、誰に捨てられているのか？",
-        summary: "UNEPが推計した2022年の食品廃棄10.5億トンを、人口上位100か国について家庭・外食・小売に分け、飢餓・所得・気候と比較。メキシコと米国を並べて示します。",
+        summary: "UNEPが推計した2022年の食品廃棄10.5億トンを、228か国すべてについて家庭・外食・小売に分け、飢餓・所得・気候と比較。メキシコと米国を並べて示します。",
         topic: "食",
-        previewAlt: "プレビュー：人口上位100か国のうち家庭での1人あたり食品廃棄が多い20か国（メキシコと米国を強調）と、部門別の食品廃棄のドーナツグラフ。",
+        previewAlt: "プレビュー：228か国のうち家庭での1人あたり食品廃棄が多い国（メキシコと米国を強調）と、部門別の食品廃棄のドーナツグラフ。",
       },
     },
     lab: {
@@ -1175,9 +1175,9 @@ export const MESSAGES = {
       },
       "food-waste": {
         title: "Dove si spreca il cibo del mondo, e chi lo spreca?",
-        summary: "Secondo l'UNEP, nel 2022 sono state sprecate 1,05 miliardi di tonnellate di cibo: qui divise tra case, ristoranti e negozi per i 100 paesi più popolosi e confrontate con fame, reddito e clima, con Messico e Stati Uniti fianco a fianco.",
+        summary: "Secondo l'UNEP, nel 2022 sono state sprecate 1,05 miliardi di tonnellate di cibo: qui divise tra case, ristoranti e negozi per tutti i 228 paesi e confrontate con fame, reddito e clima, con Messico e Stati Uniti fianco a fianco.",
         topic: "Cibo",
-        previewAlt: "Anteprima: spreco alimentare domestico a persona nei 20 paesi che sprecano di più tra i 100 più popolosi, con Messico e Stati Uniti evidenziati, accanto a una ciambella dello spreco per settore.",
+        previewAlt: "Anteprima: spreco alimentare domestico a persona nei paesi che sprecano di più in casa tra i 228, con Messico e Stati Uniti evidenziati, accanto a una ciambella dello spreco per settore.",
       },
     },
     lab: {
@@ -1569,9 +1569,9 @@ export const MESSAGES = {
       },
       "food-waste": {
         title: "Où la nourriture du monde est-elle gaspillée, et par qui ?",
-        summary: "Les 1,05 milliard de tonnes de nourriture gaspillées en 2022 selon le PNUE, réparties entre foyers, restaurants et magasins pour les 100 pays les plus peuplés, face à la faim, au revenu et au climat, avec le Mexique et les États-Unis côte à côte.",
+        summary: "Les 1,05 milliard de tonnes de nourriture gaspillées en 2022 selon le PNUE, réparties entre foyers, restaurants et magasins pour les 228 pays, face à la faim, au revenu et au climat, avec le Mexique et les États-Unis côte à côte.",
         topic: "Alimentation",
-        previewAlt: "Aperçu : gaspillage alimentaire domestique par personne dans les 20 pays les plus gaspilleurs parmi les 100 plus peuplés, Mexique et États-Unis surlignés, à côté d'un anneau du gaspillage par secteur.",
+        previewAlt: "Aperçu : gaspillage alimentaire domestique par personne dans les pays qui gaspillent le plus à la maison parmi les 228, Mexique et États-Unis surlignés, à côté d'un anneau du gaspillage par secteur.",
       },
     },
     lab: {

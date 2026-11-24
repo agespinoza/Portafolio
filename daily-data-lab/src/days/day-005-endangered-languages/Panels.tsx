@@ -25,8 +25,7 @@ export function RankingTable({ countries, active, onSelect, language }: {
   const rows = countries
     .filter((c) => sort !== "share" || c.living >= MIN_COUNTRY)
     .map((c) => ({ ...c, share: c.living ? c.endangered / c.living : 0 }))
-    .sort((a, b) => b[sort] - a[sort] || b.languages - a.languages)
-    .slice(0, 15);
+    .sort((a, b) => b[sort] - a[sort] || b.languages - a.languages);
   const SORTS: [SortKey, string, string][] = [["endangered", "sortEndangered", "Endangered"], ["priority", "sortPriority", "Priority"], ["share", "sortShare", "Share"]];
   return (
     <div>
@@ -38,7 +37,7 @@ export function RankingTable({ countries, active, onSelect, language }: {
           ))}
         </div>
       </div>
-      <div className="lp-table-wrap">
+      <div className="lp-table-wrap el-table-scroll">
         <table className="lp-table el-table">
           <thead><tr>
             <th scope="col">#</th><th scope="col">{tr(language, "country", "Country")}</th>

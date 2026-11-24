@@ -437,9 +437,9 @@ export const PT = {
     },
     "food-waste": {
       "title": "Onde a comida do mundo é desperdiçada, e por quem?",
-      "summary": "As 1,05 bilhão de toneladas de comida desperdiçadas em 2022 segundo o PNUMA, divididas entre casas, restaurantes e lojas nos 100 países mais populosos, comparadas com fome, renda e clima, com México e Estados Unidos lado a lado.",
+      "summary": "As 1,05 bilhão de toneladas de comida desperdiçadas em 2022 segundo o PNUMA, divididas entre casas, restaurantes e lojas nos 228 países, comparadas com fome, renda e clima, com México e Estados Unidos lado a lado.",
       "topic": "Alimentação",
-      "previewAlt": "Desperdício doméstico de alimentos por pessoa nos 20 países que mais desperdiçam entre os 100 mais populosos, com México e Estados Unidos destacados, ao lado de uma rosca do desperdício por setor."
+      "previewAlt": "Desperdício doméstico de alimentos por pessoa nos países que mais desperdiçam em casa entre os 228, com México e Estados Unidos destacados, ao lado de uma rosca do desperdício por setor."
     }
   },
   "lab": {

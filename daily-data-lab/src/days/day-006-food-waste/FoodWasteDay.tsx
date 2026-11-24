@@ -3,7 +3,7 @@ import { useLanguage } from "../../language.jsx";
 import {
   type Country, type Group,
   ASSUMPTIONS, BY_INCOME, BY_REGION, BY_SECTOR, CAPTURED_AT, CONFIDENCES, CONFIDENCE_ALL, COUNTRIES, FLI, HIGHLIGHT, INCOMES, KPIS, REGIONS, SECTOR_COLOR,
-  confColor, isMeasured, ols, pearson,
+  confColor, isMeasured, mealsPerDay, ols, pearson,
 } from "./data";
 import { type BarRow, BarChartCard, DonutCard, LineChartCard, ScatterCard } from "./Charts";
 import { DataTable, FoodFacts, KpiCard, cName, confName, incomeName, regionName } from "./Panels";
@@ -19,28 +19,35 @@ const fmtR = (r: number, language: string) => (Number.isFinite(r) ? r.toLocaleSt
 export default function FoodWasteDay() {
   const language: string = useLanguage();
   const [region, setRegion] = useState<string>("all");
+  const [countryId, setCountryId] = useState<string>("");
 
   const world = region === "all";
   const list = useMemo(() => COUNTRIES.filter((c) => world || c.region === region), [region]);
+  // Country filter: any country in the selected region (or the world). Choosing a region clears a country outside it.
+  const country = countryId ? list.find((c) => c.iso3 === countryId) ?? null : null;
+  const countryOptions = useMemo(() => [...list].sort((a, b) => cName(a, language).localeCompare(cName(b, language), language)), [list, language]);
+  const isOn = (iso3: string) => HIGHLIGHT.has(iso3) || iso3 === country?.iso3;
+  const pickRegion = (r: string) => { setRegion(r); if (country && r !== "all" && country.region !== r) setCountryId(""); };
   const group: Group | null = world ? null : BY_REGION.find((g) => g.key === region) ?? null;
   const scopeName = world ? tr(language, "world", "World") : regionName(region, language);
   const sName = (k: (typeof SECTORS)[number]) => tr(language, `sector_${k}`, SECTOR_EN[k]);
 
-  // KPIs: UNEP world aggregates, or the region's totals over every country UNEP covers there (not only the top 100).
-  const k = world
-    ? { totalMt: KPIS.totalMt, hhKg: KPIS.householdKgCap, meals: KPIS.mealsPerDay, hungry: KPIS.hungryPeopleM, countries: 228 }
-    : { totalMt: group!.totalT / 1e6, hhKg: group!.householdKgCap, meals: group!.mealsPerDay, hungry: group!.hungryM ?? 0, countries: group!.countries };
+  // KPIs: the selected country, UNEP world aggregates, or the region's totals over every country UNEP covers there.
+  const k = country
+    ? { totalMt: country.totalT / 1e6, hhKg: country.householdKgCap, meals: mealsPerDay((country.householdKgCap * country.pop) / 1000), hungry: country.hungryM, countries: 1 }
+    : world
+      ? { totalMt: KPIS.totalMt, hhKg: KPIS.householdKgCap, meals: KPIS.mealsPerDay, hungry: KPIS.hungryPeopleM as number | null, countries: COUNTRIES.length }
+      : { totalMt: group!.totalT / 1e6, hhKg: group!.householdKgCap, meals: group!.mealsPerDay, hungry: group!.hungryM ?? 0, countries: group!.countries };
+  const kScope = country ? cName(country, language) : scopeName;
 
-  // Rankings: top 20 by household kg/cap and by total tonnes, with Mexico and the USA pinned below when outside.
+  // Rankings: every country in view, no cut-off. The chart scrolls inside its card and jumps to the selected country.
   const ranked = (key: "householdKgCap" | "totalT") => {
     const sorted = [...list].sort((a, b) => b[key] - a[key]);
-    const top = sorted.slice(0, 20);
-    const pinned = sorted.slice(20).filter((c) => HIGHLIGHT.has(c.iso3));
-    return { rows: [...top, ...pinned], pinnedFrom: pinned.length ? top.length : undefined, rank: new Map(sorted.map((c, i) => [c.iso3, i + 1])) };
+    return { rows: sorted, rank: new Map(sorted.map((c, i) => [c.iso3, i + 1])) };
   };
   const byKg = ranked("householdKgCap"), byT = ranked("totalT");
   const kgRows: BarRow[] = byKg.rows.map((c) => ({
-    id: c.iso3, label: `${byKg.rank.get(c.iso3)}. ${cName(c, language)}`, segments: [c.householdKgCap], highlight: HIGHLIGHT.has(c.iso3), faded: !isMeasured(c) && c.confidence !== "Eurostat",
+    id: c.iso3, label: `${byKg.rank.get(c.iso3)}. ${cName(c, language)}`, segments: [c.householdKgCap], highlight: isOn(c.iso3), faded: !isMeasured(c) && c.confidence !== "Eurostat",
     readout: tr(language, "kgReadout", "{name}: {kg} kg per person a year at home · {conf} confidence", { name: cName(c, language), kg: num(c.householdKgCap, language), conf: confName(c.confidence, language) }),
   }));
   const tRows: BarRow[] = byT.rows.map((c) => {
@@ -48,7 +55,7 @@ export default function FoodWasteDay() {
     const seg = [c.householdKgCap * pop, (c.foodServiceKgCap ?? 0) * pop, (c.retailKgCap ?? 0) * pop];
     const scale = c.totalT / (seg.reduce((a, b) => a + b, 0) || 1); // keep UNEP's totals; split by sector shares
     return {
-      id: c.iso3, label: `${byT.rank.get(c.iso3)}. ${cName(c, language)}`, segments: seg.map((v) => v * scale), highlight: HIGHLIGHT.has(c.iso3),
+      id: c.iso3, label: `${byT.rank.get(c.iso3)}. ${cName(c, language)}`, segments: seg.map((v) => v * scale), highlight: isOn(c.iso3),
       readout: tr(language, "tReadout", "{name}: {t} Mt a year · households {hh}%, food service {fs}%, retail {rt}%", {
         name: cName(c, language), t: mt(c.totalT, language),
         hh: Math.round((seg[0] / (seg[0] + seg[1] + seg[2])) * 100), fs: Math.round((seg[1] / (seg[0] + seg[1] + seg[2])) * 100), rt: Math.round((seg[2] / (seg[0] + seg[1] + seg[2])) * 100),
@@ -84,8 +91,8 @@ export default function FoodWasteDay() {
   const tAll = fit(list, (c) => c.tempC), tM = fit(list.filter(isMeasured), (c) => c.tempC);
   const pAll = fit(list, (c) => c.pou), pM = fit(list.filter(isMeasured), (c) => c.pou);
   const point = (c: Country, x: number, xr: string) => ({
-    id: c.iso3, label: cName(c, language), x, y: c.householdKgCap, color: HIGHLIGHT.has(c.iso3) ? "var(--copper)" : confColor(c.confidence),
-    measured: isMeasured(c) || c.confidence === "Eurostat", highlight: HIGHLIGHT.has(c.iso3),
+    id: c.iso3, label: cName(c, language), x, y: c.householdKgCap, color: isOn(c.iso3) ? "var(--copper)" : confColor(c.confidence),
+    measured: isMeasured(c) || c.confidence === "Eurostat", highlight: isOn(c.iso3),
     readout: `${cName(c, language)}: ${num(c.householdKgCap, language)} kg · ${xr} · ${confName(c.confidence, language)}`,
   });
   const fits = (all: typeof tAll, m: typeof tM) => [
@@ -105,7 +112,7 @@ export default function FoodWasteDay() {
   // Takeaways and research values, recomputed from the bundled data.
   const inc = (key: string) => BY_INCOME.find((g) => g.key === key)!;
   const mex = COUNTRIES.find((c) => c.iso3 === "MEX")!, usa = COUNTRIES.find((c) => c.iso3 === "USA")!;
-  const all100 = { t: fit(COUNTRIES, (c) => c.tempC), tm: fit(COUNTRIES.filter(isMeasured), (c) => c.tempC), p: fit(COUNTRIES, (c) => c.pou), pm: fit(COUNTRIES.filter(isMeasured), (c) => c.pou) };
+  const allC = { t: fit(COUNTRIES, (c) => c.tempC), tm: fit(COUNTRIES.filter(isMeasured), (c) => c.tempC), p: fit(COUNTRIES, (c) => c.pou), pm: fit(COUNTRIES.filter(isMeasured), (c) => c.pou) };
   const fli = FLI.filter((f) => f.product === "ALP");
   const lossFirst = fli[0], lossLast = fli[fli.length - 1];
   const topMeasured = [...COUNTRIES].filter(isMeasured).sort((a, b) => b.householdKgCap - a.householdKgCap)[0];
@@ -118,27 +125,36 @@ export default function FoodWasteDay() {
       <div className="controls" role="group" aria-label={tr(language, "controlsAria", "Filter the dashboard by region")}>
         <label className="select">
           <span className="mono">{tr(language, "region", "Region")}</span>
-          <select value={region} onChange={(e) => setRegion(e.target.value)}>
+          <select value={region} onChange={(e) => pickRegion(e.target.value)}>
             <option value="all">{tr(language, "world", "World")}</option>
             {REGIONS.map((r) => <option key={r} value={r}>{regionName(r, language)}</option>)}
           </select>
         </label>
-        <p className="muted fw-scope">{tr(language, "scopeNote", "{n} of the 100 most populous countries in view. Mexico and the United States are highlighted in copper.", { n: list.length })}</p>
-        {!world && <button type="button" className="gw-reset" onClick={() => setRegion("all")}>{tr(language, "reset", "Reset")}</button>}
+        <label className="select">
+          <span className="mono">{tr(language, "country", "Country")}</span>
+          <select value={country?.iso3 ?? ""} onChange={(e) => setCountryId(e.target.value)}>
+            <option value="">{tr(language, "allCountries", "All countries ({n})", { n: list.length })}</option>
+            {countryOptions.map((c) => <option key={c.iso3} value={c.iso3}>{cName(c, language)}</option>)}
+          </select>
+        </label>
+        <p className="muted fw-scope">{tr(language, "scopeNote", "{n} of {all} countries in view. Mexico, the United States and the country you pick are highlighted in copper.", { n: list.length, all: COUNTRIES.length })}</p>
+        {(!world || country) && <button type="button" className="gw-reset" onClick={() => { setRegion("all"); setCountryId(""); }}>{tr(language, "reset", "Reset")}</button>}
       </div>
 
       {/* Key numbers */}
-      <section className="stats fw-stats" aria-label={tr(language, "statsAria", "Key numbers for {scope}", { scope: scopeName })}>
-        <KpiCard accent label={tr(language, "kpiTotal", "Food wasted, 2022")} value={`${num(k.totalMt, language, k.totalMt < 100 ? 1 : 0)} Mt`}
-          note={tr(language, "kpiTotalNote", "households, food service and retail · {scope}, {n} countries", { scope: scopeName, n: k.countries })} />
+      <section className="stats fw-stats" aria-label={tr(language, "statsAria", "Key numbers for {scope}", { scope: kScope })}>
+        <KpiCard accent label={tr(language, "kpiTotal", "Food wasted, 2022")} value={k.totalMt < 1 ? `${num(k.totalMt * 1000, language, k.totalMt < 0.01 ? 1 : 0)} kt` : `${num(k.totalMt, language, k.totalMt < 100 ? 1 : 0)} Mt`}
+          note={country ? tr(language, "kpiTotalNoteCountry", "households, food service and retail · {scope}", { scope: kScope }) : tr(language, "kpiTotalNote", "households, food service and retail · {scope}, {n} countries", { scope: kScope, n: k.countries })} />
         <KpiCard label={tr(language, "kpiPct", "Share of consumer food wasted")} value={pct(KPIS.pctWasted, language)}
           note={tr(language, "kpiPctNote", "world: {t} Mt of {c} billion t available (UNEP)", { t: num(KPIS.totalMt, language), c: num(ASSUMPTIONS.consumerFoodT / 1e9, language, 1) })} />
         <KpiCard label={tr(language, "kpiHh", "Wasted at home per person")} value={`${num(k.hhKg, language)} kg`}
           note={tr(language, "kpiHhNote", "a year · {w} kg a week", { w: num(k.hhKg / 52, language, 1) })} />
-        <KpiCard label={tr(language, "kpiMeals", "Meals wasted at home per day")} value={tr(language, "kpiMealsValue", "{n} M", { n: num(k.meals / 1e6, language) })}
+        <KpiCard label={tr(language, "kpiMeals", "Meals wasted at home per day")} value={k.meals < 1e6 ? num(Math.round(k.meals / 100) * 100, language) : tr(language, "kpiMealsValue", "{n} M", { n: num(k.meals / 1e6, language, k.meals < 1e7 ? 1 : 0) })}
           note={tr(language, "kpiMealsNote", "if {e} is edible and a meal weighs {g} g", { e: pct(ASSUMPTIONS.edibleShare, language), g: ASSUMPTIONS.mealKg * 1000 })} />
-        <KpiCard label={tr(language, "kpiHungry", "Undernourished people")} value={tr(language, "kpiMealsValue", "{n} M", { n: num(k.hungry, language) })}
-          note={world ? tr(language, "kpiHungryNote", "FAOSTAT, 2021–2023 average") : tr(language, "kpiHungryNoteRegion", "at least; countries under 2.5% are not counted")} />
+        <KpiCard label={tr(language, "kpiHungry", "Undernourished people")} value={k.hungry == null ? "—" : tr(language, "kpiMealsValue", "{n} M", { n: num(k.hungry, language, country && k.hungry < 10 ? 1 : 0) })}
+          note={country
+            ? (country.pouFloor ? tr(language, "kpiHungryNoteFloor", "under 2.5% of the population (FAO floor)") : country.pou == null ? tr(language, "kpiHungryNoteNone", "no FAOSTAT estimate") : tr(language, "kpiHungryNoteCountry", "{p}% of the population, FAOSTAT 2021–2023", { p: num(country.pou, language, 1) }))
+            : world ? tr(language, "kpiHungryNote", "FAOSTAT, 2021–2023 average") : tr(language, "kpiHungryNoteRegion", "at least; countries under 2.5% are not counted")} />
       </section>
 
       <FoodFacts list={list} mealsPerDay={k.meals} incomeKg={{ hi: inc("High income").householdKgCap, lmi: inc("Lower middle income").householdKgCap }} language={language} />
@@ -147,18 +163,18 @@ export default function FoodWasteDay() {
         <section className="card">
           <div className="card__head"><div>
             <h2>{tr(language, "kgTitle", "Who wastes the most at home, per person?")}</h2>
-            <p className="muted">{tr(language, "kgSub", "Top 20 in {scope}, kg per person a year. Faded bars are extrapolated (low or very low confidence).", { scope: scopeName })}</p>
+            <p className="muted">{tr(language, "kgSub", "All {n} countries in {scope}, kg per person a year; scroll the chart to see them all. Faded bars are extrapolated (low or very low confidence).", { n: list.length, scope: scopeName })}</p>
           </div></div>
-          <BarChartCard rows={kgRows} colors={["var(--fw-s0)"]} pinnedFrom={byKg.pinnedFrom} fmt={(v) => `${num(v, language)} kg`}
-            ariaLabel={tr(language, "kgAria", "Household food waste per person, top 20 countries")} hint={tr(language, "barHint", "Hover or focus a bar to read it.")} />
+          <BarChartCard rows={kgRows} colors={["var(--fw-s0)"]} scroll focusId={country?.iso3} fmt={(v) => `${num(v, language)} kg`}
+            ariaLabel={tr(language, "kgAria", "Household food waste per person, all countries in view")} hint={tr(language, "barHint", "Hover or focus a bar to read it.")} />
         </section>
         <section className="card">
           <div className="card__head"><div>
             <h2>{tr(language, "tTitle", "Where the most food is wasted in total")}</h2>
-            <p className="muted">{tr(language, "tSub", "Top 20 in {scope}, million tonnes a year, split by sector.", { scope: scopeName })}</p>
+            <p className="muted">{tr(language, "tSub", "All {n} countries in {scope}, million tonnes a year, split by sector; scroll the chart to see them all.", { n: list.length, scope: scopeName })}</p>
           </div></div>
-          <BarChartCard rows={tRows} colors={SEG_COLORS} legend={SECTORS.map(sName)} pinnedFrom={byT.pinnedFrom} fmt={(v) => `${mt(v, language)} Mt`}
-            ariaLabel={tr(language, "tAria", "Total food waste by country and sector, top 20")} hint={tr(language, "barHint", "Hover or focus a bar to read it.")} />
+          <BarChartCard rows={tRows} colors={SEG_COLORS} legend={SECTORS.map(sName)} scroll focusId={country?.iso3} fmt={(v) => `${mt(v, language)} Mt`}
+            ariaLabel={tr(language, "tAria", "Total food waste by country and sector, all countries in view")} hint={tr(language, "barHint", "Hover or focus a bar to read it.")} />
         </section>
 
         <section className="card">
@@ -235,7 +251,7 @@ export default function FoodWasteDay() {
           <h2>{tr(language, "tableTitle", "All countries in view")}</h2>
           <p className="muted">{tr(language, "tableSub", "{n} countries in {scope}, kg per person a year (2022).", { n: list.length, scope: scopeName })}</p>
         </div></div>
-        <DataTable key={region} rows={list} language={language} />
+        <DataTable key={region} rows={list} focus={country?.iso3} language={language} />
       </section>
 
       <FoodWasteQuestions language={language} v={{
@@ -243,9 +259,9 @@ export default function FoodWasteDay() {
         fs: num(KPIS.foodServiceMt, language), rt: num(KPIS.retailMt, language),
         hi: num(inc("High income").householdKgCap, language), umi: num(inc("Upper middle income").householdKgCap, language),
         lmi: num(inc("Lower middle income").householdKgCap, language), li: num(inc("Low income").householdKgCap, language),
-        n: all100.t.n, rAll: fmtR(all100.t.r, language), loAll: fmtR(all100.t.lo, language), hiAll: fmtR(all100.t.hi, language),
-        nM: all100.tm.n, rM: fmtR(all100.tm.r, language), loM: fmtR(all100.tm.lo, language), hiM: fmtR(all100.tm.hi, language),
-        nP: all100.p.n, rP: fmtR(all100.p.r, language), loP: fmtR(all100.p.lo, language), hiP: fmtR(all100.p.hi, language), rPM: fmtR(all100.pm.r, language),
+        n: allC.t.n, rAll: fmtR(allC.t.r, language), loAll: fmtR(allC.t.lo, language), hiAll: fmtR(allC.t.hi, language),
+        nM: allC.tm.n, rM: fmtR(allC.tm.r, language), loM: fmtR(allC.tm.lo, language), hiM: fmtR(allC.tm.hi, language),
+        nP: allC.p.n, rP: fmtR(allC.p.r, language), loP: fmtR(allC.p.lo, language), hiP: fmtR(allC.p.hi, language), rPM: fmtR(allC.pm.r, language),
         meals: num(KPIS.mealsPerDay / 1e9, language, 2), hungry: num(KPIS.hungryPeopleM, language, 1),
       }} />
 
@@ -261,8 +277,8 @@ export default function FoodWasteDay() {
             usaT: mt(usa.totalT, language), mexT: mt(mex.totalT, language) })}</li>
           <li><strong>{tr(language, "t3Head", "Income barely changes household waste.")}</strong> {tr(language, "t3", "High-income countries average {hi} kg per person; upper-middle {umi}; lower-middle {lmi}. Food waste is not only a rich-world problem.", {
             hi: num(inc("High income").householdKgCap, language), umi: num(inc("Upper middle income").householdKgCap, language), lmi: num(inc("Lower middle income").householdKgCap, language) })}</li>
-          <li><strong>{tr(language, "t4Head", "The heat signal shrinks with better data.")}</strong> {tr(language, "t4", "Temperature and household waste correlate at r = {r} across the 100 countries, but r = {rm} across the {nm} measured ones. Extrapolated estimates copy their neighbours, which makes regional patterns look stronger.", {
-            r: fmtR(all100.t.r, language), rm: fmtR(all100.tm.r, language), nm: all100.tm.n })}</li>
+          <li><strong>{tr(language, "t4Head", "The heat signal shrinks with better data.")}</strong> {tr(language, "t4", "Temperature and household waste correlate at r = {r} across all {n} countries with a temperature, but r = {rm} across the {nm} measured ones. Extrapolated estimates copy their neighbours, which makes regional patterns look stronger.", {
+            r: fmtR(allC.t.r, language), n: allC.t.n, rm: fmtR(allC.tm.r, language), nm: allC.tm.n })}</li>
           <li><strong>{tr(language, "t5Head", "Waste and hunger sit side by side.")}</strong> {tr(language, "t5", "The edible share of household waste alone is about {meals} billion meals a day, while {hungry} million people are undernourished. Before shops, another {p}% of food is lost (FAO, {y}); that share has barely moved since {y0} ({p0}%).", {
             meals: num(KPIS.mealsPerDay / 1e9, language, 2), hungry: num(KPIS.hungryPeopleM, language, 1), p: num(lossLast.lossPct ?? 0, language, 1), y: lossLast.year, y0: lossFirst.year, p0: num(lossFirst.lossPct ?? 0, language, 1) })}</li>
           <li><strong>{tr(language, "t6Head", "Few countries are measured well.")}</strong> {tr(language, "t6", "Of 228 countries, {high} have a high-confidence household estimate and {med} a medium one; the highest measured figure here is {top} ({kg} kg).", {
@@ -271,7 +287,7 @@ export default function FoodWasteDay() {
       </section>
 
       <FoodWasteQuality language={language} v={{
-        countries: 228, hh: num(KPIS.householdMt, language, 2), sum: num(KPIS.totalMt * (1 + KPIS.reconstructionGap), language, 1), total: num(KPIS.totalMt, language, 1),
+        countries: COUNTRIES.length, hh: num(KPIS.householdMt, language, 2), sum: num(KPIS.totalMt * (1 + KPIS.reconstructionGap), language, 1), total: num(KPIS.totalMt, language, 1),
         gap: pct(KPIS.reconstructionGap, language, 2), high: conf100("High"), medium: conf100("Medium"), euro: conf100("Eurostat"), low: conf100("Low"), vlow: conf100("Very low"),
       }} />
 
@@ -280,7 +296,7 @@ export default function FoodWasteDay() {
         <h2>{tr(language, "methodTitle", "Method & sources")}</h2>
         <div className="method__text">
           <p>{tr(language, "method1", "Food waste is UNEP's Food Waste Index Report 2024 Level 1 estimate for 2022 (SDG 12.3.1(b)): household figures from the report's Annex 3 for all 228 countries, food service and retail from the UN SDG Global Database. For 27 European countries that database carries Eurostat rows instead, so food service and retail use the Eurostat 2020 values UNEP used. World KPIs are UNEP's published aggregates; region and income totals add up every country UNEP covers.")}</p>
-          <p>{tr(language, "method2", "The 100 countries are the most populous World Bank members in 2022. Region and income group are the World Bank's current classification. Undernourishment is FAOSTAT's 2021–2023 average; temperature is the CRU TS 4.08 1991–2020 mean from the World Bank Climate Change Knowledge Portal. \"Measured\" means UNEP rated the household estimate high or medium confidence; low and very low are extrapolated from countries in the same region and income group. Meals follow UNEP's conservative assumption: 25% of household waste is edible and a meal weighs 420 g. The 19% share compares the world total with 5.5 billion tonnes of food available for consumption (FAOSTAT 2020), as UNEP does.")}</p>
+          <p>{tr(language, "method2", "The page includes all 228 countries and territories in UNEP's Annex 3, with no ranking cut-off. Region and income group are the World Bank's current classification; 13 territories outside the World Bank list appear as \"Not classified\" and use the UN population implied by UNEP. Undernourishment is FAOSTAT's 2021–2023 average; temperature is the CRU TS 4.08 1991–2020 mean from the World Bank Climate Change Knowledge Portal. \"Measured\" means UNEP rated the household estimate high or medium confidence; low and very low are extrapolated from countries in the same region and income group. Meals follow UNEP's conservative assumption: 25% of household waste is edible and a meal weighs 420 g. The 19% share compares the world total with 5.5 billion tonnes of food available for consumption (FAOSTAT 2020), as UNEP does.")}</p>
           <p>{tr(language, "method3", "Food waste includes inedible parts (bones, peels, shells). Correlations are across countries and say nothing about causes. Snapshot built {date}.", { date: fmtDate(CAPTURED_AT, language) })}</p>
         </div>
         <p className="method__sources">

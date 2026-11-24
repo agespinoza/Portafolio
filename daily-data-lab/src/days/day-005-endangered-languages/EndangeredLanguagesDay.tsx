@@ -191,7 +191,7 @@ export default function EndangeredLanguagesDay() {
       <section className="card">
         <div className="card__head"><div>
           <h2>{tr(language, "rankTitle", "Countries with the most endangered languages")}</h2>
-          <p className="muted">{tr(language, "rankSub", "Top 15 in {scope}. Priority = shifting or worse with no grammar sketch.", { scope: macro >= 0 || family != null ? [macro >= 0 ? tr(language, `macro${macro}`, MACROAREAS[macro]) : null, family != null ? FAMILIES[family].name : null].filter(Boolean).join(" · ") : tr(language, "world", "World") })}</p>
+          <p className="muted">{tr(language, "rankSub", "All {n} countries in {scope}; scroll the table to see them all. Priority = shifting or worse with no grammar sketch.", { n: countries.length, scope: macro >= 0 || family != null ? [macro >= 0 ? tr(language, `macro${macro}`, MACROAREAS[macro]) : null, family != null ? FAMILIES[family].name : null].filter(Boolean).join(" · ") : tr(language, "world", "World") })}</p>
         </div></div>
         <RankingTable countries={countries} active={country} onSelect={setCountry} language={language} />
       </section>
