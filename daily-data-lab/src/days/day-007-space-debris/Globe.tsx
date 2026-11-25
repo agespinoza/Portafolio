@@ -18,13 +18,13 @@ const COAST: Float32Array[] = (LAND as unknown as { rings: [number, number][][] 
 
 const R_EARTH = 6378.137;
 /** Night palette (the canvas is always dark): same hues as the page's dark-mode tokens. */
-const DOT: Record<Cls, string> = { active: "#5cc2d6", inactive: "#9aa6ba", rocket: "#d9b37a", debris: "#f08a4b", unknown: "#c9ced6" };
+export const DOT: Record<Cls, string> = { active: "#5cc2d6", inactive: "#9aa6ba", rocket: "#d9b37a", debris: "#f08a4b", unknown: "#c9ced6" };
 
 export type Scale = "leo" | "true";
 export interface GlobeCell { cls: number; alt: number; inc: number; n: number }
 /** Real Earth-fixed positions in Earth radii (z = north) from SGP4, one kind per object. */
 export interface LiveDots { pos: Float32Array; cls: Uint8Array }
-interface Props {
+export interface Props {
   cells: GlobeCell[]; scale: Scale; hidden: Set<number>; ariaLabel: string; hint: string;
   /** When set, draw these real positions (and the continents) instead of the catalogue shells. */
   live?: LiveDots | null;
@@ -43,21 +43,13 @@ function mulberry32(seed: number) {
 }
 
 /** Radius in Earth radii. Close-up exaggerates low orbit (2,000 km → 1.7 R); true scale is to scale. */
-const radius = (alt: number, scale: Scale) => (scale === "leo" ? 1 + (Math.min(alt, 2000) / 2000) * 0.7 : 1 + alt / R_EARTH);
-const altFromRadius = (r: number, scale: Scale) => (scale === "leo" ? ((r - 1) / 0.7) * 2000 : (r - 1) * R_EARTH);
+export const radius = (alt: number, scale: Scale) => (scale === "leo" ? 1 + (Math.min(alt, 2000) / 2000) * 0.7 : 1 + alt / R_EARTH);
+export const altFromRadius = (r: number, scale: Scale) => (scale === "leo" ? ((r - 1) / 0.7) * 2000 : (r - 1) * R_EARTH);
 
-export function GlobeCard({ cells, scale, hidden, ariaLabel, hint, shellReadout, live }: Props) {
-  const box = useRef<HTMLDivElement>(null);
-  const canvas = useRef<HTMLCanvasElement>(null);
-  const [w, setW] = useState(640);
-  const view = useRef({ yaw: 0.6, pitch: 0.35 });
-  const drag = useRef<{ x: number; y: number } | null>(null);
-  const [readout, setReadout] = useState("");
-  const [tick, setTick] = useState(0);
-  const H = Math.round(Math.min(560, Math.max(320, w * 0.72)));
 
-  // One dot per object: position in Earth radii (x, y, z with z = north), its kind, and its altitude.
-  const dots = useMemo(() => {
+export interface Dots { pos: Float32Array; cls: Uint8Array; alt: Float32Array; n: number }
+/** One dot per object: position in Earth radii (x, y, z with z = north), its kind, and its altitude. */
+export function buildDots(cells: GlobeCell[], scale: Scale, live: LiveDots | null | undefined): Dots {
     if (live) {
       // Real positions: keep the direction, map the altitude onto the chosen radial scale (close-up keeps low orbit only).
       const n0 = live.cls.length, pos = new Float32Array(n0 * 3), cls = new Uint8Array(n0), altA = new Float32Array(n0);
@@ -90,11 +82,10 @@ export function GlobeCard({ cells, scale, hidden, ariaLabel, hint, shellReadout,
       }
     }
     return { pos, cls, alt: altA, n: total };
-  }, [cells, scale, live]);
+}
 
-  // Counts per shell for the pointer readout: 50 km bins in close-up, 1,000 km bins at true scale.
-  const binKm = scale === "leo" ? 50 : 1000;
-  const bins = useMemo(() => {
+/** Counts per shell (bin of binKm) and kind, for the pointer readout. */
+export function shellBins(dots: Dots, binKm: number): Map<number, number[]> {
     const m = new Map<number, number[]>();
     for (let k = 0; k < dots.n; k++) {
       const b = Math.floor(dots.alt[k] / binKm);
@@ -103,7 +94,24 @@ export function GlobeCard({ cells, scale, hidden, ariaLabel, hint, shellReadout,
       m.set(b, row);
     }
     return m;
-  }, [dots, binKm]);
+}
+
+export function CanvasGlobe({ cells, scale, hidden, ariaLabel, hint, shellReadout, live }: Props) {
+  const box = useRef<HTMLDivElement>(null);
+  const canvas = useRef<HTMLCanvasElement>(null);
+  const [w, setW] = useState(640);
+  const view = useRef({ yaw: 0.6, pitch: 0.35 });
+  const drag = useRef<{ x: number; y: number } | null>(null);
+  const [readout, setReadout] = useState("");
+  const [tick, setTick] = useState(0);
+  const H = Math.round(Math.min(560, Math.max(320, w * 0.72)));
+
+  // One dot per object: position in Earth radii (x, y, z with z = north), its kind, and its altitude.
+  const dots = useMemo(() => buildDots(cells, scale, live), [cells, scale, live]);
+
+  // Counts per shell for the pointer readout: 50 km bins in close-up, 1,000 km bins at true scale.
+  const binKm = scale === "leo" ? 50 : 1000;
+  const bins = useMemo(() => shellBins(dots, binKm), [dots, binKm]);
 
   useEffect(() => {
     const el = box.current;

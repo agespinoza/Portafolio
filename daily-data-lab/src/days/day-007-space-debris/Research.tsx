@@ -6,6 +6,19 @@
 import { makeTr } from "../tr.js";
 import { QualityPanel, ResearchQuestions, SourcesAndReferences, type Question, type Reference, type Source } from "../Research";
 
+export const REFS: Reference[] = [
+  { text: "Kessler, D. J., & Cour-Palais, B. G. (1978). Collision frequency of artificial satellites: The creation of a debris belt. Journal of Geophysical Research: Space Physics, 83(A6), 2637–2646.", doi: "10.1029/JA083iA06p02637" },
+  { text: "Liou, J.-C., & Johnson, N. L. (2006). Risks in space from orbiting debris. Science, 311(5759), 340–341.", doi: "10.1126/science.1121337" },
+  { text: "Boley, A. C., & Byers, M. (2021). Satellite mega-constellations create risks in Low Earth Orbit, the atmosphere and on Earth. Scientific Reports, 11, 10642.", doi: "10.1038/s41598-021-89909-7" },
+  { text: "ESA Space Debris Office (2026). ESA's Annual Space Environment Report, GEN-DB-LOG-00288-OPS-SD, issue 10.1. Darmstadt: ESA/ESOC.", url: "https://www.sdo.esoc.esa.int/environment_report/Space_Environment_Report_I10R1_20260908.pdf" },
+  { text: "Inter-Agency Space Debris Coordination Committee (2025). IADC Space Debris Mitigation Guidelines, IADC-02-01, Revision 4 (as cited in ESA's Space Environment Report 2026, ref. 2; iadc-home.org refuses scripted link checks)." },
+  { text: "Kelso, T. S. CelesTrak SATCAT documentation and usage policy.", url: "https://celestrak.org/usage-policy.php" },
+  { text: "Anz-Meador, P., Opiela, J., & Liou, J.-C. (2022). History of On-orbit Satellite Fragmentations, 16th edition. NASA/TP-20220019160. Houston: NASA Johnson Space Center.", url: "https://ntrs.nasa.gov/citations/20220019160" },
+  { text: "Vierinen, J., Scholtz, L.-K., Noer, U., Rexer, T., Kastinen, D., & Ellingsen, P. G. (2026). Detecting space objects with Earth-observation radar satellites. arXiv:2611.12158 (source for the historical NORAD RCS classes).", url: "https://arxiv.org/abs/2611.12158" },
+  { text: "Raasveldt, M., & Mühleisen, H. (2019). DuckDB: an embeddable analytical database. Proceedings of the 2019 International Conference on Management of Data (SIGMOD), 1981–1984.", doi: "10.1145/3299869.3320212" },
+];
+
+
 type V = Record<string, string | number>;
 const EN: Record<string, string> = {
   title: "Six research questions",
@@ -268,16 +281,6 @@ export function SpaceDebrisSources({ checkedOn, language }: { checkedOn: string;
     { inst: "CelesTrak", title: "GP element sets (OMM, CSV): active, Fengyun-1C, Cosmos 2251 and Iridium 33 debris", url: "https://celestrak.org/NORAD/elements/", pub: S("pubLive"), cover: S("srcGp"), license: "Freely available; no license stated", limits: S("limGp"), use: S("useGp") },
     { inst: "DuckDB Foundation", title: "DuckDB 1.4", url: "https://duckdb.org/", pub: "2025", cover: "—", license: "MIT", limits: "—", use: S("useSql") },
   ];
-  const refs: Reference[] = [
-    { text: "Kessler, D. J., & Cour-Palais, B. G. (1978). Collision frequency of artificial satellites: The creation of a debris belt. Journal of Geophysical Research: Space Physics, 83(A6), 2637–2646.", doi: "10.1029/JA083iA06p02637" },
-    { text: "Liou, J.-C., & Johnson, N. L. (2006). Risks in space from orbiting debris. Science, 311(5759), 340–341.", doi: "10.1126/science.1121337" },
-    { text: "Boley, A. C., & Byers, M. (2021). Satellite mega-constellations create risks in Low Earth Orbit, the atmosphere and on Earth. Scientific Reports, 11, 10642.", doi: "10.1038/s41598-021-89909-7" },
-    { text: "ESA Space Debris Office (2026). ESA's Annual Space Environment Report, GEN-DB-LOG-00288-OPS-SD, issue 10.1. Darmstadt: ESA/ESOC.", url: "https://www.sdo.esoc.esa.int/environment_report/Space_Environment_Report_I10R1_20260908.pdf" },
-    { text: "Inter-Agency Space Debris Coordination Committee (2025). IADC Space Debris Mitigation Guidelines, IADC-02-01, Revision 4 (as cited in ESA's Space Environment Report 2026, ref. 2; iadc-home.org refuses scripted link checks)." },
-    { text: "Kelso, T. S. CelesTrak SATCAT documentation and usage policy.", url: "https://celestrak.org/usage-policy.php" },
-    { text: "Anz-Meador, P., Opiela, J., & Liou, J.-C. (2022). History of On-orbit Satellite Fragmentations, 16th edition. NASA/TP-20220019160. Houston: NASA Johnson Space Center.", url: "https://ntrs.nasa.gov/citations/20220019160" },
-    { text: "Vierinen, J., Scholtz, L.-K., Noer, U., Rexer, T., Kastinen, D., & Ellingsen, P. G. (2026). Detecting space objects with Earth-observation radar satellites. arXiv:2611.12158 (source for the historical NORAD RCS classes).", url: "https://arxiv.org/abs/2611.12158" },
-    { text: "Raasveldt, M., & Mühleisen, H. (2019). DuckDB: an embeddable analytical database. Proceedings of the 2019 International Conference on Management of Data (SIGMOD), 1981–1984.", doi: "10.1145/3299869.3320212" },
-  ];
+  const refs = REFS;
   return <SourcesAndReferences sources={sources} refs={refs} checkedOn={checkedOn} language={language} />;
 }

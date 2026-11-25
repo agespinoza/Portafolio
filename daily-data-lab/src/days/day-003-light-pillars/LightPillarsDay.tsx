@@ -12,6 +12,16 @@ import { RecordCard, Comparator, Catalog, qualityFlags, EV_TEXT } from "./Panels
 import Simulator from "./Simulator";
 import { tr, num, fmt1, pct, fmtDate } from "./text";
 
+export const REFS: { text: string; doi: string }[] = [
+  { text: "Hersbach, H., et al. (2020). The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society, 146, 1999–2049.", doi: "10.1002/qj.3803" },
+  { text: "Mallmann, A. J., Hock, J. L., & Greenler, R. G. (1998). Comparison of Sun pillars with light pillars from nearby light sources. Applied Optics, 37(9), 1441.", doi: "10.1364/AO.37.001441" },
+  { text: "Tape, W. (1994). Atmospheric Halos. Antarctic Research Series, 64. American Geophysical Union.", doi: "10.1029/AR064" },
+  { text: "Tape, W., & Moilanen, J. (2006). Atmospheric Halos and the Search for Angle X. American Geophysical Union.", doi: "10.1029/SP058" },
+  { text: "Greenler, R. (2020). Rainbows, Halos, and Glories (reprint). SPIE Press.", doi: "10.1117/3.2573017" },
+  { text: "Zippenfenig, P. Open-Meteo.com Weather API. Zenodo.", doi: "10.5281/zenodo.7970649" },
+];
+
+
 type EvidenceFilter = "all" | "located" | "A";
 const Y0 = YEARS[0], Y1 = YEARS[YEARS.length - 1];
 
@@ -468,14 +478,6 @@ function Method({ language }: { language: string }) {
     { inst: "NASA", title: "Astronomy Picture of the Day archive", url: "https://apod.nasa.gov/apod/", pub: "1995–", cover: tr(language, "srcCurated", "curated, global"), license: tr(language, "srcApodLic", "images copyrighted individually"), limits: tr(language, "srcApodLim", "no location or weather fields"), use: tr(language, "srcNotUsed", "reviewed, not used as data") },
     { inst: "NOAA NCEI", title: "Climate Data Online", url: "https://www.ncei.noaa.gov/cdo-web/", pub: tr(language, "srcContinuous", "continuously updated"), cover: tr(language, "srcStations", "station network"), license: tr(language, "srcUsGov", "US public domain"), limits: tr(language, "srcNoaaLim", "API token required"), use: tr(language, "srcNotUsed", "reviewed, not used as data") },
     { inst: "Finnish Meteorological Institute", title: "Open data", url: "https://en.ilmatieteenlaitos.fi/open-data", pub: tr(language, "srcContinuous", "continuously updated"), cover: tr(language, "srcFinland", "Finland"), license: "CC BY 4.0", limits: tr(language, "srcFmiLim", "Finland only; not merged yet"), use: tr(language, "srcNotUsed", "reviewed, not used as data") },
-  ];
-  const REFS = [
-    { text: "Hersbach, H., et al. (2020). The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society, 146, 1999–2049.", doi: "10.1002/qj.3803" },
-    { text: "Mallmann, A. J., Hock, J. L., & Greenler, R. G. (1998). Comparison of Sun pillars with light pillars from nearby light sources. Applied Optics, 37(9), 1441.", doi: "10.1364/AO.37.001441" },
-    { text: "Tape, W. (1994). Atmospheric Halos. Antarctic Research Series, 64. American Geophysical Union.", doi: "10.1029/AR064" },
-    { text: "Tape, W., & Moilanen, J. (2006). Atmospheric Halos and the Search for Angle X. American Geophysical Union.", doi: "10.1029/SP058" },
-    { text: "Greenler, R. (2020). Rainbows, Halos, and Glories (reprint). SPIE Press.", doi: "10.1117/3.2573017" },
-    { text: "Zippenfenig, P. Open-Meteo.com Weather API. Zenodo.", doi: "10.5281/zenodo.7970649" },
   ];
   return (
     <section className="method lp-method">

@@ -7,7 +7,7 @@ import {
   projectText,
   t,
   timelineText,
-} from "./i18n.js?v=20261123a";
+} from "./i18n.js?v=20261124a";
 import { DAILY_DATA_LAB_DAYS } from "./daily-data-lab-days.js?v=20261123a";
 import { getContributionCalendar } from "./contributions.js?v=20261122a";
 import { effectiveTheme, toggleTheme } from "./theme.js?v=20261122a";
@@ -50,52 +50,53 @@ function localizeLabLink(link, language) {
   link.href = url.href;
 }
 
-// The Data Lab card on the front page pages through the days of assets/daily-data-lab-days.js, newest first.
-var labPage = 1;
+// The Data Lab section on the front page: the newest day as a large card, then the next five as small cards
+// (six in all), and a link to the full archive. No numbered pagination: it does not scale to a year of days.
+var LAB_RECENT = 6;
 
 function labDaysNewestFirst() {
   return DAILY_DATA_LAB_DAYS.slice().sort(function (a, b) { return b.day - a.day; });
 }
 
-function renderLabPager(language, total) {
-  var pager = document.getElementById("lab-pager");
-  if (!pager) return;
-  if (total < 2) { pager.hidden = true; return; }
-  pager.hidden = false;
-  var control = function (text, label, key, target, disabled) {
-    var button = el("button", { type: "button", class: "lab-pager__btn", "aria-label": label, "data-key": key, text: text });
-    button.disabled = disabled;
-    button.addEventListener("click", function () {
-      labPage = target;
-      renderLabFeature(language);
-      var next = document.querySelector("#lab-pager [data-key='" + key + "']:not(:disabled)")
-        || document.querySelector("#lab-pager [aria-current='page']");
-      if (next) next.focus();
-    });
-    return button;
-  };
-  var items = [control("←", t(language, "site.labNewer", "Newer day"), "prev", labPage - 1, labPage === 1)];
-  for (var page = 1; page <= total; page++) {
-    var button = control(String(page), t(language, "site.labPage", "Page {page}", { page: page }), "p" + page, page, false);
-    button.classList.add("lab-pager__page");
-    if (page === labPage) button.setAttribute("aria-current", "page");
-    items.push(button);
-  }
-  items.push(control("→", t(language, "site.labOlder", "Older day"), "next", labPage + 1, labPage === total));
-  pager.setAttribute("aria-label", t(language, "site.labPagination", "Daily Data Lab pages"));
-  pager.replaceChildren.apply(pager, items);
+function labArt(language, day, cls) {
+  return el("div", { class: "lab-feature__art " + (cls || "") }, day.preview ? [
+    el("img", {
+      class: day.previewLight ? "art-dark" : "", src: day.preview + "?v=20261122a",
+      alt: dayText(language, day.slug, "previewAlt", day.previewAlt || ""), width: "792", height: "346", loading: "lazy",
+    }),
+    day.previewLight ? el("img", {
+      class: "art-light", src: day.previewLight + "?v=20261122a",
+      alt: dayText(language, day.slug, "previewAlt", day.previewAlt || ""), width: "792", height: "346", loading: "lazy",
+    }) : null,
+  ] : []);
+}
+
+function renderLabRecent(language) {
+  var list = document.getElementById("lab-recent");
+  if (!list) return;
+  var days = labDaysNewestFirst().slice(1, LAB_RECENT);
+  list.hidden = !days.length;
+  list.replaceChildren.apply(list, days.map(function (day) {
+    var number = String(day.day).padStart(3, "0");
+    var link = el("a", { class: "lab-recent__card", href: "lab/index.html#/day/" + day.day }, [
+      labArt(language, day, "lab-recent__art"),
+      el("div", { class: "lab-recent__copy" }, [
+        el("p", { class: "mono-label", text: t(language, "lab.day", "Day {number}", { number: number }) + " · " + dayText(language, day.slug, "topic", day.topic) }),
+        el("h4", { text: dayText(language, day.slug, "title", day.title) }),
+      ]),
+    ]);
+    localizeLabLink(link, language);
+    return el("li", null, [link]);
+  }));
 }
 
 function renderLabFeature(language) {
   var card = document.querySelector(".lab-feature");
   if (!card || !DAILY_DATA_LAB_DAYS.length) return;
-  var days = labDaysNewestFirst();
-  labPage = Math.min(Math.max(labPage, 1), days.length);
-  var day = days[labPage - 1];
+  var day = labDaysNewestFirst()[0];
   var number = String(day.day).padStart(3, "0");
   card.setAttribute("href", "lab/index.html#/day/" + day.day);
   localizeLabLink(card, language);
-  renderLabPager(language, days.length);
   card.replaceChildren(
     el("div", { class: "lab-feature__copy" }, [
       el("p", { class: "mono-label", text: t(language, "lab.day", "Day {number}", { number: number }) + " · " + dayText(language, day.slug, "topic", day.topic) }),
@@ -108,16 +109,7 @@ function renderLabFeature(language) {
       ]),
     ]),
     // Two previews when the day has a light one; CSS shows the one that matches the theme.
-    el("div", { class: "lab-feature__art" }, day.preview ? [
-      el("img", {
-        class: day.previewLight ? "art-dark" : "", src: day.preview + "?v=20261122a",
-        alt: dayText(language, day.slug, "previewAlt", day.previewAlt || ""), width: "792", height: "346", loading: "lazy",
-      }),
-      day.previewLight ? el("img", {
-        class: "art-light", src: day.previewLight + "?v=20261122a",
-        alt: dayText(language, day.slug, "previewAlt", day.previewAlt || ""), width: "792", height: "346", loading: "lazy",
-      }) : null,
-    ] : []),
+    labArt(language, day),
   );
 }
 
@@ -167,6 +159,7 @@ function applyLanguage(language) {
   }
   initThemeToggle(language);
   renderLabFeature(language);
+  renderLabRecent(language);
   renderLabInsight(language);
   document.querySelectorAll("[data-lab-link]").forEach(function (link) { localizeLabLink(link, language); });
 }

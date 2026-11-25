@@ -3,6 +3,18 @@
 import { makeTr } from "../tr.js";
 import { QualityPanel, ResearchQuestions, SourcesAndReferences, type Question, type Reference, type Source } from "../Research";
 
+export const REFS: Reference[] = [
+  { text: "UNEP (2024). Food Waste Index Report 2024. Think Eat Save: Tracking Progress to Halve Global Food Waste. Nairobi: United Nations Environment Programme.", url: "https://digitallibrary.un.org/record/4042857" },
+  { text: "Gustavsson, J., Cederberg, C., Sonesson, U., van Otterdijk, R., & Meybeck, A. (2011). Global Food Losses and Food Waste: Extent, Causes and Prevention. Rome: FAO.", url: "https://www.fao.org/3/i2697e/i2697e.pdf" },
+  { text: "FAO (2019). The State of Food and Agriculture 2019: Moving forward on food loss and waste reduction. Rome: FAO.", doi: "10.4060/ca6030en" },
+  { text: "Poore, J., & Nemecek, T. (2018). Reducing food's environmental impacts through producers and consumers. Science, 360(6392), 987–992.", doi: "10.1126/science.aaq0216" },
+  { text: "Crippa, M., Solazzo, E., Guizzardi, D., Monforti-Ferrario, F., Tubiello, F. N., & Leip, A. (2021). Food systems are responsible for a third of global anthropogenic GHG emissions. Nature Food, 2(3), 198–209.", doi: "10.1038/s43016-021-00225-9" },
+  { text: "FAO, IFAD, UNICEF, WFP & WHO (2024). The State of Food Security and Nutrition in the World 2024. Rome: FAO.", doi: "10.4060/cd1254en" },
+  { text: "Harris, I., Osborn, T. J., Jones, P., & Lister, D. (2020). Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Scientific Data, 7, 109.", doi: "10.1038/s41597-020-0453-3" },
+  { text: "Raasveldt, M., & Mühleisen, H. (2019). DuckDB: an embeddable analytical database. Proceedings of the 2019 International Conference on Management of Data (SIGMOD), 1981–1984.", doi: "10.1145/3299869.3320212" },
+];
+
+
 type V = Record<string, string | number>;
 const EN: Record<string, string> = {
   title: "Six research questions",
@@ -277,15 +289,6 @@ export function FoodWasteSources({ checkedOn, language }: { checkedOn: string; l
     { inst: "UN Statistics Division", title: "Standard country or area codes (M49)", url: "https://unstats.un.org/unsd/methodology/m49/overview/", pub: "—", cover: S("srcM49"), license: "UN terms of use", limits: S("limNone"), use: S("useJoin") },
     { inst: "DuckDB Foundation", title: "DuckDB 1.4", url: "https://duckdb.org/", pub: "2025", cover: "—", license: "MIT", limits: "—", use: S("useSql") },
   ];
-  const refs: Reference[] = [
-    { text: "UNEP (2024). Food Waste Index Report 2024. Think Eat Save: Tracking Progress to Halve Global Food Waste. Nairobi: United Nations Environment Programme.", url: "https://digitallibrary.un.org/record/4042857" },
-    { text: "Gustavsson, J., Cederberg, C., Sonesson, U., van Otterdijk, R., & Meybeck, A. (2011). Global Food Losses and Food Waste: Extent, Causes and Prevention. Rome: FAO.", url: "https://www.fao.org/3/i2697e/i2697e.pdf" },
-    { text: "FAO (2019). The State of Food and Agriculture 2019: Moving forward on food loss and waste reduction. Rome: FAO.", doi: "10.4060/ca6030en" },
-    { text: "Poore, J., & Nemecek, T. (2018). Reducing food's environmental impacts through producers and consumers. Science, 360(6392), 987–992.", doi: "10.1126/science.aaq0216" },
-    { text: "Crippa, M., Solazzo, E., Guizzardi, D., Monforti-Ferrario, F., Tubiello, F. N., & Leip, A. (2021). Food systems are responsible for a third of global anthropogenic GHG emissions. Nature Food, 2(3), 198–209.", doi: "10.1038/s43016-021-00225-9" },
-    { text: "FAO, IFAD, UNICEF, WFP & WHO (2024). The State of Food Security and Nutrition in the World 2024. Rome: FAO.", doi: "10.4060/cd1254en" },
-    { text: "Harris, I., Osborn, T. J., Jones, P., & Lister, D. (2020). Version 4 of the CRU TS monthly high-resolution gridded multivariate climate dataset. Scientific Data, 7, 109.", doi: "10.1038/s41597-020-0453-3" },
-    { text: "Raasveldt, M., & Mühleisen, H. (2019). DuckDB: an embeddable analytical database. Proceedings of the 2019 International Conference on Management of Data (SIGMOD), 1981–1984.", doi: "10.1145/3299869.3320212" },
-  ];
+  const refs = REFS;
   return <SourcesAndReferences sources={sources} refs={refs} checkedOn={checkedOn} language={language} />;
 }

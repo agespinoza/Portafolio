@@ -59,6 +59,14 @@ export default function StudyArchive({ language }) {
   const options = TOPICS.map((day) => [day.topic, dayText(language, day.slug, "topic", day.topic)])
     .sort((a, b) => a[1].localeCompare(b[1], locale));
   const visible = found.slice(0, limit);
+  // Group the visible studies by month, in the chosen order (newest month first by default).
+  const monthLabel = new Intl.DateTimeFormat(locale, { month: "long", year: "numeric", timeZone: "UTC" });
+  const months = [];
+  for (const entry of visible) {
+    const key = entry.day.date.slice(0, 7);
+    if (months[months.length - 1]?.key !== key) months.push({ key, label: monthLabel.format(new Date(`${key}-01T00:00:00Z`)), entries: [] });
+    months[months.length - 1].entries.push(entry);
+  }
   const count = copy.count.replace("{shown}", visible.length.toLocaleString(locale)).replace("{total}", found.length.toLocaleString(locale));
 
   function update(next) {
@@ -110,23 +118,26 @@ export default function StudyArchive({ language }) {
           }}>{copy.clear}</button>
         )}
       </div>
-      {found.length > 0 && (
+      {months.map((month) => (
+        <section key={month.key} aria-labelledby={`archive-month-${month.key}`}>
+        <h3 className="archive__month" id={`archive-month-${month.key}`}><time dateTime={month.key}>{month.label}</time></h3>
         <div className="grid">
-          {visible.map(({ day, title, summary, topic, tags, dayLabel, dateLabel }) => (
+          {month.entries.map(({ day, title, summary, topic, tags, dayLabel, dateLabel }) => (
             <a key={day.day} className="tile" href={`#/day/${day.day}`}>
               <div className="tile__top">
                 <span className="tile__num">{dayLabel}</span>
                 <span className="tile__topic">{topic}</span>
               </div>
               <time className="tile__date" dateTime={day.date}>{dateLabel}</time>
-              <h3>{title}</h3>
+              <h4>{title}</h4>
               <p>{summary}</p>
               <div className="tile__tags">{tags.map((tag, index) => <span key={day.tags[index]}>{tag}</span>)}</div>
               <span className="tile__cta">{t(language, "lab.openVisualization", "Open visualization")}</span>
             </a>
           ))}
         </div>
-      )}
+        </section>
+      ))}
       {visible.length < found.length && (
         <button type="button" className="study-button archive__more" onClick={() => {
           const nextLimit = limit + PAGE_SIZE;

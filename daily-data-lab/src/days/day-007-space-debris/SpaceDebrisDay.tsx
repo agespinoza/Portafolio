@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLanguage } from "../../language.jsx";
 import { type Cls, AS_OF, CLASSES, CLS_COLOR, ESA, FIRST_YEAR, KPIS, ORBITS, OWNERS, PARENTS, YEAR_AGO, aggregate, shellsFor, BREAKUPS, CAUSES, CAUSE_COLOR, RCS_CLASSES, RCS_COLOR } from "./data";
-import { type LiveDots, type Scale, GlobeCard } from "./Globe";
+import { type LiveDots, type Scale } from "./Globe";
+import { GlobeCard } from "./Globe3D";
 import { type LiveSet, loadLive, positionsAt } from "./live";
 import { type BarRow, BarChartCard, DonutCard, LogBarCard, YearChartCard } from "./Charts";
 import { type OwnerStat, DebrisFacts, KpiCard, OwnerTable, causeName, causeShort, clsName, orbitName, ownerName, rcsName } from "./Panels";
@@ -165,8 +166,8 @@ export default function SpaceDebrisDay() {
         <div className="card__head"><div>
           <h2>{tr(language, "globeTitle", "Every object in orbit, in 3-D")}</h2>
           <p className="muted">{mode === "live"
-            ? tr(language, "globeSubLive", "Real positions right now: each dot is where SGP4 places an object from CelesTrak's latest orbital elements, over a map of the continents. Drag or use the arrow keys to turn the globe.")
-            : tr(language, "globeSub", "One dot per object, {scope}, at its real mean altitude and inclination. SATCAT has no position along the orbit, so each dot is spread around its shell: this shows how crowded each height and tilt is, not where anything is now. Drag or use the arrow keys to turn the globe.", { scope })}</p>
+            ? tr(language, "globeSubLive", "Real positions right now: each dot is where SGP4 places an object from CelesTrak's latest orbital elements, over a map of the continents. Drag or use the arrow keys to turn the globe; scroll or pinch to zoom. The Earth is lit by the Sun's real position right now.")
+            : tr(language, "globeSub", "One dot per object, {scope}, at its real mean altitude and inclination. SATCAT has no position along the orbit, so each dot is spread around its shell: this shows how crowded each height and tilt is, not where anything is now. Drag or use the arrow keys to turn the globe; scroll or pinch to zoom. The Earth is lit by the Sun's real position right now.", { scope })}</p>
         </div></div>
         <div className="sd-globe-controls">
           <div className="seg seg--small">

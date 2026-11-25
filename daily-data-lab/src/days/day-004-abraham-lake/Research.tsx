@@ -2,6 +2,17 @@
 import { makeTr } from "../tr.js";
 import { QualityPanel, ResearchQuestions, SourcesAndReferences, type Question, type Reference, type Source } from "../Research";
 
+export const REFS: Reference[] = [
+  { text: "Messager, M. L., Lehner, B., Grill, G., Nedeva, I., & Schmitt, O. (2016). Estimating the volume and age of water stored in global lakes using a geo-statistical approach. Nature Communications, 7, 13603.", doi: "10.1038/ncomms13603" },
+  { text: "Korver, M. C., Lehner, B., Cardille, J. A., & Carrea, L. (2024). Surface water temperature observations and ice phenology estimations for 1.4 million lakes globally. Remote Sensing of Environment, 308, 114164.", doi: "10.1016/j.rse.2024.114164" },
+  { text: "Hersbach, H., et al. (2020). The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society, 146(730), 1999–2049.", doi: "10.1002/qj.3803" },
+  { text: "Zippenfenig, P. Open-Meteo.com Weather API. Zenodo.", doi: "10.5281/zenodo.7970649" },
+  { text: "Walter, K. M., Zimov, S. A., Chanton, J. P., Verbyla, D., & Chapin, F. S. (2006). Methane bubbling from Siberian thaw lakes as a positive feedback to climate warming. Nature, 443(7107), 71–75.", doi: "10.1038/nature05040" },
+  { text: "Sharma, S., et al. (2019). Widespread loss of lake ice around the Northern Hemisphere in a warming world. Nature Climate Change, 9(3), 227–231.", doi: "10.1038/s41558-018-0393-5" },
+  { text: "Raasveldt, M., & Mühleisen, H. (2019). DuckDB: an embeddable analytical database. Proceedings of the 2019 International Conference on Management of Data (SIGMOD), 1981–1984.", doi: "10.1145/3299869.3320212" },
+];
+
+
 type V = Record<string, string | number>;
 const EN: Record<string, string> = {
   title: "Six research questions",
@@ -206,14 +217,6 @@ export function AbrahamSources({ checkedOn, language }: { checkedOn: string; lan
     { inst: "Natural Earth", title: "Land 1:110m", url: "https://www.naturalearthdata.com/", pub: "2022", cover: "global", license: S("publicDomain"), limits: S("limNe"), use: S("useMap") },
     { inst: "DuckDB Foundation", title: "DuckDB 1.4 + spatial extension", url: "https://duckdb.org/", pub: "2025", cover: "—", license: "MIT", limits: "—", use: S("useSql") },
   ];
-  const refs: Reference[] = [
-    { text: "Messager, M. L., Lehner, B., Grill, G., Nedeva, I., & Schmitt, O. (2016). Estimating the volume and age of water stored in global lakes using a geo-statistical approach. Nature Communications, 7, 13603.", doi: "10.1038/ncomms13603" },
-    { text: "Korver, M. C., Lehner, B., Cardille, J. A., & Carrea, L. (2024). Surface water temperature observations and ice phenology estimations for 1.4 million lakes globally. Remote Sensing of Environment, 308, 114164.", doi: "10.1016/j.rse.2024.114164" },
-    { text: "Hersbach, H., et al. (2020). The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society, 146(730), 1999–2049.", doi: "10.1002/qj.3803" },
-    { text: "Zippenfenig, P. Open-Meteo.com Weather API. Zenodo.", doi: "10.5281/zenodo.7970649" },
-    { text: "Walter, K. M., Zimov, S. A., Chanton, J. P., Verbyla, D., & Chapin, F. S. (2006). Methane bubbling from Siberian thaw lakes as a positive feedback to climate warming. Nature, 443(7107), 71–75.", doi: "10.1038/nature05040" },
-    { text: "Sharma, S., et al. (2019). Widespread loss of lake ice around the Northern Hemisphere in a warming world. Nature Climate Change, 9(3), 227–231.", doi: "10.1038/s41558-018-0393-5" },
-    { text: "Raasveldt, M., & Mühleisen, H. (2019). DuckDB: an embeddable analytical database. Proceedings of the 2019 International Conference on Management of Data (SIGMOD), 1981–1984.", doi: "10.1145/3299869.3320212" },
-  ];
+  const refs = REFS;
   return <SourcesAndReferences sources={sources} refs={refs} checkedOn={checkedOn} language={language} />;
 }

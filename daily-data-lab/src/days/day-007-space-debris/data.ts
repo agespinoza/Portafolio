@@ -116,3 +116,6 @@ export function wilson(k: number, n: number): [number, number] {
   const c = (p + (z * z) / (2 * n)) / d, h = (z * Math.sqrt((p * (1 - p)) / n + (z * z) / (4 * n * n))) / d;
   return [Math.max(0, c - h), Math.min(1, c + h)];
 }
+
+/** Raw cubes for the data download (see src/exports.ts). */
+export const CUBES = { cube: S.cube, causeCube: S.causeCube, rcsCube: S.rcsCube };

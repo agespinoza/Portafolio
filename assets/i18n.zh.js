@@ -78,6 +78,7 @@ export const ZH = {
     "labImageAlt": "预览：拍摄到的光柱和冰晕的夜间世界地图，以及三个彩色光柱的模拟视图。",
     "openVisualization": "查看可视化",
     "seeAllDays": "查看实验室的全部日期",
+    "viewArchive": "查看完整档案",
     "labNewer": "较新的一天",
     "labOlder": "较早的一天",
     "labPage": "第 {page} 页",

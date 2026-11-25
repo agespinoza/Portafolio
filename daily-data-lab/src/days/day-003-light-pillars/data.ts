@@ -153,7 +153,7 @@ export const isPillar = (o: Obs) => o.families.includes("reflection");
 export const isHalo = (o: Obs) => o.families.includes("refraction");
 
 // ---------- exports ----------
-const CSV_COLUMNS = [
+export const CSV_COLUMNS = [
   "id", "phenomena", "family", "date", "time_local", "timezone", "utc_offset_h", "lat", "lon", "location_type", "country", "region", "hemisphere",
   "evidence_level", "sun_elevation_deg_computed", "era5_basis", "temp_c", "rel_humidity_pct", "dew_point_c", "wind_kmh", "wind_dir_deg",
   "cloud_total_pct", "cloud_low_pct", "cloud_mid_pct", "cloud_high_pct", "pressure_hpa", "visibility", "ice_crystal_evidence",
@@ -166,7 +166,7 @@ function csvCell(v: unknown): string {
   return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
 }
 
-function flat(o: Obs): unknown[] {
+export function flat(o: Obs): unknown[] {
   const w = o.wx;
   return [
     o.id, o.phenomena.join(";"), o.families.join(";"), o.date, o.time, o.tz, o.utcOffset, o.lat, o.lon, o.locType, o.country, o.region, o.hemisphere,

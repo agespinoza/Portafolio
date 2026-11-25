@@ -2,6 +2,16 @@
 import { makeTr } from "../tr.js";
 import { QualityPanel, ResearchQuestions, SourcesAndReferences, type Question, type Reference, type Source } from "../Research";
 
+export const REFS: Reference[] = [
+  { text: "Meyer-Rochow, V. B. (2007). Glowworms: a review of Arachnocampa spp. and kin. Luminescence, 22(3), 251–265.", doi: "10.1002/bio.955" },
+  { text: "Pugsley, C. (1984). Ecology of the New Zealand glowworm, Arachnocampa luminosa (Diptera: Keroplatidae), in the Glowworm Cave, Waitomo. Journal of the Royal Society of New Zealand, 14(4), 387–407.", doi: "10.1080/03036758.1984.10421739" },
+  { text: "Isaac, N. J. B., & Pocock, M. J. O. (2015). Bias and information in biological records. Biological Journal of the Linnean Society, 115(3), 522–531.", doi: "10.1111/bij.12532" },
+  { text: "Phillips, S. J., et al. (2009). Sample selection bias and presence-only distribution models: implications for background and pseudo-absence data. Ecological Applications, 19(1), 181–197.", doi: "10.1890/07-2153.1" },
+  { text: "Hersbach, H., et al. (2020). The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society, 146(730), 1999–2049.", doi: "10.1002/qj.3803" },
+  { text: "Zippenfenig, P. Open-Meteo.com Weather API. Zenodo.", doi: "10.5281/zenodo.7970649" },
+];
+
+
 type V = Record<string, string | number>;
 const EN: Record<string, string> = {
   title: "Six research questions",
@@ -197,13 +207,6 @@ export function GlowSources({ checkedOn, language }: { checkedOn: string; langua
     { inst: "ECMWF / Copernicus C3S · Open-Meteo", title: "ERA5 via Open-Meteo Historical Weather API", url: "https://open-meteo.com/en/docs/historical-weather-api", pub: S("continuous"), cover: S("covGlobal"), license: "CC BY 4.0", limits: S("limEra5"), use: S("useClimate") },
     { inst: "Natural Earth", title: "Admin 0 countries 1:50m", url: "https://www.naturalearthdata.com/", pub: "2022", cover: S("covGlobal"), license: S("publicDomain"), limits: S("limNe"), use: S("useMap") },
   ];
-  const refs: Reference[] = [
-    { text: "Meyer-Rochow, V. B. (2007). Glowworms: a review of Arachnocampa spp. and kin. Luminescence, 22(3), 251–265.", doi: "10.1002/bio.955" },
-    { text: "Pugsley, C. (1984). Ecology of the New Zealand glowworm, Arachnocampa luminosa (Diptera: Keroplatidae), in the Glowworm Cave, Waitomo. Journal of the Royal Society of New Zealand, 14(4), 387–407.", doi: "10.1080/03036758.1984.10421739" },
-    { text: "Isaac, N. J. B., & Pocock, M. J. O. (2015). Bias and information in biological records. Biological Journal of the Linnean Society, 115(3), 522–531.", doi: "10.1111/bij.12532" },
-    { text: "Phillips, S. J., et al. (2009). Sample selection bias and presence-only distribution models: implications for background and pseudo-absence data. Ecological Applications, 19(1), 181–197.", doi: "10.1890/07-2153.1" },
-    { text: "Hersbach, H., et al. (2020). The ERA5 global reanalysis. Quarterly Journal of the Royal Meteorological Society, 146(730), 1999–2049.", doi: "10.1002/qj.3803" },
-    { text: "Zippenfenig, P. Open-Meteo.com Weather API. Zenodo.", doi: "10.5281/zenodo.7970649" },
-  ];
+  const refs = REFS;
   return <SourcesAndReferences sources={sources} refs={refs} checkedOn={checkedOn} language={language} />;
 }

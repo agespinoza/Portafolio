@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { LANGUAGES, LANGUAGE_NAMES, dayText, getLanguage, languageFromSearch, localeFor, t } from "../../assets/i18n.js";
 import { DAYS } from "./days/index.js";
 import StudyArchive from "./StudyArchive.jsx";
-import { ShareStudy, StudyNavigation } from "./StudyActions.jsx";
+import { ShareStudy, StudyIcon, StudyNavigation } from "./StudyActions.jsx";
 import { DownloadButton, StudyDownloads } from "./StudyDownloads.jsx";
+import ArticlePage, { articleUi, hasArticle } from "./ArticlePage.jsx";
 import ContributionCalendar from "./ContributionCalendar.jsx";
 import { LAB_INSIGHT, insightText } from "../../assets/daily-data-lab-insights.js";
 import { LanguageContext } from "./language.jsx";
@@ -44,8 +45,9 @@ const fmt = (iso, language) =>
 export default function App() {
   const language = getLanguage(languageFromSearch(window.location.search));
   const hash = useHashRoute();
-  const match = hash.match(/^#\/day\/(\d+)$/);
+  const match = hash.match(/^#\/day\/(\d+)(\/article)?$/);
   const current = match ? DAYS.find((d) => d.day === Number(match[1])) : null;
+  const article = Boolean(match?.[2]) && current && hasArticle(current.slug);
 
   useEffect(() => {
     document.documentElement.lang = localeFor(language);
@@ -69,6 +71,7 @@ export default function App() {
   }
 
   const portfolioLink = language === "en" ? "../index.html#lab" : `../index.html?lang=${language}#lab`;
+  const portfolioLabel = t(language, "lab.backToPortfolio", "← Portfolio").replace(/^←\s*/, "");
 
   return (
     <LanguageContext.Provider value={language}>
@@ -88,12 +91,13 @@ export default function App() {
               {LANGUAGES.map((code) => <option key={code} value={code} lang={localeFor(code)}>{LANGUAGE_NAMES[code]}</option>)}
             </select>
             <ThemeToggle language={language} nightDefault={current?.slug === "light-pillars"} />
-            <a className="topbar__link" href={portfolioLink}>{t(language, "lab.backToPortfolio", "← Portfolio")}</a>
+            <a className="topbar__link icon-link" href={portfolioLink} aria-label={portfolioLabel} title={portfolioLabel}><StudyIcon name="folder" /></a>
           </nav>
         </div>
       </header>
       <main id="main" tabIndex={-1}>
-        {current ? <DayPage key={current.day} day={current} language={language} /> : <Gallery language={language} />}
+        {current && article ? <ArticlePage key={`a${current.day}`} day={current} language={language} />
+          : current ? <DayPage key={current.day} day={current} language={language} /> : <Gallery language={language} />}
       </main>
       <footer className="foot">
         <div className="wrap foot__inner">
@@ -139,10 +143,13 @@ function DayPage({ day, language }) {
         </p>
         <h1 tabIndex={-1}>{title}</h1>
         <p className="lead">{dayText(language, day.slug, "summary", day.summary)}</p>
-        <ShareStudy day={day} title={title} language={language} extra={<DownloadButton slug={day.slug} language={language} />} />
+        <ShareStudy day={day} title={title} language={language} extra={<>
+          {hasArticle(day.slug) && <a className="study-button" href={`#/day/${day.day}/article`}><StudyIcon name="article" />{articleUi(language).article}</a>}
+          <DownloadButton day={day} language={language} />
+        </>} />
       </header>
       <Component />
-      <StudyDownloads slug={day.slug} language={language} />
+      <StudyDownloads day={day} language={language} />
       <div className="study-nav-footer">{navigation}</div>
     </article>
   );

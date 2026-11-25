@@ -9,9 +9,11 @@ const iconPaths = {
   next: "m12 6 6 6-6 6 M5 12h13",
   share: "M12 15V3m-4 4 4-4 4 4 M7 10H5v10h14V10h-2",
   link: "m10 13 4-4 M8 15l-1 1a3 3 0 0 1-4-4l4-4a3 3 0 0 1 4 0 M16 9l1-1a3 3 0 0 1 4 4l-4 4a3 3 0 0 1-4 0",
+  article: "M7 3h7l4 4v14H7z M14 3v4h4 M10 11h5 M10 15h5 M10 19h3",
+  folder: "M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",
 };
 
-function StudyIcon({ name }) {
+export function StudyIcon({ name }) {
   return (
     <svg className="study-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
       strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
@@ -24,7 +26,7 @@ export function StudyNavigation({ previous, next, language }) {
   const copy = archiveCopy(language);
   return (
     <nav className="study-nav" aria-label={t(language, "lab.otherDays", "Other days")}>
-      <a className="study-nav__archive" href="#/archive" aria-label={copy.archive}><StudyIcon name="archive" />{copy.archiveLink}</a>
+      <a className="study-nav__archive icon-link" href="#/archive" aria-label={copy.archiveLink} title={copy.archiveLink}><StudyIcon name="archive" /></a>
       {[["prev", previous, copy.previous], ["next", next, copy.next]].map(([direction, entry, label]) => {
         if (!entry) return null;
         const title = dayText(language, entry.slug, "title", entry.title);

@@ -1,4 +1,0 @@
-# Build: scripts/excel/build.py
-XlsxWriter==3.2.0
-# Verify (optional, needs Microsoft Excel for Mac): scripts/excel/verify.py
-openpyxl==3.1.5

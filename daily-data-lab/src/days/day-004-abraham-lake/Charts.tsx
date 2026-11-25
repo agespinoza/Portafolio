@@ -48,7 +48,7 @@ const LAND = LAND_RINGS.map((ring) => {
   return `M${pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join("L")}Z`;
 }).join("");
 const [X0] = project(-180, 0), [X1] = project(180, 0);
-const [, YN] = project(0, 84), [, YS] = project(0, -58);
+const [, YN] = project(0, 85), [, YS] = project(0, -58);
 
 export function LakeMap({ lakes, trends, ice, metric, selected, onSelect, language }: {
   lakes: Lake[]; trends: Map<number, Trend>; ice: Map<number, LakeTemp>; metric: "trend" | "ice";

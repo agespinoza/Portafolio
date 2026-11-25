@@ -2,6 +2,12 @@
 import { makeTr } from "../tr.js";
 import { QualityPanel, ResearchQuestions, SourcesAndReferences, type Question, type Reference, type Source } from "../Research";
 
+export const REFS: Reference[] = [
+  { text: "Vega Briones, G. (2016). Población commuter de la frontera norte: el caso de Mexicali-Calexico y Tijuana-San Diego. Estudios Demográficos y Urbanos, 31(1), 207–238.", doi: "10.24201/edu.v31i1.1508" },
+  { text: "Sharma, S., Kang, D. H., Montes de Oca, J. R., & Mudgal, A. (2021). Machine learning methods for commercial vehicle wait time prediction at a border crossing. Research in Transportation Economics, 89, 101034.", doi: "10.1016/j.retrec.2021.101034" },
+];
+
+
 type V = Record<string, string | number>;
 const EN: Record<string, string> = {
   title: "Six research questions",
@@ -200,9 +206,6 @@ export function BorderSources({ checkedOn, language }: { checkedOn: string; lang
     { inst: "U.S. Customs and Border Protection", title: "SENTRI trusted traveler program", url: "https://www.cbp.gov/travel/trusted-traveler-programs/sentri", pub: S("continuous"), cover: S("coverRef"), license: S("usGov"), limits: S("limRef"), use: S("useRef") },
     { inst: "U.S. Customs and Border Protection", title: "Ready Lanes", url: "https://www.cbp.gov/travel/clearing-cbp/ready-lanes", pub: S("continuous"), cover: S("coverRef"), license: S("usGov"), limits: S("limRef"), use: S("useRef") },
   ];
-  const refs: Reference[] = [
-    { text: "Vega Briones, G. (2016). Población commuter de la frontera norte: el caso de Mexicali-Calexico y Tijuana-San Diego. Estudios Demográficos y Urbanos, 31(1), 207–238.", doi: "10.24201/edu.v31i1.1508" },
-    { text: "Sharma, S., Kang, D. H., Montes de Oca, J. R., & Mudgal, A. (2021). Machine learning methods for commercial vehicle wait time prediction at a border crossing. Research in Transportation Economics, 89, 101034.", doi: "10.1016/j.retrec.2021.101034" },
-  ];
+  const refs = REFS;
   return <SourcesAndReferences sources={sources} refs={refs} checkedOn={checkedOn} language={language} />;
 }

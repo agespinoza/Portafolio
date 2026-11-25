@@ -2,6 +2,19 @@
 import { makeTr } from "../tr.js";
 import { QualityPanel, ResearchQuestions, SourcesAndReferences, type Question, type Reference, type Source } from "../Research";
 
+export const REFS: Reference[] = [
+  { text: "Krauss, M. (1992). The world's languages in crisis. Language, 68(1), 4–10.", doi: "10.1353/lan.1992.0075" },
+  { text: "Moseley, C. (Ed.). (2010). Atlas of the World's Languages in Danger (3rd ed.). Paris: UNESCO Publishing.", url: "https://webarchive.unesco.org/web/20151214150659/http://unesdoc.unesco.org/images/0018/001870/187026e.pdf" },
+  { text: "Hammarström, H., Castermans, T., Forkel, R., Verbeek, K., Westenberg, M. A., & Speckmann, B. (2018). Simultaneous visualization of language endangerment and language description. Language Documentation & Conservation, 12, 359–392.", url: "https://hdl.handle.net/10125/24792" },
+  { text: "Bromham, L., Dinnage, R., Skirgård, H., Ritchie, A., Cardillo, M., Meakins, F., Greenhill, S., & Hua, X. (2022). Global predictors of language endangerment and the future of linguistic diversity. Nature Ecology & Evolution, 6(2), 163–173.", doi: "10.1038/s41559-021-01604-y" },
+  { text: "Skirgård, H., Haynie, H. J., Blasi, D. E., Hammarström, H., et al. (2023). Grambank reveals the importance of genealogical constraints on linguistic diversity and highlights the impact of language loss. Science Advances, 9(16), eadg6175.", doi: "10.1126/sciadv.adg6175" },
+  { text: "Ranacher, P., Forkel, R., Efrat-Kowalsky, N., Urban, M., Hehli, N., Franz, T., et al. (2025). A global and interoperable dataset of linguistic distributions derived from the Atlas of the World's Languages. Scientific Data, 12, 1466.", doi: "10.1038/s41597-025-05828-6" },
+  { text: "Hammarström, H., Forkel, R., Haspelmath, M., & Bank, S. (2026). Glottolog 5.4 (CLDF dataset). Zenodo.", doi: "10.5281/zenodo.24101243" },
+  { text: "Skirgård, H., Haynie, H. J., Hammarström, H., et al. (2023). Grambank v1.0.3 (CLDF dataset). Zenodo.", doi: "10.5281/zenodo.7844558" },
+  { text: "Raasveldt, M., & Mühleisen, H. (2019). DuckDB: an embeddable analytical database. Proceedings of the 2019 International Conference on Management of Data (SIGMOD), 1981–1984.", doi: "10.1145/3299869.3320212" },
+];
+
+
 type V = Record<string, string | number>;
 const EN: Record<string, string> = {
   title: "Six research questions",
@@ -219,16 +232,6 @@ export function LanguagesSources({ checkedOn, language }: { checkedOn: string; l
     { inst: "Natural Earth", title: "Land 1:110m", url: "https://www.naturalearthdata.com/", pub: "2022", cover: "global", license: S("publicDomain"), limits: S("limNe"), use: S("useMap") },
     { inst: "DuckDB Foundation", title: "DuckDB 1.4", url: "https://duckdb.org/", pub: "2025", cover: "—", license: "MIT", limits: "—", use: S("useSql") },
   ];
-  const refs: Reference[] = [
-    { text: "Krauss, M. (1992). The world's languages in crisis. Language, 68(1), 4–10.", doi: "10.1353/lan.1992.0075" },
-    { text: "Moseley, C. (Ed.). (2010). Atlas of the World's Languages in Danger (3rd ed.). Paris: UNESCO Publishing.", url: "https://webarchive.unesco.org/web/20151214150659/http://unesdoc.unesco.org/images/0018/001870/187026e.pdf" },
-    { text: "Hammarström, H., Castermans, T., Forkel, R., Verbeek, K., Westenberg, M. A., & Speckmann, B. (2018). Simultaneous visualization of language endangerment and language description. Language Documentation & Conservation, 12, 359–392.", url: "https://hdl.handle.net/10125/24792" },
-    { text: "Bromham, L., Dinnage, R., Skirgård, H., Ritchie, A., Cardillo, M., Meakins, F., Greenhill, S., & Hua, X. (2022). Global predictors of language endangerment and the future of linguistic diversity. Nature Ecology & Evolution, 6(2), 163–173.", doi: "10.1038/s41559-021-01604-y" },
-    { text: "Skirgård, H., Haynie, H. J., Blasi, D. E., Hammarström, H., et al. (2023). Grambank reveals the importance of genealogical constraints on linguistic diversity and highlights the impact of language loss. Science Advances, 9(16), eadg6175.", doi: "10.1126/sciadv.adg6175" },
-    { text: "Ranacher, P., Forkel, R., Efrat-Kowalsky, N., Urban, M., Hehli, N., Franz, T., et al. (2025). A global and interoperable dataset of linguistic distributions derived from the Atlas of the World's Languages. Scientific Data, 12, 1466.", doi: "10.1038/s41597-025-05828-6" },
-    { text: "Hammarström, H., Forkel, R., Haspelmath, M., & Bank, S. (2026). Glottolog 5.4 (CLDF dataset). Zenodo.", doi: "10.5281/zenodo.24101243" },
-    { text: "Skirgård, H., Haynie, H. J., Hammarström, H., et al. (2023). Grambank v1.0.3 (CLDF dataset). Zenodo.", doi: "10.5281/zenodo.7844558" },
-    { text: "Raasveldt, M., & Mühleisen, H. (2019). DuckDB: an embeddable analytical database. Proceedings of the 2019 International Conference on Management of Data (SIGMOD), 1981–1984.", doi: "10.1145/3299869.3320212" },
-  ];
+  const refs = REFS;
   return <SourcesAndReferences sources={sources} refs={refs} checkedOn={checkedOn} language={language} />;
 }

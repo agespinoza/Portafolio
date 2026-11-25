@@ -78,6 +78,7 @@ export const PT = {
     "labImageAlt": "Pré-visualização: Mapa mundial noturno de pilares de luz e halos de gelo fotografados, junto com uma visão simulada de três pilares de luz coloridos.",
     "openVisualization": "Abrir visualização",
     "seeAllDays": "Veja todos os dias",
+    "viewArchive": "Ver o arquivo completo",
     "labNewer": "Dia mais recente",
     "labOlder": "Dia anterior",
     "labPage": "Página {page}",

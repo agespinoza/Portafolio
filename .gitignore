@@ -8,5 +8,3 @@ daily-data-lab/raw/
 *.duckdb
 *.duckdb.wal
 
-# Python environment for the Excel workbook builder (daily-data-lab/scripts/excel)
-daily-data-lab/.venv-excel/
