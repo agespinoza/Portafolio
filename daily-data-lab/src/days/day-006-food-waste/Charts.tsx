@@ -148,7 +148,7 @@ export function ScatterCard({ points, fits, xLabel, yLabel, xDomain, ariaLabel, 
 
 /* ---------- lines ---------- */
 export interface Series { key: string; label: string; color: string; points: [number, number][]; bold?: boolean }
-export function LineChartCard({ series, ariaLabel, hint, baseline, yFmt }: { series: Series[]; ariaLabel: string; hint: string; baseline?: number; yFmt: (v: number) => string }) {
+export function LineChartCard({ series, ariaLabel, hint, baseline, yFmt, xStep = 1 }: { series: Series[]; ariaLabel: string; hint: string; baseline?: number; yFmt: (v: number) => string; /** Label every n-th year (long series). */ xStep?: number }) {
   const [hover, setHover] = useState("");
   const W = 760, H = 280, L = 52, R = 120, T = 12, B = 28;
   const xs = series.flatMap((s) => s.points.map((p) => p[0])), ys = series.flatMap((s) => s.points.map((p) => p[1]));
@@ -160,7 +160,7 @@ export function LineChartCard({ series, ariaLabel, hint, baseline, yFmt }: { ser
     <figure className="chart fw-chart">
       <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label={ariaLabel}>
         {ticks(y0, y1, 5).map((v) => <g key={v}><line x1={L} x2={W - R} y1={sy(v)} y2={sy(v)} className="grid" /><text x={L - 8} y={sy(v) + 4} textAnchor="end" className="axis">{yFmt(v)}</text></g>)}
-        {Array.from({ length: x1 - x0 + 1 }, (_, i) => x0 + i).map((y) => <text key={y} x={sx(y)} y={H - 8} textAnchor="middle" className="axis">{y}</text>)}
+        {Array.from({ length: x1 - x0 + 1 }, (_, i) => x0 + i).filter((y) => (y - x0) % xStep === 0).map((y) => <text key={y} x={sx(y)} y={H - 8} textAnchor="middle" className="axis">{y}</text>)}
         {baseline != null && <line x1={L} x2={W - R} y1={sy(baseline)} y2={sy(baseline)} className="fw-rule" />}
         {series.map((s) => {
           const last = s.points[s.points.length - 1];

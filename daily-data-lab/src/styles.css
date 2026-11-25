@@ -1102,3 +1102,35 @@ h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; }
   .article a { color: inherit; }
   .article__figure { break-inside: avoid; }
 }
+
+/* ---------- Day 008 · Seed banks ---------- */
+/* Reuses the Day 006 chart tokens (--fw-*). Origin continents step from deep teal to sand; withdrawals are rust,
+   the part of a collection with no Svalbard counterpart is a pale neutral. */
+:root {
+  --sb-o0: #0b4f5e; --sb-o1: #2b8d9c; --sb-o2: #5fa8b5; --sb-o3: #96cdd3; --sb-o4: #d9b37a; --sb-o5: #b07a3c; --sb-o6: #c9ced6;
+  --sb-neg: #a84a28; --sb-gap: #dfe3e8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --sb-o0: #7fd3e3; --sb-o1: #4fb0c2; --sb-o2: #2f8596; --sb-o3: #1f5a66; --sb-o4: #c9a26a; --sb-o5: #8f6a3a; --sb-o6: #3a465a;
+    --sb-neg: #eda463; --sb-gap: #2a3446;
+  }
+}
+:root[data-theme="dark"] {
+  --sb-o0: #7fd3e3; --sb-o1: #4fb0c2; --sb-o2: #2f8596; --sb-o3: #1f5a66; --sb-o4: #c9a26a; --sb-o5: #8f6a3a; --sb-o6: #3a465a;
+  --sb-neg: #eda463; --sb-gap: #2a3446;
+}
+.sb-scroll { overflow-x: auto; overscroll-behavior-x: contain; }
+.sb-scroll svg { display: block; width: 100%; height: auto; }
+@media (max-width: 600px) { .sb-scroll svg { min-width: 560px; } }
+.sb-col { outline: none; }
+.sb-col__hit { fill: transparent; }
+.sb-col__pos { fill: var(--fw-s0); }
+.sb-col__neg { fill: var(--sb-neg); }
+.sb-col--hl .sb-col__pos { fill: var(--copper); }
+.sb-col:hover .sb-col__pos, .sb-col:focus .sb-col__pos, .sb-col:hover .sb-col__neg, .sb-col:focus .sb-col__neg { filter: brightness(1.15); stroke: var(--ink); stroke-width: 1; }
+.sb-zero { stroke: var(--ink-3); stroke-width: 1; }
+.sb-cum { fill: none; stroke: var(--copper); stroke-width: 2; }
+.sb-cum__pt { fill: var(--copper); }
+.sb-axis-cum { fill: var(--copper); }
+.sb-tick { font-size: 10px; }

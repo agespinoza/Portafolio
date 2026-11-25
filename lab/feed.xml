@@ -5,8 +5,17 @@
   <link href="https://agespinoza.github.io/Portafolio/lab/"/>
   <link rel="self" type="application/atom+xml" href="https://agespinoza.github.io/Portafolio/lab/feed.xml"/>
   <id>https://agespinoza.github.io/Portafolio/lab/</id>
-  <updated>2026-11-24T00:00:00Z</updated>
+  <updated>2026-11-25T00:00:00Z</updated>
   <author><name>Alicia Espinoza</name></author>
+  <entry>
+    <title>Day 008: How much crop diversity is safeguarded, and how much is backed up in Svalbard?</title>
+    <link href="https://agespinoza.github.io/Portafolio/lab/studies/seed-banks.html"/>
+    <id>https://agespinoza.github.io/Portafolio/lab/studies/seed-banks.html</id>
+    <published>2026-11-25T00:00:00Z</published>
+    <updated>2026-11-25T00:00:00Z</updated>
+    <category term="Agriculture"/>
+    <summary>All 1.42 million seed samples in the Svalbard Global Seed Vault, by depositor, crop, and year, set against the 6 million accessions that the world&#39;s genebanks report to FAO, with how concentrated the backup is and how much of each country&#39;s collection it covers.</summary>
+  </entry>
   <entry>
     <title>Day 007: How much of Earth orbit is junk, and who left it there?</title>
     <link href="https://agespinoza.github.io/Portafolio/lab/studies/space-debris.html"/>

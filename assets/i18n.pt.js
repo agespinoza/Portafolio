@@ -447,6 +447,12 @@ export const PT = {
       "summary": "Todos os objetos do catálogo de satélites do CelesTrak, 71.000 desde 1957, separados em satélites ativos, satélites mortos, corpos de foguete e fragmentos, por órbita, altitude, ano e dono, comparados à estimativa da ESA de mais de 1,5 milhão de peças pequenas demais para rastrear.",
       "topic": "Espaço",
       "previewAlt": "Objetos em órbita baixa por altitude, satélites ativos contra satélites mortos, corpos de foguete e detritos, ao lado de uma rosca que mostra que metade do que é rastreado em órbita é lixo."
+    },
+    "seed-banks": {
+      "title": "Quanta diversidade de culturas está protegida, e quanta tem backup em Svalbard?",
+      "summary": "Todas as 1,42 milhão de amostras de sementes do Cofre Global de Sementes de Svalbard, por depositante, cultura e ano, comparadas aos 6 milhões de acessos que os bancos de germoplasma do mundo reportam à FAO: quão concentrado é o backup e quanto da coleção de cada país ele cobre.",
+      "topic": "Agricultura",
+      "previewAlt": "Prévia: o cofre de Svalbard se enchendo de 2008 a 2026, ao lado das culturas que reúnem a maior parte das amostras."
     }
   },
   "lab": {

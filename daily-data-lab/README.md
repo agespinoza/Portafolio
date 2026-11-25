@@ -11,6 +11,7 @@ One small, interactive data visualization a day, each on a different everyday to
 | 005 | Languages | [Which languages are endangered and barely documented?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/5) | [Glottolog 5.4](https://doi.org/10.5281/zenodo.24101243), [Grambank 1.0.3](https://doi.org/10.5281/zenodo.7844558), and [WALS Online](https://wals.info/) CLDF (all CC-BY 4.0) |
 | 006 | Food | [Where is the world's food wasted, and by whom?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/6) | [UNEP Food Waste Index Report 2024](https://digitallibrary.un.org/record/4042857), [FAOSTAT](https://www.fao.org/faostat/en/#data/FS) (CC-BY 4.0), [World Bank WDI](https://datatopics.worldbank.org/world-development-indicators/) and CCKP (CC-BY 4.0) |
 | 007 | Space | [How much of Earth orbit is junk, and who left it there?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/7) | [CelesTrak SATCAT](https://celestrak.org/satcat/satcat-format.php) and the [ESA Space Environment Report 2026](https://www.esa.int/Space_Safety/Space_Debris/ESA_Space_Environment_Report_2026) |
+| 008 | Agriculture | [How much crop diversity is safeguarded, and how much is backed up in Svalbard?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/8) | [Svalbard Global Seed Vault Seed Portal](https://seedvault.nordgen.org/) (NordGen), [NordGen Annual Progress Report 2025](https://www.nordgen.org/our-work/svalbard-global-seed-vault/annual-progress-reports/) and [FAO WIEWS, SDG 2.5.1.a](https://www.fao.org/wiews/data/ex-situ/overview/en) |
 
 ## Data downloads
 
@@ -145,6 +146,29 @@ Every Earth-orbiting object in CelesTrak's satellite catalogue (71,010 since 195
 - Causes for break-ups after May 2022, when NASA's list ends (ESA DISCOS needs a DISCOSweb account).
 - Mass and cross-section by orbit, to weigh junk by collision risk instead of count.
 - Altitude profile over time: how constellation shells moved active satellites below the debris belt.
+
+## Day 008: How much crop diversity is safeguarded, and how much is backed up in Svalbard?
+
+Every seed sample in the Svalbard Global Seed Vault (1,417,961 from 135 genebanks and 6,587 species on 2026-11-25) by depositor, opening date, crop genus and continent of origin, set against the 5,987,633 accessions that 901 genebanks in 118 countries and 17 international and regional centres report to FAO for SDG indicator 2.5.1.a (2024). One global filter (continent of the depositing genebank, with international centres as their own group, as in WIEWS) plus a country filter recompute the KPIs, charts, Pareto curve, facts and table. All 128 countries in either source are listed (no top-N cut); the depositor and crop charts show the 20 largest. Mode: SIMPLE (Wednesday), one bundled JSON, no API calls in the browser.
+
+- **Data pipeline (DuckDB, `scripts/day-008/`):** `fetch.sh` downloads the Seed Portal's public "Export" tables (depositors, deposit events, depositor × date × crop, depositor × genus, genera, species, continents and countries of origin; `xlsx2csv.py` turns each into CSV), the WIEWS JSON behind the public overview and maps pages (2024 by country and centre, 1995–2024 trend), the UN M49 table and NordGen's Annual Progress Report 2025, whose Table 5 is transcribed in `nordgen-table5.csv`. `snapshot.mjs` writes `data/day-008-seed-banks/day-008.json` {kpis, svalbardCumulativeByYear, depositEvents, svalbardByDepositorTop20, svalbardByCropTop20, svalbardByContinent, cropPareto, newDepositorsByYear, wiewsByCountry, wiewsTrend, countries, …}. `preview.mjs` draws the preview images. Rebuild with `npm run data:seeds`.
+- **Checks:** the build stops unless every Seed Portal table sums to the same total, that total equals NordGen's end-2025 holdings (1,378,238) plus the 2026 deposits (39,723), the depositor (135) and species (6,587) counts match seedvault.no, and the WIEWS country and centre rows add up to the WIEWS total. seedvault.no shows 1,417,799 samples, 162 fewer than the Portal: the size of one deposit made on 13 October 2026.
+- **Crop names:** the Seed Portal gives one name per genus; when one species holds at least 90% of a genus's samples, the genus takes that crop's name (Pennisetum "Kikuyu Grass" → pearl millet, 98% *P. glaucum*).
+- **Finding:** five depositors hold 48% of the vault and 13 international centres 55%; 5 of 1,246 genera hold half of the samples. Of 118 countries reporting to WIEWS, 74 have a national depositor, with a median of 9% Svalbard samples per national accession. Mexico's national genebanks (94,724 accessions) have deposited nothing, while CIMMYT, near Mexico City, has 190,453 samples there.
+- **Brief deviations:** the brief asked for Recharts, `public/data/` and the top 100 WIEWS countries. The lab draws hand-built SVG (CLAUDE.md), keeps data in `data/day-NNN-*/`, and lists every country.
+- **Downloads** go to `daily-data-lab/raw/day-008-seed-banks/` (not versioned).
+
+### Sprint 1
+
+- [x] Seed Portal exports and FAO WIEWS → DuckDB → day-008.json, reconciled with NordGen and seedvault.no (#31)
+- [x] Dashboard: 5 KPIs, holdings line, every opening, top 20 depositors and crops, origin donut, every country with its Svalbard backup, international centres, WIEWS trend, crop Pareto, new depositors per year, sortable country table, family mode, attribution (#32)
+- [x] Research blocks with DOI-checked references, translations, research article, Excel export, previews, cross-day insight (#33)
+
+### Follow-up ideas
+
+- Match Svalbard and WIEWS accession by accession (DOIs or accession numbers) to count distinct accessions backed up.
+- Seed-storage behaviour by genus, to compare only collections that can be stored as dry seed.
+- Crops by country of origin for each depositor (one Seed Portal export per depositor).
 
 ## Languages and publication calendar
 

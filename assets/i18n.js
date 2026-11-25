@@ -398,6 +398,12 @@ export const MESSAGES = {
         topic: "Espacio",
         previewAlt: "Vista previa: objetos en órbita terrestre baja por altitud, satélites que funcionan frente a satélites muertos, cuerpos de cohete y basura, junto a una dona que muestra que la mitad de lo rastreado en órbita es basura.",
       },
+      "seed-banks": {
+        title: "¿Cuánta diversidad de cultivos está resguardada, y cuánta tiene respaldo en Svalbard?",
+        summary: "Las 1.42 millones de muestras de semilla de la Bóveda Global de Semillas de Svalbard, por depositante, cultivo y año, frente a los 6 millones de accesiones que los bancos de germoplasma del mundo reportan a la FAO: qué tan concentrado está el respaldo y cuánto cubre de la colección de cada país.",
+        topic: "Agricultura",
+        previewAlt: "Vista previa: la bóveda de Svalbard llenándose de 2008 a 2026, junto a los cultivos que reúnen la mayoría de sus muestras.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -798,6 +804,12 @@ export const MESSAGES = {
         summary: "CelesTrakの衛星カタログに1957年以降登録された71,000個のすべての物体を、稼働衛星・停止衛星・ロケット本体・破片に分け、軌道・高度・年・所有者別に表示。追跡できないほど小さい150万個超の破片というESAの推定と比較します。",
         topic: "宇宙",
         previewAlt: "プレビュー：低軌道の物体を高度別に示し、稼働衛星と停止衛星・ロケット本体・デブリを比較。隣のドーナツグラフは、軌道上で追跡される物体の半分がごみであることを示します。",
+      },
+      "seed-banks": {
+        title: "作物の多様性はどれだけ守られ、どれだけスバールバルにバックアップされているのか？",
+        summary: "スバールバル世界種子貯蔵庫の142万の種子サンプルを寄託者・作物・年別に示し、世界のジーンバンクがFAOに報告する600万点と比較。バックアップの集中度と、各国のコレクションをどれだけカバーしているかを見ます。",
+        topic: "農業",
+        previewAlt: "プレビュー：2008年から2026年に満たされていくスバールバルの貯蔵庫と、サンプルの大半を占める作物。",
       },
     },
     lab: {
@@ -1200,6 +1212,12 @@ export const MESSAGES = {
         topic: "Spazio",
         previewAlt: "Anteprima: oggetti in orbita bassa per quota, satelliti attivi contro satelliti morti, corpi di razzo e detriti, accanto a una ciambella che mostra che metà di ciò che è tracciato in orbita è spazzatura.",
       },
+      "seed-banks": {
+        title: "Quanta diversità delle colture è al sicuro, e quanta ha un backup a Svalbard?",
+        summary: "Tutti gli 1,42 milioni di campioni di semi del Deposito globale di semi delle Svalbard, per depositante, coltura e anno, a confronto con i 6 milioni di accessioni che le banche del germoplasma del mondo dichiarano alla FAO: quanto è concentrato il backup e quanta parte della collezione di ogni paese copre.",
+        topic: "Agricoltura",
+        previewAlt: "Anteprima: il deposito delle Svalbard che si riempie dal 2008 al 2026, accanto alle colture che ne raccolgono la maggior parte dei campioni.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -1600,6 +1618,12 @@ export const MESSAGES = {
         summary: "Tous les objets du catalogue de satellites de CelesTrak, 71 000 depuis 1957, répartis en satellites actifs, satellites morts, corps de fusée et fragments, par orbite, altitude, année et propriétaire, face à l'estimation de l'ESA de plus de 1,5 million de morceaux trop petits pour être suivis.",
         topic: "Espace",
         previewAlt: "Aperçu : objets en orbite basse par altitude, satellites actifs face aux satellites morts, corps de fusée et débris, à côté d'un anneau montrant que la moitié de ce qui est suivi en orbite est un déchet.",
+      },
+      "seed-banks": {
+        title: "Quelle part de la diversité des cultures est protégée, et quelle part est sauvegardée à Svalbard ?",
+        summary: "Les 1,42 million d’échantillons de semences de la Réserve mondiale de semences du Svalbard, par déposant, culture et année, face aux 6 millions d’accessions que les banques de gènes du monde déclarent à la FAO : la concentration de la sauvegarde et la part de chaque collection nationale qu’elle couvre.",
+        topic: "Agriculture",
+        previewAlt: "Aperçu : la chambre forte du Svalbard qui se remplit de 2008 à 2026, à côté des cultures qui regroupent la plupart de ses échantillons.",
       },
     },
     lab: {

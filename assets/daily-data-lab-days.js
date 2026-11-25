@@ -94,4 +94,18 @@ export const DAILY_DATA_LAB_DAYS = [
     previewLight: "assets/img/lab-day-007-light.svg",
     previewAlt: "Preview: objects in low Earth orbit by altitude, working satellites against dead satellites, rocket bodies and debris, next to a donut showing that half of what is tracked in orbit is junk.",
   },
+  {
+    day: 8,
+    slug: "seed-banks",
+    date: "2026-11-25",
+    title: "How much crop diversity is safeguarded, and how much is backed up in Svalbard?",
+    summary:
+      "All 1.42 million seed samples in the Svalbard Global Seed Vault, by depositor, crop, and year, set against the 6 million accessions that the world's genebanks report to FAO, with how concentrated the backup is and how much of each country's collection it covers.",
+    topic: "Agriculture",
+    tags: ["React", "TypeScript", "DuckDB", "NordGen", "FAO WIEWS"],
+    source: "Svalbard Global Seed Vault Seed Portal (NordGen) and FAO WIEWS, SDG 2.5.1.a",
+    preview: "assets/img/lab-day-008.svg",
+    previewLight: "assets/img/lab-day-008-light.svg",
+    previewAlt: "Preview: the Svalbard seed vault filling up from 2008 to 2026, next to the crops that hold most of its samples.",
+  },
 ];

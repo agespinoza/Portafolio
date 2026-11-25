@@ -11,6 +11,7 @@ import { LAKES, LAKETEMP, SERIES, TRENDS, ICE_BY_LAT } from "./days/day-004-abra
 import { AES_LABEL, FAMILIES, LANGUAGES, MACROAREAS, MED_LABEL, isEndangered, isLiving, isPriority } from "./days/day-005-endangered-languages/data";
 import { BY_INCOME, BY_REGION, BY_SECTOR, COUNTRIES, FLI } from "./days/day-006-food-waste/data";
 import { CAUSES, CLASSES, CUBES, ORBITS, OWNERS, PARENTS, RCS_CLASSES } from "./days/day-007-space-debris/data";
+import { CENTRES, COUNTRIES as SEED_COUNTRIES, CROPS_BY_CONTINENT, CUMULATIVE, DEPOSITORS, EVENTS, GENERA, ORIGIN, TREND, WIEWS_CENTRES, backupShare } from "./days/day-008-seed-banks/data";
 
 type Rows = Sheet["rows"];
 const sheet = (name: string, columns: string[], rows: Rows): Sheet => ({ name, columns, rows });
@@ -96,5 +97,24 @@ export const EXPORTS: Record<string, () => Sheet[]> = {
       CUBES.rcsCube.map(([o, w, c, k, n]) => [ORBITS[o], OWNERS[w].code, CLASSES[c], RCS_CLASSES[k], n])),
     sheet("Fragmentations", ["Launch", "Parent", "Owner", "Orbit", "Pieces catalogued", "Pieces in orbit", "Cause", "Event year", "Launched"],
       PARENTS.map((p) => [p.launch, p.parent, p.owner, p.orbit, p.pieces, p.inOrbit, p.cause, p.eventYear, p.launched])),
+  ],
+  "seed-banks": () => [
+    sheet("Depositors", ["Institute code", "Depositor", "Country", "ISO3", "Continent / group", "International centre", "Regional", "Samples in Svalbard", "Species", "Taxa", "First deposit year", "Deposit events"],
+      DEPOSITORS.map((d) => [d.code, d.name, d.country, d.iso3, d.continent, d.center, d.regional, d.samples, d.species, d.taxa, d.firstYear, d.events])),
+    sheet("Deposit events", ["Date", "Institute code", "Samples still held", "Samples withdrawn", "Seed boxes", "Species"],
+      EVENTS.map((e) => [e.date, e.code, e.samples, e.withdrawn, e.boxes, e.species])),
+    sheet("Holdings by year", ["Year", "Deposited", "Accumulated deposits", "Withdrawn", "Held at year end", "Source"],
+      CUMULATIVE.map((r) => [r.year, r.deposited, r.accumulated, r.withdrawn, r.holdings, r.source])),
+    sheet("Genera", ["Genus", "Common name used", "Seed Portal name", "Samples", "Species", "Most-sampled species", "Its share"], GENERA.map((g) => [g.genus, g.common, g.portalName ?? null, g.samples, g.species, g.topSpecies ?? null, g.topSpeciesShare ?? null])),
+    sheet("Genera by continent", ["Depositor continent / group", "Genus", "Samples"], CROPS_BY_CONTINENT.map((c) => [c.continent, c.genus, c.samples])),
+    sheet("Origin", ["Continent of origin", "Samples", "Depositors", "Species"], ORIGIN.map((o) => [o.continent, o.samples, o.depositors, o.species])),
+    sheet("Countries", ["ISO3", "Country", "Continent", "Subregion", "WIEWS accessions 2024", "Genebanks", "Genera", "Species", "Svalbard samples (national)", "Svalbard depositors", "First deposit", "Svalbard / WIEWS"],
+      SEED_COUNTRIES.map((c) => [c.iso3, c.name, c.continent, c.subregion, c.accessions, c.genebanks, c.genera, c.species, c.svalbardSamples, c.svalbardDepositors, c.firstDeposit, backupShare(c)])),
+    sheet("Centres", ["Centre", "Regional", "Seed Portal codes", "Svalbard samples", "WIEWS name", "WIEWS accessions 2024"],
+      CENTRES.map((c) => [c.center, c.regional, c.codes.join(" "), c.svalbardSamples, c.wiewsName, c.wiewsAccessions])),
+    sheet("WIEWS centres", ["Centre", "Kind", "Institute code", "Accessions 2024", "Genebanks", "Genera", "Species"],
+      WIEWS_CENTRES.map((c) => [c.name, c.kind, c.instcode, c.accessions, c.genebanks, c.genera, c.species])),
+    sheet("WIEWS trend", ["Year", "World", "Africa", "Americas", "Asia", "Europe", "Oceania", "International and regional centres"],
+      TREND.map((r) => [r.year, r.World, r.Africa, r.Americas, r.Asia, r.Europe, r.Oceania, r.International])),
   ],
 };
