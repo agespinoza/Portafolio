@@ -60,7 +60,7 @@ const kpis = {
   tracked: N(k.tracked), active: N(k.active), pctJunk: 1 - N(k.active) / N(k.tracked),
   est1cmPlus: esa.gt10cm + esa.cm1to10, reentriesLastYear: N(k.reentries), reentriesIntactLastYear: N(k.reentriesIntact), catalogued: N(k.catalogued),
 };
-const byType = (await rows(`SELECT cls k, count(*) n FROM o WHERE in_orbit GROUP BY 1`)).map((r) => ({ key: r.k, n: N(r.n) }));
+const byType = (await rows(`SELECT cls k, count(*) n FROM o WHERE in_orbit GROUP BY 1 ORDER BY 2 DESC, 1`)).map((r) => ({ key: r.k, n: N(r.n) }));
 const byOrbit = (await rows(`SELECT orbit k, count(*) n FROM o WHERE in_orbit GROUP BY 1 ORDER BY 2 DESC`)).map((r) => ({ key: r.k, n: N(r.n) }));
 const byAltitudeBin = (await rows(`SELECT floor(mean_alt_km / 50)::INT * 50 km, cls, count(*) n FROM o WHERE in_orbit AND orbit = 'LEO' GROUP BY ALL ORDER BY ALL`))
   .map((r) => ({ km: N(r.km), cls: r.cls, n: N(r.n) }));
@@ -76,15 +76,20 @@ const byOwner = (await rows(`SELECT owner,
     count(*) FILTER (WHERE in_orbit AND cls = 'active') active, count(*) FILTER (WHERE in_orbit AND cls = 'inactive') inactive,
     count(*) FILTER (WHERE in_orbit AND cls = 'rocket') rocketBody, count(*) FILTER (WHERE in_orbit AND cls = 'debris') debris,
     count(*) FILTER (WHERE in_orbit AND cls = 'unknown') unk, count(*) catalogued
-  FROM o GROUP BY 1 ORDER BY active + inactive + rocketBody + debris + unk DESC, catalogued DESC`))
+  FROM o GROUP BY 1 ORDER BY active + inactive + rocketBody + debris + unk DESC, catalogued DESC, owner`))
   .map((r) => ({ owner: r.owner, name: ownerNames[r.owner] ?? r.owner, active: N(r.active), inactive: N(r.inactive), rocketBody: N(r.rocketBody), debris: N(r.debris), unknown: N(r.unk), catalogued: N(r.catalogued) }));
 // Debris catalogued per launch (international designator YYYY-NNN). Parent = the launch's payload or rocket body named
 // in the debris pieces ("FENGYUN 1C DEB" → FENGYUN 1C). Event year ≈ the year most of its debris entered the catalogue.
+// Every launch with catalogued debris (no cut-off), largest first. Stored compactly in the JSON as
+// [launch, parent, owner index, orbit index, pieces, in orbit, cause index, event year, launched] (see fragmentationParents).
 const topFragmentationParents = (await rows(`
   SELECT d.launch_key, mode(regexp_replace(d.name, '\\s+DEB$', '')) parent, any_value(d.cause) cause, any_value(d.owner) AS "owner", mode(d.orbit) AS "orbit",
     count(*) pieces, count(*) FILTER (WHERE d.in_orbit) inOrbit, mode(year(d.cat_date)) eventYear, min(d.launch)::VARCHAR launched
-  FROM o d WHERE d.cls = 'debris' GROUP BY 1 ORDER BY pieces DESC LIMIT 10`))
+  FROM o d WHERE d.cls = 'debris' GROUP BY 1 ORDER BY pieces DESC, inOrbit DESC, d.launch_key`))
   .map((r) => ({ launch: r.launch_key, parent: r.parent, owner: r.owner, orbit: r.orbit, pieces: N(r.pieces), inOrbit: N(r.inOrbit), cause: r.cause, eventYear: N(r.eventYear), launched: r.launched }));
+
+const fragmentationParents = topFragmentationParents.map((p) => [p.launch, p.parent, OWNERS.indexOf(p.owner), ORBITS.indexOf(p.orbit), p.pieces, p.inOrbit, CAUSES.indexOf(p.cause), p.eventYear, p.launched]);
+if (fragmentationParents.some((r) => r[2] < 0 || r[3] < 0 || r[6] < 0)) throw new Error("fragmentation parent with unknown owner, orbit or cause");
 
 // Shells for the 3-D view: objects in orbit by mean altitude (10 km steps below 2,000 km, 100 km above, rounded down) and inclination (1°).
 // SATCAT has no node or phase, so the page spreads each object around its shell; only altitude and inclination are real.
@@ -124,7 +129,7 @@ const out = {
   source: "CelesTrak SATCAT (celestrak.org/pub/satcat.csv); ESA Space Debris Office, Annual Space Environment Report 2026 (MASTER, 1 Feb 2026)",
   capturedAt: new Date().toISOString(), asOf, yearAgo, esa,
   classes: CLS, causes: CAUSES, rcsClasses: RCS, breakups: N(bk.n), orbits: ORBITS, owners: OWNERS.map((o) => ({ code: o, name: ownerNames[o] ?? o })),
-  kpis, byType, byOrbit, byAltitudeBin, byYearLaunched, byYearDecayed, activeVsDebrisByYear, byOwner, topFragmentationParents, cube, shells, causeCube, rcsCube,
+  kpis, byType, byOrbit, byAltitudeBin, byYearLaunched, byYearDecayed, activeVsDebrisByYear, byOwner, fragmentationParents, cube, shells, causeCube, rcsCube,
 };
 const dir = "data/day-007-space-debris";
 mkdirSync(dir, { recursive: true });
@@ -132,4 +137,4 @@ writeFileSync(`${dir}/day-007.json`, JSON.stringify(out));
 console.log(`✓ ${dir}/day-007.json · ${(statSync(`${dir}/day-007.json`).size / 1024).toFixed(0)} KB · SATCAT as of ${asOf}`);
 console.log(`  in orbit ${kpis.tracked} · active ${kpis.active} (${((1 - kpis.pctJunk) * 100).toFixed(1)}%) · re-entries since ${yearAgo}: ${kpis.reentriesLastYear} (${kpis.reentriesIntactLastYear} intact, ${(kpis.reentriesIntactLastYear / 365).toFixed(2)}/day)`);
 console.log(`  ESA 2026 (MASTER 1 Feb 2026): >10 cm ${esa.gt10cm} (≈${esa.activeInGt10cm} active) · 1–10 cm ${esa.cm1to10} · 1 mm–1 cm ${esa.mm1to1cm}`);
-console.log(`  owners ${OWNERS.length} · top parents: ${topFragmentationParents.slice(0, 3).map((p) => `${p.parent} ${p.pieces}`).join(", ")}`);
+console.log(`  owners ${OWNERS.length} · fragmentation parents ${fragmentationParents.length} · top: ${topFragmentationParents.slice(0, 3).map((p) => `${p.parent} ${p.pieces}`).join(", ")}`);

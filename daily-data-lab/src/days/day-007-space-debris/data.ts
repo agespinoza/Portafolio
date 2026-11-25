@@ -15,7 +15,8 @@ interface Snapshot {
   classes: Cls[]; orbits: string[]; owners: Owner[];
   kpis: { tracked: number; active: number; pctJunk: number; est1cmPlus: number; reentriesLastYear: number; reentriesIntactLastYear: number; catalogued: number };
   byOwner: OwnerRow[];
-  topFragmentationParents: Parent[];
+  /** Every launch with catalogued debris, largest first: [launch, parent, owner, orbit, pieces, inOrbit, cause, eventYear, launched]. */
+  fragmentationParents: [string, string, number, number, number, number, number, number, string][];
   /** [orbit, owner, cls, entryYear, decayYear (0 = in orbit), altBin (50 km, LEO in orbit; -1), reenteredLast365, n] */
   cube: [number, number, number, number, number, number, number, number][];
   /** [orbit, owner, cls, meanAltKm, inclinationDeg, n] for objects in orbit with orbit data (3-D view). */
@@ -35,7 +36,10 @@ export const KPIS = S.kpis;
 export const CLASSES = S.classes;
 export const ORBITS = S.orbits;
 export const OWNERS = S.owners;
-export const PARENTS = S.topFragmentationParents;
+/** Every fragmentation parent (launch with catalogued debris), largest first. No cut-off. */
+export const PARENTS: Parent[] = S.fragmentationParents.map(([launch, parent, w, o, pieces, inOrbit, c, eventYear, launched]) => ({
+  launch, parent, owner: S.owners[w].code, orbit: S.orbits[o], pieces, inOrbit, cause: S.causes[c], eventYear, launched,
+}));
 export const CAUSES = S.causes;
 export const RCS_CLASSES = S.rcsClasses;
 export const BREAKUPS = S.breakups;

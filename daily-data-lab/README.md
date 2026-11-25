@@ -130,7 +130,7 @@ Every Earth-orbiting object in CelesTrak's satellite catalogue (71,010 since 195
 ### Sprint 1
 
 - [x] CelesTrak SATCAT → DuckDB → day-007.json, cube checked against SQL totals (#24)
-- [x] Dashboard: 5 KPIs, type and orbit donuts, LEO altitude profile, population with ESA-dated events, additions and re-entries per year, all owners stacked and in a sortable table, top-10 debris clouds, ESA size classes on a log scale, family mode, attribution (#25)
+- [x] Dashboard: 5 KPIs, type and orbit donuts, LEO altitude profile, population with ESA-dated events, additions and re-entries per year, all owners stacked and in a sortable table, every debris cloud (all 3,118 launches with catalogued debris, scrollable), ESA size classes on a log scale, family mode, attribution (#25)
 - [x] Research blocks with DOI-checked references, translations, cross-day insight, previews (#26)
 - [x] 3-D shell view of every object in orbit (altitude × inclination), with filters, kind toggles, two scales, and a shell readout (#27)
 

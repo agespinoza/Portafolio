@@ -1,6 +1,6 @@
 // Day 006 charts: hand-built SVG (no chart library), the same pattern as Days 004–005: a focusable row or mark per
 // datum, a hover/focus text readout, and a legend. All four card types are generic so the page reuses them.
-import { type KeyboardEvent, useEffect, useRef, useState } from "react";
+import { type KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
 
 const activate = (fn: () => void) => (e: KeyboardEvent) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fn(); } };
 
@@ -30,7 +30,8 @@ export function BarChartCard({ rows, colors, legend, ariaLabel, hint, fmt, pinne
     const scale = svg ? svg.getBoundingClientRect().height / H : 1;
     el.scrollTop = Math.max(0, (T + focusIdx * (RH + GAP)) * scale - el.clientHeight / 2);
   }, [focusIdx, H]);
-  const svgEl = (
+  // Memoized so hovering (which only changes the readout) does not re-render thousands of rows.
+  const svgEl = useMemo(() => (
       <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label={ariaLabel}>
         {rows.map((r, i) => {
           const y = T + i * (RH + GAP) + (pinnedFrom != null && i >= pinnedFrom ? sep : 0);
@@ -53,7 +54,7 @@ export function BarChartCard({ rows, colors, legend, ariaLabel, hint, fmt, pinne
         })}
         {sep > 0 && <line x1={0} x2={W} y1={T + pinnedFrom! * (RH + GAP) + sep / 2 - 3} y2={T + pinnedFrom! * (RH + GAP) + sep / 2 - 3} className="fw-rule" />}
       </svg>
-  );
+  ), [rows, colors, ariaLabel, fmt, pinnedFrom, L, H, sep, max]);
   return (
     <figure className="chart fw-chart">
       {scroll && rows.length > 24 ? <div ref={box} className="fw-scroll">{svgEl}</div> : svgEl}

@@ -73,13 +73,13 @@ export default function SpaceDebrisDay() {
     readout: tr(language, "ownerReadout", "{name}: {total} in orbit · {parts} · {junk} junk", { name: ownerName(o.code), total: num(o.total, language), parts: readCounts(o.counts), junk: pct(1 - o.counts[0] / o.total, language) }),
   }));
 
-  // Fragmentation parents: debris pieces still in orbit vs already re-entered.
-  const parentRows: BarRow[] = PARENTS.map((p) => ({
-    id: p.launch, label: `${p.parent} (${p.eventYear}, ${causeShort(p.cause, language)})`, segments: [p.inOrbit, p.pieces - p.inOrbit],
-    highlight: p.owner === owner, faded: orbit !== "all" && p.orbit !== orbit,
+  // Fragmentation parents: every launch with catalogued debris (no cut-off) in the orbit/owner filter, largest first;
+  // pieces still in orbit vs already re-entered. The chart scrolls inside its card.
+  const parentRows: BarRow[] = useMemo(() => PARENTS.filter((p) => (orbit === "all" || p.orbit === orbit) && (!owner || p.owner === owner)).map((p, i) => ({
+    id: p.launch, label: `${i + 1}. ${p.parent.length > 18 ? `${p.parent.slice(0, 17).trimEnd()}…` : p.parent} (${p.eventYear}, ${causeShort(p.cause, language)})`, segments: [p.inOrbit, p.pieces - p.inOrbit],
     readout: tr(language, "parentReadout2", "{name} ({owner}, launched {launched}): {pieces} debris pieces catalogued, {inOrbit} still in orbit; most entered the catalogue in {year}. Cause: {cause}.", {
       name: p.parent, owner: ownerName(p.owner), launched: p.launched.slice(0, 4), pieces: num(p.pieces, language), inOrbit: num(p.inOrbit, language), year: p.eventYear, cause: causeName(p.cause, language) }),
-  }));
+  })), [orbit, owner, language]);
 
   // Year series.
   const series = (rows: number[][], keep: Cls[] = CLASSES) => keep.map((c) => ({ key: c, label: cName(c), color: CLS_COLOR[c], values: rows.map((r) => r[CLASSES.indexOf(c)]) }));
@@ -95,7 +95,7 @@ export default function SpaceDebrisDay() {
   const wDebris = world.inOrbit[3];
   const debrisByOwner = [...world.byOwner.entries()].map(([w, c]) => ({ code: OWNERS[w].code, d: c[3] })).sort((x, y) => y.d - x.d);
   const top3 = debrisByOwner.slice(0, 3), top3Share = top3.reduce((s, x) => s + x.d, 0) / wDebris;
-  const parentsInOrbit = PARENTS.reduce((s, p) => s + p.inOrbit, 0);
+  const parentsInOrbit = PARENTS.slice(0, 10).reduce((s, p) => s + p.inOrbit, 0);
   const pop2000 = world.pop[2000 - FIRST_YEAR].reduce((x, y) => x + y, 0), popNow = world.tracked;
   const wPeakActive = world.alt.reduce((b, v, i) => (v[0] > world.alt[b][0] ? i : b), 0);
   const wPeakJunk = world.alt.reduce((b, v, i) => (v[1] + v[2] + v[3] + v[4] > world.alt[b][1] + world.alt[b][2] + world.alt[b][3] + world.alt[b][4] ? i : b), 0);
@@ -285,11 +285,11 @@ export default function SpaceDebrisDay() {
         </section>
         <section className="card">
           <div className="card__head"><div>
-            <h2>{tr(language, "parentTitle", "The ten biggest debris clouds")}</h2>
-            <p className="muted">{tr(language, "parentSub2", "Debris pieces catalogued from one launch, still in orbit and already re-entered (see the legend), whole catalogue. In brackets: the year most pieces entered the catalogue and NASA's assessed cause. Faded: outside the selected orbit.")}</p>
+            <h2>{tr(language, "parentTitle2", "Every debris cloud: {n} launches", { n: num(parentRows.length, language) })}</h2>
+            <p className="muted">{tr(language, "parentSub3", "Every launch that left catalogued debris, {scope}, largest first: pieces still in orbit and already re-entered (see the legend). In brackets: the year most pieces entered the catalogue and NASA's assessed cause. Scroll the chart to see them all.", { scope })}</p>
           </div></div>
-          <BarChartCard rows={parentRows} colors={["var(--sd-debris)", "var(--sd-debris-pale)"]} legend={[tr(language, "stillUp", "Still in orbit"), tr(language, "reentered", "Re-entered")]} labelWidth={230} fmt={(v) => num(v, language)}
-            ariaLabel={tr(language, "parentAria", "Ten launches with the most catalogued debris")} hint={tr(language, "barHint", "Hover or focus a bar to read it.")} />
+          {parentRows.length === 0 ? <p className="muted">{tr(language, "parentNone", "No catalogued debris in this selection.")}</p> : <BarChartCard rows={parentRows} colors={["var(--sd-debris)", "var(--sd-debris-pale)"]} legend={[tr(language, "stillUp", "Still in orbit"), tr(language, "reentered", "Re-entered")]} labelWidth={290} scroll fmt={(v) => num(v, language)}
+            ariaLabel={tr(language, "parentAria2", "Debris pieces per launch, every launch with catalogued debris")} hint={tr(language, "barHint", "Hover or focus a bar to read it.")} />}
         </section>
 
         <section className="card">
