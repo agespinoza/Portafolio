@@ -4,36 +4,37 @@ import { useState } from "react";
 import { dayText, localeFor, t } from "../../assets/i18n.js";
 import { DownloadButton } from "./StudyDownloads.jsx";
 import { ARTICLES, REFERENCES } from "./articles/index.ts";
+import { articleUrl, linkedInShareUrl } from "../share-url.js";
 
 const UI = {
   en: { kicker: "Research article", by: "Alicia Espinoza · Daily Data Lab", published: "Published", keywords: "Keywords", abstract: "Abstract",
     back: "Interactive study", excel: "Data in Excel", print: "Print or save as PDF", figure: "Figure 1", availability: "Data and code availability",
     availText: "Every number in this article can be recomputed from the interactive study, the data download in Excel (every table behind the study) and the public source code.",
-    code: "Source code", cite: "How to cite", copy: "Copy BibTeX", copied: "BibTeX copied.", refs: "References", article: "Research article", lang: "en" },
+    code: "Source code", cite: "How to cite", copy: "Copy BibTeX", copied: "BibTeX copied.", refs: "References", article: "Research article", linkedin: "Share on LinkedIn", lang: "en" },
   es: { kicker: "Artículo de investigación", by: "Alicia Espinoza · Daily Data Lab", published: "Publicado", keywords: "Palabras clave", abstract: "Resumen",
     back: "Estudio interactivo", excel: "Datos en Excel", print: "Imprimir o guardar como PDF", figure: "Figura 1", availability: "Disponibilidad de datos y código",
     availText: "Cada cifra de este artículo se puede recalcular desde el estudio interactivo, la descarga de datos en Excel (todas las tablas del estudio) y el código fuente público.",
-    code: "Código fuente", cite: "Cómo citar", copy: "Copiar BibTeX", copied: "BibTeX copiado.", refs: "Referencias", article: "Artículo de investigación", lang: "es" },
+    code: "Código fuente", cite: "Cómo citar", copy: "Copiar BibTeX", copied: "BibTeX copiado.", refs: "Referencias", article: "Artículo de investigación", linkedin: "Compartir en LinkedIn", lang: "es" },
   pt: { kicker: "Artigo de pesquisa", by: "Alicia Espinoza · Daily Data Lab", published: "Publicado", keywords: "Palavras-chave", abstract: "Resumo",
     back: "Estudo interativo", excel: "Dados em Excel", print: "Imprimir ou salvar como PDF", figure: "Figura 1", availability: "Disponibilidade de dados e código",
     availText: "Cada número deste artigo pode ser recalculado a partir do estudo interativo, do download dos dados em Excel (todas as tabelas do estudo) e do código-fonte público.",
-    code: "Código-fonte", cite: "Como citar", copy: "Copiar BibTeX", copied: "BibTeX copiado.", refs: "Referências", article: "Artigo de pesquisa", lang: "pt" },
+    code: "Código-fonte", cite: "Como citar", copy: "Copiar BibTeX", copied: "BibTeX copiado.", refs: "Referências", article: "Artigo de pesquisa", linkedin: "Compartilhar no LinkedIn", lang: "pt" },
   fr: { kicker: "Article de recherche", by: "Alicia Espinoza · Daily Data Lab", published: "Publié le", keywords: "Mots-clés", abstract: "Résumé",
     back: "Étude interactive", excel: "Données Excel", print: "Imprimer ou enregistrer en PDF", figure: "Figure 1", availability: "Disponibilité des données et du code",
     availText: "Chaque chiffre de cet article peut être recalculé à partir de l’étude interactive, du téléchargement des données Excel (toutes les tables de l’étude) et du code source public.",
-    code: "Code source", cite: "Comment citer", copy: "Copier le BibTeX", copied: "BibTeX copié.", refs: "Références", article: "Article de recherche", lang: "fr" },
+    code: "Code source", cite: "Comment citer", copy: "Copier le BibTeX", copied: "BibTeX copié.", refs: "Références", article: "Article de recherche", linkedin: "Partager sur LinkedIn", lang: "fr" },
   it: { kicker: "Articolo di ricerca", by: "Alicia Espinoza · Daily Data Lab", published: "Pubblicato", keywords: "Parole chiave", abstract: "Sintesi",
     back: "Studio interattivo", excel: "Dati in Excel", print: "Stampa o salva in PDF", figure: "Figura 1", availability: "Disponibilità di dati e codice",
     availText: "Ogni numero di questo articolo si può ricalcolare dallo studio interattivo, dal download dei dati in Excel (tutte le tabelle dello studio) e dal codice sorgente pubblico.",
-    code: "Codice sorgente", cite: "Come citare", copy: "Copia BibTeX", copied: "BibTeX copiato.", refs: "Riferimenti", article: "Articolo di ricerca", lang: "it" },
+    code: "Codice sorgente", cite: "Come citare", copy: "Copia BibTeX", copied: "BibTeX copiato.", refs: "Riferimenti", article: "Articolo di ricerca", linkedin: "Condividi su LinkedIn", lang: "it" },
   ja: { kicker: "研究論文", by: "Alicia Espinoza · Daily Data Lab", published: "公開", keywords: "キーワード", abstract: "要旨",
     back: "インタラクティブな研究", excel: "Excelデータ", print: "印刷またはPDFで保存", figure: "図1", availability: "データとコードの入手",
     availText: "この論文のすべての数値は、インタラクティブな研究、Excelのデータダウンロード（研究のすべての表）、公開ソースコードから再計算できます。",
-    code: "ソースコード", cite: "引用方法", copy: "BibTeXをコピー", copied: "BibTeXをコピーしました。", refs: "参考文献", article: "研究論文", lang: "ja" },
+    code: "ソースコード", cite: "引用方法", copy: "BibTeXをコピー", copied: "BibTeXをコピーしました。", refs: "参考文献", article: "研究論文", linkedin: "LinkedInで共有", lang: "ja" },
   zh: { kicker: "研究文章", by: "Alicia Espinoza · Daily Data Lab", published: "发布于", keywords: "关键词", abstract: "摘要",
     back: "交互式研究", excel: "Excel 数据", print: "打印或另存为 PDF", figure: "图 1", availability: "数据与代码获取",
     availText: "本文中的每个数字都可以通过交互式研究、Excel 数据下载（研究中的所有表）以及公开源代码重新计算。",
-    code: "源代码", cite: "引用格式", copy: "复制 BibTeX", copied: "已复制 BibTeX。", refs: "参考文献", article: "研究文章", lang: "zh" },
+    code: "源代码", cite: "引用格式", copy: "复制 BibTeX", copied: "已复制 BibTeX。", refs: "参考文献", article: "研究文章", linkedin: "分享到 LinkedIn", lang: "zh" },
 };
 export const articleUi = (language) => UI[language] ?? UI.en;
 const REPO = "https://github.com/agespinoza/Portafolio/tree/main/daily-data-lab/src/days/";
@@ -65,6 +66,7 @@ export default function ArticlePage({ day, language }) {
           <a className="study-button" href={`#/day/${day.day}`}>← {ui.back}</a>
           <DownloadButton day={day} language={language} label={ui.excel} />
           <button className="study-button" type="button" onClick={() => window.print()}>{ui.print}</button>
+          <a className="study-button" href={linkedInShareUrl(articleUrl(day.slug, language))} target="_blank" rel="noopener">{ui.linkedin}</a>
         </div>
       </header>
       <section className="article__abstract" aria-labelledby="abstract-title">

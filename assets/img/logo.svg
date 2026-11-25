@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Alicia Espinoza">
+  <rect width="512" height="512" rx="112" fill="#0b1424"/>
+  <ellipse cx="256" cy="262" rx="196" ry="74" fill="none" stroke="#5cc2d6" stroke-width="14" transform="rotate(-24 256 262)"/>
+  <text x="250" y="330" text-anchor="middle" font-family="'Instrument Serif', Georgia, serif" font-style="italic" font-size="300" fill="#f4efe6" letter-spacing="-8">ae</text>
+  <circle cx="396.0" cy="159.2" r="30" fill="#0b1424"/>
+  <circle cx="396.0" cy="159.2" r="22" fill="#e3a35f"/>
+</svg>

@@ -1,0 +1,33 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=JetBrains+Mono:wght@500&display=block" rel="stylesheet">
+<style>
+html,body{margin:0;width:1200px;height:630px;overflow:hidden}
+body{background:#0b1424;color:#f4efe6;font-family:Inter,sans-serif;position:relative}
+.grid{position:absolute;inset:0;background-image:radial-gradient(rgba(92,194,214,.16) 1.4px,transparent 1.6px);background-size:28px 28px;mask-image:linear-gradient(90deg,transparent 30%,#000 100%)}
+.orbit{position:absolute;right:-180px;top:-60px;width:760px;height:760px;opacity:.5}
+.wrap{position:absolute;left:88px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;gap:0}
+.mark{width:168px;height:168px;margin-bottom:44px;border-radius:37px;box-shadow:0 0 0 2px #1f2c43,0 20px 50px -20px rgba(92,194,214,.35)}
+.mark svg{width:100%;height:100%;display:block}
+.label{font:500 18px/1 'JetBrains Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#7fd3e3;margin-bottom:20px}
+h1{font:400 96px/1 'Instrument Serif',serif;margin:0 0 22px;letter-spacing:-.01em}
+p{font:400 30px/1.35 Inter,sans-serif;color:rgba(244,239,230,.72);margin:0;max-width:720px}
+.bar{position:absolute;left:0;right:0;bottom:0;height:10px;background:linear-gradient(90deg,#5cc2d6 0 78%,#e3a35f 78% 100%)}
+.url{position:absolute;right:64px;bottom:44px;font:500 18px/1 'JetBrains Mono',monospace;color:rgba(244,239,230,.55);letter-spacing:.04em}
+</style></head><body>
+<div class="grid"></div>
+<svg class="orbit" viewBox="0 0 760 760"><ellipse cx="380" cy="380" rx="360" ry="130" fill="none" stroke="#5cc2d6" stroke-width="2" transform="rotate(-24 380 380)"/><ellipse cx="380" cy="380" rx="300" ry="96" fill="none" stroke="#5cc2d6" stroke-width="1.5" opacity=".6" transform="rotate(-24 380 380)"/></svg>
+<div class="wrap">
+  <div class="mark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Alicia Espinoza">
+  <rect width="512" height="512" rx="112" fill="#0b1424"/>
+  <ellipse cx="256" cy="262" rx="196" ry="74" fill="none" stroke="#5cc2d6" stroke-width="14" transform="rotate(-24 256 262)"/>
+  <text x="250" y="330" text-anchor="middle" font-family="'Instrument Serif', Georgia, serif" font-style="italic" font-size="300" fill="#f4efe6" letter-spacing="-8">ae</text>
+  <circle cx="396.0" cy="159.2" r="30" fill="#0b1424"/>
+  <circle cx="396.0" cy="159.2" r="22" fill="#e3a35f"/>
+</svg></div>
+  <div class="label">Daily Data Lab · Research</div>
+  <h1>Alicia Espinoza</h1>
+  <p>Data platforms, production analytics &amp; AI, explained with public data.</p>
+</div>
+<div class="url">agespinoza.github.io/Portafolio</div>
+<div class="bar"></div>
+</body></html>
