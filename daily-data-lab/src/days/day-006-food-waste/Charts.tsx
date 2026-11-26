@@ -102,26 +102,28 @@ export function DonutCard({ slices, center, centerNote, ariaLabel, hint }: { sli
 /* ---------- scatter with OLS lines ---------- */
 export interface Point { id: string; label: string; x: number; y: number; color: string; measured: boolean; highlight?: boolean; readout: string }
 export interface Fit { a: number; b: number; dashed?: boolean; label: string }
-export function ScatterCard({ points, fits, xLabel, yLabel, xDomain, ariaLabel, hint, legend, logX }: {
+export function ScatterCard({ points, fits, xLabel, yLabel, xDomain, ariaLabel, hint, legend, logX, xTicks: xTicksIn, xFmt, yDomain }: {
   points: Point[]; fits: Fit[]; xLabel: string; yLabel: string; xDomain: [number, number]; ariaLabel: string; hint: string;
   legend: { label: string; color: string }[]; logX?: boolean;
+  /** Optional (added for Day 009): explicit x ticks and labels, and a y range other than 0 to ≥ 100. */
+  xTicks?: number[]; xFmt?: (v: number) => string; yDomain?: [number, number];
 }) {
   const [hover, setHover] = useState("");
   const W = 760, H = 360, L = 52, R = 16, T = 12, B = 44;
-  const yMax = Math.ceil(Math.max(100, ...points.map((p) => p.y)) / 20) * 20;
+  const [yMin, yMax] = yDomain ?? [0, Math.ceil(Math.max(100, ...points.map((p) => p.y)) / 20) * 20];
   const tx = (v: number) => (logX ? Math.log10(Math.max(v, xDomain[0])) : v);
   const [x0, x1] = [tx(xDomain[0]), tx(xDomain[1])];
   const sx = (v: number) => L + ((tx(v) - x0) / (x1 - x0)) * (W - L - R);
-  const sy = (v: number) => H - B - (v / yMax) * (H - T - B);
-  const xTicks = logX ? [2.5, 5, 10, 20, 40].filter((v) => v >= xDomain[0] && v <= xDomain[1]) : ticks(xDomain[0], xDomain[1], 6);
-  const yTicks = ticks(0, yMax, 5);
+  const sy = (v: number) => H - B - ((v - yMin) / (yMax - yMin)) * (H - T - B);
+  const xTicks = xTicksIn ?? (logX ? [2.5, 5, 10, 20, 40].filter((v) => v >= xDomain[0] && v <= xDomain[1]) : ticks(xDomain[0], xDomain[1], 6));
+  const yTicks = ticks(yMin, yMax, 5);
   // Draw faded (extrapolated) points first, highlighted last.
   const ordered = [...points].sort((a, b) => Number(a.measured) - Number(b.measured) || Number(!!a.highlight) - Number(!!b.highlight));
   return (
     <figure className="chart fw-chart">
       <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label={ariaLabel}>
         {yTicks.map((v) => <g key={`y${v}`}><line x1={L} x2={W - R} y1={sy(v)} y2={sy(v)} className="grid" /><text x={L - 8} y={sy(v) + 4} textAnchor="end" className="axis">{v}</text></g>)}
-        {xTicks.map((v) => <g key={`x${v}`}><line x1={sx(v)} x2={sx(v)} y1={T} y2={H - B} className="grid" /><text x={sx(v)} y={H - B + 16} textAnchor="middle" className="axis">{v}</text></g>)}
+        {xTicks.map((v) => <g key={`x${v}`}><line x1={sx(v)} x2={sx(v)} y1={T} y2={H - B} className="grid" /><text x={sx(v)} y={H - B + 16} textAnchor="middle" className="axis">{xFmt ? xFmt(v) : v}</text></g>)}
         <text x={(L + W - R) / 2} y={H - 6} textAnchor="middle" className="axis">{xLabel}</text>
         <text x={14} y={(T + H - B) / 2} textAnchor="middle" className="axis" transform={`rotate(-90 14 ${(T + H - B) / 2})`}>{yLabel}</text>
         {fits.map((f) => {
@@ -156,6 +158,10 @@ export function LineChartCard({ series, ariaLabel, hint, baseline, yFmt, xStep =
   const [y0, y1] = [Math.floor(Math.min(...ys, baseline ?? Infinity) - 1), Math.ceil(Math.max(...ys, baseline ?? -Infinity) + 1)];
   const sx = (v: number) => L + ((v - x0) / (x1 - x0 || 1)) * (W - L - R);
   const sy = (v: number) => H - B - ((v - y0) / (y1 - y0 || 1)) * (H - T - B);
+  // End labels: keep at least 12 px apart so close series stay readable.
+  const labelY = new Map<string, number>();
+  [...series].map((s) => ({ k: s.key, y: sy(s.points[s.points.length - 1][1]) + 4 })).sort((a, b) => a.y - b.y)
+    .forEach((l, i, arr) => { const y = i ? Math.max(l.y, labelY.get(arr[i - 1].k)! + 12) : l.y; labelY.set(l.k, y); });
   return (
     <figure className="chart fw-chart">
       <svg viewBox={`0 0 ${W} ${H}`} role="group" aria-label={ariaLabel}>
@@ -172,7 +178,7 @@ export function LineChartCard({ series, ariaLabel, hint, baseline, yFmt, xStep =
                 return <circle key={p[0]} cx={sx(p[0])} cy={sy(p[1])} r={s.bold ? 4 : 3} style={{ fill: s.color }} tabIndex={0} role="img" aria-label={text} className="fw-pt"
                   onMouseEnter={() => setHover(text)} onMouseLeave={() => setHover("")} onFocus={() => setHover(text)} onBlur={() => setHover("")} />;
               })}
-              <text x={sx(last[0]) + 8} y={sy(last[1]) + 4} className="axis" style={{ fill: s.color }}>{s.label}</text>
+              <text x={sx(last[0]) + 8} y={labelY.get(s.key)} className="axis" style={{ fill: s.color }}>{s.label}</text>
             </g>
           );
         })}

@@ -12,6 +12,7 @@ One small, interactive data visualization a day, each on a different everyday to
 | 006 | Food | [Where is the world's food wasted, and by whom?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/6) | [UNEP Food Waste Index Report 2024](https://digitallibrary.un.org/record/4042857), [FAOSTAT](https://www.fao.org/faostat/en/#data/FS) (CC-BY 4.0), [World Bank WDI](https://datatopics.worldbank.org/world-development-indicators/) and CCKP (CC-BY 4.0) |
 | 007 | Space | [How much of Earth orbit is junk, and who left it there?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/7) | [CelesTrak SATCAT](https://celestrak.org/satcat/satcat-format.php) and the [ESA Space Environment Report 2026](https://www.esa.int/Space_Safety/Space_Debris/ESA_Space_Environment_Report_2026) |
 | 008 | Agriculture | [How much crop diversity is safeguarded, and how much is backed up in Svalbard?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/8) | [Svalbard Global Seed Vault Seed Portal](https://seedvault.nordgen.org/) (NordGen), [NordGen Annual Progress Report 2025](https://www.nordgen.org/our-work/svalbard-global-seed-vault/annual-progress-reports/) and [FAO WIEWS, SDG 2.5.1.a](https://www.fao.org/wiews/data/ex-situ/overview/en) |
+| 009 | Health | [Where do people live longest and healthiest, and do blue zones survive age validation?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/9) | [UN World Population Prospects 2024](https://population.un.org/wpp/), [WHO Global Health Observatory](https://www.who.int/data/gho) and [World Bank WDI](https://datatopics.worldbank.org/world-development-indicators/) |
 
 ## Data downloads
 
@@ -169,6 +170,29 @@ Every seed sample in the Svalbard Global Seed Vault (1,417,961 from 135 genebank
 - Match Svalbard and WIEWS accession by accession (DOIs or accession numbers) to count distinct accessions backed up.
 - Seed-storage behaviour by genus, to compare only collections that can be stored as dry seed.
 - Crops by country of origin for each depositor (one Seed Portal export per depositor).
+
+## Day 009: Where do people live longest and healthiest, and do blue zones survive age validation?
+
+Life expectancy (UN WPP 2024) and healthy life expectancy (WHO GHO, with 95% uncertainty intervals) for every one of the 237 countries and areas in 2023, the years lived in less than full health, people aged 100+, the female advantage, the record female life expectancy since 1950 and the Preston curve, next to what the blue-zone studies measured and the debate over whether their ages are real. One global filter (World Bank region) plus a country filter recompute the KPIs, rankings, scatter highlights, facts and table. Mode: SIMPLE (Thursday), one bundled JSON, no API calls in the browser.
+
+- **Data pipeline (DuckDB, `scripts/day-009/`):** `fetch.sh` downloads the WPP 2024 CSVs (demographic indicators; population by five-year age group for the 100+ group), the WHO GHO OData indicators WHOSIS_000002 (HALE) and WHOSIS_000001 (life expectancy), and the World Bank API (countries, NY.GDP.PCAP.PP.KD, SH.XPD.CHEX.GD.ZS). `blue-zones.json` transcribes the blue-zone measures from the cited papers only. `snapshot.mjs` writes `data/day-009-longevity/day-009.json` {kpis, countries[], regions[], e0Trend{world, JPN, ITA, CRI, GRC, MEX, USA}, recordFemaleE0[], blueZones[]}; `preview.mjs` draws the preview images. Rebuild with `npm run data:longevity`.
+- **Checks:** the build stops unless WPP world life expectancy is 73.2 in 2023 and 73.3 in 2024 (published values) and WHO's global HALE and life expectancy for 2023 are 62.8 and 73.3, and unless all 185 WHO countries join to WPP. The population-weighted HALE of the 185 countries is 63.14 (WHO weights with its own populations). Years in less than full health use WHO's own life expectancy, because UN and WHO estimates differ by 1.4 years on average (9.8 in Guyana).
+- **Finding:** 10.5 of 73.3 years are lived in less than full health worldwide, from 7.0 (Somalia) to 13.9 (United States). Singapore leads HALE (72.9, 69.3–76.1) but all nine following countries overlap its interval. GDP per person explains 69% of HALE across 179 countries (9.4 healthy years per tenfold income; United States −5.1, Japan +4.4, Costa Rica +1.7); health spending as % of GDP explains 5%. Record female life expectancy rose 2.5 months a year since 1950 (Norway 73.3 → Hong Kong 88.1).
+- **Blue zones:** Okinawa, Barbagia–Ogliastra (Sardinia), Nicoya and Ikaria with the survival measures of Poulain, Herm & Pes (2013, Table 2) and each zone's own index; Loma Linda flagged as non-demographic (a religious cohort). The debate is shown from both abstracts: Newman (2024, bioRxiv preprint) vs Austad & Pes (2025, *The Gerontologist*). The page states that national averages cannot test it.
+- **Brief deviations:** the brief asked for Recharts, `public/data/`, the top 100 countries by population and top-20 charts. The lab draws hand-built SVG (CLAUDE.md), keeps data in `data/day-NNN-*/`, and lists every country (rankings scroll). "e0 vs HALE" is a stacked bar (healthy + less-healthy years = WHO life expectancy) instead of grouped bars, and the HALE ranking shows WHO's uncertainty intervals. Day 006's `ScatterCard` gained optional `xTicks`, `xFmt` and `yDomain` props, and its `LineChartCard` now keeps end labels apart.
+- **Downloads** go to `daily-data-lab/raw/day-009-longevity/` (not versioned).
+
+### Sprint 1
+
+- [x] UN WPP 2024, WHO GHO and World Bank → DuckDB → day-009.json, checked against the published world figures (#34)
+- [x] Dashboard: 5 KPIs, HALE with uncertainty, healthy vs less-healthy years, female − male gap, e0 since 1950 with the record line, centenarians, regions, Preston curve, health spending, blue zones with the debate, sortable table, family mode, attribution (#35)
+- [x] Research blocks with DOI-checked references, translations, research article, Excel export, previews, cross-day insight (#36)
+
+### Follow-up ideas
+
+- Sub-national life tables for the blue-zone areas (Istat, Japan's MHLW, INEC Costa Rica, ELSTAT) to compare each zone with its own country today.
+- HALE by sex and its 2000–2023 trend: did healthy years grow as fast as total years?
+- Test Newman's predictors on age-validated supercentenarian records only.
 
 ## Languages and publication calendar
 

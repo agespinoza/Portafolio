@@ -1,0 +1,40 @@
+{
+  "_note": "Day 009 · blue zones, transcribed from the cited literature only (abstracts or full text read on 2026-11-26). Coordinates are those of a reference town in each area, for the record; the page draws no map. survival = % of people aged 60–69 in the 1970 census found aged 90–99 in the 2000 census (birth cohorts 1890–1919), zone vs comparison population, from Poulain, Herm & Pes (2013), Table 2; sig = their two-proportion z-test (* 5%, ** 1%, *** 0.1%). Ikaria is under-estimated (emigration of old people to Athens) and Nicoya inflated (immigration, age exaggeration in the 2000 census), as the authors note.",
+  "zones": [
+    {
+      "id": "okinawa", "name": "Okinawa", "iso3": "JPN", "town": "Okinawa Island", "lat": 26.5, "lon": 127.9, "demographic": true,
+      "comparison": "Japan",
+      "survival": { "m": 10.0, "mRef": 5.1, "sigM": "***", "f": 25.6, "fRef": 13.4, "sigF": "***" },
+      "extra": { "kind": "cr", "f": 495.7, "fRef": 127.1, "m": 82.2, "mRef": 29.5, "note": "Centenarian rate, 1900 birth cohort: people aged 100 in 2000 per 10,000 aged 60 in 1960 (Table 1)" },
+      "refs": ["10.1553/populationyearbook2013s87", "10.1196/annals.1396.037"]
+    },
+    {
+      "id": "sardinia", "name": "Barbagia and Ogliastra, Sardinia", "iso3": "ITA", "town": "Villagrande Strisaili", "lat": 39.96, "lon": 9.51, "demographic": true,
+      "comparison": "Sardinia",
+      "survival": { "m": 13.4, "mRef": 5.8, "sigM": "***", "f": 13.3, "fRef": 10.5, "sigF": "" },
+      "extra": { "kind": "eli", "m": 512, "f": 506, "mRef": 103, "fRef": 264, "note": "Extreme Longevity Index: centenarians per 100,000 births, cohorts 1880–1900, zone vs rest of Sardinia (Poulain et al. 2004, as reported in Poulain, Herm & Pes 2013)" },
+      "refs": ["10.1016/j.exger.2004.06.016", "10.1553/populationyearbook2013s87"]
+    },
+    {
+      "id": "nicoya", "name": "Nicoya Peninsula", "iso3": "CRI", "town": "Nicoya", "lat": 10.15, "lon": -85.45, "demographic": true,
+      "comparison": "Costa Rica",
+      "survival": { "m": 12.4, "mRef": 11.0, "sigM": "", "f": 14.8, "fRef": 15.1, "sigF": "" },
+      "extra": { "kind": "drr", "m": 0.80, "lo": 0.69, "hi": 0.93, "period": "1990–2011", "e60VsJapan": 2.2, "note": "Male death-rate ratio vs the rest of Costa Rica, 1990–2011 (95% CI); no advantage for women (Rosero-Bixby, Dow & Rehkopf 2013)" },
+      "refs": ["10.1553/populationyearbook2013s109", "10.1353/dem.0.0011"]
+    },
+    {
+      "id": "ikaria", "name": "Ikaria", "iso3": "GRC", "town": "Agios Kirykos", "lat": 37.61, "lon": 26.29, "demographic": true,
+      "comparison": "Greece",
+      "survival": { "m": 3.3, "mRef": 2.3, "sigM": "", "f": 8.8, "fRef": 6.3, "sigF": "*" },
+      "extra": { "kind": "none", "note": "No birth registers, so the index used in Sardinia cannot be computed; the weakest data of the four (Poulain, Herm & Pes 2013)" },
+      "refs": ["10.1553/populationyearbook2013s87", "10.4061/2011/679187"]
+    },
+    {
+      "id": "lomalinda", "name": "Loma Linda (Seventh-day Adventists)", "iso3": "USA", "town": "Loma Linda, California", "lat": 34.05, "lon": -117.26, "demographic": false,
+      "comparison": "Other white Californians",
+      "survival": null,
+      "extra": { "kind": "cohort", "m": 7.28, "mLo": 6.59, "mHi": 7.97, "f": 4.42, "fLo": 3.96, "fHi": 4.88, "note": "Extra life expectancy at age 30 of 34,192 California Adventists followed 1976–1988 (95% CI) (Fraser & Shavlik 2001). A religious cohort, not a territory with validated ages: flagged as non-demographic." },
+      "refs": ["10.1001/archinte.161.13.1645"]
+    }
+  ]
+}

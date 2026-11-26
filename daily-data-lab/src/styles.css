@@ -1134,3 +1134,54 @@ h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; }
 .sb-cum__pt { fill: var(--copper); }
 .sb-axis-cum { fill: var(--copper); }
 .sb-tick { font-size: 10px; }
+
+/* ---------- Day 009 · Longevity ---------- */
+/* Reuses the Day 006 chart tokens (--fw-*). Healthy years teal, years in less than full health sand; eight World Bank
+   regions step through teal, sand, rust and slate; trend lines use six distinct hues plus ink (world) and copper (record). */
+:root {
+  --lg-sick: #d9b37a;
+  --lg-r0: #0d6b7f; --lg-r1: #5fa8b5; --lg-r2: #b07a3c; --lg-r3: #a84a28; --lg-r4: #7d8798; --lg-r5: #d9a441; --lg-r6: #2f4858; --lg-r7: #c9ced6;
+  --lg-l0: #0d6b7f; --lg-l1: #a84a28; --lg-l2: #2e8b57; --lg-l3: #4f6db8; --lg-l4: #b8860b; --lg-l5: #7d4f9e;
+  --lg-pos: #0d6b7f; --lg-neg: #b8a07a;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --lg-sick: #8f6a3a;
+    --lg-r0: #5cc2d6; --lg-r1: #2f8596; --lg-r2: #c9a26a; --lg-r3: #eda463; --lg-r4: #8390a5; --lg-r5: #f4d35e; --lg-r6: #a6e4ef; --lg-r7: #4f5b70;
+    --lg-l0: #5cc2d6; --lg-l1: #f08a4b; --lg-l2: #6fcf97; --lg-l3: #8aa8ff; --lg-l4: #f4d35e; --lg-l5: #c18cff;
+    --lg-pos: #5cc2d6; --lg-neg: #8f7a5a;
+  }
+}
+:root[data-theme="dark"] {
+  --lg-sick: #8f6a3a;
+  --lg-r0: #5cc2d6; --lg-r1: #2f8596; --lg-r2: #c9a26a; --lg-r3: #eda463; --lg-r4: #8390a5; --lg-r5: #f4d35e; --lg-r6: #a6e4ef; --lg-r7: #4f5b70;
+  --lg-l0: #5cc2d6; --lg-l1: #f08a4b; --lg-l2: #6fcf97; --lg-l3: #8aa8ff; --lg-l4: #f4d35e; --lg-l5: #c18cff;
+  --lg-pos: #5cc2d6; --lg-neg: #8f7a5a;
+}
+.lg-hit { fill: transparent; }
+.lg-range__ci { stroke: var(--ink-3); stroke-width: 2; stroke-linecap: round; }
+.lg-range__dot { fill: var(--fw-s0); stroke: var(--surface); stroke-width: 1.5; }
+.lg-range--hl .lg-range__dot { fill: var(--copper); }
+.lg-range--hl .lg-range__ci { stroke: var(--copper); }
+.lg-range:hover .lg-range__dot, .lg-range:focus .lg-range__dot { stroke: var(--ink); }
+.lg-ref { stroke: var(--copper); stroke-dasharray: 4 4; stroke-width: 1.2; }
+.lg-ref__label { font: 500 10px var(--mono); fill: var(--copper); }
+.lg-div--pos { fill: var(--lg-pos); }
+.lg-div--neg { fill: var(--lg-neg); }
+.lg-div--hl { fill: var(--copper); }
+.legend .lg-key--pos { background: var(--lg-pos); }
+.legend .lg-key--neg { background: var(--lg-neg); }
+.lg-faded { opacity: .5; }
+.lg-bz th small, .lg-bz td small { font-size: 11px; }
+.lg-bz td, .lg-bz th { vertical-align: top; }
+.lg-bz td:nth-child(5) { min-width: 260px; }
+.lg-bz--flag { background: color-mix(in srgb, var(--copper) 7%, transparent); }
+.lg-debate { margin-top: 18px; padding: 16px 18px; border: 1px solid var(--line-2); border-radius: 12px; background: var(--paper-2); }
+.lg-debate h3 { margin: 0 0 10px; }
+.lg-debate__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.lg-debate__cols > * { min-width: 0; }
+.lg-debate__side { margin: 0 0 6px; color: var(--copper); font-size: 12px; letter-spacing: .04em; }
+@media (max-width: 760px) { .lg-debate__cols { grid-template-columns: minmax(0, 1fr); } }
+.lg .controls .select { min-width: 0; max-width: 100%; }
+.lg .controls .select select { max-width: min(100%, 22rem); text-overflow: ellipsis; }
+@media (max-width: 600px) { .lg-wide-scroll svg { min-width: 620px; } }

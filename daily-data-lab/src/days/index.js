@@ -6,6 +6,7 @@ import EndangeredLanguagesDay from "./day-005-endangered-languages/EndangeredLan
 import FoodWasteDay from "./day-006-food-waste/FoodWasteDay.tsx";
 import SpaceDebrisDay from "./day-007-space-debris/SpaceDebrisDay.tsx";
 import SeedBanksDay from "./day-008-seed-banks/SeedBanksDay.tsx";
+import LongevityDay from "./day-009-longevity/LongevityDay.tsx";
 import { DAILY_DATA_LAB_DAYS } from "../../../assets/daily-data-lab-days.js";
 
 const COMPONENTS = {
@@ -17,6 +18,7 @@ const COMPONENTS = {
   "food-waste": FoodWasteDay,
   "space-debris": SpaceDebrisDay,
   "seed-banks": SeedBanksDay,
+  longevity: LongevityDay,
 };
 
 export const DAYS = DAILY_DATA_LAB_DAYS.map((day) => ({

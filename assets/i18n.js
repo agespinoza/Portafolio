@@ -404,6 +404,12 @@ export const MESSAGES = {
         topic: "Agricultura",
         previewAlt: "Vista previa: la bóveda de Svalbard llenándose de 2008 a 2026, junto a los cultivos que reúnen la mayoría de sus muestras.",
       },
+      longevity: {
+        title: "¿Dónde se vive más tiempo y con mejor salud, y sobreviven las zonas azules a la validación de edades?",
+        summary: "La esperanza de vida y la esperanza de vida saludable de todos los países, con los intervalos de incertidumbre de la OMS, los años vividos con salud no plena, los centenarios, la ventaja femenina y la curva de Preston, junto a lo que realmente midieron los estudios de las zonas azules y el debate científico sobre si sus edades son reales.",
+        topic: "Salud",
+        previewAlt: "Vista previa: la esperanza de vida mundial desde 1950 frente a la línea récord, junto a los países con mayor esperanza de vida saludable y sus intervalos de incertidumbre.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -810,6 +816,12 @@ export const MESSAGES = {
         summary: "スバールバル世界種子貯蔵庫の142万の種子サンプルを寄託者・作物・年別に示し、世界のジーンバンクがFAOに報告する600万点と比較。バックアップの集中度と、各国のコレクションをどれだけカバーしているかを見ます。",
         topic: "農業",
         previewAlt: "プレビュー：2008年から2026年に満たされていくスバールバルの貯蔵庫と、サンプルの大半を占める作物。",
+      },
+      longevity: {
+        title: "最も長く健康に生きられるのはどこか、そしてブルーゾーンは年齢の検証に耐えるか？",
+        summary: "すべての国の平均寿命と健康寿命を、WHOの不確実性区間、健康でない期間、100歳以上の人数、女性の優位、プレストン曲線とともに示し、ブルーゾーン研究が実際に測ったものと、その年齢が本物かどうかをめぐる科学的な論争を並べます。",
+        topic: "健康",
+        previewAlt: "プレビュー：1950年以降の世界の平均寿命と最高記録の線、健康寿命が最も長い国々とその不確実性区間。",
       },
     },
     lab: {
@@ -1218,6 +1230,12 @@ export const MESSAGES = {
         topic: "Agricoltura",
         previewAlt: "Anteprima: il deposito delle Svalbard che si riempie dal 2008 al 2026, accanto alle colture che ne raccolgono la maggior parte dei campioni.",
       },
+      longevity: {
+        title: "Dove si vive più a lungo e più in salute, e le zone blu reggono alla validazione delle età?",
+        summary: "Speranza di vita e speranza di vita in buona salute di ogni paese, con gli intervalli di incertezza dell'OMS, gli anni vissuti in salute non piena, i centenari, il vantaggio femminile e la curva di Preston, accanto a ciò che gli studi sulle zone blu hanno davvero misurato e al dibattito scientifico sulla realtà delle loro età.",
+        topic: "Salute",
+        previewAlt: "Anteprima: la speranza di vita mondiale dal 1950 rispetto alla linea dei record, accanto ai paesi con la speranza di vita in buona salute più alta e ai loro intervalli di incertezza.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -1624,6 +1642,12 @@ export const MESSAGES = {
         summary: "Les 1,42 million d’échantillons de semences de la Réserve mondiale de semences du Svalbard, par déposant, culture et année, face aux 6 millions d’accessions que les banques de gènes du monde déclarent à la FAO : la concentration de la sauvegarde et la part de chaque collection nationale qu’elle couvre.",
         topic: "Agriculture",
         previewAlt: "Aperçu : la chambre forte du Svalbard qui se remplit de 2008 à 2026, à côté des cultures qui regroupent la plupart de ses échantillons.",
+      },
+      longevity: {
+        title: "Où vit-on le plus longtemps et en meilleure santé, et les zones bleues résistent-elles à la validation des âges ?",
+        summary: "L'espérance de vie et l'espérance de vie en bonne santé de tous les pays, avec les intervalles d'incertitude de l'OMS, les années vécues en santé non optimale, les centenaires, l'avantage féminin et la courbe de Preston, à côté de ce que les études sur les zones bleues ont réellement mesuré et du débat scientifique sur la réalité de leurs âges.",
+        topic: "Santé",
+        previewAlt: "Aperçu : l'espérance de vie mondiale depuis 1950 face à la ligne record, à côté des pays ayant la plus haute espérance de vie en bonne santé et de leurs intervalles d'incertitude.",
       },
     },
     lab: {

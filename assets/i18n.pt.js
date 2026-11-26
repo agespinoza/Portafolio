@@ -453,6 +453,12 @@ export const PT = {
       "summary": "Todas as 1,42 milhão de amostras de sementes do Cofre Global de Sementes de Svalbard, por depositante, cultura e ano, comparadas aos 6 milhões de acessos que os bancos de germoplasma do mundo reportam à FAO: quão concentrado é o backup e quanto da coleção de cada país ele cobre.",
       "topic": "Agricultura",
       "previewAlt": "Prévia: o cofre de Svalbard se enchendo de 2008 a 2026, ao lado das culturas que reúnem a maior parte das amostras."
+    },
+    "longevity": {
+      "title": "Onde se vive mais e com mais saúde, e as zonas azuis resistem à validação das idades?",
+      "summary": "A expectativa de vida e a expectativa de vida saudável de todos os países, com os intervalos de incerteza da OMS, os anos vividos com saúde não plena, os centenários, a vantagem feminina e a curva de Preston, ao lado do que os estudos das zonas azuis realmente mediram e do debate científico sobre se suas idades são reais.",
+      "topic": "Saúde",
+      "previewAlt": "Prévia: a expectativa de vida mundial desde 1950 em relação à linha recorde, ao lado dos países com maior expectativa de vida saudável e seus intervalos de incerteza."
     }
   },
   "lab": {

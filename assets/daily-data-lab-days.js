@@ -108,4 +108,18 @@ export const DAILY_DATA_LAB_DAYS = [
     previewLight: "assets/img/lab-day-008-light.svg",
     previewAlt: "Preview: the Svalbard seed vault filling up from 2008 to 2026, next to the crops that hold most of its samples.",
   },
+  {
+    day: 9,
+    slug: "longevity",
+    date: "2026-11-26",
+    title: "Where do people live longest and healthiest, and do blue zones survive age validation?",
+    summary:
+      "Life expectancy and healthy life expectancy for every country, with WHO's uncertainty intervals, the years lived in less than full health, centenarians, the female advantage and the Preston curve, next to what the blue-zone studies actually measured and the scientific debate over whether their ages are real.",
+    topic: "Health",
+    tags: ["React", "TypeScript", "DuckDB", "UN WPP 2024", "WHO GHO"],
+    source: "UN World Population Prospects 2024, WHO Global Health Observatory and World Bank WDI",
+    preview: "assets/img/lab-day-009.svg",
+    previewLight: "assets/img/lab-day-009-light.svg",
+    previewAlt: "Preview: world life expectancy since 1950 against the record line, next to the countries with the highest healthy life expectancy and their uncertainty intervals.",
+  },
 ];

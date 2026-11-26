@@ -11,7 +11,8 @@ import { LAKES, LAKETEMP, SERIES, TRENDS, ICE_BY_LAT } from "./days/day-004-abra
 import { AES_LABEL, FAMILIES, LANGUAGES, MACROAREAS, MED_LABEL, isEndangered, isLiving, isPriority } from "./days/day-005-endangered-languages/data";
 import { BY_INCOME, BY_REGION, BY_SECTOR, COUNTRIES, FLI } from "./days/day-006-food-waste/data";
 import { CAUSES, CLASSES, CUBES, ORBITS, OWNERS, PARENTS, RCS_CLASSES } from "./days/day-007-space-debris/data";
-import { CENTRES, COUNTRIES as SEED_COUNTRIES, CROPS_BY_CONTINENT, CUMULATIVE, DEPOSITORS, EVENTS, GENERA, ORIGIN, TREND, WIEWS_CENTRES, backupShare } from "./days/day-008-seed-banks/data";
+import { BLUE_ZONES, COUNTRIES as LONG_COUNTRIES, RECORD, REGIONS as LONG_REGIONS, TREND, TREND_KEYS, prestonResidual } from "./days/day-009-longevity/data";
+import { CENTRES, COUNTRIES as SEED_COUNTRIES, CROPS_BY_CONTINENT, CUMULATIVE, DEPOSITORS, EVENTS, GENERA, ORIGIN, TREND as SEED_TREND, WIEWS_CENTRES, backupShare } from "./days/day-008-seed-banks/data";
 
 type Rows = Sheet["rows"];
 const sheet = (name: string, columns: string[], rows: Rows): Sheet => ({ name, columns, rows });
@@ -115,6 +116,22 @@ export const EXPORTS: Record<string, () => Sheet[]> = {
     sheet("WIEWS centres", ["Centre", "Kind", "Institute code", "Accessions 2024", "Genebanks", "Genera", "Species"],
       WIEWS_CENTRES.map((c) => [c.name, c.kind, c.instcode, c.accessions, c.genebanks, c.genera, c.species])),
     sheet("WIEWS trend", ["Year", "World", "Africa", "Americas", "Asia", "Europe", "Oceania", "International and regional centres"],
-      TREND.map((r) => [r.year, r.World, r.Africa, r.Americas, r.Asia, r.Europe, r.Oceania, r.International])),
+      SEED_TREND.map((r) => [r.year, r.World, r.Africa, r.Americas, r.Asia, r.Europe, r.Oceania, r.International])),
+  ],
+  longevity: () => [
+    sheet("Countries", ["ISO3", "Country or area", "World Bank region", "Income group", "Population 2023", "Life expectancy (UN)", "Women (UN)", "Men (UN)",
+      "HALE (WHO)", "HALE lower 95%", "HALE upper 95%", "HALE women", "HALE men", "Life expectancy (WHO)", "Years in less than full health",
+      "People aged 100+", "People aged 100+ in 2000", "100+ per 100,000", "GDP per person PPP 2021 $", "GDP year", "Health spending % GDP", "Health spending year", "HALE vs Preston line"],
+      LONG_COUNTRIES.map((c) => [c.iso3, c.name, c.region, c.income, c.pop, c.e0, c.e0Female, c.e0Male, c.hale, c.haleLo, c.haleHi, c.haleFemale, c.haleMale, c.whoE0, c.gap,
+        c.centenarians, c.centenarians2000, c.centenariansPer100k, c.gdpPc, c.gdpYear, c.healthExpPct, c.healthExpYear, prestonResidual(c)])),
+    sheet("Regions", ["World Bank region", "Countries and areas", "Population 2023", "Life expectancy (UN, pop-weighted)", "HALE (WHO, pop-weighted)", "Countries with HALE"],
+      LONG_REGIONS.map((r) => [r.region, r.countries, r.pop, r.e0, r.hale, r.countriesWithHale])),
+    sheet("Life expectancy 1950-2023", ["Year", "World", ...TREND_KEYS],
+      TREND.years.map((y, i) => [y, TREND.world[i], ...TREND_KEYS.map((k) => TREND[k][i])])),
+    sheet("Record female e0", ["Year", "Record holder (ISO3, ≥ 1 million people)", "Female life expectancy"], RECORD.map((r) => [r.year, r.iso3, r.e0Female])),
+    sheet("Blue zones", ["Area", "Country", "Reference town", "Latitude", "Longitude", "Demographic (ages validated)", "Comparison",
+      "Men survival 60s→90s %", "Comparison men %", "Men significance", "Women survival 60s→90s %", "Comparison women %", "Women significance", "Key measure", "DOIs"],
+      BLUE_ZONES.map((z) => [z.name, z.iso3, z.town, z.lat, z.lon, z.demographic, z.comparison, z.survival?.m ?? null, z.survival?.mRef ?? null, z.survival?.sigM ?? null,
+        z.survival?.f ?? null, z.survival?.fRef ?? null, z.survival?.sigF ?? null, z.extra.note, z.refs.join(" ")])),
   ],
 };
