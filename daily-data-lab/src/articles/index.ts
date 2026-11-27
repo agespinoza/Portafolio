@@ -10,6 +10,7 @@ import { D006 } from "./d006";
 import { D007 } from "./d007";
 import { D008 } from "./d008";
 import { D009 } from "./d009";
+import { D010 } from "./d010";
 import { REFS as R001 } from "../days/day-001-border/Research";
 import { REFS as R002 } from "../days/day-002-glowworms/Research";
 import { REFS as R003 } from "../days/day-003-light-pillars/LightPillarsDay";
@@ -19,12 +20,13 @@ import { REFS as R006 } from "../days/day-006-food-waste/Research";
 import { REFS as R007 } from "../days/day-007-space-debris/Research";
 import { REFS as R008 } from "../days/day-008-seed-banks/Research";
 import { REFS as R009 } from "../days/day-009-longevity/Research";
+import { REFS as R010 } from "../days/day-010-dark-skies/Research";
 
 export const ARTICLES: Record<string, ArticleSet> = {
   "border-wait-times": D001, "waitomo-glowworms": D002, "light-pillars": D003, "abraham-lake": D004,
-  "endangered-languages": D005, "food-waste": D006, "space-debris": D007, "seed-banks": D008, longevity: D009,
+  "endangered-languages": D005, "food-waste": D006, "space-debris": D007, "seed-banks": D008, longevity: D009, "dark-skies": D010,
 };
 export const REFERENCES: Record<string, { text: string; doi?: string; url?: string }[]> = {
   "border-wait-times": R001, "waitomo-glowworms": R002, "light-pillars": R003, "abraham-lake": R004,
-  "endangered-languages": R005, "food-waste": R006, "space-debris": R007, "seed-banks": R008, longevity: R009,
+  "endangered-languages": R005, "food-waste": R006, "space-debris": R007, "seed-banks": R008, longevity: R009, "dark-skies": R010,
 };

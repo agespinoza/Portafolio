@@ -459,6 +459,12 @@ export const PT = {
       "summary": "A expectativa de vida e a expectativa de vida saudável de todos os países, com os intervalos de incerteza da OMS, os anos vividos com saúde não plena, os centenários, a vantagem feminina e a curva de Preston, ao lado do que os estudos das zonas azuis realmente mediram e do debate científico sobre se suas idades são reais.",
       "topic": "Saúde",
       "previewAlt": "Prévia: a expectativa de vida mundial desde 1950 em relação à linha recorde, ao lado dos países com maior expectativa de vida saudável e seus intervalos de incerteza."
+    },
+    "dark-skies": {
+      "title": "Quantas pessoas perderam o céu noturno, com que rapidez as estrelas estão sumindo e onde os céus escuros são protegidos?",
+      "summary": "A parcela de pessoas e território sob céus com poluição luminosa em cada país, segundo o atlas mundial 2015 do brilho artificial do céu, ao lado de quinze anos de contagens de estrelas da ciência cidadã, da diferença entre o que medem os satélites e o olho humano e dos lugares de céu escuro certificados, com um close-up do Arizona e de Sonora.",
+      "topic": "Astronomia",
+      "previewAlt": "Prévia: a parcela de pessoas que não veem a Via Láctea nos países com mais poluição luminosa, ao lado do aumento dos lugares de céu escuro certificados desde 2001."
     }
   },
   "lab": {

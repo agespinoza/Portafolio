@@ -12,6 +12,7 @@ import { AES_LABEL, FAMILIES, LANGUAGES, MACROAREAS, MED_LABEL, isEndangered, is
 import { BY_INCOME, BY_REGION, BY_SECTOR, COUNTRIES, FLI } from "./days/day-006-food-waste/data";
 import { CAUSES, CLASSES, CUBES, ORBITS, OWNERS, PARENTS, RCS_CLASSES } from "./days/day-007-space-debris/data";
 import { BLUE_ZONES, COUNTRIES as LONG_COUNTRIES, RECORD, REGIONS as LONG_REGIONS, TREND, TREND_KEYS, prestonResidual } from "./days/day-009-longevity/data";
+import { COUNTRIES as SKY_COUNTRIES, GAN, PLACES as SKY_PLACES, WORLD as SKY_WORLD, bands as skyBands, people as skyPeople } from "./days/day-010-dark-skies/data";
 import { CENTRES, COUNTRIES as SEED_COUNTRIES, CROPS_BY_CONTINENT, CUMULATIVE, DEPOSITORS, EVENTS, GENERA, ORIGIN, TREND as SEED_TREND, WIEWS_CENTRES, backupShare } from "./days/day-008-seed-banks/data";
 
 type Rows = Sheet["rows"];
@@ -134,4 +135,26 @@ export const EXPORTS: Record<string, () => Sheet[]> = {
       BLUE_ZONES.map((z) => [z.name, z.iso3, z.town, z.lat, z.lon, z.demographic, z.comparison, z.survival?.m ?? null, z.survival?.mRef ?? null, z.survival?.sigM ?? null,
         z.survival?.f ?? null, z.survival?.fRef ?? null, z.survival?.sigF ?? null, z.extra.note, z.refs.join(" ")])),
   ],
+  "dark-skies": () => {
+    const lv = ["≤1.7", ">1.7", ">14", ">87", ">688", ">3000"];
+    const ex = ["≤1.7", "1.7–14", "14–87", "87–688", "688–3000", ">3000"];
+    const yearRows = (Object.keys(GAN.years) as (keyof typeof GAN.years)[]).flatMap((k) => GAN.years[k].map((y) => [k, y.year, y.n, y.mean, y.med, y.p25, y.p75, y.atlasMed == null ? null : y.atlasMed * 1000]));
+    const trendRows = (Object.keys(GAN.trends) as (keyof typeof GAN.trends)[]).flatMap((k) => (["all", "kyba"] as const).map((w) => {
+      const t = GAN.trends[k][w];
+      return [k, `${t.y0}–${t.y1}`, t.slope, t.lo, t.hi, t.groups, t.obs, t.impliedPct, t.impliedLo, t.impliedHi];
+    }));
+    return [
+      sheet("Countries", ["ISO3", "Country or territory (Falchi et al. 2016)", "Territory", "World Bank region", "Population 2015",
+        ...lv.map((l) => `% people ${l} μcd/m²`), ...lv.map((l) => `% land ${l} μcd/m²`), ...ex.map((l) => `% people in band ${l}`),
+        "People without the Milky Way (2015)", "Dark-sky places (Wikidata)", "Globe at Night reports 2011–2025", "Median limiting magnitude"],
+        [...SKY_COUNTRIES.map((c) => [c.iso3, c.name, c.territory, c.region, c.pop2015, ...c.pop, ...c.area, ...skyBands(c.pop), skyPeople(c, 4), c.places, c.gan?.obs ?? null, c.gan?.medLM ?? null]),
+          ["WLD", "World (Table 2)", false, "", SKY_WORLD.population, ...SKY_WORLD.pop, ...SKY_WORLD.area, ...skyBands(SKY_WORLD.pop), (SKY_WORLD.population * SKY_WORLD.pop[4]) / 100, SKY_PLACES.length, GAN.funnel.kept, null]]),
+      sheet("Dark-sky places", ["Wikidata ID", "Name", "Type", "Also listed as", "Country ISO3", "Country", "Latitude", "Longitude", "Year certified", "Area km²", "Atlas artificial brightness μcd/m²", "Wikidata URL", "Wikipedia"],
+        SKY_PLACES.map((p) => [p.id, p.name, p.type, p.otherTypes.join(", "), p.country, p.countryName, p.lat, p.lon, p.yearCertified, p.areaKm2, p.atlas == null ? null : p.atlas * 1000, p.sourceUrl, p.wikipedia])),
+      sheet("Globe at Night by year", ["Subset", "Year", "Usable reports", "Mean limiting magnitude", "Median", "25th percentile", "75th percentile", "Median atlas brightness at sites μcd/m²"], yearRows),
+      sheet("Globe at Night trends", ["Subset", "Years", "Magnitudes per year (within cell × constellation)", "95% CI low", "95% CI high", "Groups", "Reports", "Implied brightening %/yr", "Implied low", "Implied high"], trendRows),
+      sheet("Observation cells 1°", ["Longitude", "Latitude", "Reports", "Median limiting magnitude"], GAN.cells.map((c) => [...c])),
+      sheet("Arizona-Sonora cells 0.1°", ["Longitude", "Latitude", "Reports", "Median limiting magnitude", "Reports from Mexico"], GAN.azCells.map((c) => [...c])),
+    ];
+  },
 };

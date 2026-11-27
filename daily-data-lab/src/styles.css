@@ -1185,3 +1185,66 @@ h1, h2, h3 { text-wrap: balance; overflow-wrap: anywhere; }
 .lg .controls .select { min-width: 0; max-width: 100%; }
 .lg .controls .select select { max-width: min(100%, 22rem); text-overflow: ellipsis; }
 @media (max-width: 600px) { .lg-wide-scroll svg { min-width: 620px; } }
+
+/* ---------- Day 010 · Dark skies ---------- */
+/* Night-sky page like Day 003 (.lp switches to night tokens unless the visitor picks light). Six sky-brightness bands of
+   Falchi et al. (2016) run from deep blue (pristine) through teal and yellow to white (no night vision), the same ramp as
+   the atlas images; on the light theme the last band turns rust so it stays visible on paper. */
+:root {
+  --ds-b0: #1b2a47; --ds-b1: #2f5d8a; --ds-b2: #2f9c94; --ds-b3: #d9b44a; --ds-b4: #e07b45; --ds-b5: #a8323f;
+  --ds-l1: #0d6b7f; --ds-l2: #a84a28;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --ds-b0: #1c2c52; --ds-b1: #2465a3; --ds-b2: #26a096; --ds-b3: #ecc44c; --ds-b4: #f06e46; --ds-b5: #fff3e6; --ds-l1: #7fd3e3; --ds-l2: #f08a4b; }
+}
+:root[data-theme="dark"] { --ds-b0: #1c2c52; --ds-b1: #2465a3; --ds-b2: #26a096; --ds-b3: #ecc44c; --ds-b4: #f06e46; --ds-b5: #fff3e6; --ds-l1: #7fd3e3; --ds-l2: #f08a4b; }
+:root:not([data-theme="light"]):has(.ds) {
+  --ds-b0: #1c2c52; --ds-b1: #2465a3; --ds-b2: #26a096; --ds-b3: #ecc44c; --ds-b4: #f06e46; --ds-b5: #fff3e6; --ds-l1: #7fd3e3; --ds-l2: #f08a4b;
+  --fw-s0: #5cc2d6; --lg-pos: #5cc2d6;
+}
+.ds-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.ds-stats .stat strong { font-size: 30px; }
+@media (max-width: 900px) { .ds-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.ds-layers { margin: 0 0 14px; }
+.ds-map svg { max-height: 620px; }
+.ds-land { fill: #0f1d36; }
+.ds-az-bg { fill: #0a1426; }
+.ds-border { fill: none; stroke: rgba(255,255,255,.55); stroke-width: 1.2; stroke-dasharray: 5 4; }
+.ds-border__label { font: 500 10px var(--mono); fill: rgba(255,255,255,.7); }
+.ds-city circle { fill: #fff; }
+.ds-city text { font: 500 10.5px var(--sans); fill: #fff; paint-order: stroke; stroke: rgba(2,5,13,.85); stroke-width: 3px; }
+.ds-cell { opacity: .8; stroke: rgba(2,5,13,.6); stroke-width: .15; }
+.ds-pt { cursor: pointer; outline: none; }
+.ds-pt:focus circle:last-of-type, .ds-pt:hover circle:last-of-type { stroke: #fff; }
+.ds-legend { margin-top: 10px; }
+.ds-ramp { height: 10px; border-radius: 5px; background: linear-gradient(90deg, #0a1026 0%, #162654 12%, #205c96 32%, #26a096 50%, #ecc44c 70%, #f06e46 84%, #fff6ec 100%); border: 1px solid var(--line-2); }
+.ds-ramp__ticks { position: relative; height: 14px; font: 500 10px var(--mono); color: var(--ink-3); }
+.ds-ramp__ticks span { position: absolute; transform: translateX(-50%); top: 2px; }
+.ds-ramp__ticks span:nth-child(1) { left: 12%; } .ds-ramp__ticks span:nth-child(2) { left: 32%; } .ds-ramp__ticks span:nth-child(3) { left: 50%; }
+.ds-ramp__ticks span:nth-child(4) { left: 70%; } .ds-ramp__ticks span:nth-child(5) { left: 84%; }
+.ds-profile h3 { font: 400 24px/1.15 var(--serif); margin: 2px 0 4px; }
+.ds-profile__head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.ds-close { border: 1px solid var(--line-2); background: transparent; color: var(--ink-2); border-radius: 999px; width: 28px; height: 28px; cursor: pointer; font-size: 16px; line-height: 1; }
+.ds-mini { margin-top: 12px; }
+.ds-mini__bar { display: flex; height: 12px; border-radius: 6px; overflow: hidden; margin-top: 6px; border: 1px solid var(--line-2); }
+.ds-mini__bar i { display: block; height: 100%; }
+.ds-facts { margin: 12px 0 0; padding-left: 18px; color: var(--ink-2); font-size: 13.5px; display: grid; gap: 6px; }
+.ds-place-sky { display: flex; gap: 10px; align-items: flex-start; margin-top: 10px; font-size: 13.5px; color: var(--ink-2); }
+.ds-place-sky i { flex: 0 0 14px; height: 14px; border-radius: 50%; margin-top: 3px; border: 1px solid var(--line-2); }
+.ds-place-sky p { margin: 0; }
+.ds-links { font-size: 13px; margin-top: 10px; }
+.ds-link { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-align: left; text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
+.ds-link:hover, .ds-link:focus-visible { color: var(--accent); }
+.ds-sim__sky { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--line-2); }
+.ds-sim__sky svg { display: block; width: 100%; height: auto; }
+.ds-star { transition: opacity .35s ease; }
+.ds-sim__count { position: absolute; right: 12px; top: 8px; margin: 0; font: 500 12px var(--mono); color: rgba(255,255,255,.8); }
+.ds-sim__count strong { font: 400 30px/1 var(--serif); color: #fff; }
+.ds-sim__controls { display: grid; gap: 12px; margin-top: 14px; }
+.ds-slider { display: grid; gap: 6px; }
+.ds-slider input { width: 100%; accent-color: var(--accent); }
+.ds .seg__opts { flex-wrap: wrap; }
+.ds .fw-table td:nth-child(3) { font-size: 12px; color: var(--ink-3); min-width: 9rem; }
+.ds .fw-table th[scope="row"] { min-width: 8rem; }
+.ds-sub { margin-top: 22px; padding-top: 18px; border-top: 1px solid var(--line); }
+.ds-sub h3 { font: 400 22px/1.2 var(--serif); margin-bottom: 6px; }

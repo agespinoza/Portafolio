@@ -13,6 +13,7 @@ One small, interactive data visualization a day, each on a different everyday to
 | 007 | Space | [How much of Earth orbit is junk, and who left it there?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/7) | [CelesTrak SATCAT](https://celestrak.org/satcat/satcat-format.php) and the [ESA Space Environment Report 2026](https://www.esa.int/Space_Safety/Space_Debris/ESA_Space_Environment_Report_2026) |
 | 008 | Agriculture | [How much crop diversity is safeguarded, and how much is backed up in Svalbard?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/8) | [Svalbard Global Seed Vault Seed Portal](https://seedvault.nordgen.org/) (NordGen), [NordGen Annual Progress Report 2025](https://www.nordgen.org/our-work/svalbard-global-seed-vault/annual-progress-reports/) and [FAO WIEWS, SDG 2.5.1.a](https://www.fao.org/wiews/data/ex-situ/overview/en) |
 | 009 | Health | [Where do people live longest and healthiest, and do blue zones survive age validation?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/9) | [UN World Population Prospects 2024](https://population.un.org/wpp/), [WHO Global Health Observatory](https://www.who.int/data/gho) and [World Bank WDI](https://datatopics.worldbank.org/world-development-indicators/) |
+| 010 | Astronomy | [How many people have lost the night sky, how fast are the stars fading, and where are dark skies protected?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/10) | [Falchi et al. 2016](https://doi.org/10.1126/sciadv.1600377) and the [World Atlas 2015](https://doi.org/10.5880/GFZ.1.4.2016.001) (CC BY-NC 4.0), [Globe at Night](https://globeatnight.org/maps-data/) (NOIRLab, CC BY 4.0), [Wikidata](https://www.wikidata.org/) (CC0) and [World Bank WDI](https://datatopics.worldbank.org/world-development-indicators/) |
 
 ## Data downloads
 
@@ -193,6 +194,33 @@ Life expectancy (UN WPP 2024) and healthy life expectancy (WHO GHO, with 95% unc
 - Sub-national life tables for the blue-zone areas (Istat, Japan's MHLW, INEC Costa Rica, ELSTAT) to compare each zone with its own country today.
 - HALE by sex and its 2000–2023 trend: did healthy years grow as fast as total years?
 - Test Newman's predictors on age-validated supercentenarian records only.
+
+## Day 010: How many people have lost the night sky, how fast are the stars fading, and where are dark skies protected?
+
+The share of people and land under each of Falchi's six sky-brightness levels in every country and territory, the 2015 World Atlas as a map with certified International Dark Sky Places, fifteen years of Globe at Night naked-eye star counts with a trend that corrects for where volunteers report from, satellites vs eyes, a star-loss simulator, certifications over time, and a close-up of Arizona–Sonora. Region, country, place-type, layer and map-view filters. Mode: FULL (Friday).
+
+- **Data pipeline (`scripts/day-010/`):** `fetch.sh` downloads Falchi et al. (2016) as open XML (Europe PMC), the Globe at Night CSVs 2011–2025, a Wikidata SPARQL query for certified places, World Bank countries and population, and the 653 MB World Atlas 2015 zip (GFZ). `falchi_table.py` extracts Table 2; `raster.py` (Python with rasterio, numpy and Pillow, run from a separate environment, `npm run raster:darksky`) averages the 2.9 GB GeoTIFF to 1′ and 0.1°, reprojects the world image to the page's Equal Earth map, writes two palette PNGs (`sky-world.png` 191 KB, `sky-azson.png` 69 KB) and samples the atlas at every place and report. `snapshot.mjs` (DuckDB) writes Parquet tables to `raw/` (`fact_falchi_country`, `fact_gan_obs`, `dim_darksky_place`, `dim_country`) and `data/day-010-dark-skies/day-010.json`; `preview.mjs` draws the preview images. Rebuild with `npm run data:darksky`.
+- **Checks:** the build stops unless Table 2's world row matches the paper's text (83.2% under light-polluted skies, 35.9% without the Milky Way, 22.5% of land); weighting 196 country rows by World Bank 2015 population gives 82.9% and 35.9%. Raster check points: Phoenix 8.76, Tucson 3.88, Hermosillo 4.04, Kitt Peak 0.015 mcd/m². Table 2 prints "2" for the world's land above 3000 μcd/m² (larger than the 1.2 above 688): left empty as a misprint.
+- **Finding:** yearly mean limiting magnitude fell only from 3.54 (2011) to 3.15 (2022) because observers moved to darker sites (median atlas brightness 1.39 → 0.78 mcd/m²). Within 1° cell × constellation groups the slope is −0.040 mag/yr (95% CI −0.049 to −0.030, 3,188 groups), about 7.4% brighter skies a year (5.5–9.2%), consistent with Kyba et al. (2023, 7–10%) and far above satellites (2.2%). 73 of 130 certified places with coordinates sit above 14 μcd/m²; all 34 places in the Arizona–Sonora window are in the US.
+- **Licences:** Falchi et al. (2016) and the World Atlas are CC BY-NC 4.0 (the zip's 2016 README predates GFZ's change to CC BY-NC 4.0 after the embargo): used non-commercially with attribution to both, only downsampled images are published, and the GeoTIFF stays in `raw/` (gitignored). Globe at Night CC BY 4.0, Wikidata CC0, World Bank CC BY 4.0. Comments in the Globe at Night CSVs (which include some e-mail addresses) are never read into the outputs.
+- **Brief deviations:** the brief asked for Recharts, MapLibre, DuckDB-WASM, gdal2tiles web tiles and DarkSky's own place pages. The lab draws hand-built SVG (CLAUDE.md) and has no map library, so the atlas is two small PNG layers under Day 003's Equal Earth map instead of a tile pyramid; the data are aggregated at build time (150 KB JSON), so DuckDB runs in Node, not in the browser. darksky.org blocks automated requests and its terms could not be read, so Alicia chose Wikidata (135 of 259 places, few after 2021); DarkSky's totals (259 places, 25 countries, 196,000 km², 2025 Impact Report) are quoted, not recomputed, and the report link could not be machine-checked.
+- **Downloads** go to `daily-data-lab/raw/day-010-dark-skies/` (not versioned).
+
+### Sprint 1
+
+- [x] Falchi Table 2, Globe at Night, Wikidata places and World Bank → DuckDB → Parquet + day-010.json, checked against the paper (#37)
+- [x] Dashboard: 8 KPIs, sky map with places and reports, people/land by brightness, star loss, simulator, satellites vs eyes, certifications, types, protected ≠ dark, Arizona–Sonora, ranking, profiles, family facts, attribution (#38)
+- [x] Research blocks with DOI-checked references, translations, research article, Excel export, previews, cross-day insight (#39)
+
+### Sprint 2
+
+- [x] World Atlas 2015 GeoTIFF → rasterio → downsampled Equal Earth and Arizona–Sonora layers, point samples (#40)
+
+### Follow-up ideas
+
+- DarkSky International's full list (with permission or an official export), to map the 124 places missing from Wikidata.
+- VIIRS radiance change per country since 2015 next to the atlas.
+- Sky Quality Meter networks and Kyba et al.'s full model for a proper trend estimate.
 
 ## Languages and publication calendar
 

@@ -1,0 +1,17 @@
+{
+  "_comment": "Day 010 · country names in Falchi et al. (2016) Table 2, Globe at Night and Wikidata that differ from the World Bank's, mapped to ISO 3166-1 alpha-3. Names that already match the World Bank list are joined directly. null = no single ISO code (aggregates).",
+  "American Samoa": "ASM", "Anguilla": "AIA", "Aruba": "ABW", "British Virgin Islands": "VGB", "Brunei": "BRN", "Cape Verde": "CPV",
+  "Cayman Islands": "CYM", "Christmas Island": "CXR", "Cocos Islands": "CCK", "Congo": "COG", "Congo, Democratic Republic of the Congo": "COD",
+  "Democratic Republic of the Congo": "COD", "Cook Islands": "COK", "Cote d’Ivoire": "CIV", "Côte d'Ivoire": "CIV", "Czech Republic": "CZE",
+  "Egypt": "EGY", "Falkland Islands": "FLK", "Faroe Islands": "FRO", "French Guiana": "GUF", "French Polynesia": "PYF", "Gaza Strip": "PSE",
+  "West Bank": "PSE", "Gibraltar": "GIB", "Greenland": "GRL", "Guadeloupe": "GLP", "Guam": "GUM", "Guernsey": "GGY", "Iran": "IRN",
+  "Isle of Man": "IMN", "Jersey": "JEY", "Kyrgyzstan": "KGZ", "Laos": "LAO", "Macedonia": "MKD", "Martinique": "MTQ", "Mayotte": "MYT",
+  "Midway Islands": "UMI", "Montserrat": "MSR", "Nauru": "NRU", "Netherlands Antilles": "ANT", "New Caledonia": "NCL", "Niue": "NIU",
+  "Norfolk Island": "NFK", "North Korea": "PRK", "Northern Mariana Islands": "MNP", "Puerto Rico": "PRI", "Reunion": "REU", "Russia": "RUS",
+  "Slovakia": "SVK", "Somalia": "SOM", "South Korea": "KOR", "St. Helena": "SHN", "St. Pierre and Miquelon": "SPM", "Swaziland": "SWZ",
+  "Syria": "SYR", "The Gambia": "GMB", "Tokelau": "TKL", "Turkey": "TUR", "Venezuela": "VEN", "Vietnam": "VNM", "Virgin Islands": "VIR",
+  "Wallis and Futuna": "WLF", "Western Sahara": "ESH", "Yemen": "YEM", "Taiwan": "TWN", "The Bahamas": "BHS", "Saint Lucia": "LCA",
+  "St Kitts and Nevis": "KNA", "St Vincent and the Grenadines": "VCT", "Pitcairn Islands": "PCN", "South Georgia and the South Sandwich Islands": "SGS",
+  "British Indian Ocean Territory": "IOT", "Baker Island": "UMI", "Wake Island": "UMI", "Antarctica": "ATA",
+  "World": null, "European Union": null, "None": null
+}

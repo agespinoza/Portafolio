@@ -410,6 +410,12 @@ export const MESSAGES = {
         topic: "Salud",
         previewAlt: "Vista previa: la esperanza de vida mundial desde 1950 frente a la línea récord, junto a los países con mayor esperanza de vida saludable y sus intervalos de incertidumbre.",
       },
+      "dark-skies": {
+        title: "¿Cuántas personas han perdido el cielo nocturno, qué tan rápido se apagan las estrellas y dónde se protegen los cielos oscuros?",
+        summary: "La proporción de personas y territorio bajo cielos con contaminación lumínica en cada país, según el atlas mundial 2015 del brillo artificial del cielo, junto a quince años de conteos de estrellas de ciencia ciudadana, la brecha entre lo que miden los satélites y el ojo humano, y dónde están los lugares de cielo oscuro certificados, con un acercamiento a Arizona y Sonora.",
+        topic: "Astronomía",
+        previewAlt: "Vista previa: la proporción de personas que no pueden ver la Vía Láctea en los países con más contaminación lumínica, junto al aumento de los lugares de cielo oscuro certificados desde 2001.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -822,6 +828,12 @@ export const MESSAGES = {
         summary: "すべての国の平均寿命と健康寿命を、WHOの不確実性区間、健康でない期間、100歳以上の人数、女性の優位、プレストン曲線とともに示し、ブルーゾーン研究が実際に測ったものと、その年齢が本物かどうかをめぐる科学的な論争を並べます。",
         topic: "健康",
         previewAlt: "プレビュー：1950年以降の世界の平均寿命と最高記録の線、健康寿命が最も長い国々とその不確実性区間。",
+      },
+      "dark-skies": {
+        title: "夜空を失った人はどれくらいいて、星はどれほど速く消え、暗い空はどこで守られているのか？",
+        summary: "2015年の人工夜空輝度世界地図による全ての国の光害下の人口と国土の割合に、15年分の市民科学による星の観測、衛星と人の目が測る値の差、認定ダークスカイ地域の分布を重ね、アリゾナとソノラを詳しく見ます。",
+        topic: "天文学",
+        previewAlt: "プレビュー：光害の最も深刻な国々で天の川が見えない人の割合と、2001年以降の認定ダークスカイ地域の増加。",
       },
     },
     lab: {
@@ -1236,6 +1248,12 @@ export const MESSAGES = {
         topic: "Salute",
         previewAlt: "Anteprima: la speranza di vita mondiale dal 1950 rispetto alla linea dei record, accanto ai paesi con la speranza di vita in buona salute più alta e ai loro intervalli di incertezza.",
       },
+      "dark-skies": {
+        title: "Quante persone hanno perso il cielo notturno, quanto in fretta svaniscono le stelle e dove sono protetti i cieli bui?",
+        summary: "La quota di persone e territorio sotto cieli inquinati dalla luce in ogni paese, dall’atlante mondiale 2015 della brillanza artificiale del cielo, accanto a quindici anni di conteggi di stelle dei cittadini scienziati, al divario tra ciò che misurano i satelliti e l’occhio umano e ai luoghi a cielo buio certificati, con un primo piano su Arizona e Sonora.",
+        topic: "Astronomia",
+        previewAlt: "Anteprima: la quota di persone che non vedono la Via Lattea nei paesi più inquinati dalla luce, accanto alla crescita dei luoghi a cielo buio certificati dal 2001.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -1648,6 +1666,12 @@ export const MESSAGES = {
         summary: "L'espérance de vie et l'espérance de vie en bonne santé de tous les pays, avec les intervalles d'incertitude de l'OMS, les années vécues en santé non optimale, les centenaires, l'avantage féminin et la courbe de Preston, à côté de ce que les études sur les zones bleues ont réellement mesuré et du débat scientifique sur la réalité de leurs âges.",
         topic: "Santé",
         previewAlt: "Aperçu : l'espérance de vie mondiale depuis 1950 face à la ligne record, à côté des pays ayant la plus haute espérance de vie en bonne santé et de leurs intervalles d'incertitude.",
+      },
+      "dark-skies": {
+        title: "Combien de personnes ont perdu le ciel nocturne, à quelle vitesse les étoiles s’effacent-elles et où les ciels étoilés sont-ils protégés ?",
+        summary: "La part de la population et du territoire sous un ciel pollué par la lumière dans chaque pays, d’après l’atlas mondial 2015 de la luminance artificielle du ciel, avec quinze ans de comptages d’étoiles participatifs, l’écart entre ce que mesurent les satellites et l’œil humain, et les lieux de ciel étoilé certifiés, avec un gros plan sur l’Arizona et le Sonora.",
+        topic: "Astronomie",
+        previewAlt: "Aperçu : la part de la population qui ne voit pas la Voie lactée dans les pays les plus pollués par la lumière, à côté de la hausse des lieux de ciel étoilé certifiés depuis 2001.",
       },
     },
     lab: {

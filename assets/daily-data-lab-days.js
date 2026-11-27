@@ -122,4 +122,18 @@ export const DAILY_DATA_LAB_DAYS = [
     previewLight: "assets/img/lab-day-009-light.svg",
     previewAlt: "Preview: world life expectancy since 1950 against the record line, next to the countries with the highest healthy life expectancy and their uncertainty intervals.",
   },
+  {
+    day: 10,
+    slug: "dark-skies",
+    date: "2026-11-27",
+    title: "How many people have lost the night sky, how fast are the stars fading, and where are dark skies protected?",
+    summary:
+      "The share of people and land under light-polluted skies in every country, from the 2015 world atlas of artificial sky brightness, next to fifteen years of citizen-science star counts, the gap between what satellites and human eyes measure, and where certified dark-sky places are, with a close-up of Arizona and Sonora.",
+    topic: "Astronomy",
+    tags: ["React", "TypeScript", "DuckDB", "Python", "Falchi 2016", "Globe at Night"],
+    source: "Falchi et al. 2016 (World Atlas, GFZ), Globe at Night (NOIRLab), Wikidata and World Bank WDI",
+    preview: "assets/img/lab-day-010.svg",
+    previewLight: "assets/img/lab-day-010-light.svg",
+    previewAlt: "Preview: the share of people who cannot see the Milky Way in the most light-polluted countries, next to the rise in certified dark-sky places since 2001.",
+  },
 ];
