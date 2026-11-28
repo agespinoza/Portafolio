@@ -14,6 +14,7 @@ One small, interactive data visualization a day, each on a different everyday to
 | 008 | Agriculture | [How much crop diversity is safeguarded, and how much is backed up in Svalbard?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/8) | [Svalbard Global Seed Vault Seed Portal](https://seedvault.nordgen.org/) (NordGen), [NordGen Annual Progress Report 2025](https://www.nordgen.org/our-work/svalbard-global-seed-vault/annual-progress-reports/) and [FAO WIEWS, SDG 2.5.1.a](https://www.fao.org/wiews/data/ex-situ/overview/en) |
 | 009 | Health | [Where do people live longest and healthiest, and do blue zones survive age validation?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/9) | [UN World Population Prospects 2024](https://population.un.org/wpp/), [WHO Global Health Observatory](https://www.who.int/data/gho) and [World Bank WDI](https://datatopics.worldbank.org/world-development-indicators/) |
 | 010 | Astronomy | [How many people have lost the night sky, how fast are the stars fading, and where are dark skies protected?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/10) | [Falchi et al. 2016](https://doi.org/10.1126/sciadv.1600377) and the [World Atlas 2015](https://doi.org/10.5880/GFZ.1.4.2016.001) (CC BY-NC 4.0), [Globe at Night](https://globeatnight.org/maps-data/) (NOIRLab, CC BY 4.0), [Wikidata](https://www.wikidata.org/) (CC0) and [World Bank WDI](https://datatopics.worldbank.org/world-development-indicators/) |
+| 011 | Economic history | [Who grows and buys the world's spices, how concentrated is supply, and how does today's map compare with the old Spice Route?](https://agespinoza.github.io/Portafolio/lab/index.html#/day/11) | [FAO FAOSTAT](https://www.fao.org/faostat/en/) production, trade and detailed trade matrix (CC BY 4.0), [World Bank WDI](https://datatopics.worldbank.org/world-development-indicators/) (CC BY 4.0), [UN M49](https://unstats.un.org/unsd/methodology/m49/overview/) and cited historians |
 
 ## Data downloads
 
@@ -222,6 +223,35 @@ The share of people and land under each of Falchi's six sky-brightness levels in
 - VIIRS radiance change per country since 2015 next to the atlas.
 - Sky Quality Meter networks and Kyba et al.'s full model for a proper trend estimate.
 
+## Day 011: Who grows and buys the world's spices, how concentrated is supply, and how does today's map compare with the old Spice Route?
+
+Production and trade of eight FAOSTAT spice groups (pepper, dry chillies, ginger, seed spices, nutmeg/mace/cardamoms, cinnamon, cloves, vanilla) in 210 countries and areas since 1961; the 50 largest bilateral flows per spice for 2000, 2010 and 2024 on a flow map with a historical-routes layer; HHI and top-3 share of production; a treemap of producers; export unit values; a cited timeline of eight historical events; exporter/importer rankings with grams per person; spice and country profiles; and a vanilla close-up for Mexico. Mode: FULL (Saturday).
+
+- **Data pipeline (`scripts/day-011/`):** `fetch.sh` downloads the FAOSTAT bulk zips (QCL 34 MB, TCL 274 MB, Detailed trade matrix 421 MB), World Bank countries and population and the UN M49 page; `m49.py` parses M49 → ISO3; `extract.sql` (DuckDB CLI) filters 11 GB of CSV to the eight items in about 3 s; `snapshot.mjs` (DuckDB) builds `dim_spice`, `dim_country`, `fact_production`, `fact_trade`, `fact_flows`, `world_production`, `world_trade` and `conc` as Parquet in `raw/` and `data/day-011-spices/day-011.json` (0.3 MB); `history.json` holds the cited events; `preview.mjs` draws the preview images. Rebuild with `npm run data:spices`.
+- **Checks:** for every spice the 2024 country sum equals FAOSTAT's World row (production, exports and imports within 0.5%); FAOSTAT's "China" (351) is dropped to avoid double counting. World exports vs imports in tonnes differ by −6.3% (nutmeg & cardamom) to +8.7% (cloves); the build stops above 35%. Importer-reported flows cover 64.7–98.4% of world import value by spice in 2024.
+- **Finding:** 7 of 8 groups are highly concentrated (HHI > 2,500; seed spices 6,267, cloves 5,734); black pepper is the exception (1,378, down from 2,422 in 1961) as its core moved from India, Malaysia and Indonesia (79.4% in 1961) to Viet Nam, India and Brazil (55.0%). World vanilla exports are 146% of production (re-exports). Mexico grew 7.2% of world vanilla in 2024 (16.8% in 1961) and reported 11.8 t of exports.
+- **History:** eight events, each tied to one verified reference and the part read (abstract, title or the open NBER working-paper text). Pierre Poivre's 1770 transplant to Mauritius was omitted because no accessible source could be read. Routes are schematic.
+- **Brief deviations:** the brief asked for Recharts, MapLibre and DuckDB-WASM. The lab draws hand-built SVG (CLAUDE.md) and reuses Day 003's Equal Earth map; the data are aggregated at build time (0.3 MB JSON), so DuckDB runs in Node, not in the browser. Flows are importer reports, not BACI-reconciled.
+- **Local model delegation:** three claim-vs-abstract checks (Banda 1621, Poivre 1770, Papantla) were classified by a local Ollama model and verified against the quoted text; the Poivre claim was correctly rejected.
+- **Downloads** go to `daily-data-lab/raw/day-011-spices/` (not versioned).
+
+### Sprint 1
+
+- [x] FAOSTAT QCL + TCL, World Bank WDI and UN M49 → DuckDB → Parquet + day-011.json, checked against FAOSTAT's World row (#41)
+- [x] Dashboard: 8 KPIs, spice selector, production since 1961, HHI, treemap, prices, ranking, profiles, curious facts (#42)
+
+### Sprint 2
+
+- [x] Detailed trade matrix → fact_flows (2000, 2010, 2024) → flow map with top-50 arcs and country profiles (#43)
+- [x] Historical Spice Route layer and cited timeline (#44)
+- [x] Research blocks with DOI-checked references, translations, research article, Excel export, previews, cross-day insight (#45)
+
+### Follow-up ideas
+
+- BACI (UN Comtrade) reconciled flows for HS 0904–0910, including ground and processed spices.
+- Deflated prices and grade splits (black vs white pepper, cassia vs true cinnamon, nutmeg vs cardamom).
+- Digitised historical export series (Bulbeck et al. 1998) plotted next to FAOSTAT.
+
 ## Languages and publication calendar
 
 The portfolio and Daily Data Lab can be switched manually between English, Spanish, Japanese, Italian, French, Brazilian Portuguese, and Simplified Chinese. English is the default; the selected language is shared through the `lang` URL parameter. The contribution-style calendar shows published days from the last 12 months and links each marked date to its visualization. Publication metadata is maintained once in [`../assets/daily-data-lab-days.js`](../assets/daily-data-lab-days.js) and used by both the portfolio and this app.
@@ -237,6 +267,7 @@ npm run build      # builds into ../lab for GitHub Pages
 npm run snapshot   # refreshes the saved CBP data (Day 001)
 npm run snapshot:glowworms   # refreshes GBIF records, climate, and the NZ outline (Day 002)
 npm run snapshot:pillars     # rebuilds the Commons catalog, ERA5 weather, and world outline (Day 003)
+npm run data:spices          # FAOSTAT + World Bank → DuckDB → day-011.json and previews (Day 011; run scripts/day-011/fetch.sh first)
 npm run data:abraham         # HydroLAKES → dim_lake.parquet → snapshot (Day 004; needs the zip in raw/)
 npm run fetch:abraham        # continues the Open-Meteo winter backfill within today's budget (Day 004)
 npm run data:languages       # Glottolog/Grambank/WALS CLDF → parquet → snapshot and previews (Day 005; needs raw/)

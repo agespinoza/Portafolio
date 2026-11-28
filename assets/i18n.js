@@ -416,6 +416,12 @@ export const MESSAGES = {
         topic: "Astronomía",
         previewAlt: "Vista previa: la proporción de personas que no pueden ver la Vía Láctea en los países con más contaminación lumínica, junto al aumento de los lugares de cielo oscuro certificados desde 2001.",
       },
+      spices: {
+        title: "\u00bfQui\u00e9n cultiva y compra las especias del mundo, qu\u00e9 tan concentrada est\u00e1 la oferta y c\u00f3mo se compara el mapa actual con la antigua ruta de las especias?",
+        summary: "Producci\u00f3n y comercio de ocho grupos de especias de FAOSTAT en todos los pa\u00edses desde 1961, los 50 mayores flujos comerciales de cada uno, qu\u00e9 tan concentrada est\u00e1 la oferta, cu\u00e1nto vale un kilogramo y ocho momentos citados de la ruta hist\u00f3rica de las especias, con acercamientos a la pimienta negra y a la vainilla de M\u00e9xico.",
+        topic: "Historia econ\u00f3mica",
+        previewAlt: "Vista previa: la producci\u00f3n mundial de pimienta negra desde 1961 por productor, junto a la concentraci\u00f3n de la oferta (IHH) de los ocho grupos de especias.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -834,6 +840,12 @@ export const MESSAGES = {
         summary: "2015年の人工夜空輝度世界地図による全ての国の光害下の人口と国土の割合に、15年分の市民科学による星の観測、衛星と人の目が測る値の差、認定ダークスカイ地域の分布を重ね、アリゾナとソノラを詳しく見ます。",
         topic: "天文学",
         previewAlt: "プレビュー：光害の最も深刻な国々で天の川が見えない人の割合と、2001年以降の認定ダークスカイ地域の増加。",
+      },
+      spices: {
+        title: "\u4e16\u754c\u306e\u30b9\u30d1\u30a4\u30b9\u3092\u80b2\u3066\u3001\u8cb7\u3063\u3066\u3044\u308b\u306e\u306f\u8ab0\u304b\u3001\u4f9b\u7d66\u306f\u3069\u308c\u307b\u3069\u96c6\u4e2d\u3057\u3066\u3044\u308b\u304b\u3001\u305d\u3057\u3066\u73fe\u5728\u306e\u5730\u56f3\u306f\u304b\u3064\u3066\u306e\u9999\u8f9b\u6599\u30eb\u30fc\u30c8\u3068\u3069\u3046\u9055\u3046\u304b\uff1f",
+        summary: "1961\u5e74\u4ee5\u964d\u306e\u5168\u3066\u306e\u56fd\u306b\u304a\u3051\u308bFAOSTAT\u306e8\u3064\u306e\u30b9\u30d1\u30a4\u30b9\u7fa4\u306e\u751f\u7523\u3068\u8cbf\u6613\u3001\u5404\u30b9\u30d1\u30a4\u30b9\u306e\u4e0a\u4f4d50\u306e\u8cbf\u6613\u30d5\u30ed\u30fc\u3001\u4f9b\u7d66\u306e\u96c6\u4e2d\u5ea6\u30011\u30ad\u30ed\u30b0\u30e9\u30e0\u306e\u4fa1\u5024\u3001\u305d\u3057\u3066\u6b74\u53f2\u7684\u306a\u9999\u8f9b\u6599\u30eb\u30fc\u30c8\u306e\u5f15\u7528\u4ed8\u304d\u306e8\u3064\u306e\u51fa\u6765\u4e8b\u3002\u9ed2\u30b3\u30b7\u30e7\u30a6\u3068\u30e1\u30ad\u30b7\u30b3\u306e\u30d0\u30cb\u30e9\u3092\u8a73\u3057\u304f\u898b\u307e\u3059\u3002",
+        topic: "\u7d4c\u6e08\u53f2",
+        previewAlt: "\u30d7\u30ec\u30d3\u30e5\u30fc\uff1a1961\u5e74\u4ee5\u964d\u306e\u751f\u7523\u56fd\u5225\u306e\u9ed2\u30b3\u30b7\u30e7\u30a6\u306e\u4e16\u754c\u751f\u7523\u3068\u30018\u3064\u306e\u30b9\u30d1\u30a4\u30b9\u7fa4\u306e\u4f9b\u7d66\u96c6\u4e2d\u5ea6\uff08HHI\uff09\u3002",
       },
     },
     lab: {
@@ -1254,6 +1266,12 @@ export const MESSAGES = {
         topic: "Astronomia",
         previewAlt: "Anteprima: la quota di persone che non vedono la Via Lattea nei paesi più inquinati dalla luce, accanto alla crescita dei luoghi a cielo buio certificati dal 2001.",
       },
+      spices: {
+        title: "Chi coltiva e compra le spezie del mondo, quanto \u00e8 concentrata l\u2019offerta e come si confronta la mappa di oggi con l\u2019antica rotta delle spezie?",
+        summary: "Produzione e commercio di otto gruppi di spezie FAOSTAT in ogni paese dal 1961, i 50 maggiori flussi commerciali di ciascuno, quanto \u00e8 concentrata l\u2019offerta, quanto vale un chilogrammo e otto momenti citati della rotta storica delle spezie, con primi piani sul pepe nero e sulla vaniglia del Messico.",
+        topic: "Storia economica",
+        previewAlt: "Anteprima: la produzione mondiale di pepe nero dal 1961 per produttore, accanto alla concentrazione dell\u2019offerta (HHI) degli otto gruppi di spezie.",
+      },
     },
     lab: {
       brand: "Daily Data Lab",
@@ -1672,6 +1690,12 @@ export const MESSAGES = {
         summary: "La part de la population et du territoire sous un ciel pollué par la lumière dans chaque pays, d’après l’atlas mondial 2015 de la luminance artificielle du ciel, avec quinze ans de comptages d’étoiles participatifs, l’écart entre ce que mesurent les satellites et l’œil humain, et les lieux de ciel étoilé certifiés, avec un gros plan sur l’Arizona et le Sonora.",
         topic: "Astronomie",
         previewAlt: "Aperçu : la part de la population qui ne voit pas la Voie lactée dans les pays les plus pollués par la lumière, à côté de la hausse des lieux de ciel étoilé certifiés depuis 2001.",
+      },
+      spices: {
+        title: "Qui cultive et ach\u00e8te les \u00e9pices du monde, l\u2019offre est-elle concentr\u00e9e, et comment la carte actuelle se compare-t-elle \u00e0 l\u2019ancienne route des \u00e9pices ?",
+        summary: "Production et commerce de huit groupes d\u2019\u00e9pices FAOSTAT dans chaque pays depuis 1961, les 50 plus grands flux commerciaux de chacun, la concentration de l\u2019offre, la valeur d\u2019un kilogramme et huit moments cit\u00e9s de la route historique des \u00e9pices, avec des gros plans sur le poivre noir et la vanille du Mexique.",
+        topic: "Histoire \u00e9conomique",
+        previewAlt: "Aper\u00e7u : la production mondiale de poivre noir depuis 1961 par producteur, \u00e0 c\u00f4t\u00e9 de la concentration de l\u2019offre (IHH) des huit groupes d\u2019\u00e9pices.",
       },
     },
     lab: {

@@ -465,6 +465,12 @@ export const PT = {
       "summary": "A parcela de pessoas e território sob céus com poluição luminosa em cada país, segundo o atlas mundial 2015 do brilho artificial do céu, ao lado de quinze anos de contagens de estrelas da ciência cidadã, da diferença entre o que medem os satélites e o olho humano e dos lugares de céu escuro certificados, com um close-up do Arizona e de Sonora.",
       "topic": "Astronomia",
       "previewAlt": "Prévia: a parcela de pessoas que não veem a Via Láctea nos países com mais poluição luminosa, ao lado do aumento dos lugares de céu escuro certificados desde 2001."
+    },
+    "spices": {
+      "title": "Quem cultiva e compra as especiarias do mundo, quão concentrada é a oferta e como o mapa atual se compara à antiga rota das especiarias?",
+      "summary": "Produção e comércio de oito grupos de especiarias da FAOSTAT em todos os países desde 1961, os 50 maiores fluxos comerciais de cada um, quão concentrada é a oferta, quanto vale um quilo e oito momentos citados da rota histórica das especiarias, com destaque para a pimenta-do-reino e a baunilha do México.",
+      "topic": "História econômica",
+      "previewAlt": "Prévia: a produção mundial de pimenta-do-reino desde 1961 por produtor, ao lado da concentração da oferta (IHH) dos oito grupos de especiarias."
     }
   },
   "lab": {

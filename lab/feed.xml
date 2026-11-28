@@ -5,8 +5,17 @@
   <link href="https://agespinoza.github.io/Portafolio/lab/"/>
   <link rel="self" type="application/atom+xml" href="https://agespinoza.github.io/Portafolio/lab/feed.xml"/>
   <id>https://agespinoza.github.io/Portafolio/lab/</id>
-  <updated>2026-11-27T00:00:00Z</updated>
+  <updated>2026-11-28T00:00:00Z</updated>
   <author><name>Alicia Espinoza</name></author>
+  <entry>
+    <title>Day 011: Who grows and buys the world&#39;s spices, how concentrated is supply, and how does today&#39;s map compare with the old Spice Route?</title>
+    <link href="https://agespinoza.github.io/Portafolio/lab/studies/spices.html"/>
+    <id>https://agespinoza.github.io/Portafolio/lab/studies/spices.html</id>
+    <published>2026-11-28T00:00:00Z</published>
+    <updated>2026-11-28T00:00:00Z</updated>
+    <category term="Economic history"/>
+    <summary>Production and trade of eight FAOSTAT spice groups in every country since 1961, the 50 largest trade flows of each, how concentrated supply is, what a kilogram is worth, and eight cited moments of the historic Spice Route, with black pepper and Mexico&#39;s vanilla up close.</summary>
+  </entry>
   <entry>
     <title>Day 010: How many people have lost the night sky, how fast are the stars fading, and where are dark skies protected?</title>
     <link href="https://agespinoza.github.io/Portafolio/lab/studies/dark-skies.html"/>

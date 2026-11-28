@@ -136,4 +136,18 @@ export const DAILY_DATA_LAB_DAYS = [
     previewLight: "assets/img/lab-day-010-light.svg",
     previewAlt: "Preview: the share of people who cannot see the Milky Way in the most light-polluted countries, next to the rise in certified dark-sky places since 2001.",
   },
+  {
+    day: 11,
+    slug: "spices",
+    date: "2026-11-28",
+    title: "Who grows and buys the world's spices, how concentrated is supply, and how does today's map compare with the old Spice Route?",
+    summary:
+      "Production and trade of eight FAOSTAT spice groups in every country since 1961, the 50 largest trade flows of each, how concentrated supply is, what a kilogram is worth, and eight cited moments of the historic Spice Route, with black pepper and Mexico's vanilla up close.",
+    topic: "Economic history",
+    tags: ["React", "TypeScript", "DuckDB", "FAOSTAT", "Trade flows", "History"],
+    source: "FAO FAOSTAT (production, trade, detailed trade matrix), World Bank WDI, UN M49 and cited historians",
+    preview: "assets/img/lab-day-011.svg",
+    previewLight: "assets/img/lab-day-011-light.svg",
+    previewAlt: "Preview: world production of black pepper since 1961 by grower, next to the concentration of supply (HHI) for the eight spice groups.",
+  },
 ];

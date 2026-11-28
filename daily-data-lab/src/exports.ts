@@ -13,6 +13,7 @@ import { BY_INCOME, BY_REGION, BY_SECTOR, COUNTRIES, FLI } from "./days/day-006-
 import { CAUSES, CLASSES, CUBES, ORBITS, OWNERS, PARENTS, RCS_CLASSES } from "./days/day-007-space-debris/data";
 import { BLUE_ZONES, COUNTRIES as LONG_COUNTRIES, RECORD, REGIONS as LONG_REGIONS, TREND, TREND_KEYS, prestonResidual } from "./days/day-009-longevity/data";
 import { COUNTRIES as SKY_COUNTRIES, GAN, PLACES as SKY_PLACES, WORLD as SKY_WORLD, bands as skyBands, people as skyPeople } from "./days/day-010-dark-skies/data";
+import { BY_ISO as SP_ISO, CHECKS as SP_CHECKS, COUNTRIES as SP_COUNTRIES, EVENTS as SP_EVENTS, FLOWS as SP_FLOWS, FLOW_YEARS as SP_FLOW_YEARS, PROD as SP_PROD, PROD_FLAG as SP_FLAG, SPICES as SP_SPICES, TRADE as SP_TRADE, WORLD as SP_WORLD, YEARS as SP_YEARS, yi as spYi } from "./days/day-011-spices/data";
 import { CENTRES, COUNTRIES as SEED_COUNTRIES, CROPS_BY_CONTINENT, CUMULATIVE, DEPOSITORS, EVENTS, GENERA, ORIGIN, TREND as SEED_TREND, WIEWS_CENTRES, backupShare } from "./days/day-008-seed-banks/data";
 
 type Rows = Sheet["rows"];
@@ -155,6 +156,32 @@ export const EXPORTS: Record<string, () => Sheet[]> = {
       sheet("Globe at Night trends", ["Subset", "Years", "Magnitudes per year (within cell × constellation)", "95% CI low", "95% CI high", "Groups", "Reports", "Implied brightening %/yr", "Implied low", "Implied high"], trendRows),
       sheet("Observation cells 1°", ["Longitude", "Latitude", "Reports", "Median limiting magnitude"], GAN.cells.map((c) => [...c])),
       sheet("Arizona-Sonora cells 0.1°", ["Longitude", "Latitude", "Reports", "Median limiting magnitude", "Reports from Mexico"], GAN.azCells.map((c) => [...c])),
+    ];
+  },
+  spices: () => {
+    const name = (iso3: string) => SP_ISO.get(iso3)?.name ?? iso3;
+    const prod: Rows = [];
+    for (const s of SP_SPICES) for (const [iso3, v] of Object.entries(SP_PROD[s.id])) v.forEach((t, i) => { if (t != null) prod.push([s.id, s.short, iso3, name(iso3), SP_YEARS[i], t, SP_YEARS[i] === SP_YEARS[SP_YEARS.length - 1] ? SP_FLAG[s.id][iso3] ?? "A" : null]); });
+    const trade: Rows = [];
+    for (const s of SP_SPICES) for (const [y, rows] of Object.entries(SP_TRADE[s.id])) for (const [iso3, r] of Object.entries(rows)) trade.push([s.id, s.short, iso3, name(iso3), Number(y), ...r]);
+    const flows: Rows = [];
+    for (const s of SP_SPICES) for (const y of SP_FLOW_YEARS) (SP_FLOWS[s.id][y] ?? []).forEach((f, k) => flows.push([s.id, s.short, y, k + 1, f[1], name(f[1]), f[0], name(f[0]), f[2], f[3]]));
+    const world: Rows = SP_SPICES.flatMap((s) => SP_YEARS.map((y) => {
+      const W = SP_WORLD[s.id], i = spYi(y);
+      return [s.id, s.short, y, W.prod[i], W.area[i], W.exportT[i], W.exportUsd[i], W.importT[i], W.importUsd[i], W.exportUsd[i] != null && W.exportT[i] ? W.exportUsd[i]! / (W.exportT[i]! * 1000) : null, W.hhi[i], W.top3[i], W.producers[i]];
+    }));
+    return [
+      sheet("Spices", ["Spice ID", "Short name", "FAOSTAT item", "Item code", "CPC"], SP_SPICES.map((s) => [s.id, s.short, s.name, s.code, s.cpc])),
+      sheet("World by year", ["Spice ID", "Spice", "Year", "Production t", "Area harvested ha", "Exports t", "Exports US$", "Imports t", "Imports US$", "Export unit value US$/kg", "HHI of production", "Top-3 share %", "Producing countries"], world),
+      sheet("Production", ["Spice ID", "Spice", "ISO3", "Country (FAOSTAT)", "Year", "Production t", "FAOSTAT flag (latest year)"], prod),
+      sheet("Trade", ["Spice ID", "Spice", "ISO3", "Country (FAOSTAT)", "Year", "Exports t", "Exports US$", "Imports t", "Imports US$"], trade),
+      sheet("Top 50 flows", ["Spice ID", "Spice", "Year", "Rank", "Exporter ISO3", "Exporter", "Importer ISO3", "Importer", "Tonnes (importer report)", "US$ CIF (importer report)"], flows),
+      sheet("Countries", ["ISO3", "ISO2", "Name (FAOSTAT)", "World Bank region", "Capital latitude", "Capital longitude", "Population", "Population year", "Former state"],
+        SP_COUNTRIES.map((c) => [c.iso3, c.iso2, c.name, c.region, c.lat, c.lon, c.pop, c.popYear, c.former])),
+      sheet("Checks", ["Spice ID", "World production t (FAOSTAT World row)", "Sum of countries t", "World exports t", "World imports t", "Export-import gap %", "World exports US$", "World imports US$"],
+        SP_CHECKS.map((c) => [c.spiceId, c.worldT, c.sumT, c.worldX, c.worldM, c.gapPct, c.worldXusd, c.worldMusd])),
+      sheet("History", ["ID", "When", "Start", "End", "Spice", "Event", "Reference key", "Part of the source read", "Places"],
+        SP_EVENTS.map((e) => [e.id, e.when, e.start, e.end, e.spice, e.text, e.ref, e.basis, e.places.map((p) => `${p[2]} (${p[1]}, ${p[0]})`).join("; ")])),
     ];
   },
 };

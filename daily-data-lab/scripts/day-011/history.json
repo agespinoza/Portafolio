@@ -1,0 +1,33 @@
+{
+  "_comment": "Day 011 historical layer. Each event carries only what its cited source states (abstract, title, or the quoted page text noted in 'basis'). Place markers are approximate and routes are schematic lines through the places named, drawn for orientation; they are not reconstructed sailing tracks. Omitted because no accessible source could be read: Pierre Poivre's 1770 clove and nutmeg transplant to Mauritius.",
+  "events": [
+    { "id": "seasia", "start": 1300, "end": 1900, "when": "14th–19th c.", "spice": "cloves", "ref": "bulbeck1998",
+      "basis": "abstract", "places": [[127.38, 0.79, "Maluku"]], "route": [],
+      "text": "Cloves, pepper, coffee and sugar were the Southeast Asian products that dominated the region's long-term exports; Bulbeck, Reid, Tan and Wu compiled export series for each to show a dynamic record of rises and falls." },
+    { "id": "zheng", "start": 1411, "end": 1422, "when": "1411–1422", "spice": "pepper", "ref": "orw2005",
+      "basis": "working-paper text", "places": [[118.8, 32.06, "Nanjing"], [79.86, 6.93, "Sri Lanka"], [75.78, 11.25, "Calicut"]],
+      "route": [[118.8, 32.06], [113.5, 22.2], [105.5, 8.5], [102.25, 2.19], [95.3, 5.6], [79.86, 6.93], [75.78, 11.25]],
+      "text": "Admiral Zheng He's armada invaded Sri Lanka in 1411 and intimidated the rulers of Calicut, on the west coast of India; three more expeditions reached the Indian Ocean between 1414 and 1422." },
+    { "id": "venice", "start": 1496, "end": 1496, "when": "1496", "spice": "pepper", "ref": "orw2005",
+      "basis": "working-paper text, note 4, quoting Friedman (2005)", "places": [[29.92, 31.2, "Alexandria"], [12.33, 45.44, "Venice"]],
+      "route": [[29.92, 31.2], [22.5, 34.5], [19.0, 39.8], [12.33, 45.44]],
+      "text": "Four galleys arrived in Venice from Alexandria with 2 million kilograms of spices, of which 1,363,934 kg, or 68%, was pepper, the dominant commodity of the spice trade." },
+    { "id": "gama", "start": 1497, "end": 1503, "when": "1497–1503", "spice": "pepper", "ref": "orw2009",
+      "basis": "abstract (1503); working-paper text (1497–1499)", "places": [[-9.14, 38.72, "Lisbon"], [18.47, -34.36, "Cape of Good Hope"], [75.78, 11.25, "Calicut"]],
+      "route": [[-9.14, 38.72], [-17.5, 14.7], [-25.0, -10.0], [-10.0, -32.0], [18.47, -34.36], [35.0, -25.0], [40.7, -15.0], [45.0, -2.0], [60.0, 8.0], [75.78, 11.25]],
+      "text": "Vasco da Gama's first passage to India round the Cape of Good Hope (1497–1499) was not a commercial success; he returned in 1503 from a financially successful second voyage. O'Rourke and Williamson find that the Voyages of Discovery had a major impact on European spice markets, measured in pepper and fine-spice prices relative to inflation." },
+    { "id": "voc", "start": 1602, "end": 1623, "when": "1602", "spice": "nutmeg", "ref": "gelderblom2013",
+      "basis": "title and abstract", "places": [[4.9, 52.37, "Amsterdam"]], "route": [],
+      "text": "The Dutch East India Company (VOC) is founded. With its legal personhood, permanent capital and transferable shares, it is, with the English East India Company, considered an institutional breakthrough; Gelderblom, de Jong and Jonker show its corporate form owed more to piecemeal engineering than to foresight." },
+    { "id": "banda", "start": 1621, "end": 1621, "when": "1621", "spice": "nutmeg", "ref": "miske2025",
+      "basis": "abstract", "places": [[129.9, -4.53, "Banda Islands"]], "route": [],
+      "text": "The VOC conquered the Banda Islands and killed, expelled and enslaved their indigenous population to control nutmeg and mace, grown almost exclusively in Banda. Miske argues that cultivation methods changed little and productivity stagnated or declined after the conquest." },
+    { "id": "nutmegspread", "start": 1700, "end": 1800, "when": "18th c.", "spice": "nutmeg", "ref": "sasikumar2021",
+      "basis": "abstract", "places": [[129.9, -4.53, "Moluccas"], [76.27, 9.93, "Kerala"]],
+      "route": [[129.9, -4.53], [116.0, -9.0], [105.0, -7.5], [95.0, 2.0], [82.0, 6.0], [76.27, 9.93]],
+      "text": "Nutmeg leaves the Moluccas, through wars, privateers and clandestine collection trips; the French role in planting it in their colonies was pivotal. In India nutmeg has only about 300 years of domestication history, and Kerala is now its main growing area." },
+    { "id": "papantla", "start": 1870, "end": 1900, "when": "late 19th c.", "spice": "vanilla", "ref": "kouri2004",
+      "basis": "abstract", "places": [[-97.32, 20.45, "Papantla"]], "route": [],
+      "text": "Papantla, an indigenous village in Mexico, is transformed by the fast growth of vanilla production and exports, which drove the violent privatisation of its communal land." }
+  ]
+}

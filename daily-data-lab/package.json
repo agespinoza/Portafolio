@@ -22,7 +22,8 @@
     "data:seeds": "node scripts/day-008/snapshot.mjs && node scripts/day-008/preview.mjs",
     "data:longevity": "node scripts/day-009/snapshot.mjs && node scripts/day-009/preview.mjs",
     "data:darksky": "python3 -I scripts/day-010/falchi_table.py && node scripts/day-010/snapshot.mjs && node scripts/day-010/preview.mjs",
-    "raster:darksky": "python -I scripts/day-010/raster.py"
+    "raster:darksky": "python -I scripts/day-010/raster.py",
+    "data:spices": "python3 -I scripts/day-011/m49.py && duckdb < scripts/day-011/extract.sql && node scripts/day-011/snapshot.mjs && node scripts/day-011/preview.mjs"
   },
   "dependencies": {
     "react": "18.3.1",
